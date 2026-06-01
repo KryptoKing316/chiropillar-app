@@ -1,0 +1,475 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* { box-sizing: border-box; }
+
+/* ═══════════════════════════════════════════════════════════════
+   ChiroPillar Theme · Wagner Family Office
+   Palette per Brand Brief (knowledge/deals/chiropillar/source-docs)
+   - Deep Spine Blue  #1F4E79  primary (was KB navy)
+   - Align Blue       #2E75B6  secondary accent
+   - Column Stone     #EBD8A6  warm neutral
+   - Globe Blue       #9CC4E4  soft accent
+   - Stone Outline    #7A6A45  grounding detail
+   Gold (#C9A84C) retained as KB-tier hint on /calculator admin view.
+   ═══════════════════════════════════════════════════════════════ */
+:root {
+  /* ChiroPillar brand tokens (use these for new ChiroPillar UI) */
+  --cp-spine:    #1F4E79;
+  --cp-align:    #2E75B6;
+  --cp-stone:    #EBD8A6;
+  --cp-globe:    #9CC4E4;
+  --cp-outline:  #7A6A45;
+  --cp-coral:    #F2B0A0;
+  --cp-cream:    #F7F4ED;
+
+  /* Dark mode (default) · ChiroPillar Spine-blue chrome */
+  --kb-bg: #102A4A;
+  --kb-bg-panel: #163759;
+  --kb-bg-surface: #1F4E79;
+  --kb-bg-raised: #2E75B6;
+  --kb-bg-card: rgba(255,255,255,0.02);
+  --kb-text: #F2EEE7;
+  --kb-text-secondary: #9CC4E4;
+  --kb-text-muted: #6F8AAB;
+  --kb-border: rgba(255,255,255,0.08);
+  --kb-border-subtle: rgba(255,255,255,0.05);
+  --kb-accent: #C9A84C;
+  --kb-accent-hover: #E8C96A;
+  --kb-accent-dim: rgba(201,168,76,0.12);
+  --kb-accent-border: rgba(201,168,76,0.20);
+  --kb-green: #2ECC8B;
+  --kb-red: #E74C3C;
+  --kb-shadow-1: rgba(0,0,0,0.15) 0px 1px 2px;
+  --kb-shadow-2: rgba(0,0,0,0.3) 0px 4px 12px;
+  --kb-sidebar-bg: #163759;
+  --kb-sidebar-active: rgba(46,117,182,0.18);
+  --kb-sidebar-border: rgba(255,255,255,0.05);
+  --kb-input-bg: rgba(255,255,255,0.02);
+  --kb-input-border: rgba(255,255,255,0.08);
+  --kb-table-header: #1F4E79;
+  --kb-row-alt: rgba(255,255,255,0.015);
+  --kb-row-hover: rgba(255,255,255,0.04);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   LIGHT MODE OPTIONS — Toggle between these by changing data-theme
+   Option A: "light" — Stripe Ivory (warm, premium, gold accent)
+   Option B: "light-royal" — Royal Deep (deep indigo accent, bold)
+   Option C: "light-forest" — Forest & Brass (earthy, sophisticated)
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Option A: Stripe Ivory — warm cream, gold accent, Stripe shadows */
+[data-theme="light"] {
+  --kb-bg: #FAFAF7;
+  --kb-bg-panel: #FFFFFF;
+  --kb-bg-surface: #FFFFFF;
+  --kb-bg-raised: #F5F3EE;
+  --kb-bg-card: #FFFFFF;
+  --kb-text: #1A1A2E;
+  --kb-text-secondary: #555770;
+  --kb-text-muted: #9898AD;
+  --kb-border: #E8E5DE;
+  --kb-border-subtle: #F0EDE6;
+  --kb-accent: #B08D3E;
+  --kb-accent-hover: #967730;
+  --kb-accent-dim: rgba(176,141,62,0.07);
+  --kb-accent-border: rgba(176,141,62,0.20);
+  --kb-green: #2D8A5E;
+  --kb-red: #C53030;
+  --kb-shadow-1: rgba(26,26,46,0.06) 0px 2px 4px;
+  --kb-shadow-2: rgba(26,26,46,0.10) 0px 12px 28px, rgba(0,0,0,0.04) 0px 4px 10px;
+  --kb-sidebar-bg: #FFFFFF;
+  --kb-sidebar-active: rgba(176,141,62,0.06);
+  --kb-sidebar-border: #E8E5DE;
+  --kb-input-bg: #FFFFFF;
+  --kb-input-border: #E8E5DE;
+  --kb-table-header: #F5F3EE;
+  --kb-row-alt: #FDFCFA;
+  --kb-row-hover: #F5F3EE;
+}
+
+/* Option B: Royal Deep — cool slate, deep indigo accent, modern authority */
+[data-theme="light-royal"] {
+  --kb-bg: #F4F5F9;
+  --kb-bg-panel: #FFFFFF;
+  --kb-bg-surface: #FFFFFF;
+  --kb-bg-raised: #ECEEF5;
+  --kb-bg-card: #FFFFFF;
+  --kb-text: #0F172A;
+  --kb-text-secondary: #334155;
+  --kb-text-muted: #64748B;
+  --kb-border: #E2E4EF;
+  --kb-border-subtle: #ECEEF5;
+  --kb-accent: #4F46E5;
+  --kb-accent-hover: #4338CA;
+  --kb-accent-dim: rgba(79,70,229,0.06);
+  --kb-accent-border: rgba(79,70,229,0.18);
+  --kb-green: #059669;
+  --kb-red: #DC2626;
+  --kb-shadow-1: rgba(15,23,42,0.06) 0px 1px 3px, rgba(15,23,42,0.04) 0px 1px 2px;
+  --kb-shadow-2: rgba(15,23,42,0.08) 0px 12px 28px, rgba(79,70,229,0.04) 0px 4px 10px;
+  --kb-sidebar-bg: #FFFFFF;
+  --kb-sidebar-active: rgba(79,70,229,0.06);
+  --kb-sidebar-border: #E2E4EF;
+  --kb-input-bg: #FFFFFF;
+  --kb-input-border: #E2E4EF;
+  --kb-table-header: #ECEEF5;
+  --kb-row-alt: #F8F8FC;
+  --kb-row-hover: #ECEEF5;
+}
+
+/* Option C: Royal Forest — deep teal accent, warm surfaces, authority + earth */
+[data-theme="light-crown"] {
+  --kb-bg: #F6F5F1;
+  --kb-bg-panel: #FFFFFF;
+  --kb-bg-surface: #FFFFFF;
+  --kb-bg-raised: #EDEBE4;
+  --kb-bg-card: #FFFFFF;
+  --kb-text: #141C2B;
+  --kb-text-secondary: #4A5060;
+  --kb-text-muted: #8A8E9A;
+  --kb-border: #DDD9CE;
+  --kb-border-subtle: #EBE8E0;
+  --kb-accent: #1A6B5A;
+  --kb-accent-hover: #145548;
+  --kb-accent-dim: rgba(26,107,90,0.06);
+  --kb-accent-border: rgba(26,107,90,0.18);
+  --kb-green: #1A6B5A;
+  --kb-red: #B91C1C;
+  --kb-shadow-1: rgba(20,28,43,0.06) 0px 2px 4px;
+  --kb-shadow-2: rgba(20,28,43,0.08) 0px 12px 28px, rgba(26,107,90,0.03) 0px 4px 10px;
+  --kb-sidebar-bg: #FFFFFF;
+  --kb-sidebar-active: rgba(26,107,90,0.06);
+  --kb-sidebar-border: #DDD9CE;
+  --kb-input-bg: #FFFFFF;
+  --kb-input-border: #DDD9CE;
+  --kb-table-header: #EDEBE4;
+  --kb-row-alt: #FAF9F6;
+  --kb-row-hover: #EDEBE4;
+}
+
+/* Option D: Forest & Brass — warm earth tones, forest green accent, rich */
+[data-theme="light-forest"] {
+  --kb-bg: #F7F5F0;
+  --kb-bg-panel: #FFFFFF;
+  --kb-bg-surface: #FFFFFF;
+  --kb-bg-raised: #EFECE5;
+  --kb-bg-card: #FFFFFF;
+  --kb-text: #1C2118;
+  --kb-text-secondary: #4A5244;
+  --kb-text-muted: #8A9282;
+  --kb-border: #DDD9CE;
+  --kb-border-subtle: #EBE8E0;
+  --kb-accent: #2D6A4F;
+  --kb-accent-hover: #1B4332;
+  --kb-accent-dim: rgba(45,106,79,0.06);
+  --kb-accent-border: rgba(45,106,79,0.18);
+  --kb-green: #2D6A4F;
+  --kb-red: #9B2C2C;
+  --kb-shadow-1: rgba(28,33,24,0.06) 0px 2px 4px;
+  --kb-shadow-2: rgba(28,33,24,0.08) 0px 12px 28px, rgba(45,106,79,0.03) 0px 4px 10px;
+  --kb-sidebar-bg: #FFFFFF;
+  --kb-sidebar-active: rgba(45,106,79,0.06);
+  --kb-sidebar-border: #DDD9CE;
+  --kb-input-bg: #FFFFFF;
+  --kb-input-border: #DDD9CE;
+  --kb-table-header: #EFECE5;
+  --kb-row-alt: #FBFAF7;
+  --kb-row-hover: #EFECE5;
+}
+
+/* Logo swap for light mode */
+[data-theme="light-royal"] img[src="/kb-logo.png"],
+[data-theme="light-forest"] img[src="/kb-logo.png"],
+[data-theme="light"] img[src="/kb-logo.png"],
+[data-theme="light-crown"] img[src="/kb-logo.png"] {
+  content: url("/kb-logo-dark.png");
+}
+
+/* ── Light mode shared enhancements (all light themes) ── */
+[data-theme="light"] .kb-sidebar > div,
+[data-theme="light-royal"] .kb-sidebar > div,
+[data-theme="light-crown"] .kb-sidebar > div,
+[data-theme="light-forest"] .kb-sidebar > div {
+  background: var(--kb-sidebar-bg) !important;
+  border-right-color: var(--kb-sidebar-border) !important;
+}
+
+/* Cards get Stripe-style multi-layer shadows on light */
+[data-theme="light"] [style*="var(--kb-bg-panel)"],
+[data-theme="light-royal"] [style*="var(--kb-bg-panel)"],
+[data-theme="light-crown"] [style*="var(--kb-bg-panel)"],
+[data-theme="light-forest"] [style*="var(--kb-bg-panel)"],
+[data-theme="light"] [style*="var(--kb-bg-surface)"],
+[data-theme="light-royal"] [style*="var(--kb-bg-surface)"],
+[data-theme="light-crown"] [style*="var(--kb-bg-surface)"],
+[data-theme="light-forest"] [style*="var(--kb-bg-surface)"] {
+  box-shadow: rgba(50,50,93,0.06) 0px 2px 5px, rgba(0,0,0,0.03) 0px 1px 2px;
+}
+
+/* Sidebar nav text bolder on light */
+[data-theme="light-royal"] nav a div,
+[data-theme="light"] nav a div,
+[data-theme="light-crown"] nav a div,
+[data-theme="light-forest"] nav a div {
+  color: var(--kb-text-secondary) !important;
+  font-weight: 510 !important;
+}
+/* Active nav item: accent color + bold */
+[data-theme="light-royal"] nav a div[style*="var(--kb-accent)"],
+[data-theme="light"] nav a div[style*="var(--kb-accent)"],
+[data-theme="light-crown"] nav a div[style*="var(--kb-accent)"],
+[data-theme="light-forest"] nav a div[style*="var(--kb-accent)"] {
+  color: var(--kb-accent) !important;
+  font-weight: 590 !important;
+}
+
+/* Light scrollbar */
+[data-theme="light"] ::-webkit-scrollbar-track,
+[data-theme="light-royal"] ::-webkit-scrollbar-track,
+[data-theme="light-crown"] ::-webkit-scrollbar-track,
+[data-theme="light-forest"] ::-webkit-scrollbar-track { background: var(--kb-bg); }
+[data-theme="light"] ::-webkit-scrollbar-thumb,
+[data-theme="light-royal"] ::-webkit-scrollbar-thumb,
+[data-theme="light-crown"] ::-webkit-scrollbar-thumb,
+[data-theme="light-forest"] ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); }
+
+/* Royal specific premium touches */
+[data-theme="light-royal"] h1,
+[data-theme="light-royal"] h2,
+[data-theme="light-royal"] h3 {
+  color: #0F172A !important;
+}
+
+/* Premium gradient top accent bar on Royal */
+[data-theme="light-royal"] .kb-sidebar > div::before {
+  content: '';
+  display: block;
+  height: 3px;
+  background: linear-gradient(90deg, #4F46E5, #818CF8, #4F46E5);
+  border-radius: 0 0 2px 2px;
+}
+
+html, body {
+  background: var(--kb-bg);
+  color: var(--kb-text);
+  font-family: 'Inter', 'DM Sans', system-ui, sans-serif;
+  font-feature-settings: "cv01", "ss03";
+  margin: 0;
+  padding: 0;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Financial figures: DM Mono with tabular numerals */
+.font-financial,
+[data-financial] {
+  font-family: 'DM Mono', 'JetBrains Mono', 'SF Mono', monospace;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--kb-bg); }
+::-webkit-scrollbar-thumb { background: rgba(128,128,128,0.2); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(128,128,128,0.35); }
+
+input::placeholder { color: #4A5880; }
+input:focus { outline: none; border-color: rgba(201,168,76,0.40) !important; box-shadow: rgba(201,168,76,0.08) 0px 0px 0px 3px !important; }
+select:focus { outline: none; border-color: rgba(201,168,76,0.40) !important; box-shadow: rgba(201,168,76,0.08) 0px 0px 0px 3px !important; }
+textarea:focus { outline: none; border-color: rgba(201,168,76,0.40) !important; box-shadow: rgba(201,168,76,0.08) 0px 0px 0px 3px !important; }
+
+/* Status pills */
+.pill-green { background: rgba(46,204,139,0.12); color: #2ECC8B; border: 1px solid rgba(46,204,139,0.25); }
+.pill-red { background: rgba(231,76,60,0.12); color: #E74C3C; border: 1px solid rgba(231,76,60,0.25); }
+.pill-blue { background: rgba(52,152,219,0.12); color: #3498DB; border: 1px solid rgba(52,152,219,0.25); }
+.pill-amber { background: rgba(243,156,18,0.12); color: #F39C12; border: 1px solid rgba(243,156,18,0.25); }
+.pill-gold { background: rgba(201,168,76,0.12); color: #C9A84C; border: 1px solid rgba(201,168,76,0.25); }
+.pill-neutral { background: rgba(255,255,255,0.05); color: #9BA8C0; border: 1px solid rgba(255,255,255,0.08); }
+
+/* Ghost button hover */
+button:not([disabled]):hover {
+  transition: all 0.15s ease;
+}
+
+/* Data table styling */
+.kb-table { width: 100%; border-collapse: collapse; }
+.kb-table thead th {
+  background: #152C58;
+  color: #9BA8C0;
+  font-size: 13px;
+  font-weight: 590;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.kb-table tbody tr { border-bottom: 1px solid rgba(255,255,255,0.03); }
+.kb-table tbody tr:nth-child(even) { background: rgba(255,255,255,0.015); }
+.kb-table tbody tr:hover { background: rgba(255,255,255,0.04); }
+.kb-table tbody td {
+  padding: 12px 16px;
+  font-size: 14px;
+  color: #F2EEE7;
+}
+.kb-table .td-mono {
+  font-family: 'DM Mono', monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Chart container */
+.kb-chart {
+  background: #0F2347;
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 8px;
+  padding: 24px;
+}
+
+/* Luminance card levels */
+.kb-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; }
+.kb-card-panel { background: #0F2347; border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; }
+.kb-card-surface { background: #152C58; border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; }
+.kb-card-raised { background: #1C3668; border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; }
+.kb-card-gold { background: rgba(201,168,76,0.04); border: 1px solid rgba(201,168,76,0.20); border-radius: 8px; box-shadow: rgba(201,168,76,0.08) 0px 0px 16px; }
+
+/* ── Mobile responsive overrides ── */
+@media (max-width: 768px) {
+  /* Sidebar slides off-screen on mobile; toggled via .kb-sidebar-open class */
+  .kb-sidebar {
+    position: fixed !important;
+    top: 0; left: 0;
+    z-index: 200;
+    transform: translateX(-100%);
+    transition: transform 0.28s ease;
+  }
+  .kb-sidebar.kb-sidebar-open {
+    transform: translateX(0);
+  }
+  /* Dark overlay behind open sidebar */
+  .kb-mobile-overlay {
+    display: block !important;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.55);
+    z-index: 199;
+  }
+  /* Hamburger button */
+  .kb-hamburger {
+    display: flex !important;
+  }
+  /* Page content full width on mobile */
+  .kb-page-content {
+    padding: 20px 16px !important;
+  }
+  /* 4-col → 2-col on mobile */
+  .kb-grid-4 {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  /* 2-col → 1-col on mobile */
+  .kb-grid-2 {
+    grid-template-columns: 1fr !important;
+  }
+  /* 2/1 split → 1-col on mobile */
+  .kb-grid-2-1 {
+    grid-template-columns: 1fr !important;
+  }
+  /* Deal stage — scroll horizontally rather than crush */
+  .kb-stage-row {
+    overflow-x: auto;
+    padding-bottom: 8px;
+  }
+  /* Headline size */
+  .kb-h1 {
+    font-size: 24px !important;
+  }
+  /* Flywheel SVG container */
+  .kb-flywheel-svg-wrap {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 1;
+  }
+  .kb-flywheel-svg-wrap svg {
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+@media (min-width: 769px) {
+  .kb-hamburger { display: none !important; }
+  .kb-mobile-overlay { display: none !important; }
+}
+
+/* ─── KB Exchange · Mobile polish v1 ─────────────────────────────────
+   The Exchange pages use inline React.CSSProperties styles, so @media
+   queries can't live with the components. This block targets the route
+   tree globally and forces mobile-friendly behaviour at <720px. */
+@media (max-width: 720px) {
+  /* Universal: kill horizontal scroll, cap media */
+  html, body { overflow-x: hidden; max-width: 100vw; }
+
+  /* Tighten Exchange page padding so deal cards aren't crushed */
+  main, [class*="exchange"] {
+    padding-left: max(env(safe-area-inset-left), 16px) !important;
+    padding-right: max(env(safe-area-inset-right), 16px) !important;
+  }
+
+  /* Force any 360px+ minmax grid (deal cards, browse cards) to stack */
+  [style*="repeat(auto-fit, minmax(340px"],
+  [style*="repeat(auto-fit, minmax(360px"],
+  [style*="repeat(auto-fill, minmax(340px"],
+  [style*="repeat(auto-fill, minmax(360px"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Deal detail two-column rows stack on phones */
+  [style*="repeat(auto-fit, minmax(280px"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Headline shrink — Playfair Display headlines on Exchange pages
+     declared at 42-72px, way too big on phones */
+  h1, h2 {
+    font-size: clamp(24px, 7vw, 36px) !important;
+    line-height: 1.15 !important;
+  }
+  h3 {
+    font-size: clamp(18px, 5vw, 22px) !important;
+  }
+
+  /* Tap targets ≥44px */
+  button, a[role="button"], [class*="ctaPrimary"], [class*="signButton"] {
+    min-height: 44px !important;
+  }
+
+  /* Modal: full-screen on phones (NDA, sign-doc) */
+  [style*="maxWidth: 560"],
+  [style*="maxWidth: 600"],
+  [style*="max-width: 560"],
+  [style*="max-width: 600"] {
+    max-width: calc(100vw - 24px) !important;
+  }
+
+  /* Sidebar collapse: Sidebar component should already handle this,
+     but enforce — anything in the sidebar role gets a width cap */
+  [data-sidebar], aside[class*="sidebar"], [class*="Sidebar"] {
+    max-width: 90vw !important;
+  }
+
+  /* Form inputs full-width + 16px font (16px prevents iOS zoom-on-focus) */
+  input, textarea, select {
+    font-size: 16px !important;
+    max-width: 100%;
+  }
+
+  /* Hero cover photos: cap height on phones so they don't dominate */
+  [class*="header"][style*="height"] img,
+  [class*="cover"][style*="height"] img {
+    max-height: 280px !important;
+  }
+}
+
+/* iPhone SE class — even tighter */
+@media (max-width: 420px) {
+  main, [class*="exchange"] { padding-left: 14px !important; padding-right: 14px !important; }
+  h1, h2 { font-size: clamp(20px, 8vw, 30px) !important; }
+}

@@ -1,0 +1,50 @@
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0B1B3E"/>
+      <stop offset="100%" style="stop-color:#152C58"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#C9A84C"/>
+      <stop offset="100%" style="stop-color:#E8C96A"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  
+  <!-- Gold accent bar top -->
+  <rect x="0" y="0" width="1200" height="4" fill="url(#gold)"/>
+  
+  <!-- Gold accent line left -->
+  <rect x="80" y="140" width="4" height="120" fill="#C9A84C" rx="2"/>
+  
+  <!-- KINGDOM BROKER label -->
+  <text x="100" y="115" font-family="Inter, system-ui, sans-serif" font-size="16" fill="#C9A84C" letter-spacing="4" font-weight="600">KINGDOM BROKER</text>
+  
+  <!-- Main headline -->
+  <text x="100" y="200" font-family="Georgia, Playfair Display, serif" font-size="56" fill="#F2EEE7" font-weight="700">Ambassador</text>
+  <text x="100" y="265" font-family="Georgia, Playfair Display, serif" font-size="56" fill="#C9A84C" font-weight="700">Program</text>
+  
+  <!-- Subheadline -->
+  <text x="100" y="330" font-family="Inter, system-ui, sans-serif" font-size="24" fill="#9BA8C0">Earn $1,000 on signing + 20% of every deal</text>
+  
+  <!-- Stats boxes -->
+  <rect x="100" y="380" width="280" height="100" rx="12" fill="rgba(201,168,76,0.08)" stroke="rgba(201,168,76,0.2)" stroke-width="1"/>
+  <text x="140" y="425" font-family="Georgia, serif" font-size="36" fill="#C9A84C" font-weight="700">$1,000</text>
+  <text x="140" y="460" font-family="Inter, sans-serif" font-size="14" fill="#9BA8C0">Cash on every signing</text>
+  
+  <rect x="410" y="380" width="280" height="100" rx="12" fill="rgba(201,168,76,0.08)" stroke="rgba(201,168,76,0.2)" stroke-width="1"/>
+  <text x="450" y="425" font-family="Georgia, serif" font-size="36" fill="#2ECC8B" font-weight="700">20%</text>
+  <text x="450" y="460" font-family="Inter, sans-serif" font-size="14" fill="#9BA8C0">Of success fee at close</text>
+  
+  <rect x="720" y="380" width="280" height="100" rx="12" fill="rgba(201,168,76,0.08)" stroke="rgba(201,168,76,0.2)" stroke-width="1"/>
+  <text x="760" y="425" font-family="Georgia, serif" font-size="36" fill="#F2EEE7" font-weight="700">$51K+</text>
+  <text x="760" y="460" font-family="Inter, sans-serif" font-size="14" fill="#9BA8C0">On a $5M deal referral</text>
+  
+  <!-- Bottom tagline -->
+  <text x="100" y="560" font-family="Inter, sans-serif" font-size="16" fill="#4A5880">KingdomBroker.com/ambassadors</text>
+  
+  <!-- Bottom gold bar -->
+  <rect x="0" y="626" width="1200" height="4" fill="url(#gold)"/>
+</svg>

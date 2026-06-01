@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Kingdom Broker — X Launch Campaign Deck</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:#0B1B3E; --navy2:#0F2347; --navy3:#152C58; --navy4:#1E3870;
+  --gold:#C9A84C; --gold-lt:#E8C96A; --gold-dim:rgba(201,168,76,0.10);
+  --gold-b:rgba(201,168,76,0.25);
+  --text:#F2EEE7; --muted:#9BA8C0; --faint:#3D4F7A;
+  --border:rgba(255,255,255,0.07);
+  --green:#2ECC8B; --green-dim:rgba(46,204,139,0.10);
+  --x-blue:#1D9BF0; --x-dim:rgba(29,155,240,0.12);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--text);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.65;overflow-x:hidden}
+
+/* STAGGER ANIMATION */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{opacity:0;animation:fadeUp .6s ease forwards}
+.d1{animation-delay:.1s}.d2{animation-delay:.2s}.d3{animation-delay:.3s}.d4{animation-delay:.4s}.d5{animation-delay:.5s}.d6{animation-delay:.6s}
+@keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+
+/* COVER SLIDE */
+.cover{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 40px;position:relative;overflow:hidden;background:linear-gradient(160deg,#0B1B3E 0%,#0D2050 50%,#071228 100%)}
+.cover::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -5%,rgba(201,168,76,.09) 0%,transparent 60%),radial-gradient(ellipse 40% 40% at 0% 100%,rgba(29,155,240,.05) 0%,transparent 50%);pointer-events:none}
+.x-badge{display:inline-flex;align-items:center;gap:10px;background:var(--x-dim);border:1px solid rgba(29,155,240,.3);color:var(--x-blue);font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:8px 20px;border-radius:30px;margin-bottom:28px}
+.cover h1{font-family:'Playfair Display',serif;font-size:clamp(38px,6vw,72px);font-weight:500;line-height:1.08;margin-bottom:18px;max-width:900px}
+.cover h1 em{font-style:italic;color:var(--gold)}
+.cover-sub{font-size:clamp(15px,1.8vw,19px);color:var(--muted);max-width:580px;line-height:1.8;margin-bottom:52px}
+.cover-stats{display:flex;border:1px solid var(--gold-b);border-radius:14px;overflow:hidden;background:rgba(15,35,71,.8)}
+.cs{padding:22px 32px;text-align:center;border-right:1px solid var(--gold-b)}
+.cs:last-child{border-right:none}
+.cs-v{font-family:'Playfair Display',serif;font-size:28px;color:var(--gold);line-height:1;margin-bottom:5px}
+.cs-l{font-size:11px;color:var(--muted);line-height:1.4}
+
+/* LAYOUT */
+.slide{max-width:1100px;margin:0 auto;padding:80px 40px}
+.slide-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--faint);letter-spacing:.1em;margin-bottom:16px}
+.slide-eye{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.slide-title{font-family:'Playfair Display',serif;font-size:clamp(26px,3.5vw,44px);font-weight:500;line-height:1.12;margin-bottom:10px}
+.slide-title em{font-style:italic;color:var(--gold)}
+.slide-sub{font-size:15px;color:var(--muted);max-width:640px;line-height:1.8;margin-bottom:44px}
+.divider{border:none;border-top:1px solid var(--border);margin:0}
+.sep{height:1px;background:linear-gradient(to right,transparent,var(--gold-b),transparent);margin:0}
+
+/* CAMPAIGN FRAMING */
+.frame-card{background:linear-gradient(135deg,rgba(201,168,76,.07) 0%,var(--navy2) 100%);border:1.5px solid var(--gold-b);border-radius:20px;padding:36px 40px;margin-bottom:44px;text-align:center}
+.frame-label{font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.frame-quote{font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,36px);color:var(--text);line-height:1.25;font-style:italic;margin-bottom:14px}
+.frame-sub{font-size:14px;color:var(--muted);line-height:1.7}
+
+/* STEP CARDS */
+.steps{display:flex;flex-direction:column;gap:16px;margin-bottom:44px}
+.step-card{background:var(--navy2);border:1px solid var(--border);border-radius:16px;padding:24px 28px;display:grid;grid-template-columns:56px 1fr;gap:20px;align-items:start}
+.step-card.featured{border-color:var(--gold-b);background:linear-gradient(135deg,rgba(201,168,76,.05),var(--navy2))}
+.step-num{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;font-weight:500;flex-shrink:0}
+.step-num.gold{background:var(--gold-dim);color:var(--gold);border:1px solid var(--gold-b)}
+.step-num.blue{background:var(--x-dim);color:var(--x-blue)}
+.step-num.green{background:var(--green-dim);color:var(--green)}
+.step-title{font-size:16px;font-weight:500;color:var(--text);margin-bottom:6px}
+.step-desc{font-size:13px;color:var(--muted);line-height:1.7}
+.step-desc strong{color:var(--text);font-weight:500}
+
+/* HOOK OPTIONS */
+.hooks{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:44px}
+.hook{background:var(--navy2);border:1px solid var(--border);border-radius:16px;padding:22px 24px}
+.hook.pick{border:1.5px solid var(--gold-b);background:linear-gradient(145deg,rgba(201,168,76,.05),var(--navy2))}
+.hook-label{font-size:9px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.hook-label.gold{color:var(--gold)}
+.hook-text{font-family:'Playfair Display',serif;font-size:17px;color:var(--text);font-style:italic;line-height:1.5;margin-bottom:10px}
+.hook-why{font-size:12px;color:var(--muted);line-height:1.65}
+.hook-tag{display:inline-block;font-size:9px;font-weight:500;padding:2px 8px;border-radius:4px;margin-top:6px}
+.ht-gold{background:var(--gold-dim);color:var(--gold);border:1px solid var(--gold-b)}
+.ht-blue{background:var(--x-dim);color:var(--x-blue)}
+
+/* THREAD PREVIEW */
+.thread{background:var(--navy2);border:1px solid var(--border);border-radius:16px;padding:6px;margin-bottom:44px;overflow:hidden}
+.tweet{padding:18px 20px;border-bottom:1px solid var(--border);display:grid;grid-template-columns:40px 1fr;gap:12px}
+.tweet:last-child{border-bottom:none}
+.tweet-avatar{width:38px;height:38px;border-radius:50%;background:var(--gold-dim);border:2px solid var(--gold-b);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:14px;color:var(--gold);flex-shrink:0}
+.tweet-name{font-size:13px;font-weight:500;color:var(--text);margin-bottom:1px}
+.tweet-handle{font-size:11px;color:var(--muted)}
+.tweet-body{font-size:13px;color:var(--text);line-height:1.65;margin-top:7px}
+.tweet-body strong{color:var(--gold)}
+.tweet-meta{font-size:11px;color:var(--faint);margin-top:8px;display:flex;gap:14px}
+.tweet-num{font-size:10px;font-weight:500;letter-spacing:.08em;color:var(--x-blue);margin-top:2px;font-family:'DM Mono',monospace}
+
+/* INFLUENCER TABLE */
+.inf-table{width:100%;border-collapse:collapse;margin-bottom:44px;font-size:13px}
+.inf-table th{text-align:left;padding:9px 14px;font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--gold-b)}
+.inf-table td{padding:12px 14px;border-bottom:1px solid var(--border);color:var(--text);vertical-align:middle}
+.inf-table tr:last-child td{border-bottom:none}
+.inf-table tr.icp td{background:rgba(46,204,139,.04)}
+.inf-table tr.amp td{background:var(--x-dim)}
+.tag{display:inline-block;font-size:9px;font-weight:500;padding:2px 7px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase}
+.t-icp{background:var(--green-dim);color:var(--green)}
+.t-amp{background:var(--x-dim);color:var(--x-blue)}
+.t-free{background:var(--gold-dim);color:var(--gold);border:1px solid var(--gold-b)}
+
+/* TOOLS GRID */
+.tools3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:44px}
+.tool{background:var(--navy2);border:1px solid var(--border);border-radius:14px;padding:20px}
+.tool-name{font-size:15px;font-weight:500;color:var(--text);margin-bottom:4px}
+.tool-price{font-size:12px;font-weight:500;color:var(--gold);margin-bottom:10px}
+.tool-desc{font-size:12px;color:var(--muted);line-height:1.65}
+.tool-use{font-size:11px;color:var(--green);margin-top:8px;font-weight:500}
+
+/* BUDGET TABLE */
+.budget-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:44px}
+.budget-card{background:var(--navy2);border:1px solid var(--border);border-radius:16px;padding:22px 20px}
+.budget-card.rec{border:1.5px solid var(--gold);background:linear-gradient(145deg,rgba(201,168,76,.06),var(--navy2));position:relative}
+.budget-badge{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--navy);font-size:9px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:3px 14px;border-radius:10px;white-space:nowrap}
+.bc-label{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.bc-label.gold{color:var(--gold)}
+.bc-price{font-family:'Playfair Display',serif;font-size:36px;color:var(--text);line-height:1;margin-bottom:14px}
+.bc-row{display:flex;justify-content:space-between;font-size:12px;padding:5px 0;border-bottom:1px solid var(--border)}
+.bc-row:last-of-type{border-bottom:none}
+.bc-row .k{color:var(--muted)}.bc-row .v{font-weight:500;color:var(--text)}
+.bc-note{font-size:11px;color:var(--muted);line-height:1.6;margin-top:12px}
+
+/* TIMELINE */
+.timeline{display:flex;flex-direction:column;gap:0;margin-bottom:44px;position:relative}
+.timeline::before{content:'';position:absolute;left:20px;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--gold-b),transparent)}
+.tl-item{display:grid;grid-template-columns:44px 1fr;gap:16px;padding:0 0 28px}
+.tl-dot{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;border:2px solid var(--gold-b);background:var(--navy2);color:var(--gold);flex-shrink:0;font-family:'DM Mono',monospace;position:relative;z-index:1}
+.tl-dot.active{background:var(--gold);color:var(--navy);border-color:var(--gold)}
+.tl-label{font-size:11px;font-weight:500;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.tl-title{font-size:15px;font-weight:500;color:var(--text);margin-bottom:4px}
+.tl-desc{font-size:12px;color:var(--muted);line-height:1.65}
+
+/* CHECKLIST */
+.checklist{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:44px}
+.cl-item{background:var(--navy2);border:1px solid var(--border);border-radius:10px;padding:12px 16px;display:flex;align-items:flex-start;gap:12px;font-size:13px;color:var(--text)}
+.cl-box{width:18px;height:18px;border:1.5px solid var(--gold-b);border-radius:4px;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center}
+.cl-check{font-size:11px;color:var(--gold)}
+
+/* VIDEO SCRIPT */
+.script{background:var(--navy2);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:44px}
+.script-row{display:grid;grid-template-columns:100px 1fr;border-bottom:1px solid var(--border)}
+.script-row:last-child{border-bottom:none}
+.script-time{padding:14px 16px;background:rgba(201,168,76,.05);font-family:'DM Mono',monospace;font-size:11px;color:var(--gold);font-weight:500;border-right:1px solid var(--border)}
+.script-content{padding:14px 18px;font-size:13px;color:var(--text);line-height:1.65}
+.script-content strong{color:var(--gold)}
+.script-content .action{font-size:11px;color:var(--x-blue);margin-top:4px;font-style:italic}
+
+/* CTA CLOSING */
+.cta-slide{background:linear-gradient(135deg,rgba(11,27,62,1) 0%,rgba(7,18,40,1) 100%);border-top:1px solid var(--gold-b);padding:96px 40px;text-align:center}
+.cta-slide h2{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,50px);font-weight:500;line-height:1.15;margin-bottom:16px}
+.cta-slide h2 em{font-style:italic;color:var(--gold)}
+.cta-slide p{font-size:16px;color:var(--muted);max-width:520px;margin:0 auto 36px;line-height:1.8}
+.btn-gold{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:var(--navy);font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;padding:15px 36px;border-radius:10px;text-decoration:none;margin-right:12px;transition:all .2s}
+.btn-gold:hover{background:var(--gold-lt);transform:translateY(-2px)}
+.btn-out{display:inline-flex;align-items:center;background:transparent;color:var(--text);border:1px solid var(--gold-b);font-family:'DM Sans',sans-serif;font-size:15px;font-weight:400;padding:15px 36px;border-radius:10px;text-decoration:none;transition:all .2s}
+.btn-out:hover{border-color:var(--gold);color:var(--gold)}
+
+/* DROW UTIL */
+.drow{display:flex;justify-content:space-between;align-items:center;font-size:13px;padding:9px 0;border-bottom:1px solid var(--border)}
+.drow:last-child{border-bottom:none}
+.dk{color:var(--muted)}.dv{font-weight:500;color:var(--text)}.dvg{font-weight:500;color:var(--green)}.dvgold{font-weight:500;color:var(--gold)}
+
+@media(max-width:900px){
+  .cover-stats{flex-wrap:wrap}.cs{min-width:130px}
+  .hooks{grid-template-columns:1fr}.tools3{grid-template-columns:1fr}
+  .budget-grid{grid-template-columns:1fr}.checklist{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .cover,.slide,.cta-slide{padding-left:20px;padding-right:20px}
+  .step-card{grid-template-columns:1fr}.script-row{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="x-badge fade-up d1">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="#1D9BF0"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.742l7.735-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    X Platform Launch Strategy
+  </div>
+  <h1 class="fade-up d2">The <em>Viral Launch Playbook</em><br>for Kingdom Broker</h1>
+  <p class="cover-sub fade-up d3">Engineering a cultural moment on X to drive buyers and sellers to KingdomBroker.com/MVP and KingdomBroker.com/agents — based on the @mitcheil framework behind 100M+ views.</p>
+  <div class="cover-stats fade-up d4">
+    <div class="cs"><div class="cs-v">6</div><div class="cs-l">Campaign<br>steps</div></div>
+    <div class="cs"><div class="cs-v">3</div><div class="cs-l">Budget<br>tiers</div></div>
+    <div class="cs"><div class="cs-v">$2.6K</div><div class="cs-l">Lean launch<br>budget</div></div>
+    <div class="cs"><div class="cs-v">1</div><div class="cs-l">Cultural<br>moment</div></div>
+  </div>
+</div>
+
+<div class="sep"></div>
+
+<!-- SLIDE 1 — CAMPAIGN FRAMING -->
+<div class="slide">
+  <div class="slide-num">01 / 08</div>
+  <div class="slide-eye">The One Sentence That Runs Everything</div>
+  <div class="slide-title">The campaign framing</div>
+  <div class="slide-sub">Every tweet, every video frame, every influencer post traces back to one sentence. This is it.</div>
+
+  <div class="frame-card">
+    <div class="frame-label">Campaign Line</div>
+    <div class="frame-quote">"The $10 trillion Boomer business exit has no Stripe. Kingdom Broker is building it."</div>
+    <div class="frame-sub">Three audiences. One sentence. Tells buyers this is deal flow. Tells sellers this is a safe exit. Tells investors this is a category-creating infrastructure play.</div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:0">
+    <div style="background:var(--navy2);border:1px solid var(--gold-b);border-radius:14px;padding:20px">
+      <div style="font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:8px">For Sellers</div>
+      <div style="font-size:13px;color:var(--text);font-weight:500;margin-bottom:6px">"You deserve better than a spreadsheet and a broker who doesn't call back."</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.65">60-year-old HVAC owner in Texas. 30 years building it. No idea what it's worth. Afraid to find out.</div>
+    </div>
+    <div style="background:var(--navy2);border:1px solid var(--border);border-radius:14px;padding:20px">
+      <div style="font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--x-blue);margin-bottom:8px">For Buyers</div>
+      <div style="font-size:13px;color:var(--text);font-weight:500;margin-bottom:6px">"Stop chasing deals that are already picked over. We bring deals to your buy box daily."</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.65">PE fund principal. Family office. Search fund operator. Capital ready. No proprietary deal flow.</div>
+    </div>
+    <div style="background:var(--navy2);border:1px solid var(--border);border-radius:14px;padding:20px">
+      <div style="font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--green);margin-bottom:8px">For Investors</div>
+      <div style="font-size:13px;color:var(--text);font-weight:500;margin-bottom:6px">"No dominant AI-native player exists in this category. The window is open right now."</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.65">$10T transfer. 10,000 retirements per day. Legacy brokers on spreadsheets. Infrastructure play.</div>
+    </div>
+  </div>
+</div>
+
+<div class="sep"></div>
+
+<!-- SLIDE 2 — THE VIDEO -->
+<div class="slide">
+  <div class="slide-num">02 / 08</div>
+  <div class="slide-eye">Step 1 — Make a Video Worth Stopping For</div>
+  <div class="slide-title">The hook is everything.<br><em>You have 3 seconds.</em></div>
+  <div class="slide-sub">Backed by the @mitcheil framework — every hook is pattern-matched from content that has already done 10M+ views. Break the doom scroll or lose them forever.</div>
+
+  <div class="hooks">
+    <div class="hook pick">
+      <div class="hook-label gold">Hook A — Recommended · The Contrast Hook</div>
+      <div class="hook-text">"Legacy brokers take 18 months and charge 12%. Our AI closes in 60 days for 3%."</div>
+      <div class="hook-why">Open on a split screen — left: broker on phone shuffling papers. Right: KB dashboard matching deals live. Audio and visual match one-to-one. Stops the scroll because the contrast is visceral.</div>
+      <span class="hook-tag ht-gold">Pattern: Before/After contrast</span>
+    </div>
+    <div class="hook">
+      <div class="hook-label">Hook B — The Big Number Hook</div>
+      <div class="hook-text">"$10 trillion in American small businesses are about to change hands. Most owners have no idea what they're worth."</div>
+      <div class="hook-why">Open on a single stat animating up. No founder. No logo. Just the number. Broad reach — finance and business accounts amplify it without needing to know the product.</div>
+      <span class="hook-tag ht-blue">Pattern: Shocking stat reveal</span>
+    </div>
+  </div>
+
+  <div class="slide-eye" style="margin-bottom:12px">Video Script — 60–90 Seconds</div>
+  <div class="script">
+    <div class="script-row">
+      <div class="script-time">0–3 sec<br>HOOK</div>
+      <div class="script-content"><strong>Split screen opens.</strong> Left: broker shuffling papers, phone to ear. Right: KB dashboard, deals matching in real time.<div class="action">"Legacy brokers: 18 months, 12% fee, 1-in-10 close rate."</div></div>
+    </div>
+    <div class="script-row">
+      <div class="script-time">3–10 sec<br>PROBLEM</div>
+      <div class="script-content">Quick cut to stat cards animating up: 10,000 retirements/day · $10T transfer · 80% of deals die.<div class="action">"The largest wealth transfer in American history has no technology layer. Until now."</div></div>
+    </div>
+    <div class="script-row">
+      <div class="script-time">10–45 sec<br>DEMO</div>
+      <div class="script-content"><strong>Live screen recording of KingdomBroker.com/MVP.</strong> Show: seller submitting a business → AI scoring it → buyer match populating with fit score → deal memo generating.<div class="action">"This is our AI matching engine. Running right now. Show it working."</div></div>
+    </div>
+    <div class="script-row">
+      <div class="script-time">45–60 sec<br>RESULT</div>
+      <div class="script-content">Cut to the agents page — dual pipeline running. "$600K+ in transactions. Dennis Yu as co-author. The infrastructure the $10T transfer has no choice but to flow through."</div>
+    </div>
+    <div class="script-row">
+      <div class="script-time">60–90 sec<br>CTA</div>
+      <div class="script-content"><strong>Eric to camera.</strong> "If you own a business between $1M and $20M, or you're looking to buy one — submit free at KingdomBroker.com."<div class="action">URL on screen. Hold 5 seconds.</div></div>
+    </div>
+  </div>
+
+  <div style="background:rgba(201,168,76,.06);border:1px solid var(--gold-b);border-radius:12px;padding:16px 20px;">
+    <div style="font-size:11px;font-weight:500;color:var(--gold);margin-bottom:6px;">Rule from the @mitcheil playbook</div>
+    <div style="font-size:13px;color:var(--muted);line-height:1.7;">Bold claim in the first 5 seconds. Product demo by second 10. <strong style="color:var(--text);">Audio and visual must match one-to-one.</strong> If Eric says "it matches buyers in seconds" — show the match happening live. One misalignment loses trust. One word the viewer doesn't understand and they're gone. Write at a fifth-grade reading level.</div>
+  </div>
+</div>
+
+<div class="sep"></div>
+
+<!-- SLIDE 3 — INFLUENCERS -->
+<div class="slide">
+  <div class="slide-num">03 / 08</div>
+  <div class="slide-eye">Step 2 — Work With the Right Influencers</div>
+  <div class="slide-title">Two buckets.<br><em>ICP accounts drive sales. Amplification accounts make it trend.</em></div>
+  <div class="slide-sub">X's algorithm runs on SimClusters — 145,000+ communities. You need to infiltrate the communities your buyers and sellers already live in. Sourced using Favikon.com — engagement quality and audience overlap, not raw follower count.</div>
+
+  <table class="inf-table">
+    <thead>
+      <tr><th>Account Type</th><th>Bucket</th><th>Why it works for KB</th><th>Followers</th><th>Est. Cost/Post</th></tr>
+    </thead>
+    <tbody>
+      <tr class="icp">
+        <td style="font-weight:500">ETA / Search fund operators</td>
+        <td><span class="tag t-icp">ICP</span></td>
+        <td style="color:var(--muted);font-size:12px">They ARE your buyers — they RT and sign up same day</td>
+        <td style="color:var(--muted)">5K–50K</td>
+        <td style="color:var(--green);font-weight:500">$200–$800</td>
+      </tr>
+      <tr class="icp">
+        <td style="font-weight:500">M&A / acquisition accounts</td>
+        <td><span class="tag t-icp">ICP</span></td>
+        <td style="color:var(--muted);font-size:12px">Direct buyer audience — already thinking about deals</td>
+        <td style="color:var(--muted)">10K–100K</td>
+        <td style="color:var(--green);font-weight:500">$300–$1,500</td>
+      </tr>
+      <tr class="icp">
+        <td style="font-weight:500">Blue collar / trades operators</td>
+        <td><span class="tag t-icp">ICP</span></td>
+        <td style="color:var(--muted);font-size:12px">They ARE the sellers — Rodney Wakefield tier</td>
+        <td style="color:var(--muted)">10K–100K</td>
+        <td style="color:var(--green);font-weight:500">$200–$800</td>
+      </tr>
+      <tr class="icp">
+        <td style="font-weight:500">CPA / exit planning advisors</td>
+        <td><span class="tag t-icp">ICP</span></td>
+        <td style="color:var(--muted);font-size:12px">Their followers are business owners approaching retirement</td>
+        <td style="color:var(--muted)">5K–50K</td>
+        <td style="color:var(--green);font-weight:500">$150–$600</td>
+      </tr>
+      <tr class="amp">
+        <td style="font-weight:500">AI / startup launch accounts</td>
+        <td><span class="tag t-amp">Amplify</span></td>
+        <td style="color:var(--muted);font-size:12px">Frame KB as AI story — "AI replacing business brokers"</td>
+        <td style="color:var(--muted)">50K–500K</td>
+        <td style="color:var(--x-blue);font-weight:500">$500–$3,000</td>
+      </tr>
+      <tr class="amp">
+        <td style="font-weight:500">Fintech / M&A news pages</td>
+        <td><span class="tag t-amp">Amplify</span></td>
+        <td style="color:var(--muted);font-size:12px">Positions KB in the deal-making conversation</td>
+        <td style="color:var(--muted)">50K–300K</td>
+        <td style="color:var(--x-blue);font-weight:500">$500–$2,000</td>
+      </tr>
+      <tr style="background:rgba(201,168,76,.05)">
+        <td style="font-weight:500">Dennis Yu</td>
+        <td><span class="tag t-icp">ICP</span> <span class="tag" style="background:var(--gold-dim);color:var(--gold);border:1px solid var(--gold-b)">Co-Author</span></td>
+        <td style="color:var(--muted);font-size:12px">Already your partner — blue collar trades audience, $1B+ ad spend credibility</td>
+        <td style="color:var(--muted)">100K+</td>
+        <td style="color:var(--gold);font-weight:500">$0 — co-author</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="background:rgba(29,155,240,.06);border:1px solid rgba(29,155,240,.2);border-radius:12px;padding:16px 20px;">
+    <div style="font-size:11px;font-weight:500;color:var(--x-blue);margin-bottom:5px;">The timing play — how you go trending</div>
+    <div style="font-size:13px;color:var(--muted);line-height:1.7;">Get 5–8 accounts to post within a <strong style="color:var(--text);">2-hour window on launch day.</strong> When X sees multiple credible accounts talking about the same thing simultaneously, it registers as a cultural moment and pushes to more users algorithmically. This is how you go trending. It doesn't happen by accident — it's engineered.</div>
+  </div>
+</div>
+
+<div class="sep"></div>
+
+<!-- SLIDE 4 — THE THREAD -->
+<div class="slide">
+  <div class="slide-num">04 / 08</div>
+  <div class="slide-eye">Step 3 — The Thread That Does the Work</div>
+  <div class="slide-title">The video gets attention.<br><em>The thread converts it.</em></div>
+  <div class="slide-sub">Eric posts this 7-tweet thread the moment the video goes live. Each tweet is written in advance. Posted as a thread immediately on launch day.</div>
+
+  <div class="thread">
+    <div class="tweet">
+      <div class="tweet-avatar">E</div>
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-start">
+          <div><div class="tweet-name">Eric Skeldon</div><div class="tweet-handle">@ericskeldon · KingdomBroker.com</div></div>
+          <div class="tweet-num">Tweet 1 of 7</div>
+        </div>
+        <div class="tweet-body">I built an AI that finds $1M–$20M business owners ready to sell and matches them with the right buyer automatically.<br><br>Here's how it works 👇<br><br><strong>[attach hero video here]</strong></div>
+        <div class="tweet-meta"><span>↩ Reply</span><span>🔁 Repost</span><span>♥ Like</span></div>
+      </div>
+    </div>
+    <div class="tweet">
+      <div class="tweet-avatar">E</div>
+      <div>
+        <div class="tweet-num" style="text-align:right">Tweet 2 of 7</div>
+        <div class="tweet-body">Legacy brokers close <strong>1 in 10 deals.</strong><br>Charge <strong>8–12%.</strong><br>Take <strong>12–18 months.</strong><br><br>The $10T Boomer wealth transfer has no technology layer.<br><br>10,000 owners retire EVERY DAY with no plan.</div>
+        <div class="tweet-meta"><span>↩ Reply</span><span>🔁 Repost</span><span>♥ Like</span></div>
+      </div>
+    </div>
+    <div class="tweet">
+      <div class="tweet-avatar">E</div>
+      <div>
+        <div class="tweet-num" style="text-align:right">Tweet 3 of 7</div>
+        <div class="tweet-body">Kingdom Broker runs <strong>two AI agent pipelines simultaneously.</strong><br><br>One finds sellers.<br>One finds buyers.<br>Both write personalized outreach.<br>Every day. Automatically.<br><br><strong>[screenshot of agents page]</strong></div>
+        <div class="tweet-meta"><span>↩ Reply</span><span>🔁 Repost</span><span>♥ Like</span></div>
+      </div>
+    </div>
+    <div class="tweet">
+      <div class="tweet-avatar">E</div>
+      <div>
+        <div class="tweet-num" style="text-align:right">Tweet 4 of 7</div>
+        <div class="tweet-body">The math:<br><br>One closed $3M deal = $45,000 at 1.5%<br>The AI system costs <strong>$231/month to run.</strong><br><br>That's 16 months of the entire system covered by one deal.</div>
+        <div class="tweet-meta"><span>↩ Reply</span><span>🔁 Repost</span><span>♥ Like</span></div>
+      </div>
+    </div>
+    <div class="tweet">
+      <div class="tweet-avatar">E</div>
+      <div>
+        <div class="tweet-num" style="text-align:right">Tweet 5 of 7</div>
+        <div class="tweet-body">Here's what it actually looks like live:<br><br><strong>[screen recording: KingdomBroker.com/MVP — show deals matching in real time]</strong></div>
+        <div class="tweet-meta"><span>↩ Reply</span><span>🔁 Repost</span><span>♥ Like</span></div>
+      </div>
+    </div>
+    <div class="tweet">
+      <div class="tweet-avatar">E</div>
+      <div>
+        <div class="tweet-num" style="text-align:right">Tweet 6 of 7</div>
+        <div class="tweet-body">$600K+ in transactions facilitated.<br><br>Dennis Yu — who managed <strong>$1B+ in ad spend</strong> for Nike, Red Bull, and Yahoo — just joined as co-author of our book on the $10T transfer.<br><br>The wave is here.</div>
+        <div class="tweet-meta"><span>↩ Reply</span><span>🔁 Repost</span><span>♥ Like</span></div>
+      </div>
+    </div>
+    <div class="tweet">
+      <div class="tweet-avatar">E</div>
+      <div>
+        <div class="tweet-num" style="text-align:right">Tweet 7 of 7 — CTA</div>
+        <div class="tweet-body">If you own a $1M–$20M business and have ever thought about selling —<br><br>Or if you're looking to acquire one —<br><br>Submit free: <strong>KingdomBroker.com</strong><br><br>For buyers: <strong>KingdomBroker.com/MVP</strong><br>AI system: <strong>KingdomBroker.com/agents</strong></div>
+        <div class="tweet-meta"><span>↩ Reply</span><span>🔁 Repost</span><span>♥ Like</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sep"></div>
+
+<!-- SLIDE 5 — TOOLS -->
+<div class="slide">
+  <div class="slide-num">05 / 08</div>
+  <div class="slide-eye">The Tool Stack — From the @mitcheil Playbook</div>
+  <div class="slide-title">Three tools.<br><em>Research, source, find.</em></div>
+  <div class="slide-sub">These are the exact platforms named in the thread. Used to build swipe files of proven hooks, source quality influencers, and pattern-match what's already working before you spend a dollar.</div>
+
+  <div class="tools3">
+    <div class="tool">
+      <div class="tool-name">1of10.com</div>
+      <div class="tool-price">~$49/mo</div>
+      <div class="tool-desc">Swipe file of the highest-performing short-form content on the internet. See which hooks are doing 10M+ views on TikTok and Reels before you write yours. Pattern-match proven formats to KB's product.</div>
+      <div class="tool-use">Use for: Hook research before scripting the video</div>
+    </div>
+    <div class="tool">
+      <div class="tool-name">Foreplay.co</div>
+      <div class="tool-price">~$49–$99/mo</div>
+      <div class="tool-desc">Ad and viral content library — save and organize the best hooks you find. Build a personal swipe file of what's working in fintech, AI, and founder content. Referenced every time you write new copy.</div>
+      <div class="tool-use">Use for: Building a KB content swipe library</div>
+    </div>
+    <div class="tool">
+      <div class="tool-name">Favikon.com</div>
+      <div class="tool-price">~$99–$299/mo</div>
+      <div class="tool-desc">Influencer sourcing by engagement quality and audience overlap — not follower count. Find accounts whose audiences overlap with ETA operators, family office principals, and business owners. Avoid botted pages.</div>
+      <div class="tool-use">Use for: Finding the right 8–12 accounts for launch day</div>
+    </div>
+  </div>
+
+  <div style="background:var(--navy2);border:1px solid var(--border);border-radius:12px;padding:16px 20px;margin-bottom:0;">
+    <div class="drow"><span class="dk">1of10.com</span><span class="dvgold">$49/mo</span></div>
+    <div class="drow"><span class="dk">Foreplay.co</span><span class="dvgold">$49–$99/mo</span></div>
+    <div class="drow"><span class="dk">Favikon.com</span><span class="dvgold">$99–$299/mo</span></div>
+    <div class="drow"><span class="dk" style="font-weight:500">Total tools monthly</span><span class="dvgold" style="font-size:15px">$197–$447/mo</span></div>
+  </div>
+</div>
+
+<div class="sep"></div>
+
+<!-- SLIDE 6 — BUDGET -->
+<div class="slide">
+  <div class="slide-num">06 / 08</div>
+  <div class="slide-eye">The Budget — Three Tiers</div>
+  <div class="slide-title">Lean to full launch.<br><em>Start lean. Measure. Scale what works.</em></div>
+  <div class="slide-sub">The @mitcheil agency charges $150K+ for the full service. Here's how to replicate the same playbook at a fraction of the cost — with the honest advice on which tier Kingdom Broker should start with.</div>
+
+  <div class="budget-grid">
+    <div class="budget-card">
+      <div class="bc-label">Lean Launch</div>
+      <div class="bc-price">~$2,650</div>
+      <div class="bc-row"><span class="k">Video — Eric DIY screen record</span><span class="v">$0–$500</span></div>
+      <div class="bc-row"><span class="k">Influencers — 4–5 ICP accounts</span><span class="v">$2,000</span></div>
+      <div class="bc-row"><span class="k">Tools (1 month)</span><span class="v">$150</span></div>
+      <div class="bc-note">Eric on camera. Raw walkthrough of KB MVP live. Dennis Yu amplifies. 4–5 ETA/search fund accounts. Authentic founder demo beats overproduced video for this audience.</div>
+    </div>
+    <div class="budget-card rec">
+      <div class="budget-badge">Recommended</div>
+      <div class="bc-label gold">Full Launch</div>
+      <div class="bc-price">~$13,300</div>
+      <div class="bc-row"><span class="k">Video — pro edit + motion graphics</span><span class="v">$5,000</span></div>
+      <div class="bc-row"><span class="k">Influencers — 8–10 accounts</span><span class="v">$8,000</span></div>
+      <div class="bc-row"><span class="k">Tools (1 month)</span><span class="v">$300</span></div>
+      <div class="bc-note">Professional video with captions and motion graphics. 8–10 accounts coordinated in 2-hour window. Enough to trigger trending algorithm. Best ROI point for KB's budget.</div>
+    </div>
+    <div class="budget-card">
+      <div class="bc-label">Agency Level</div>
+      <div class="bc-price">~$35,500</div>
+      <div class="bc-row"><span class="k">Video — full agency production</span><span class="v">$15,000</span></div>
+      <div class="bc-row"><span class="k">Influencers — 15+ accounts</span><span class="v">$20,000</span></div>
+      <div class="bc-row"><span class="k">Tools (1 month)</span><span class="v">$500</span></div>
+      <div class="bc-note">What @mitcheil charges clients. Full orchestration, guaranteed trending push, 15+ accounts in coordinated window. Worth it once KB has first 3 deals closed and revenue to reinvest.</div>
+    </div>
+  </div>
+
+  <div style="background:rgba(201,168,76,.06);border:1px solid var(--gold-b);border-radius:12px;padding:16px 20px;">
+    <div style="font-size:11px;font-weight:500;color:var(--gold);margin-bottom:5px;">The honest advice for Kingdom Broker right now</div>
+    <div style="font-size:13px;color:var(--muted);line-height:1.7;">A raw, authentic Eric-on-camera walkthrough of the <strong style="color:var(--text);">live KB MVP dashboard</strong> will outperform a $15,000 produced video for this specific audience. PE partners and business owners trust unpolished real demos more than slick marketing. Dennis Yu posting it to his blue-collar trades audience is worth more than any paid influencer on this list. Start lean. If the lean version generates leads, scale to the full launch for the next push.</div>
+  </div>
+</div>
+
+<div class="sep"></div>
+
+<!-- SLIDE 7 — TIMELINE -->
+<div class="slide">
+  <div class="slide-num">07 / 08</div>
+  <div class="slide-eye">Step 6 — The Launch Timeline</div>
+  <div class="slide-title">T-minus 14 days to<br><em>launch day.</em></div>
+  <div class="slide-sub">Everything is engineered in advance. Launch day is not the day you start — it's the day you execute a plan you've already built.</div>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot">-14</div>
+      <div>
+        <div class="tl-label">Two Weeks Out</div>
+        <div class="tl-title">Research + hook selection</div>
+        <div class="tl-desc">Subscribe to 1of10.com and Foreplay.co. Build a swipe file of 20+ hooks that have done 10M+ views on Reels or TikTok. Pattern-match the 2 strongest to Kingdom Broker's product. Write the first draft of the video script.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot">-10</div>
+      <div>
+        <div class="tl-label">Ten Days Out</div>
+        <div class="tl-title">Influencer sourcing via Favikon</div>
+        <div class="tl-desc">Find 12–15 candidate accounts. Filter by engagement quality and audience overlap with ETA operators, family office principals, and business owners. Reach out with the pitch and confirm 8–10 willing to post on launch day.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot">-7</div>
+      <div>
+        <div class="tl-label">One Week Out</div>
+        <div class="tl-title">Film + edit the hero video</div>
+        <div class="tl-desc">Record the screen demo of KingdomBroker.com/MVP live. Eric voiceover. Professional edit with captions and motion graphics. Final video delivered and reviewed. KingdomBroker.com/agents confirmed live and clean.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot">-3</div>
+      <div>
+        <div class="tl-label">Three Days Out</div>
+        <div class="tl-title">Brief influencers + write thread</div>
+        <div class="tl-desc">Send influencers the video, talking points, and their suggested post copy. Confirm the 2-hour posting window. Write all 7 tweets of Eric's thread in advance. Confirm Dennis Yu's timing. Verify Calendly link is live.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot active">0</div>
+      <div>
+        <div class="tl-label">Launch Day</div>
+        <div class="tl-title">Execute the 2-hour window</div>
+        <div class="tl-desc">Eric posts the thread + video at 9am CT. All 8–10 influencers post within the same 2-hour window. Dennis Yu quote-tweets. Eric personally replies to every comment for the first 2 hours. Trending threshold hit by noon.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot">+1</div>
+      <div>
+        <div class="tl-label">Day After</div>
+        <div class="tl-title">The reply strategy — most important</div>
+        <div class="tl-desc">Eric personally replies to every meaningful comment. Engage any business broker pushback constructively — debate keeps threads trending. Repost the top replies. Track lead submissions at KingdomBroker.com. Measure and iterate.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LAUNCH DAY CHECKLIST -->
+  <div class="slide-eye" style="margin-bottom:14px">Launch Day Asset Checklist</div>
+  <div class="checklist">
+    <div class="cl-item"><div class="cl-box"><span class="cl-check">✓</span></div>Hero video (60–90 sec, screen demo of MVP)</div>
+    <div class="cl-item"><div class="cl-box"><span class="cl-check">✓</span></div>Eric's 7-tweet thread drafted and ready</div>
+    <div class="cl-item"><div class="cl-box"><span class="cl-check">✓</span></div>KingdomBroker.com/MVP live and demo-ready</div>
+    <div class="cl-item"><div class="cl-box"><span class="cl-check">✓</span></div>KingdomBroker.com/agents live and clean</div>
+    <div class="cl-item"><div class="cl-box"><span class="cl-check">✓</span></div>Dennis Yu confirmed for same 2-hour window</div>
+    <div class="cl-item"><div class="cl-box"><span class="cl-check">✓</span></div>8–10 influencer accounts briefed and confirmed</div>
+    <div class="cl-item"><div class="cl-box"><span class="cl-check">✓</span></div>Calendly link live — Eric@KingdomBroker.com</div>
+    <div class="cl-item"><div class="cl-box"><span class="cl-check">✓</span></div>3–5 supporters ready to engage in first 30 min</div>
+  </div>
+</div>
+
+<div class="sep"></div>
+
+<!-- SLIDE 8 — THE THREE ANGLES -->
+<div class="slide">
+  <div class="slide-num">08 / 08</div>
+  <div class="slide-eye">The Three Angles That Win on X</div>
+  <div class="slide-title">Any of these can be<br><em>the moment that trends.</em></div>
+  <div class="slide-sub">Use all three across the launch window — different angles reach different communities on X. The reply strategy is what keeps each one alive after the initial post.</div>
+
+  <div class="steps">
+    <div class="step-card featured">
+      <div class="step-num gold">1</div>
+      <div>
+        <div class="step-title">The AI Disruption Angle — for the tech audience</div>
+        <div class="step-desc"><strong>"AI is replacing the $10B business brokerage industry. Here's the platform doing it."</strong><br><br>Positions KB alongside Stripe, Airbnb, and Uber as a category creator. Gets reshared by AI, fintech, and startup accounts. Reaches investors and operators who don't know Kingdom Broker yet but immediately understand the thesis.</div>
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-num blue">2</div>
+      <div>
+        <div class="step-title">The Boomer Wealth Transfer Angle — for the broad audience</div>
+        <div class="step-desc"><strong>"Your local HVAC company, roofing contractor, and dental practice are about to change hands. Most owners have no idea what they're worth. This platform is fixing that."</strong><br><br>Human interest angle. Gets reshared by business, finance, and entrepreneur accounts. Doesn't require the reader to know anything about M&A to understand the problem.</div>
+      </div>
+    </div>
+    <div class="step-card featured">
+      <div class="step-num gold">3</div>
+      <div>
+        <div class="step-title">The Founder Story Angle — most viral, most personal</div>
+        <div class="step-desc"><strong>"I have ADHD, built and sold two companies, and couldn't find the person building the technology this industry needed. So I became them."</strong><br><br>Eric's story from the book chapter. Honest, disarming, and personal. This is the most shareable angle because it's about a person, not a product. The ADHD framing resonates with the entrepreneurial audience that built Kingdom Broker's entire readership. Eric is the hook.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CLOSING CTA -->
+<div class="cta-slide">
+  <h2>The window is open.<br><em>Let's engineer the moment.</em></h2>
+  <p>The $10T Boomer wealth transfer has no Stripe. Kingdom Broker is building it. The launch video, the thread, the influencer push — all of it drives one action: a seller submitting at KingdomBroker.com.</p>
+  <a href="https://kingdombroker.com/mvp" class="btn-gold">KingdomBroker.com/MVP</a>
+  <a href="https://kingdombroker.com/agents" class="btn-out">KingdomBroker.com/agents</a>
+  <div style="margin-top:24px;font-size:11px;color:var(--faint);">Kingdom Broker Inc. · KingdomBroker.com · Eric@KingdomBroker.com · Plano, Texas</div>
+</div>
+
+</body>
+</html>

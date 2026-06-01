@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1200px; height: 630px; overflow: hidden; background: #0B1B3E; }
+  .wrap {
+    width: 1200px; height: 630px;
+    background: linear-gradient(135deg, #080f1e 0%, #0F2347 55%, #080f1e 100%);
+    position: relative; display: flex; flex-direction: column;
+    justify-content: center; padding: 72px 80px;
+  }
+  .accent { position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: linear-gradient(180deg, #C9A84C 0%, rgba(201,168,76,0.2) 100%); }
+  .glow { position: absolute; right: 160px; top: 50%; transform: translateY(-50%); width: 420px; height: 420px; background: radial-gradient(ellipse, rgba(201,168,76,0.07) 0%, transparent 70%); border-radius: 50%; }
+  .dots { position: absolute; right: 72px; top: 56px; display: grid; grid-template-columns: repeat(9,1fr); gap: 13px; opacity: 0.09; }
+  .dot { width: 4px; height: 4px; border-radius: 50%; background: #C9A84C; }
+  .badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.3); border-radius: 20px; padding: 6px 18px; margin-bottom: 26px; width: fit-content; }
+  .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #C9A84C; }
+  .badge-text { font-family: Arial, sans-serif; font-size: 12px; font-weight: 700; color: #C9A84C; letter-spacing: 0.16em; text-transform: uppercase; }
+  .headline { font-family: Georgia, serif; font-size: 54px; font-weight: 700; line-height: 1.13; color: #F2EEE7; margin-bottom: 18px; }
+  .headline span { color: #C9A84C; }
+  .sub { font-family: Arial, sans-serif; font-size: 20px; color: #9BA8C0; line-height: 1.55; max-width: 660px; margin-bottom: 38px; }
+  .stats { display: flex; gap: 44px; }
+  .stat-num { font-family: Georgia, serif; font-size: 30px; color: #C9A84C; font-weight: 700; line-height: 1; margin-bottom: 5px; }
+  .stat-label { font-family: Arial, sans-serif; font-size: 12px; color: #4A5880; text-transform: uppercase; letter-spacing: 0.09em; }
+  .divider { width: 1px; background: rgba(255,255,255,0.08); margin: 0 4px; }
+  .logo { position: absolute; right: 72px; bottom: 44px; font-family: Georgia, serif; font-size: 19px; color: rgba(201,168,76,0.45); letter-spacing: 0.04em; }
+  .platform-badge { position: absolute; right: 72px; top: 44px; background: rgba(46,204,139,0.1); border: 1px solid rgba(46,204,139,0.25); border-radius: 8px; padding: 6px 14px; font-family: Arial, sans-serif; font-size: 11px; font-weight: 700; color: #2ECC8B; letter-spacing: 0.12em; text-transform: uppercase; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="accent"></div>
+  <div class="glow"></div>
+  <div class="dots">
+    <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+    <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+    <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+    <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+    <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+    <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+  </div>
+  <div class="platform-badge">● Live Platform</div>
+
+  <div class="badge">
+    <div class="badge-dot"></div>
+    <div class="badge-text">Deal Intelligence Platform</div>
+  </div>
+
+  <div class="headline">
+    Your $1M–$20M Business Deal,<br>
+    <span>Powered by AI</span>
+  </div>
+
+  <div class="sub">
+    Financials analyzed. Buyers matched. Valuation built.<br>
+    Kingdom Broker runs 12 AI agents so your deal closes faster.
+  </div>
+
+  <div class="stats">
+    <div>
+      <div class="stat-num">12</div>
+      <div class="stat-label">AI Agents Running</div>
+    </div>
+    <div>
+      <div class="stat-num">80+</div>
+      <div class="stat-label">Clients Served</div>
+    </div>
+    <div>
+      <div class="stat-num">$500M+</div>
+      <div class="stat-label">Partner Experience</div>
+    </div>
+  </div>
+
+  <div class="logo">app.KingdomBroker.com</div>
+</div>
+</body>
+</html>
