@@ -9,11 +9,17 @@ import { redirect } from 'next/navigation'
 
 export default async function Root() {
   try {
+    const cookieStore = await cookies()
+
+    // Demo session — short-circuit to the platform Overview
+    if (cookieStore.get('chiropillar-demo')?.value === '1') {
+      redirect('/overview')
+    }
+
     const url = process.env.NEXT_PUBLIC_SUPABASE_URL
     const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
     const sk = process.env.SUPABASE_SERVICE_ROLE_KEY
     if (url && anon && sk) {
-      const cookieStore = await cookies()
       const supabase = createServerClient(url, anon, {
         cookies: { get: (n: string) => cookieStore.get(n)?.value },
       })

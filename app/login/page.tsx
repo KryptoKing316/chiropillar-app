@@ -7,35 +7,9 @@ export default function LoginPage() {
   const [email, setEmail] = useState('')
   const [sent, setSent] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [demoLoading, setDemoLoading] = useState(false)
   const [error, setError] = useState('')
-  const [showAdminCode, setShowAdminCode] = useState(false)
-  const [adminCode, setAdminCode] = useState('')
-  const [adminError, setAdminError] = useState('')
   const router = useRouter()
-
-  const handleAdminCode = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setAdminError('')
-    setLoading(true)
-    try {
-      const res = await fetch('/api/admin-login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ code: adminCode }),
-      })
-      const data = await res.json()
-      if (res.ok && data.link) {
-        // Redirect to the generated magic link — logs in instantly, no email needed
-        window.location.href = data.link
-      } else {
-        setAdminError('Invalid code.')
-        setLoading(false)
-      }
-    } catch {
-      setAdminError('Something went wrong.')
-      setLoading(false)
-    }
-  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -43,12 +17,6 @@ export default function LoginPage() {
     setError('')
 
     const trimmedEmail = email.trim().toLowerCase()
-
-    // Demo shortcut — no auth needed
-    if (trimmedEmail === 'demo@kingdombroker.com') {
-      router.replace('/overview?demo=true')
-      return
-    }
 
     try {
       const supabase = createBrowserClient(
@@ -81,52 +49,65 @@ export default function LoginPage() {
     }
   }
 
-  const loadDemo = () => {
-    setLoading(true)
-    setTimeout(() => {
-      setLoading(false)
-      router.replace('/overview?demo=true')
-    }, 900)
+  const loadDemo = async () => {
+    setDemoLoading(true)
+    try {
+      // Set the demo-mode cookie server-side, then drop the user on the platform overview
+      await fetch('/api/demo-mode', { method: 'POST' })
+      router.replace('/overview')
+    } catch {
+      setDemoLoading(false)
+      setError('Could not start demo session. Please try again.')
+    }
   }
 
   return (
     <div style={{
       minHeight: '100vh',
-      background: '#080f1e',
+      background: '#0B1B3E',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      fontFamily: "'DM Sans', sans-serif",
+      fontFamily: "'Inter', 'DM Sans', system-ui, sans-serif",
       padding: '32px 20px',
     }}>
 
-      {/* Subtle glow behind card */}
+      {/* Subtle blue glow behind card */}
       <div style={{
         position: 'fixed', top: '40%', left: '50%',
         transform: 'translate(-50%, -50%)',
         width: '700px', height: '500px',
-        background: 'radial-gradient(ellipse, rgba(201,168,76,0.05) 0%, transparent 65%)',
+        background: 'radial-gradient(ellipse, rgba(46,117,182,0.10) 0%, transparent 65%)',
         pointerEvents: 'none',
       }} />
 
-      <div style={{ width: '100%', maxWidth: '440px', position: 'relative' }}>
+      <div style={{ width: '100%', maxWidth: '460px', position: 'relative' }}>
 
-        {/* Logo */}
+        {/* ChiroPillar logo (inverted for dark bg) */}
         <div style={{ textAlign: 'center', marginBottom: '28px' }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/kb-logo.png" alt="KingdomBroker.com"
-            style={{ height: '38px', width: 'auto', display: 'inline-block' }} />
+          <img
+            src="/chiropillar-logo.png"
+            alt="ChiroPillar · Strength in Alignment"
+            style={{ height: '64px', width: 'auto', display: 'inline-block', filter: 'brightness(0) invert(1)' }}
+          />
         </div>
 
         {/* Headline */}
         <h1 style={{
-          fontFamily: "'Playfair Display', serif",
+          fontFamily: "'Playfair Display', Georgia, serif",
           fontSize: '28px', fontWeight: 600,
-          color: '#F2EEE7', margin: '0 0 28px',
+          color: '#F2EEE7', margin: '0 0 8px',
           textAlign: 'center', lineHeight: 1.3,
         }}>
-          The Smarter Way to<br />Buy &amp; Sell Businesses
+          Chiropractic Roll-Up<br />Partnership Platform
         </h1>
+        <p style={{
+          fontSize: '14px', color: '#9CC4E4', textAlign: 'center',
+          margin: '0 0 28px', fontStyle: 'italic', letterSpacing: '0.02em',
+        }}>
+          Dr. Scott Wagner × Kingdom Broker
+        </p>
 
         {!sent ? (
           <>
@@ -157,14 +138,14 @@ export default function LoginPage() {
                   type="email"
                   value={email}
                   onChange={e => setEmail(e.target.value)}
-                  placeholder="you@company.com"
+                  placeholder="you@chiropillar.com"
                   required
                   style={{
                     width: '100%', padding: '14px 16px',
                     background: 'rgba(255,255,255,0.05)',
                     border: '1px solid rgba(255,255,255,0.1)',
                     borderRadius: '10px', color: '#F2EEE7',
-                    fontSize: '16px', fontFamily: "'DM Sans', sans-serif",
+                    fontSize: '16px', fontFamily: "'Inter', system-ui, sans-serif",
                     marginBottom: '14px', boxSizing: 'border-box',
                     outline: 'none',
                   }}
@@ -176,25 +157,25 @@ export default function LoginPage() {
                 )}
                 <button
                   type="submit"
-                  disabled={loading}
+                  disabled={loading || demoLoading}
                   style={{
                     width: '100%', padding: '15px',
-                    background: loading ? 'rgba(201,168,76,0.5)' : '#C9A84C',
-                    color: '#0B1B3E', border: 'none', borderRadius: '10px',
+                    background: loading ? 'rgba(46,117,182,0.5)' : '#2E75B6',
+                    color: '#F2EEE7', border: 'none', borderRadius: '10px',
                     fontSize: '16px', fontWeight: 700,
-                    fontFamily: "'DM Sans', sans-serif",
-                    cursor: loading ? 'not-allowed' : 'pointer',
+                    fontFamily: "'Inter', system-ui, sans-serif",
+                    cursor: (loading || demoLoading) ? 'not-allowed' : 'pointer',
                     transition: 'background 0.2s',
                   }}
                 >
-                  {loading ? 'Sending...' : 'Access My Dashboard'}
+                  {loading ? 'Sending magic link...' : 'Send Me a Magic Link'}
                 </button>
               </form>
             </div>
 
-            {/* Demo shortcut — lighter treatment */}
+            {/* Demo shortcut · matches KB pattern */}
             <div style={{
-              border: '1px solid rgba(201,168,76,0.18)',
+              border: '1px solid rgba(201,168,76,0.25)',
               borderRadius: '14px',
               padding: '20px 24px',
               marginBottom: '28px',
@@ -202,50 +183,50 @@ export default function LoginPage() {
             }}>
               <div style={{
                 fontSize: '12px', fontWeight: 700, color: '#C9A84C',
-                letterSpacing: '0.12em', textTransform: 'uppercase',
+                letterSpacing: '0.14em', textTransform: 'uppercase',
                 marginBottom: '8px',
               }}>
-                Live Demo
+                Live Demo · 30 Min Read-Only
               </div>
               <p style={{
                 fontSize: '14px', color: '#9BA8C0',
                 lineHeight: 1.65, margin: '0 0 14px',
               }}>
-                Enter <strong style={{ color: '#F2EEE7' }}>demo@kingdombroker.com</strong> to tour a real $4.8M HVAC deal — financials, valuation, and matched buyers loaded.
+                Tour the full ChiroPillar platform with <strong style={{ color: '#F2EEE7' }}>5 sample chiropractor applications</strong> loaded — qualification badges, valuation bands, and pipeline status. No login required.
               </p>
               <button
                 onClick={loadDemo}
-                disabled={loading}
+                disabled={loading || demoLoading}
                 style={{
                   width: '100%', padding: '12px',
                   background: 'transparent',
-                  border: '1px solid rgba(201,168,76,0.3)',
+                  border: '1px solid rgba(201,168,76,0.4)',
                   borderRadius: '8px', color: '#C9A84C',
                   fontSize: '14px', fontWeight: 600,
-                  cursor: loading ? 'not-allowed' : 'pointer',
-                  fontFamily: "'DM Sans', sans-serif",
+                  cursor: (loading || demoLoading) ? 'not-allowed' : 'pointer',
+                  fontFamily: "'Inter', system-ui, sans-serif",
                 }}
               >
-                {loading ? 'Loading...' : 'Load Demo Account'}
+                {demoLoading ? 'Loading demo...' : 'View Live Demo →'}
               </button>
             </div>
 
-            {/* Trust stats — clean and spaced */}
+            {/* ChiroPillar trust stats */}
             <div style={{
               display: 'flex',
               justifyContent: 'center',
-              gap: '36px',
+              gap: '32px',
               marginBottom: '24px',
             }}>
               {[
-                { n: '80+', label: 'Clients Served' },
-                { n: '$1M–$20M', label: 'Deal Range' },
-                { n: '15+ Years', label: 'Experience' },
+                { n: 'N=102', label: 'Real Comps' },
+                { n: '$45M+', label: 'EBITDA Target' },
+                { n: '8–10×', label: 'Exit Multiple' },
               ].map(b => (
                 <div key={b.n} style={{ textAlign: 'center' }}>
                   <div style={{
-                    fontFamily: "'Playfair Display', serif",
-                    fontSize: '20px', color: '#C9A84C', fontWeight: 600,
+                    fontFamily: "'Playfair Display', Georgia, serif",
+                    fontSize: '20px', color: '#C9A84C', fontWeight: 700,
                     marginBottom: '3px',
                   }}>{b.n}</div>
                   <div style={{ fontSize: '12px', color: '#4A5880' }}>{b.label}</div>
@@ -253,57 +234,10 @@ export default function LoginPage() {
               ))}
             </div>
 
-            {/* Hidden admin bypass — subtle link, not visible to normal users */}
-            {!showAdminCode ? (
-              <div style={{ textAlign: 'center', marginBottom: '16px' }}>
-                <button
-                  onClick={() => setShowAdminCode(true)}
-                  style={{ background: 'none', border: 'none', color: '#3A4860', fontSize: '11px', cursor: 'pointer', fontFamily: "'DM Sans', sans-serif" }}
-                >
-                  ·
-                </button>
-              </div>
-            ) : (
-              <form onSubmit={handleAdminCode} style={{ marginBottom: '16px' }}>
-                <input
-                  type="password"
-                  value={adminCode}
-                  onChange={e => setAdminCode(e.target.value)}
-                  placeholder="Admin code"
-                  autoFocus
-                  style={{
-                    width: '100%', padding: '11px 14px',
-                    background: 'rgba(255,255,255,0.04)',
-                    border: '1px solid rgba(255,255,255,0.08)',
-                    borderRadius: '8px', color: '#F2EEE7',
-                    fontSize: '14px', fontFamily: "'DM Sans', sans-serif",
-                    marginBottom: '8px', boxSizing: 'border-box', outline: 'none',
-                  }}
-                />
-                {adminError && (
-                  <div style={{ fontSize: '12px', color: '#E87373', marginBottom: '8px', textAlign: 'center' }}>{adminError}</div>
-                )}
-                <button
-                  type="submit"
-                  disabled={loading}
-                  style={{
-                    width: '100%', padding: '11px',
-                    background: 'rgba(255,255,255,0.06)',
-                    border: '1px solid rgba(255,255,255,0.1)',
-                    borderRadius: '8px', color: '#9BA8C0',
-                    fontSize: '13px', cursor: loading ? 'not-allowed' : 'pointer',
-                    fontFamily: "'DM Sans', sans-serif",
-                  }}
-                >
-                  {loading ? 'Verifying...' : 'Enter'}
-                </button>
-              </form>
-            )}
-
             {/* Footer */}
             <div style={{ textAlign: 'center', fontSize: '12px', color: '#3A4860', lineHeight: 1.6 }}>
-              By signing in you agree to our Terms of Service.<br />
-              Kingdom Broker Inc. · Plano, Texas
+              By signing in you agree to confidentiality terms.<br />
+              ChiroPillar · Wagner Family Office × Kingdom Broker
             </div>
           </>
         ) : (
@@ -315,9 +249,9 @@ export default function LoginPage() {
             padding: '40px 32px',
             textAlign: 'center',
           }}>
-            <div style={{ marginBottom: '18px', color: '#C9A84C' }}><svg viewBox='0 0 24 24' width='44' height='44' fill='none' stroke='currentColor' strokeWidth='1.5' strokeLinecap='round'><rect x='2' y='5' width='20' height='14' rx='2'/><polyline points='2,5 12,13 22,5'/></svg></div>
+            <div style={{ marginBottom: '18px', color: '#9CC4E4' }}><svg viewBox='0 0 24 24' width='44' height='44' fill='none' stroke='currentColor' strokeWidth='1.5' strokeLinecap='round'><rect x='2' y='5' width='20' height='14' rx='2'/><polyline points='2,5 12,13 22,5'/></svg></div>
             <h2 style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'Playfair Display', Georgia, serif",
               fontSize: '24px', color: '#F2EEE7', margin: '0 0 12px',
             }}>Check your inbox</h2>
             <p style={{
@@ -326,14 +260,14 @@ export default function LoginPage() {
             }}>
               Access link sent to<br />
               <strong style={{ color: '#F2EEE7' }}>{email}</strong>.<br />
-              Click the link to open your dashboard.<br />Expires in one hour.
+              Click the link to open the ChiroPillar platform.<br />Expires in one hour.
             </p>
             <button onClick={() => setSent(false)} style={{
               background: 'transparent',
               border: '1px solid rgba(255,255,255,0.1)',
               color: '#9BA8C0', borderRadius: '8px',
               padding: '11px 24px', fontSize: '14px',
-              cursor: 'pointer', fontFamily: "'DM Sans', sans-serif",
+              cursor: 'pointer', fontFamily: "'Inter', system-ui, sans-serif",
             }}>
               Use a different email
             </button>

@@ -1,8 +1,10 @@
 // ChiroPillar · Intake Submissions Dashboard
 // Server component. Reads from chiropillar_targets via service-role.
 // Auth is enforced in the parent (dashboard)/layout.tsx, so by the time
-// this renders the user is already on the chiropillar_team whitelist.
+// this renders the user is already on the chiropillar_team whitelist
+// OR holds a demo session cookie (read-only sample data).
 
+import { cookies } from 'next/headers'
 import { createClient } from '@supabase/supabase-js'
 
 export const dynamic = 'force-dynamic'
@@ -30,7 +32,76 @@ type Target = {
   created_at: string
 }
 
+// Five sample applications shown when the visitor is in demo mode
+// (no magic-link login). Numbers are realistic per the N=102 comp set.
+const DEMO_TARGETS: Target[] = [
+  {
+    id: 'demo-1', full_name: 'Dr. Jane Rivera', email: 'jane@riverachiro.com', phone: '512-555-0143',
+    practice_name: 'Rivera Chiropractic',  city: 'Austin', state: 'TX',
+    gross_revenue_last_year: '$1.1M', net_revenue_last_year: '$420K',
+    new_patients_per_month_avg_2yr: '65', avg_visits_per_patient: '26',
+    services_provided: ['Adjustments (manual)', 'Spinal decompression', 'Rehab / corrective exercise'],
+    employee_count: '6', geographic_location_notes: '12 yrs in business · 2nd loc opening Q3',
+    owner_role: 'mostly_management', past_12mo_was_spike: 'no',
+    qualification: 'qualified',
+    qualification_reasons: ["Hits Wagner's 40+/mo new-patient floor.", 'Retention strong (26 visit avg).', 'Revenue base supports medical team.'],
+    outreach_status: 'scheduled', created_at: new Date(Date.now() - 1000 * 60 * 60 * 6).toISOString(),
+  },
+  {
+    id: 'demo-2', full_name: 'Dr. Michael Chen', email: 'mchen@pacificspine.com', phone: '619-555-0177',
+    practice_name: 'Pacific Spine Center', city: 'San Diego', state: 'CA',
+    gross_revenue_last_year: '$850K', net_revenue_last_year: '$315K',
+    new_patients_per_month_avg_2yr: '48', avg_visits_per_patient: '22',
+    services_provided: ['Adjustments (manual)', 'Cold laser / low-level laser', 'X-ray on-site'],
+    employee_count: '4', geographic_location_notes: '8 yrs in business · sole DC',
+    owner_role: 'mostly_clinical_some_management', past_12mo_was_spike: 'no',
+    qualification: 'qualified',
+    qualification_reasons: ["Hits Wagner's 40+/mo new-patient floor.", 'Retention in the strong band.'],
+    outreach_status: 'called', created_at: new Date(Date.now() - 1000 * 60 * 60 * 30).toISOString(),
+  },
+  {
+    id: 'demo-3', full_name: 'Dr. Sarah Kim', email: 'skim@apexwellness.com', phone: '602-555-0192',
+    practice_name: 'Apex Wellness', city: 'Phoenix', state: 'AZ',
+    gross_revenue_last_year: '$580K', net_revenue_last_year: '$210K',
+    new_patients_per_month_avg_2yr: '32', avg_visits_per_patient: '18',
+    services_provided: ['Adjustments (manual)', 'Massage therapy', 'Supplements / orthotics retail'],
+    employee_count: '3', geographic_location_notes: '5 yrs in business',
+    owner_role: 'full_clinical', past_12mo_was_spike: 'no',
+    qualification: 'maybe',
+    qualification_reasons: ['New-patient volume below the 40/mo target.', 'Owner is still full clinical — needs runway to step out.'],
+    outreach_status: 'new', created_at: new Date(Date.now() - 1000 * 60 * 60 * 52).toISOString(),
+  },
+  {
+    id: 'demo-4', full_name: 'Dr. Robert Hayes', email: 'rhayes@mountainchiro.com', phone: '720-555-0211',
+    practice_name: 'Mountain Chiropractic', city: 'Denver', state: 'CO',
+    gross_revenue_last_year: '$1.4M', net_revenue_last_year: '$510K',
+    new_patients_per_month_avg_2yr: '72', avg_visits_per_patient: '24',
+    services_provided: ['Adjustments (manual)', 'Spinal decompression', 'Personal injury (PI) cases', 'Sports / extremity adjusting'],
+    employee_count: '9', geographic_location_notes: '18 yrs in business · 3 associates',
+    owner_role: 'wants_to_step_out', past_12mo_was_spike: 'no',
+    qualification: 'qualified',
+    qualification_reasons: ["Hits Wagner's 40+/mo new-patient floor.", 'Retention in the strong band.', 'Owner ready to step out — clean handoff.', 'Revenue base supports medical team.'],
+    outreach_status: 'in_diligence', created_at: new Date(Date.now() - 1000 * 60 * 60 * 96).toISOString(),
+  },
+  {
+    id: 'demo-5', full_name: 'Dr. Lisa Park', email: 'lpark@harmonyspinal.com', phone: '704-555-0148',
+    practice_name: 'Harmony Spinal', city: 'Charlotte', state: 'NC',
+    gross_revenue_last_year: '$320K', net_revenue_last_year: '$95K',
+    new_patients_per_month_avg_2yr: '18', avg_visits_per_patient: '14',
+    services_provided: ['Adjustments (manual)'],
+    employee_count: '1', geographic_location_notes: '3 yrs in business · solo',
+    owner_role: 'full_clinical', past_12mo_was_spike: 'no',
+    qualification: 'not_yet',
+    qualification_reasons: ['New-patient volume below the 20/mo floor needed for the medical-team economics to work.'],
+    outreach_status: 'passed', created_at: new Date(Date.now() - 1000 * 60 * 60 * 120).toISOString(),
+  },
+]
+
 async function loadTargets(): Promise<Target[]> {
+  // Demo session → return sample data, do NOT hit the live database
+  const jar = await cookies()
+  if (jar.get('chiropillar-demo')?.value === '1') return DEMO_TARGETS
+
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL
   const sk  = process.env.SUPABASE_SERVICE_ROLE_KEY
   if (!url || !sk) return []
