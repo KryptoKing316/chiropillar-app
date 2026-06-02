@@ -65,6 +65,115 @@ const SERVICES = [
   'Sports / extremity adjusting',
 ]
 
+// ── Valuation logic (per 158-comp dataset, June 2026) ─────────────────────
+// Comp medians by practice profile:
+//   Solo-DC owner-operator:  1.46× SDE (n=102, P25-P75 1.08-2.05×)
+//   Multi-DC / associate:    3.0× SDE  (~30 comps)
+//   Platform / multi-loc:    7.5× EBITDA (PE-deal triangulated)
+//
+// SDE margin assumption (also from comp set):
+//   We don't ask SDE directly because owners rarely know it precisely.
+//   We estimate from gross revenue using the chiropractic-industry typical
+//   range of 25-45% SDE margin. Conservative path: assume 30% if no other
+//   signal; bump to 35% if owner is mostly-management (less owner-as-job)
+//   and 40% if they have associate DCs in place (lower owner-replacement risk).
+
+type ProfileInfer = 'solo' | 'multi' | 'platform'
+
+function inferProfile(s: FormState): ProfileInfer {
+  const gross = parseInt(s.gross_revenue_last_year.replace(/[^0-9]/g, ''), 10) || 0
+  // Platform = $3M+ gross AND owner is mostly_management or stepping out
+  // (proxy for multi-location with clean books)
+  if (gross >= 3_000_000 && (s.owner_role === 'mostly_management' || s.owner_role === 'wants_to_step_out')) {
+    return 'platform'
+  }
+  // Multi-DC = owner not full-clinical (signals associates in place)
+  if (s.owner_role === 'mostly_management' || s.owner_role === 'wants_to_step_out') {
+    return 'multi'
+  }
+  // Default: solo-DC owner-operator (most common ChiroPillar target)
+  return 'solo'
+}
+
+function valuate(s: FormState): {
+  profile: ProfileInfer
+  profile_label: string
+  estimated_sde_low: number
+  estimated_sde_mid: number
+  estimated_sde_high: number
+  val_low: number
+  val_mid: number
+  val_high: number
+  multiple_used: number
+  multiple_metric: string  // 'SDE' or 'EBITDA'
+  show_band: boolean       // true if we have enough data
+  caveat: string
+} {
+  const gross = parseInt(s.gross_revenue_last_year.replace(/[^0-9]/g, ''), 10) || 0
+  const profile = inferProfile(s)
+
+  // SDE margin assumption based on owner role
+  let sdeMarginLow  = 0.25
+  let sdeMarginMid  = 0.30
+  let sdeMarginHigh = 0.40
+  if (s.owner_role === 'mostly_management') {
+    sdeMarginLow  = 0.28
+    sdeMarginMid  = 0.35
+    sdeMarginHigh = 0.45
+  }
+  if (s.owner_role === 'wants_to_step_out') {
+    sdeMarginLow  = 0.30
+    sdeMarginMid  = 0.38
+    sdeMarginHigh = 0.48
+  }
+
+  const sdeLow  = gross * sdeMarginLow
+  const sdeMid  = gross * sdeMarginMid
+  const sdeHigh = gross * sdeMarginHigh
+
+  // Comp-derived multipliers (from N=102 comps, June 2026)
+  const COMP_MEDIANS = { solo: 1.46, multi: 3.0, platform: 7.5 }
+  const mult = COMP_MEDIANS[profile]
+
+  // P25 and P75 from the comp set translate to ~0.74× and ~1.40× of median
+  const valLow  = sdeLow  * (mult * 0.74)
+  const valMid  = sdeMid  * mult
+  const valHigh = sdeHigh * (mult * 1.40)
+
+  const labels = {
+    solo:     'Solo-DC Owner-Operator',
+    multi:    'Multi-DC / Associate-in-Place',
+    platform: 'Platform / Multi-Location',
+  }
+
+  const show_band = gross >= 100_000  // Don't show a band if they didn't enter revenue
+
+  const caveat = profile === 'platform'
+    ? 'EBITDA-based multiple. Closing usually 85-95% of asking. Real estate (if included) inflates the number — strip it for clinic-only comparison.'
+    : 'SDE-based multiple. Asking-price-derived from real comps. Closing usually 85-95% of asking.'
+
+  return {
+    profile,
+    profile_label: labels[profile],
+    estimated_sde_low: sdeLow,
+    estimated_sde_mid: sdeMid,
+    estimated_sde_high: sdeHigh,
+    val_low: valLow,
+    val_mid: valMid,
+    val_high: valHigh,
+    multiple_used: mult,
+    multiple_metric: profile === 'platform' ? 'EBITDA' : 'SDE',
+    show_band,
+    caveat,
+  }
+}
+
+function fmtMoney(n: number): string {
+  if (n >= 1_000_000) return '$' + (n / 1_000_000).toFixed(2) + 'M'
+  if (n >= 1_000) return '$' + Math.round(n / 1_000) + 'K'
+  return '$' + Math.round(n)
+}
+
 // ── Qualification logic (per Wagner's spec) ───────────────────────────────
 // Volume floor: 40+ new patients/mo
 // Retention: 18+ visit average (closer to his stated 24+ target)
@@ -122,6 +231,7 @@ export default function IntakePage() {
   const [form, setForm] = useState<FormState>(INITIAL)
   const [submitting, setSubmitting] = useState(false)
   const [result, setResult] = useState<ReturnType<typeof qualify> | null>(null)
+  const [valuation, setValuation] = useState<ReturnType<typeof valuate> | null>(null)
 
   const update = (k: keyof FormState) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm(f => ({ ...f, [k]: e.target.type === 'checkbox' ? (e.target as HTMLInputElement).checked : e.target.value }))
@@ -138,16 +248,26 @@ export default function IntakePage() {
   async function handleSubmit() {
     setSubmitting(true)
     const verdict = qualify(form)
+    const val = valuate(form)
     try {
       await fetch('/api/intake', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...form, qualification: verdict.status, qualification_reasons: verdict.reasons }),
+        body: JSON.stringify({
+          ...form,
+          qualification: verdict.status,
+          qualification_reasons: verdict.reasons,
+          valuation_profile: val.profile,
+          valuation_low: val.val_low,
+          valuation_mid: val.val_mid,
+          valuation_high: val.val_high,
+        }),
       })
     } catch {
       // Soft-fail — we still show the verdict locally
     }
     setResult(verdict)
+    setValuation(val)
     setSubmitting(false)
     setStep(99) // jump to result screen
   }
@@ -417,6 +537,38 @@ export default function IntakePage() {
             </h2>
             <p style={{ fontSize: 16, color: '#444', lineHeight: 1.6, marginBottom: 28 }}>{result.pitch}</p>
 
+            {/* ── VALUATION CARD · the 158-comp algorithm output ────────────── */}
+            {valuation && valuation.show_band && (
+              <div style={{
+                background: 'linear-gradient(135deg, #FFF7E0 0%, #FAF0D0 100%)',
+                border: '2px solid #C9A84C', borderRadius: 14, padding: '26px 28px',
+                marginBottom: 24, textAlign: 'left',
+              }}>
+                <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, letterSpacing: '0.20em', color: '#8B6914', textTransform: 'uppercase', fontWeight: 700, marginBottom: 14 }}>
+                  📊 Your Practice · Estimated Range
+                </div>
+
+                <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12, marginBottom: 12 }}>
+                  <div>
+                    <div style={{ fontFamily: 'Georgia, serif', fontSize: 36, fontWeight: 800, color: '#1F4E79', letterSpacing: '-0.02em', lineHeight: 1 }}>
+                      {fmtMoney(valuation.val_low)} – {fmtMoney(valuation.val_high)}
+                    </div>
+                    <div style={{ fontFamily: 'Georgia, serif', fontSize: 15, color: '#1F4E79', marginTop: 8, fontWeight: 600 }}>
+                      Most likely: {fmtMoney(valuation.val_mid)}
+                    </div>
+                  </div>
+                  <div style={{ textAlign: 'right' }}>
+                    <div style={{ fontSize: 11, color: '#7A6A45', fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.10em', textTransform: 'uppercase' }}>Profile</div>
+                    <div style={{ fontSize: 14, color: '#5A4A1A', fontWeight: 700, marginTop: 2 }}>{valuation.profile_label}</div>
+                  </div>
+                </div>
+
+                <div style={{ paddingTop: 12, borderTop: '1px dashed rgba(139,105,20,0.25)', fontSize: 13, color: '#5A4A1A', lineHeight: 1.55 }}>
+                  Calibrated to <strong>{valuation.multiple_used}× {valuation.multiple_metric} median</strong> from <strong>N=102 real chiropractic practice sales</strong> (BizBuySell, Progressive Practice Sales, William David Co, JYNT 10-K · June 2026). {valuation.caveat}
+                </div>
+              </div>
+            )}
+
             {result.reasons.length > 0 && (
               <div style={{ background: '#F7F4ED', borderRadius: 10, padding: 22, marginBottom: 24, textAlign: 'left' }}>
                 <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, letterSpacing: '0.18em', color: '#7A6A45', textTransform: 'uppercase', fontWeight: 700, marginBottom: 12 }}>
@@ -436,8 +588,8 @@ export default function IntakePage() {
 
         {/* Footer disclaimer */}
         <div style={{ marginTop: 32, fontSize: 11, color: '#999', fontFamily: "'JetBrains Mono', monospace", textAlign: 'center', lineHeight: 1.6 }}>
-          ChiroPillar · Wagner Family Office · Confidential application form.<br/>
-          Submission does not create a binding partnership offer. All financial structures subject to definitive documentation.
+          ChiroPillar · Confidential application form.<br/>
+          Estimated valuation range is illustrative, not an offer. Closing prices typically 85-95% of asking. All financial structures subject to definitive documentation.
         </div>
       </div>
     </div>

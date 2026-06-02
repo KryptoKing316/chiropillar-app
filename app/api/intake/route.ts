@@ -42,6 +42,10 @@ export async function POST(req: Request) {
       ok_to_contact:                   Boolean(body.ok_to_contact),
       qualification:                   String(body.qualification || 'unknown'),
       qualification_reasons:           Array.isArray(body.qualification_reasons) ? body.qualification_reasons : [],
+      valuation_profile:               String(body.valuation_profile || ''),
+      valuation_low:                   Number.isFinite(body.valuation_low) ? Number(body.valuation_low) : null,
+      valuation_mid:                   Number.isFinite(body.valuation_mid) ? Number(body.valuation_mid) : null,
+      valuation_high:                  Number.isFinite(body.valuation_high) ? Number(body.valuation_high) : null,
       outreach_status:                 'new',
       created_at:                      new Date().toISOString(),
     }

@@ -37,6 +37,12 @@ CREATE TABLE IF NOT EXISTS chiropillar_targets (
   qualification                     TEXT,   -- qualified | maybe | not_yet
   qualification_reasons             TEXT[] DEFAULT '{}',
 
+  -- 158-comp valuation estimate (shown to applicant on submit)
+  valuation_profile                 TEXT,   -- solo | multi | platform
+  valuation_low                     NUMERIC,
+  valuation_mid                     NUMERIC,
+  valuation_high                    NUMERIC,
+
   -- Operational
   outreach_status                   TEXT DEFAULT 'new',   -- new | called | scheduled | in_diligence | offer | closed | passed
   notes                             TEXT,
