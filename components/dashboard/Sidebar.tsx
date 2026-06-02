@@ -456,37 +456,12 @@ export default function Sidebar({ userEmail, isDemo, isAdmin }: { userEmail?: st
           )
         })}
 
-        {/* Admin nav — Eric only */}
+        {/* Admin nav · Eric/Wagner/McGrath only (Agent Center + Admin Panel) */}
         {isAdmin && (
           <>
             <div style={{ margin: '10px 14px 8px', borderTop: '1px solid var(--kb-border)' }} />
-            <div style={{ padding: '4px 12px 6px', fontSize: '11px', color: 'var(--kb-text-muted)', letterSpacing: '0.08em', textTransform: 'uppercase', fontWeight: 510 }}>Admin · Demos & Sales</div>
+            <div style={{ padding: '4px 12px 6px', fontSize: '11px', color: 'var(--kb-text-muted)', letterSpacing: '0.08em', textTransform: 'uppercase', fontWeight: 510 }}>Admin</div>
             {ADMIN_DEMOS.map(({ href, label }) => (
-              <Link key={href} href={href} style={{ textDecoration: 'none' }}>
-                <div style={{
-                  display: 'flex', alignItems: 'center', gap: '10px',
-                  padding: '10px 12px', borderRadius: '8px', marginBottom: '2px',
-                  background: pathname.startsWith(href) ? 'rgba(155,168,192,0.08)' : 'transparent',
-                  borderLeft: pathname.startsWith(href) ? '3px solid #9BA8C0' : '3px solid transparent',
-                  color: pathname.startsWith(href) ? 'var(--kb-text)' : '#9BA8C0',
-                  fontSize: '13px', fontWeight: 510,
-                  cursor: 'pointer', transition: 'all 0.15s',
-                }}>
-                  <span style={{ opacity: 0.55, flexShrink: 0, display: 'flex', alignItems: 'center' }}>
-                    {ICONS[href] ?? ICONS['/demo']}
-                  </span>
-                  {label}
-                </div>
-              </Link>
-            ))}
-
-            <div style={{ margin: '10px 14px 8px', borderTop: '1px solid var(--kb-border)' }} />
-            <div style={{ padding: '4px 12px 6px', fontSize: '11px', color: 'var(--kb-text-muted)', letterSpacing: '0.08em', textTransform: 'uppercase', fontWeight: 510 }}>Admin Only</div>
-            {[
-              { href: '/agents',           label: 'Agent Center'         },
-              { href: '/admin',            label: 'Admin Panel'          },
-              { href: '/exchange/admin',  label: 'Exchange · Invites'  },
-            ].map(({ href, label }) => (
               <Link key={href} href={href} style={{ textDecoration: 'none' }}>
                 <div style={{
                   display: 'flex', alignItems: 'center', gap: '10px',
