@@ -1,9 +1,11 @@
 // ChiroPillar · Data Room
 // Live PDF library for Wagner/McGrath/Eric — the canonical strategy
 // documents are stored under /public/data-room/ and rendered here with
-// view + download links. Per-clinic data rooms remain Phase 3.
+// view + download links. Above the library: clinic-financials upload
+// drop zone + QuickBooks connect (both "coming soon" on click).
 
 import Link from 'next/link'
+import UploadZone from './UploadZone'
 
 export const dynamic = 'force-dynamic'
 
@@ -98,6 +100,24 @@ export default function DataRoomPage() {
         }}>
           The canonical ChiroPillar documents — thesis, ecosystem, product, brand. Click any tile to read in-browser or download. Per-clinic acquisition rooms (one per deal in flight) ship in Phase 3.
         </p>
+      </div>
+
+      {/* ── UPLOAD ZONE + QUICKBOOKS CONNECT (interactive client component) ── */}
+      <UploadZone />
+
+      {/* Section divider for the strategy library */}
+      <div style={{
+        display: 'flex', alignItems: 'center', gap: 16,
+        marginBottom: 22,
+      }}>
+        <div style={{
+          fontFamily: "'JetBrains Mono', monospace", fontSize: 11,
+          letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700,
+          color: 'var(--kb-accent)',
+        }}>
+          Strategy library · canonical docs
+        </div>
+        <div style={{ flex: 1, height: 1, background: 'var(--kb-border)' }} />
       </div>
 
       {/* PDF tiles */}

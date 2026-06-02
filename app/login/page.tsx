@@ -1,7 +1,11 @@
 'use client'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { createBrowserClient } from '@supabase/auth-helpers-nextjs'
+// Use @supabase/ssr (the modern, Next 16-compatible package) instead of the
+// deprecated @supabase/auth-helpers-nextjs — the old package no longer reliably
+// exports createBrowserClient, which is why magic-link sends were silently
+// failing with the generic "Something went wrong" catch.
+import { createBrowserClient } from '@supabase/ssr'
 
 export default function LoginPage() {
   const [email, setEmail] = useState('')
@@ -18,11 +22,17 @@ export default function LoginPage() {
 
     const trimmedEmail = email.trim().toLowerCase()
 
+    // Surface a clear error if env vars are missing instead of silently failing
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL
+    const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+    if (!url || !anon) {
+      setError('Authentication is not configured (missing Supabase environment variables in the deployment). Contact Eric.')
+      setLoading(false)
+      return
+    }
+
     try {
-      const supabase = createBrowserClient(
-        process.env.NEXT_PUBLIC_SUPABASE_URL!,
-        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-      )
+      const supabase = createBrowserClient(url, anon)
       const { error: otpError } = await supabase.auth.signInWithOtp({
         email: trimmedEmail,
         options: {
@@ -35,6 +45,10 @@ export default function LoginPage() {
           setError('Too many login attempts — please wait 10 minutes and try again, or check your inbox for a previously sent link.')
         } else if (msg.includes('invalid email')) {
           setError('Please enter a valid email address.')
+        } else if (msg.includes('signup') || msg.includes('signups not allowed')) {
+          setError('This email is not on the access list. Contact Eric to be added before logging in.')
+        } else if (msg.includes('redirect') || msg.includes('url')) {
+          setError(`Supabase rejected the callback URL. The Site URL and redirect-URL list need to include this domain. (${otpError.message})`)
         } else {
           setError(otpError.message)
         }
@@ -43,8 +57,9 @@ export default function LoginPage() {
         setLoading(false)
         setSent(true)
       }
-    } catch {
-      setError('Something went wrong. Please try again.')
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err)
+      setError(`Could not send magic link: ${msg}`)
       setLoading(false)
     }
   }
@@ -83,37 +98,36 @@ export default function LoginPage() {
 
       <div style={{ width: '100%', maxWidth: '460px', position: 'relative' }}>
 
-        {/* ChiroPillar lockup · brand-guide mascot icon + solid white text */}
-        <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+        {/* ChiroPillar lockup · brand-guide mascot (with arms) + solid white text */}
+        <div style={{ textAlign: 'center', marginBottom: '24px' }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/chiropillar-icon.png"
+            src="/chiropillar-mascot-dark.svg"
             alt="ChiroPillar mascot"
             style={{
-              width: 'clamp(110px, 16vw, 140px)',
-              height: 'clamp(110px, 16vw, 140px)',
+              width: 'clamp(84px, 11vw, 104px)',
+              height: 'clamp(84px, 11vw, 104px)',
               display: 'inline-block',
-              borderRadius: '24px',
             }}
           />
           <div style={{
             fontFamily: "'Playfair Display', Georgia, serif",
-            fontSize: 'clamp(38px, 5vw, 48px)',
+            fontSize: 'clamp(30px, 4vw, 38px)',
             fontWeight: 700,
             color: '#FFFFFF',
             letterSpacing: '-0.02em',
             lineHeight: 1,
-            marginTop: '20px',
-            marginBottom: '10px',
+            marginTop: '14px',
+            marginBottom: '8px',
           }}>
             ChiroPillar
           </div>
           <div style={{
             fontFamily: "'JetBrains Mono', 'DM Mono', monospace",
-            fontSize: '13px',
+            fontSize: '12px',
             fontWeight: 600,
             color: '#FFFFFF',
-            letterSpacing: '0.32em',
+            letterSpacing: '0.28em',
             textTransform: 'uppercase',
           }}>
             Strength in Alignment
@@ -123,18 +137,12 @@ export default function LoginPage() {
         {/* Headline */}
         <h1 style={{
           fontFamily: "'Playfair Display', Georgia, serif",
-          fontSize: '28px', fontWeight: 600,
-          color: '#F2EEE7', margin: '0 0 8px',
+          fontSize: '22px', fontWeight: 600,
+          color: '#F2EEE7', margin: '0 0 22px',
           textAlign: 'center', lineHeight: 1.3,
         }}>
-          Chiropractic Roll-Up<br />Partnership Platform
+          Chiropractic Roll-Up Platform
         </h1>
-        <p style={{
-          fontSize: '14px', color: '#9CC4E4', textAlign: 'center',
-          margin: '0 0 28px', fontStyle: 'italic', letterSpacing: '0.02em',
-        }}>
-          Dr. Scott Wagner × Kingdom Broker
-        </p>
 
         {!sent ? (
           <>
@@ -238,25 +246,26 @@ export default function LoginPage() {
               </button>
             </div>
 
-            {/* Wagner-specific trust stats — the deal math, personalized */}
+            {/* Trust stats — traction + reach + impact + goal */}
             <div style={{
-              display: 'flex',
-              justifyContent: 'center',
-              gap: '32px',
+              display: 'grid',
+              gridTemplateColumns: 'repeat(4, 1fr)',
+              gap: '14px',
               marginBottom: '24px',
             }}>
               {[
-                { n: '$25M',  label: 'Wagner EBITDA' },
-                { n: '+$20M', label: 'Bolt-On Target' },
-                { n: '$45M+', label: 'Combined Platform' },
+                { n: '21',     label: 'Chiropractors Helped' },
+                { n: '5,000+', label: 'Patients Served' },
+                { n: '$30M',   label: 'Revenue Added' },
+                { n: '100',    label: 'Office Goal' },
               ].map(b => (
                 <div key={b.label} style={{ textAlign: 'center' }}>
                   <div style={{
                     fontFamily: "'Playfair Display', Georgia, serif",
                     fontSize: '20px', color: '#C9A84C', fontWeight: 700,
-                    marginBottom: '3px',
+                    marginBottom: '3px', lineHeight: 1,
                   }}>{b.n}</div>
-                  <div style={{ fontSize: '12px', color: '#4A5880' }}>{b.label}</div>
+                  <div style={{ fontSize: '10.5px', color: '#7A8BAA', lineHeight: 1.3 }}>{b.label}</div>
                 </div>
               ))}
             </div>
