@@ -320,6 +320,15 @@ const ICONS: Record<string, React.ReactNode> = {
       <path d="M9 1.5v2M9 14.5v2M1.5 9h2M14.5 9h2M3.7 3.7l1.42 1.42M12.88 12.88l1.42 1.42M14.3 3.7l-1.42 1.42M5.12 12.88l-1.42 1.42"/>
     </IC>
   ),
+  '/nda-loi': (
+    <IC>
+      {/* Document with pen / signature line */}
+      <path d="M10 2H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V7z"/>
+      <polyline points="10,2 10,7 15,7"/>
+      <line x1="6" y1="11" x2="11" y2="11"/>
+      <path d="M11 13.5l1.5-1.5 1.5 1.5"/>
+    </IC>
+  ),
   '/scale': (
     <IC>
       {/* Upward stair-step growth */}
@@ -348,6 +357,7 @@ const NAV = [
   { href: '/valuation',    label: 'AI Valuation',         badge: 'Soon' },
   { href: '/pipeline',     label: 'Acquisition Pipeline', badge: 'Soon' },
   { href: '/data-room',    label: 'Data Room',            badge: 'Live' },
+  { href: '/nda-loi',      label: 'NDAs & LOIs',          badge: 'Soon' },
   { href: '/scale',        label: 'Scale Services',       badge: 'Soon' },
   { href: '/outreach',     label: 'Outreach Campaigns',   badge: 'Soon' },
 ]
