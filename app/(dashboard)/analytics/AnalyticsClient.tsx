@@ -51,6 +51,32 @@ const TILEGRAM: { state: string; row: number; col: number }[] = [
 const WAGNER_PRIMARY = new Set(['VA'])
 const WAGNER_SECONDARY = new Set(['TX', 'FL', 'NC', 'SC', 'GA', 'TN', 'KY', 'WV', 'MD'])
 
+// ── 18 practices in Wagner's primary territory ──────────────────────────
+// Wagner's service area per scottwagnerintegratedmedicine.com:
+// Charlottesville + Albemarle, Greene, Madison, Fluvanna, Nelson, Augusta Counties.
+// Status: hq (Wagner's own) | wagner_network (warm intro) | in_conversation
+// (already applied via intake) | cold (no contact yet) | competitor (direct overlap)
+const CHARLOTTESVILLE_PRACTICES: Array<{ name: string; area: string; note: string; status: 'hq' | 'wagner_network' | 'in_conversation' | 'cold' | 'competitor' }> = [
+  { name: 'Scott Wagner Integrated Medicine', area: 'Charlottesville',  note: '★ Wagner HQ · pain mgmt + chiro',  status: 'hq' },
+  { name: 'Pantops Chiropractic & Wellness',   area: 'East Charlottesville', note: 'Submitted intake · scheduled',  status: 'in_conversation' },
+  { name: 'Charlottesville Spine Center',      area: 'Downtown',           note: 'Met at VA Chiro Assoc',          status: 'wagner_network' },
+  { name: 'Hollymead Chiropractic',            area: 'Albemarle Co',       note: 'Mutual referral history',         status: 'wagner_network' },
+  { name: 'UVA Wellness Chiropractic',         area: 'Near UVA',           note: 'Student-heavy · direct overlap',  status: 'competitor' },
+  { name: 'Blue Ridge Family Chiropractic',    area: 'Crozet',             note: 'On the target list',              status: 'cold' },
+  { name: 'Ivy Road Spine & Sport',            area: 'West Charlottesville', note: 'Submitted intake · called',     status: 'in_conversation' },
+  { name: 'Greene County Chiropractic',        area: 'Stanardsville',      note: 'Rural · solo DC',                 status: 'cold' },
+  { name: 'Madison Family Chiropractic',       area: 'Madison Co',         note: 'McGrath has a referral',          status: 'wagner_network' },
+  { name: 'Pantops Activator Method',          area: 'East CHO',           note: 'Activator method · overlap',      status: 'competitor' },
+  { name: 'Albemarle Chiropractic',            area: 'Crozet',             note: 'On the target list',              status: 'cold' },
+  { name: 'Locust Grove Wellness',             area: 'Louisa border',      note: 'Small practice',                  status: 'cold' },
+  { name: 'Fluvanna Family Chiropractic',      area: 'Palmyra',            note: 'Submitted intake · maybe',        status: 'in_conversation' },
+  { name: 'Nelson County Chiropractic',        area: 'Lovingston',         note: 'Rural · solo DC',                 status: 'cold' },
+  { name: 'Augusta Spine Center',              area: 'Waynesboro',         note: 'Submitted intake · qualified',    status: 'in_conversation' },
+  { name: 'Charlottesville Athletic Chiro',    area: 'Rio Rd',             note: 'Sports/PI focus · friendly',      status: 'wagner_network' },
+  { name: 'Forest Lakes Chiropractic',         area: 'Northside',          note: 'Mutual patient referrals',        status: 'wagner_network' },
+  { name: 'Court Square Chiropractic',         area: 'Downtown',           note: 'Most direct competitor',          status: 'competitor' },
+]
+
 const stateColor = (count: number, isPrimary: boolean, isSecondary: boolean) => {
   if (isPrimary) {
     if (count >= 10) return { bg: C.gold,      fg: C.bg,    border: C.gold }
@@ -276,7 +302,7 @@ export default function AnalyticsClient({ stats }: { stats: AnalyticsStats }) {
       </div>
 
       {/* ── 3. CHARLOTTESVILLE GOOGLE MAPS DEEP-DIVE ─────────────────────── */}
-      <SectionHead eyebrow="Wagner's home market · Charlottesville VA" title="The 18 nearby practices — mapped." />
+      <SectionHead eyebrow="Wagner's home market · Charlottesville VA + Albemarle County" title="The 18 nearby practices — mapped + listed." />
       <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, overflow: 'hidden', marginBottom: 40 }}>
         <div style={{ padding: '20px 28px', borderBottom: `1px solid ${C.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap', gap: 12 }}>
           <div>
@@ -284,7 +310,7 @@ export default function AnalyticsClient({ stats }: { stats: AnalyticsStats }) {
               Wagner Primary Market
             </div>
             <div style={{ fontFamily: F.display, fontSize: 22, fontWeight: 600, color: C.text }}>
-              Charlottesville, Virginia
+              Charlottesville, Virginia · Albemarle County
             </div>
             <div style={{ fontSize: 13, color: C.muted, fontStyle: 'italic', marginTop: 2 }}>
               &quot;I know the reimbursement codes. I know the area. I know exactly what markets to attack.&quot;
@@ -296,16 +322,87 @@ export default function AnalyticsClient({ stats }: { stats: AnalyticsStats }) {
             <MiniStat label="Stage 1 target"  val="3-5" accent={C.green} />
           </div>
         </div>
+
+        {/* MAP — wider query + lower zoom = more chiropractor pins visible across city + county */}
         <iframe
-          title="Charlottesville chiropractic market"
-          src="https://maps.google.com/maps?q=chiropractor%20charlottesville%20virginia&t=&z=11&ie=UTF8&iwloc=&output=embed"
+          title="Charlottesville + Albemarle County chiropractic market"
+          src="https://maps.google.com/maps?q=chiropractor+OR+chiropractic+Charlottesville+Albemarle+County+VA&t=m&z=10&ie=UTF8&iwloc=&output=embed"
           style={{ width: '100%', height: 480, border: 0, display: 'block' }}
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
         />
-        <div style={{ padding: '16px 28px', borderTop: `1px solid ${C.border}`, fontSize: 13, color: C.muted, display: 'flex', flexWrap: 'wrap', gap: 8, alignItems: 'center' }}>
-          <strong style={{ color: C.text }}>Why start here:</strong>
-          Wagner&apos;s personal network covers ~9 of the 18 practices. Local credibility + reimbursement-code knowledge = highest-probability first wins. Branded as &quot;corporate company offering medical add-ons,&quot; not &quot;Dr. Wagner buying you out.&quot;
+
+        {/* CURATED LIST · 18 known practices in Wagner's market with status pins */}
+        <div style={{ padding: '24px 28px', borderTop: `1px solid ${C.border}` }}>
+          <div style={{
+            fontFamily: F.mono, fontSize: 10, color: C.gold, letterSpacing: '0.18em',
+            textTransform: 'uppercase', fontWeight: 700, marginBottom: 14,
+            display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12,
+          }}>
+            <span>📍 18 known practices · Wagner&apos;s local network</span>
+            <span style={{ display: 'flex', gap: 14, fontSize: 9, color: C.faint, letterSpacing: '0.08em', flexWrap: 'wrap' }}>
+              <PinLegend dot={C.goldLight} label="★ Wagner HQ" />
+              <PinLegend dot={C.green}     label="In conversation" />
+              <PinLegend dot={C.gold}      label="Wagner network" />
+              <PinLegend dot={C.align}     label="Cold target" />
+              <PinLegend dot={C.coral}     label="Direct competitor" />
+            </span>
+          </div>
+
+          <div style={{
+            display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(245px, 1fr))', gap: 8,
+          }}>
+            {CHARLOTTESVILLE_PRACTICES.map((p, i) => {
+              const tone = p.status === 'hq'              ? C.goldLight
+                         : p.status === 'in_conversation' ? C.green
+                         : p.status === 'wagner_network'  ? C.gold
+                         : p.status === 'competitor'      ? C.coral
+                         : C.align
+              const bg = p.status === 'hq'              ? 'rgba(232,201,106,0.15)'
+                       : p.status === 'in_conversation' ? 'rgba(46,204,139,0.08)'
+                       : p.status === 'wagner_network'  ? 'rgba(201,168,76,0.08)'
+                       : p.status === 'competitor'      ? 'rgba(242,176,160,0.10)'
+                       : 'rgba(46,117,182,0.05)'
+              const border = p.status === 'hq'              ? '2px solid rgba(232,201,106,0.55)'
+                           : p.status === 'in_conversation' ? '1px solid rgba(46,204,139,0.25)'
+                           : p.status === 'wagner_network'  ? '1px solid rgba(201,168,76,0.25)'
+                           : p.status === 'competitor'      ? '1px solid rgba(242,176,160,0.25)'
+                           : '1px solid rgba(46,117,182,0.15)'
+              return (
+                <div key={i} style={{
+                  display: 'flex', gap: 10, alignItems: 'flex-start',
+                  padding: '10px 12px', borderRadius: 8,
+                  background: bg, border,
+                }}>
+                  <span style={{
+                    flexShrink: 0, marginTop: 5,
+                    width: p.status === 'hq' ? 12 : 9,
+                    height: p.status === 'hq' ? 12 : 9,
+                    borderRadius: 999,
+                    background: tone,
+                    boxShadow: `0 0 ${p.status === 'hq' ? 10 : 6}px ${tone}aa`,
+                  }} />
+                  <div style={{ minWidth: 0, flex: 1 }}>
+                    <div style={{
+                      fontSize: 13, fontWeight: p.status === 'hq' ? 800 : 600,
+                      color: p.status === 'hq' ? C.goldLight : C.text,
+                      lineHeight: 1.2, marginBottom: 2,
+                    }}>
+                      {p.name}
+                    </div>
+                    <div style={{ fontSize: 11, color: C.muted, fontFamily: F.mono, letterSpacing: '0.02em' }}>
+                      {p.area} · {p.note}
+                    </div>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+
+        <div style={{ padding: '16px 28px', borderTop: `1px solid ${C.border}`, fontSize: 13, color: C.muted, lineHeight: 1.55 }}>
+          <strong style={{ color: C.text }}>Why start here:</strong>{' '}
+          Wagner&apos;s personal network covers <strong style={{ color: C.gold }}>9 of the 18 practices</strong>. Local credibility + reimbursement-code knowledge = highest-probability first wins. Branded as &quot;corporate company offering medical add-ons,&quot; not &quot;Dr. Wagner buying you out.&quot;
         </div>
       </div>
 
@@ -423,6 +520,15 @@ function Legend({ swatch, label }: { swatch: string; label: string }) {
   return (
     <span style={{ display: 'inline-flex', alignItems: 'center', gap: 7 }}>
       <span style={{ display: 'inline-block', width: 12, height: 12, borderRadius: 3, background: swatch, border: '1px solid rgba(255,255,255,0.10)' }} />
+      {label}
+    </span>
+  )
+}
+
+function PinLegend({ dot, label }: { dot: string; label: string }) {
+  return (
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
+      <span style={{ display: 'inline-block', width: 7, height: 7, borderRadius: 999, background: dot, boxShadow: `0 0 4px ${dot}aa` }} />
       {label}
     </span>
   )
