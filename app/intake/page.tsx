@@ -217,7 +217,7 @@ export default function IntakePage() {
 
         {/* Card wrapper */}
         {step < 99 && (
-          <div style={{ background: 'white', borderRadius: 14, padding: 36, boxShadow: '0 12px 40px rgba(31,78,121,0.08), 0 0 0 1px rgba(31,78,121,0.06)' }}>
+          <div style={{ background: 'white', borderRadius: 14, padding: 'clamp(20px, 4vw, 36px)', boxShadow: '0 12px 40px rgba(31,78,121,0.08), 0 0 0 1px rgba(31,78,121,0.06)' }}>
 
             {/* STEP 0: Practice */}
             {step === 0 && (

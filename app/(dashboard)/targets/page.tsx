@@ -87,19 +87,20 @@ export default async function TargetsPage() {
         <p style={{ color: 'var(--kb-text-secondary)', fontSize: 14, marginTop: 6 }}>Every chiropractor who&apos;s applied via the /intake form. Score is auto-computed against Wagner&apos;s qualification criteria.</p>
       </div>
 
-      {/* Stat strip */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 14, marginBottom: 32 }}>
+      {/* Stat strip — collapses to 2×2 on tablet + single col on phone */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 14, marginBottom: 32 }}>
         <StatCard label="Total submissions" value={counts.total} accent="#2E75B6" />
         <StatCard label="Qualified" value={counts.qualified} accent="#2ECC8B" />
         <StatCard label="Maybe" value={counts.maybe} accent="#C9A84C" />
         <StatCard label="Not yet" value={counts.not_yet} accent="#9BA8C0" />
       </div>
 
-      {/* Table */}
+      {/* Table · horizontal scroll on narrow screens */}
       {targets.length === 0 ? (
         <EmptyState />
       ) : (
-        <div style={{ background: 'var(--kb-bg-panel)', border: '1px solid var(--kb-border)', borderRadius: 12, overflow: 'hidden' }}>
+        <div style={{ overflowX: 'auto', borderRadius: 12 }}>
+        <div style={{ background: 'var(--kb-bg-panel)', border: '1px solid var(--kb-border)', borderRadius: 12, overflow: 'hidden', minWidth: 980 }}>
           <div style={{
             display: 'grid',
             gridTemplateColumns: '1.6fr 1.4fr 80px 100px 120px 120px 110px 110px',
@@ -183,6 +184,7 @@ export default async function TargetsPage() {
               </div>
             )
           })}
+        </div>
         </div>
       )}
     </div>

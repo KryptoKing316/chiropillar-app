@@ -71,6 +71,16 @@ export default function CalculatorPage() {
   const [hideRollup, setHideRollup] = useState(false)
   const [profile, setProfile] = useState<Profile>('solo')
   const [i, setI] = useState<Inputs>(DEFAULTS)
+  const [isMobile, setIsMobile] = useState(false)
+
+  // Track viewport for responsive grid (avoid raw media queries since this uses inline styles)
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const check = () => setIsMobile(window.innerWidth < 880)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [])
 
   function set<K extends keyof Inputs>(k: K, v: number) {
     setI(prev => ({ ...prev, [k]: v }))
@@ -124,7 +134,7 @@ export default function CalculatorPage() {
   const moicBase     = evBase / totalPrice
 
   return (
-    <div style={{ padding: 32, background: '#F7F4ED', minHeight: '100vh', color: '#1a1a1a', fontFamily: "'Inter', system-ui, sans-serif" }}>
+    <div style={{ padding: isMobile ? '20px 16px 60px' : 32, background: '#F7F4ED', minHeight: '100vh', color: '#1a1a1a', fontFamily: "'Inter', system-ui, sans-serif" }}>
       <div style={{ maxWidth: 1280, margin: '0 auto' }}>
 
         {/* Header + Mode Toggle */}
@@ -133,7 +143,7 @@ export default function CalculatorPage() {
             <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, letterSpacing: '0.22em', color: '#2E75B6', textTransform: 'uppercase', fontWeight: 700, marginBottom: 8 }}>
               ChiroPillar · Deal Calculator
             </div>
-            <h1 style={{ fontFamily: 'Georgia, serif', fontSize: 36, fontWeight: 700, color: '#1F4E79', margin: 0, letterSpacing: '-0.02em' }}>
+            <h1 style={{ fontFamily: 'Georgia, serif', fontSize: isMobile ? 24 : 36, fontWeight: 700, color: '#1F4E79', margin: 0, letterSpacing: '-0.02em', lineHeight: 1.1 }}>
               Seller Payout × Platform Returns
             </h1>
             <p style={{ color: '#666', fontSize: 14, marginTop: 6 }}>11 flippable assumptions · live recalculation · seller payout + platform returns</p>
@@ -170,7 +180,7 @@ export default function CalculatorPage() {
         {/* ── PRACTICE PROFILE SELECTOR ──────────────────────────────────── */}
         <div style={{ marginBottom: 28 }}>
           <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, letterSpacing: '0.18em', color: '#2E75B6', textTransform: 'uppercase', fontWeight: 700, marginBottom: 12 }}>Practice Profile</div>
-          <div className="profile-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12 }}>
+          <div className="profile-grid" style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: 12 }}>
             {(['solo','multi','platform'] as Profile[]).map(p => {
               const pr = PROFILES[p]
               const active = profile === p
@@ -197,8 +207,8 @@ export default function CalculatorPage() {
           </div>
         </div>
 
-        {/* Body */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'minmax(280px, 360px) 1fr', gap: 24 }}>
+        {/* Body — sliders left, outputs right (stacks on mobile) */}
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'minmax(280px, 360px) 1fr', gap: isMobile ? 16 : 24 }}>
 
           {/* INPUTS */}
           <div style={{ background: 'white', borderRadius: 14, padding: 24, boxShadow: '0 4px 16px rgba(31,78,121,0.06)' }}>
@@ -297,7 +307,7 @@ export default function CalculatorPage() {
                 <Row lbl="Effective post-synergy multiple" val={`${postMult.toFixed(1)}×`} gold />
 
                 <OutH style={{ marginTop: 32 }}>Exit Enterprise Value</OutH>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12, marginTop: 12 }}>
+                <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)', gap: 12, marginTop: 12 }}>
                   <Scenario label="Conservative · 8×" val={fmtMshort(evLow)} moic={`${(evLow/totalPrice).toFixed(1)}× MOIC`} />
                   <Scenario label={`Base · ${i.emult}×`} val={fmtMshort(evBase)} moic={`${moicBase.toFixed(1)}× MOIC`} highlight />
                   <Scenario label="Premium · 10×" val={fmtMshort(evHigh)} moic={`${(evHigh/totalPrice).toFixed(1)}× MOIC`} />
