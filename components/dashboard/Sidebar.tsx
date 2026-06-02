@@ -337,9 +337,10 @@ const ICONS: Record<string, React.ReactNode> = {
 
 // ── Nav items · ChiroPillar / Wagner Family Office ───────────────────────────
 // Lean nav focused on the chiropractor roll-up workflow.
-// Live surfaces: Intake Submissions + Deal Calculator
+// Live surfaces: Walkthrough + Intake Submissions + Deal Calculator
 // "Soon" badge = wired in the nav, placeholder page for the Loom
 const NAV = [
+  { href: '/walkthrough',  label: 'Self-Demo Guide',      badge: 'Live' },
   { href: '/overview',     label: 'Overview',             badge: 'Soon' },
   { href: '/targets',      label: 'Intake Submissions'                  },
   { href: '/calculator',   label: 'Deal Calculator'                     },
