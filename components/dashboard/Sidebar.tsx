@@ -252,18 +252,105 @@ const ICONS: Record<string, React.ReactNode> = {
       <line x1="7" y1="13" x2="11" y2="13"/>
     </IC>
   ),
+  '/targets': (
+    <IC>
+      {/* Person + plus — incoming application */}
+      <circle cx="7" cy="6.5" r="2.5"/>
+      <path d="M2 16c0-2.76 2.24-5 5-5s5 2.24 5 5"/>
+      <line x1="13" y1="4" x2="13" y2="9"/>
+      <line x1="10.5" y1="6.5" x2="15.5" y2="6.5"/>
+    </IC>
+  ),
+  '/calculator': (
+    <IC>
+      {/* Calculator grid */}
+      <rect x="3" y="2" width="12" height="14" rx="1.5"/>
+      <rect x="5" y="4" width="8" height="2.5" rx="0.5"/>
+      <circle cx="6.5" cy="9" r="0.6" fill="currentColor"/>
+      <circle cx="9" cy="9" r="0.6" fill="currentColor"/>
+      <circle cx="11.5" cy="9" r="0.6" fill="currentColor"/>
+      <circle cx="6.5" cy="11.5" r="0.6" fill="currentColor"/>
+      <circle cx="9" cy="11.5" r="0.6" fill="currentColor"/>
+      <circle cx="11.5" cy="11.5" r="0.6" fill="currentColor"/>
+      <rect x="6" y="13.5" width="6" height="1.5" rx="0.4"/>
+    </IC>
+  ),
+  '/data-room': (
+    <IC>
+      {/* Vault / secure folder */}
+      <rect x="2.5" y="4" width="13" height="11" rx="1.5"/>
+      <circle cx="9" cy="9.5" r="2.5"/>
+      <line x1="9" y1="9.5" x2="9" y2="11.5"/>
+      <line x1="2.5" y1="7" x2="15.5" y2="7"/>
+    </IC>
+  ),
+  '/outreach': (
+    <IC>
+      {/* Megaphone */}
+      <path d="M2.5 7v4l8 3V4l-8 3z"/>
+      <path d="M10.5 6c1.5 0.5 2.5 1.5 2.5 3s-1 2.5-2.5 3"/>
+      <line x1="4.5" y1="11" x2="6" y2="15"/>
+    </IC>
+  ),
+  '/analytics': (
+    <IC>
+      {/* Bars + trend line */}
+      <line x1="2" y1="16" x2="16" y2="16"/>
+      <rect x="3" y="11" width="2.5" height="5" rx="0.3"/>
+      <rect x="7" y="7" width="2.5" height="9" rx="0.3"/>
+      <rect x="11" y="4" width="2.5" height="12" rx="0.3"/>
+      <polyline points="3.5,9 8,5.5 12,3 15.5,1.5" strokeWidth="1" opacity="0.6"/>
+    </IC>
+  ),
+  '/team': (
+    <IC>
+      {/* Three people — team */}
+      <circle cx="9" cy="5.5" r="2.5"/>
+      <path d="M4.5 16c0-2.49 2.02-4.5 4.5-4.5s4.5 2.01 4.5 4.5"/>
+      <circle cx="3" cy="7" r="1.5"/>
+      <circle cx="15" cy="7" r="1.5"/>
+      <path d="M0.5 14c0-1.5 1.12-2.5 2.5-2.5"/>
+      <path d="M17.5 14c0-1.5-1.12-2.5-2.5-2.5"/>
+    </IC>
+  ),
+  '/settings': (
+    <IC>
+      {/* Gear */}
+      <circle cx="9" cy="9" r="2.5"/>
+      <path d="M9 1.5v2M9 14.5v2M1.5 9h2M14.5 9h2M3.7 3.7l1.42 1.42M12.88 12.88l1.42 1.42M14.3 3.7l-1.42 1.42M5.12 12.88l-1.42 1.42"/>
+    </IC>
+  ),
+  '/scale': (
+    <IC>
+      {/* Upward stair-step growth */}
+      <line x1="2" y1="14" x2="4.5" y2="14"/>
+      <line x1="4.5" y1="14" x2="4.5" y2="11"/>
+      <line x1="4.5" y1="11" x2="8" y2="11"/>
+      <line x1="8" y1="11" x2="8" y2="7.5"/>
+      <line x1="8" y1="7.5" x2="11.5" y2="7.5"/>
+      <line x1="11.5" y1="7.5" x2="11.5" y2="4"/>
+      <line x1="11.5" y1="4" x2="16" y2="4"/>
+      <polyline points="13.5,2 16,4 13.5,6" strokeWidth="1.2"/>
+    </IC>
+  ),
 }
 
 // ── Nav items · ChiroPillar / Wagner Family Office ───────────────────────────
-// Stripped from KB. Only the 2 ChiroPillar surfaces ship with the MVP. Other
-// routes remain in the codebase (so the build keeps working) but are hidden
-// from the nav until rebuilt for the chiropractor-rollup flow.
+// Lean nav focused on the chiropractor roll-up workflow.
+// Live surfaces: Intake Submissions + Deal Calculator
+// "Soon" badge = wired in the nav, placeholder page for the Loom
 const NAV = [
-  { href: '/calculator',  label: 'Deal Calculator' },
-  { href: '/targets',     label: 'Intake Submissions' },
+  { href: '/overview',     label: 'Overview',             badge: 'Soon' },
+  { href: '/targets',      label: 'Intake Submissions'                  },
+  { href: '/calculator',   label: 'Deal Calculator'                     },
+  { href: '/valuation',    label: 'AI Valuation',         badge: 'Soon' },
+  { href: '/pipeline',     label: 'Acquisition Pipeline', badge: 'Soon' },
+  { href: '/data-room',    label: 'Per-Clinic Data Room', badge: 'Soon' },
+  { href: '/scale',        label: 'Scale Services',       badge: 'Soon' },
+  { href: '/outreach',     label: 'Outreach Campaigns',   badge: 'Soon' },
 ]
 
-// Admin-only — empty for ChiroPillar MVP. Will grow as the platform extends.
+// Admin surfaces — empty for ChiroPillar MVP
 const ADMIN_DEMOS: { href: string; label: string }[] = []
 
 
