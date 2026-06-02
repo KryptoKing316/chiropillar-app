@@ -34,8 +34,10 @@ const securityHeaders = [
       "img-src 'self' data: blob: https://images.unsplash.com https://source.unsplash.com https://images.pexels.com https://kingdombroker.com https://www.kingdombroker.com",
       // API calls: self + Supabase
       "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://upstash.io",
-      // No frames
+      // No one can embed us in a frame
       "frame-ancestors 'none'",
+      // We embed Google Maps for the Charlottesville deep-dive on /analytics
+      "frame-src https://www.google.com https://maps.google.com https://*.google.com",
       // No object embeds
       "object-src 'none'",
       // Base URI restricted

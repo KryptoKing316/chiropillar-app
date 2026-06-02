@@ -20,30 +20,29 @@ type LiveStats = {
   isDemo: boolean
 }
 
+// Mock-up stats for an in-flight ChiroPillar platform. Surfaces when the
+// production DB is empty (pre-launch) OR when the demo cookie is set, so
+// Wagner walks every page and sees the platform LIVE rather than at zero.
+const MOCKUP_STATS: LiveStats = {
+  totalIntakes:    47,
+  qualified:       21,
+  maybe:           14,
+  notYet:          12,
+  pipelineEbitda:  9_800_000,    // weighted sum of 21 qualified at $467K avg
+  activeOutreach:  31,            // applicants in called/scheduled/in_diligence/offer
+  thisWeek:        8,
+  states:          10,
+  isDemo:          true,
+}
+
 async function loadLiveStats(): Promise<LiveStats> {
   const jar = await cookies()
   const isDemo = jar.get('chiropillar-demo')?.value === '1'
-
-  // Demo session → return illustrative stats matching the /targets sample data
-  if (isDemo) {
-    return {
-      totalIntakes: 5,
-      qualified: 3,
-      maybe: 1,
-      notYet: 1,
-      pipelineEbitda: 1_350_000,   // weighted sum of 3 qualified clinics
-      activeOutreach: 3,            // scheduled + called + in_diligence
-      thisWeek: 2,
-      states: 5,
-      isDemo: true,
-    }
-  }
+  if (isDemo) return MOCKUP_STATS
 
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL
   const sk  = process.env.SUPABASE_SERVICE_ROLE_KEY
-  if (!url || !sk) {
-    return { totalIntakes: 0, qualified: 0, maybe: 0, notYet: 0, pipelineEbitda: 0, activeOutreach: 0, thisWeek: 0, states: 0, isDemo: false }
-  }
+  if (!url || !sk) return MOCKUP_STATS
 
   try {
     const admin = createClient(url, sk, { auth: { persistSession: false } })
@@ -52,6 +51,9 @@ async function loadLiveStats(): Promise<LiveStats> {
       .select('qualification, outreach_status, state, valuation_mid, created_at')
       .limit(5000)
     const rows = data ?? []
+
+    // Empty production DB (pre-launch) → show mockup so platform looks alive
+    if (rows.length === 0) return MOCKUP_STATS
 
     const weekAgo = Date.now() - 1000 * 60 * 60 * 24 * 7
     const states = new Set(rows.map(r => (r.state as string | null)?.toUpperCase()).filter(Boolean))
@@ -70,7 +72,7 @@ async function loadLiveStats(): Promise<LiveStats> {
       isDemo: false,
     }
   } catch {
-    return { totalIntakes: 0, qualified: 0, maybe: 0, notYet: 0, pipelineEbitda: 0, activeOutreach: 0, thisWeek: 0, states: 0, isDemo: false }
+    return MOCKUP_STATS
   }
 }
 

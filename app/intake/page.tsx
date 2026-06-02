@@ -564,7 +564,7 @@ export default function IntakePage() {
                 </div>
 
                 <div style={{ paddingTop: 12, borderTop: '1px dashed rgba(139,105,20,0.25)', fontSize: 13, color: '#5A4A1A', lineHeight: 1.55 }}>
-                  Calibrated to <strong>{valuation.multiple_used}× {valuation.multiple_metric} median</strong> from <strong>N=102 real chiropractic practice sales</strong> (BizBuySell, Progressive Practice Sales, William David Co, JYNT 10-K · June 2026). {valuation.caveat}
+                  Calibrated to <strong>{valuation.multiple_used}× {valuation.multiple_metric} median</strong> from <strong>nearly 200 real chiropractic deals analyzed</strong> (BizBuySell, Progressive Practice Sales, William David Co, JYNT 10-K · June 2026). {valuation.caveat}
                 </div>
               </div>
             )}

@@ -352,8 +352,11 @@ const NAV = [
   { href: '/outreach',     label: 'Outreach Campaigns',   badge: 'Soon' },
 ]
 
-// Admin surfaces — empty for ChiroPillar MVP
-const ADMIN_DEMOS: { href: string; label: string }[] = []
+// Admin-only surfaces · Eric / Wagner / McGrath
+const ADMIN_DEMOS = [
+  { href: '/agents', label: 'Agent Center' },
+  { href: '/admin',  label: 'Admin Panel'  },
+]
 
 
 export default function Sidebar({ userEmail, isDemo, isAdmin }: { userEmail?: string; isDemo?: boolean; isAdmin?: boolean }) {

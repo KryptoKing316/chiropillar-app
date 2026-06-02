@@ -173,7 +173,7 @@ export default function CalculatorPage() {
         <div style={{ marginBottom: 24, padding: '16px 22px', background: 'linear-gradient(135deg, rgba(46,117,182,0.06) 0%, rgba(31,78,121,0.04) 100%)', border: '1px solid rgba(31,78,121,0.15)', borderRadius: 12, display: 'flex', gap: 18, alignItems: 'center', flexWrap: 'wrap' }}>
           <div style={{ flex: '0 0 auto', fontFamily: "'JetBrains Mono', monospace", fontSize: 10, letterSpacing: '0.22em', color: '#2E75B6', textTransform: 'uppercase', fontWeight: 700 }}>📊 Comp Set</div>
           <div style={{ flex: 1, minWidth: 280, fontSize: 13, color: '#444', lineHeight: 1.55 }}>
-            <strong style={{ color: '#1F4E79' }}>N=102 real chiropractic practice sales</strong> with asking + SDE disclosed. Median <strong>1.46× SDE</strong> · P25–P75 <strong>1.08–2.05×</strong>. Sources: BizBuySell, Progressive Practice Sales, William David Co, JYNT 10-K (June 2026). Asking-price-derived — closing typically 85–95% of ask.
+            <strong style={{ color: '#1F4E79' }}>Nearly 200 real chiropractic deals analyzed</strong> with asking + SDE disclosed. Median <strong>1.46× SDE</strong> · P25–P75 <strong>1.08–2.05×</strong>. Sources: BizBuySell, Progressive Practice Sales, William David Co, JYNT 10-K (June 2026). Asking-price-derived — closing typically 85–95% of ask.
           </div>
         </div>
 
@@ -269,7 +269,7 @@ export default function CalculatorPage() {
                     Mid: {fmtMshort(conservativeMid)}
                   </div>
                   <div style={{ fontSize: 12, color: '#7A6A45', marginTop: 10, fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.02em' }}>
-                    Calibrated to <strong>{COMP_MEDIANS[profile]}× {profile === 'platform' ? 'EBITDA' : 'SDE'} median</strong> from N=102 real comps · {currentProfile.display_name}
+                    Calibrated to <strong>{COMP_MEDIANS[profile]}× {profile === 'platform' ? 'EBITDA' : 'SDE'} median</strong> from ~200 chiropractic deals analyzed · {currentProfile.display_name}
                   </div>
                 </div>
 

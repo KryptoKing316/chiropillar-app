@@ -120,7 +120,7 @@ export default function ComingSoon({
         borderRadius: 10, fontSize: 13, lineHeight: 1.6,
         color: 'var(--kb-text-secondary)',
       }}>
-        <strong style={{ color: 'var(--kb-accent)' }}>Demo view:</strong> This surface is wired in the nav and the schema is in place. Implementation kicks off once Wagner signs the partnership term sheet.
+        <strong style={{ color: 'var(--kb-accent)' }}>Demo view:</strong> This surface is wired in the nav and the schema is in place. Full implementation rolls out in the phase noted above.
       </div>
     </div>
   )

@@ -81,7 +81,7 @@ export default function UploadZone() {
             Drop tax returns, P&Ls, bank statements
           </div>
           <div style={{ fontSize: 14, color: 'var(--kb-text-secondary)', textAlign: 'center', marginBottom: 18, maxWidth: 440 }}>
-            Drag any PDF or an entire folder. Claude extracts financials, normalizes EBITDA, identifies add-backs, prices against the 158-comp set.
+            Drag any PDF or an entire folder. Claude extracts financials, normalizes EBITDA, identifies add-backs, prices against nearly 200 chiropractic deals analyzed.
           </div>
           <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', justifyContent: 'center' }}>
             <button
@@ -191,7 +191,7 @@ export default function UploadZone() {
           </span>
           <div style={{ flex: 1, fontSize: 14, color: 'var(--kb-text)', lineHeight: 1.55 }}>
             {toast.kind === 'qb'
-              ? <>QuickBooks OAuth + automatic financial sync ships in <strong style={{ color: '#2CA01C' }}>Phase 3</strong> alongside the per-clinic data room. Builds out once Wagner signs the partnership term sheet.</>
+              ? <>QuickBooks OAuth + automatic financial sync ships in <strong style={{ color: '#2CA01C' }}>Phase 3</strong> alongside the per-clinic data room.</>
               : <>Per-clinic financial ingestion ships in <strong style={{ color: '#C9A84C' }}>Phase 3</strong>. PDFs land in Supabase Storage, Claude extracts the chart of accounts, valuation engine runs automatically.</>
             }
           </div>

@@ -59,17 +59,20 @@ const DEMO_STATS: AnalyticsStats = {
   conversionRate: 45,
   pipelineEbitda: 9_800_000,
   thisWeek: 8,
+  // Geography mix per Wagner strategy-call directive — VA first, then the South.
+  // No west-coast states (CA/AZ/CO) since Wagner explicitly scoped the rollup
+  // to his existing footprint + adjacent territories.
   byState: [
     { state: 'VA', total: 14, qualified: 9, maybe: 3, pipelineValue: 4_200_000 },
     { state: 'TX', total: 9,  qualified: 4, maybe: 3, pipelineValue: 1_750_000 },
     { state: 'FL', total: 7,  qualified: 3, maybe: 2, pipelineValue: 1_350_000 },
     { state: 'NC', total: 5,  qualified: 2, maybe: 2, pipelineValue:   850_000 },
+    { state: 'GA', total: 4,  qualified: 2, maybe: 1, pipelineValue:   620_000 },
     { state: 'SC', total: 3,  qualified: 1, maybe: 1, pipelineValue:   480_000 },
-    { state: 'GA', total: 3,  qualified: 1, maybe: 1, pipelineValue:   420_000 },
     { state: 'TN', total: 2,  qualified: 1, maybe: 1, pipelineValue:   380_000 },
-    { state: 'CA', total: 2,  qualified: 0, maybe: 1, pipelineValue:   200_000 },
-    { state: 'AZ', total: 1,  qualified: 0, maybe: 0, pipelineValue:   100_000 },
-    { state: 'CO', total: 1,  qualified: 0, maybe: 0, pipelineValue:    70_000 },
+    { state: 'AL', total: 1,  qualified: 1, maybe: 0, pipelineValue:   180_000 },
+    { state: 'KY', total: 1,  qualified: 0, maybe: 1, pipelineValue:    90_000 },
+    { state: 'MD', total: 1,  qualified: 0, maybe: 0, pipelineValue:    70_000 },
   ],
   quizFunnel: {
     pageVisit:     1_240,  // /intake page loads (from ad clicks)

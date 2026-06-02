@@ -274,7 +274,7 @@ export default function DataRoomPage() {
             One NDA-gated room per acquisition target in flight.
           </div>
           <div style={{ fontSize: 13, color: 'var(--kb-text-secondary)', lineHeight: 1.6 }}>
-            Financials · tax returns · lease · malpractice records · license verifications · diligence checklist · access-controlled per user, watermarked downloads, full audit log. Ships once Wagner signs the partnership term sheet.
+            Financials · tax returns · lease · malpractice records · license verifications · diligence checklist · access-controlled per user, watermarked downloads, full audit log. Ships in Phase 3.
           </div>
         </div>
       </div>

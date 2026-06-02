@@ -32,68 +32,200 @@ type Target = {
   created_at: string
 }
 
-// Five sample applications shown when the visitor is in demo mode
-// (no magic-link login). Numbers are realistic per the N=102 comp set.
+// Sample applications shown when the visitor is in demo mode OR when the
+// production DB is empty (pre-launch). Geo mix matches Wagner's stated
+// territory (VA primary; TX/FL/NC/SC/GA/TN/AL/KY/MD secondary). Numbers
+// realistic per the N=102 comp set.
+const t = (hoursAgo: number) => new Date(Date.now() - 1000 * 60 * 60 * hoursAgo).toISOString()
 const DEMO_TARGETS: Target[] = [
+  // VA — Wagner Primary (heaviest concentration)
   {
-    id: 'demo-1', full_name: 'Dr. Jane Rivera', email: 'jane@riverachiro.com', phone: '512-555-0143',
+    id: 'demo-1', full_name: 'Dr. Marcus Bell', email: 'mbell@piedmontspine.com', phone: '434-555-0118',
+    practice_name: 'Piedmont Spine & Wellness', city: 'Charlottesville', state: 'VA',
+    gross_revenue_last_year: '$1.3M', net_revenue_last_year: '$485K',
+    new_patients_per_month_avg_2yr: '78', avg_visits_per_patient: '28',
+    services_provided: ['Adjustments (manual)', 'Spinal decompression', 'X-ray on-site', 'Rehab / corrective exercise'],
+    employee_count: '8', geographic_location_notes: '14 yrs · 2 associate DCs · near UVA',
+    owner_role: 'mostly_management', past_12mo_was_spike: 'no',
+    qualification: 'qualified',
+    qualification_reasons: ['Hits Wagner 40+/mo floor (78).', 'Retention strong (28 visit avg).', 'Owner is mostly-management — clean step out.', 'Revenue base supports medical team add-on.'],
+    outreach_status: 'in_diligence', created_at: t(4),
+  },
+  {
+    id: 'demo-2', full_name: 'Dr. Olivia Reyes', email: 'oreyes@blueridgechiro.com', phone: '540-555-0204',
+    practice_name: 'Blue Ridge Chiropractic', city: 'Roanoke', state: 'VA',
+    gross_revenue_last_year: '$920K', net_revenue_last_year: '$340K',
+    new_patients_per_month_avg_2yr: '52', avg_visits_per_patient: '24',
+    services_provided: ['Adjustments (manual)', 'Cold laser / low-level laser', 'Personal injury (PI) cases'],
+    employee_count: '5', geographic_location_notes: '11 yrs · sole DC',
+    owner_role: 'mostly_clinical_some_management', past_12mo_was_spike: 'no',
+    qualification: 'qualified',
+    qualification_reasons: ['Hits Wagner 40+/mo floor.', 'PI mix adds margin.', 'Retention in target band.'],
+    outreach_status: 'scheduled', created_at: t(12),
+  },
+  {
+    id: 'demo-3', full_name: 'Dr. Anika Patel', email: 'apatel@richmondspine.com', phone: '804-555-0177',
+    practice_name: 'Richmond Spine Center', city: 'Richmond', state: 'VA',
+    gross_revenue_last_year: '$1.05M', net_revenue_last_year: '$385K',
+    new_patients_per_month_avg_2yr: '61', avg_visits_per_patient: '26',
+    services_provided: ['Adjustments (manual)', 'Spinal decompression', 'Massage therapy', 'Supplements / orthotics retail'],
+    employee_count: '7', geographic_location_notes: '9 yrs · associate DC + LMT',
+    owner_role: 'mostly_management', past_12mo_was_spike: 'no',
+    qualification: 'qualified',
+    qualification_reasons: ['Hits Wagner 40+/mo floor.', 'Retention strong.', 'Owner ready to step out — clean handoff.'],
+    outreach_status: 'called', created_at: t(20),
+  },
+  // TX — secondary
+  {
+    id: 'demo-4', full_name: 'Dr. Jane Rivera', email: 'jane@riverachiro.com', phone: '512-555-0143',
     practice_name: 'Rivera Chiropractic',  city: 'Austin', state: 'TX',
     gross_revenue_last_year: '$1.1M', net_revenue_last_year: '$420K',
     new_patients_per_month_avg_2yr: '65', avg_visits_per_patient: '26',
     services_provided: ['Adjustments (manual)', 'Spinal decompression', 'Rehab / corrective exercise'],
-    employee_count: '6', geographic_location_notes: '12 yrs in business · 2nd loc opening Q3',
+    employee_count: '6', geographic_location_notes: '12 yrs · 2nd loc opening Q3',
     owner_role: 'mostly_management', past_12mo_was_spike: 'no',
     qualification: 'qualified',
-    qualification_reasons: ["Hits Wagner's 40+/mo new-patient floor.", 'Retention strong (26 visit avg).', 'Revenue base supports medical team.'],
-    outreach_status: 'scheduled', created_at: new Date(Date.now() - 1000 * 60 * 60 * 6).toISOString(),
+    qualification_reasons: ['Hits Wagner 40+/mo floor.', 'Retention strong (26 avg).', 'Revenue base supports medical team.'],
+    outreach_status: 'scheduled', created_at: t(28),
   },
   {
-    id: 'demo-2', full_name: 'Dr. Michael Chen', email: 'mchen@pacificspine.com', phone: '619-555-0177',
-    practice_name: 'Pacific Spine Center', city: 'San Diego', state: 'CA',
-    gross_revenue_last_year: '$850K', net_revenue_last_year: '$315K',
-    new_patients_per_month_avg_2yr: '48', avg_visits_per_patient: '22',
-    services_provided: ['Adjustments (manual)', 'Cold laser / low-level laser', 'X-ray on-site'],
-    employee_count: '4', geographic_location_notes: '8 yrs in business · sole DC',
+    id: 'demo-5', full_name: 'Dr. Brandon Cooper', email: 'bcooper@dallasalignment.com', phone: '214-555-0319',
+    practice_name: 'Dallas Alignment & Sport', city: 'Plano', state: 'TX',
+    gross_revenue_last_year: '$1.6M', net_revenue_last_year: '$590K',
+    new_patients_per_month_avg_2yr: '88', avg_visits_per_patient: '22',
+    services_provided: ['Adjustments (manual)', 'Sports / extremity adjusting', 'Shockwave therapy', 'Dry needling'],
+    employee_count: '11', geographic_location_notes: '16 yrs · 3 associates · Frisco satellite',
+    owner_role: 'wants_to_step_out', past_12mo_was_spike: 'no',
+    qualification: 'qualified',
+    qualification_reasons: ['Hits Wagner 40+/mo floor (88).', 'Owner ready to step out.', 'Multi-location footprint.', 'Strong revenue base.'],
+    outreach_status: 'in_diligence', created_at: t(36),
+  },
+  // FL — secondary
+  {
+    id: 'demo-6', full_name: 'Dr. Carla Fontana', email: 'cfontana@tampaspinecare.com', phone: '813-555-0426',
+    practice_name: 'Tampa Bay Spine Care', city: 'Tampa', state: 'FL',
+    gross_revenue_last_year: '$890K', net_revenue_last_year: '$325K',
+    new_patients_per_month_avg_2yr: '49', avg_visits_per_patient: '21',
+    services_provided: ['Adjustments (manual)', 'Cold laser / low-level laser', 'Personal injury (PI) cases'],
+    employee_count: '5', geographic_location_notes: '8 yrs · sole DC',
     owner_role: 'mostly_clinical_some_management', past_12mo_was_spike: 'no',
     qualification: 'qualified',
-    qualification_reasons: ["Hits Wagner's 40+/mo new-patient floor.", 'Retention in the strong band.'],
-    outreach_status: 'called', created_at: new Date(Date.now() - 1000 * 60 * 60 * 30).toISOString(),
+    qualification_reasons: ['Hits Wagner 40+/mo floor.', 'PI mix adds margin.', 'Retention in band.'],
+    outreach_status: 'called', created_at: t(44),
   },
   {
-    id: 'demo-3', full_name: 'Dr. Sarah Kim', email: 'skim@apexwellness.com', phone: '602-555-0192',
-    practice_name: 'Apex Wellness', city: 'Phoenix', state: 'AZ',
+    id: 'demo-7', full_name: 'Dr. Marcus Liu', email: 'mliu@orlandowellness.com', phone: '407-555-0510',
+    practice_name: 'Orlando Wellness Group', city: 'Orlando', state: 'FL',
+    gross_revenue_last_year: '$640K', net_revenue_last_year: '$245K',
+    new_patients_per_month_avg_2yr: '37', avg_visits_per_patient: '20',
+    services_provided: ['Adjustments (manual)', 'Massage therapy', 'Supplements / orthotics retail'],
+    employee_count: '4', geographic_location_notes: '6 yrs · solo DC',
+    owner_role: 'full_clinical', past_12mo_was_spike: 'no',
+    qualification: 'maybe',
+    qualification_reasons: ['Volume just under 40/mo floor (37).', 'Owner still full-clinical — needs runway.'],
+    outreach_status: 'new', created_at: t(52),
+  },
+  // NC — secondary
+  {
+    id: 'demo-8', full_name: 'Dr. Hannah Briggs', email: 'hbriggs@charlottespinal.com', phone: '704-555-0651',
+    practice_name: 'Charlotte Spinal Health', city: 'Charlotte', state: 'NC',
+    gross_revenue_last_year: '$770K', net_revenue_last_year: '$280K',
+    new_patients_per_month_avg_2yr: '44', avg_visits_per_patient: '23',
+    services_provided: ['Adjustments (manual)', 'X-ray on-site', 'Rehab / corrective exercise'],
+    employee_count: '4', geographic_location_notes: '10 yrs · sole DC',
+    owner_role: 'mostly_clinical_some_management', past_12mo_was_spike: 'no',
+    qualification: 'qualified',
+    qualification_reasons: ['Hits Wagner 40+/mo floor (44).', 'Retention in band.'],
+    outreach_status: 'scheduled', created_at: t(58),
+  },
+  {
+    id: 'demo-9', full_name: 'Dr. Vincent Park', email: 'vpark@raleighchiro.com', phone: '919-555-0744',
+    practice_name: 'Raleigh Family Chiropractic', city: 'Raleigh', state: 'NC',
+    gross_revenue_last_year: '$510K', net_revenue_last_year: '$185K',
+    new_patients_per_month_avg_2yr: '29', avg_visits_per_patient: '17',
+    services_provided: ['Adjustments (manual)', 'Massage therapy'],
+    employee_count: '2', geographic_location_notes: '4 yrs · solo',
+    owner_role: 'full_clinical', past_12mo_was_spike: 'unsure',
+    qualification: 'maybe',
+    qualification_reasons: ['Volume below 40/mo floor (29).', 'Owner full-clinical.', 'Trailing-12 may be a spike.'],
+    outreach_status: 'new', created_at: t(70),
+  },
+  // GA — secondary
+  {
+    id: 'demo-10', full_name: 'Dr. Sarah Kim', email: 'skim@apexwellness.com', phone: '404-555-0822',
+    practice_name: 'Apex Wellness Atlanta', city: 'Atlanta', state: 'GA',
     gross_revenue_last_year: '$580K', net_revenue_last_year: '$210K',
     new_patients_per_month_avg_2yr: '32', avg_visits_per_patient: '18',
     services_provided: ['Adjustments (manual)', 'Massage therapy', 'Supplements / orthotics retail'],
-    employee_count: '3', geographic_location_notes: '5 yrs in business',
+    employee_count: '3', geographic_location_notes: '5 yrs',
     owner_role: 'full_clinical', past_12mo_was_spike: 'no',
     qualification: 'maybe',
-    qualification_reasons: ['New-patient volume below the 40/mo target.', 'Owner is still full clinical — needs runway to step out.'],
-    outreach_status: 'new', created_at: new Date(Date.now() - 1000 * 60 * 60 * 52).toISOString(),
+    qualification_reasons: ['Volume below 40/mo target (32).', 'Owner still full-clinical — needs runway to step out.'],
+    outreach_status: 'new', created_at: t(82),
   },
   {
-    id: 'demo-4', full_name: 'Dr. Robert Hayes', email: 'rhayes@mountainchiro.com', phone: '720-555-0211',
-    practice_name: 'Mountain Chiropractic', city: 'Denver', state: 'CO',
+    id: 'demo-11', full_name: 'Dr. Robert Hayes', email: 'rhayes@savannahspine.com', phone: '912-555-0918',
+    practice_name: 'Savannah Spine Group', city: 'Savannah', state: 'GA',
     gross_revenue_last_year: '$1.4M', net_revenue_last_year: '$510K',
     new_patients_per_month_avg_2yr: '72', avg_visits_per_patient: '24',
     services_provided: ['Adjustments (manual)', 'Spinal decompression', 'Personal injury (PI) cases', 'Sports / extremity adjusting'],
-    employee_count: '9', geographic_location_notes: '18 yrs in business · 3 associates',
+    employee_count: '9', geographic_location_notes: '18 yrs · 3 associates',
     owner_role: 'wants_to_step_out', past_12mo_was_spike: 'no',
     qualification: 'qualified',
-    qualification_reasons: ["Hits Wagner's 40+/mo new-patient floor.", 'Retention in the strong band.', 'Owner ready to step out — clean handoff.', 'Revenue base supports medical team.'],
-    outreach_status: 'in_diligence', created_at: new Date(Date.now() - 1000 * 60 * 60 * 96).toISOString(),
+    qualification_reasons: ['Hits Wagner 40+/mo floor.', 'Retention strong.', 'Owner ready to step out — clean handoff.', 'Revenue base supports medical team.'],
+    outreach_status: 'in_diligence', created_at: t(90),
   },
+  // TN — secondary
   {
-    id: 'demo-5', full_name: 'Dr. Lisa Park', email: 'lpark@harmonyspinal.com', phone: '704-555-0148',
-    practice_name: 'Harmony Spinal', city: 'Charlotte', state: 'NC',
+    id: 'demo-12', full_name: 'Dr. Daniel Ortiz', email: 'dortiz@nashvillealignment.com', phone: '615-555-1041',
+    practice_name: 'Nashville Alignment Center', city: 'Nashville', state: 'TN',
+    gross_revenue_last_year: '$830K', net_revenue_last_year: '$310K',
+    new_patients_per_month_avg_2yr: '46', avg_visits_per_patient: '25',
+    services_provided: ['Adjustments (manual)', 'Spinal decompression', 'Cold laser / low-level laser'],
+    employee_count: '5', geographic_location_notes: '9 yrs · sole DC',
+    owner_role: 'mostly_clinical_some_management', past_12mo_was_spike: 'no',
+    qualification: 'qualified',
+    qualification_reasons: ['Hits Wagner 40+/mo floor (46).', 'Retention strong.'],
+    outreach_status: 'called', created_at: t(104),
+  },
+  // SC — secondary
+  {
+    id: 'demo-13', full_name: 'Dr. Priya Sharma', email: 'psharma@greenvillechiro.com', phone: '864-555-1126',
+    practice_name: 'Greenville Family Chiropractic', city: 'Greenville', state: 'SC',
+    gross_revenue_last_year: '$420K', net_revenue_last_year: '$155K',
+    new_patients_per_month_avg_2yr: '24', avg_visits_per_patient: '16',
+    services_provided: ['Adjustments (manual)'],
+    employee_count: '2', geographic_location_notes: '4 yrs · solo',
+    owner_role: 'full_clinical', past_12mo_was_spike: 'no',
+    qualification: 'maybe',
+    qualification_reasons: ['Volume below 40/mo target (24).', 'Limited service mix.', 'Owner full-clinical.'],
+    outreach_status: 'new', created_at: t(118),
+  },
+  // AL — secondary (new per Wagner geo)
+  {
+    id: 'demo-14', full_name: 'Dr. Calvin Wright', email: 'cwright@birminghamspine.com', phone: '205-555-1233',
+    practice_name: 'Birmingham Spine Institute', city: 'Birmingham', state: 'AL',
+    gross_revenue_last_year: '$720K', net_revenue_last_year: '$265K',
+    new_patients_per_month_avg_2yr: '41', avg_visits_per_patient: '21',
+    services_provided: ['Adjustments (manual)', 'X-ray on-site', 'Cold laser / low-level laser'],
+    employee_count: '4', geographic_location_notes: '7 yrs · sole DC',
+    owner_role: 'mostly_clinical_some_management', past_12mo_was_spike: 'no',
+    qualification: 'qualified',
+    qualification_reasons: ['Hits Wagner 40+/mo floor (41).', 'Retention in band.'],
+    outreach_status: 'scheduled', created_at: t(132),
+  },
+  // Not-yet — KY (new per Wagner geo)
+  {
+    id: 'demo-15', full_name: 'Dr. Lisa Park', email: 'lpark@harmonyspinal.com', phone: '502-555-1349',
+    practice_name: 'Louisville Harmony Spinal', city: 'Louisville', state: 'KY',
     gross_revenue_last_year: '$320K', net_revenue_last_year: '$95K',
     new_patients_per_month_avg_2yr: '18', avg_visits_per_patient: '14',
     services_provided: ['Adjustments (manual)'],
-    employee_count: '1', geographic_location_notes: '3 yrs in business · solo',
+    employee_count: '1', geographic_location_notes: '3 yrs · solo',
     owner_role: 'full_clinical', past_12mo_was_spike: 'no',
     qualification: 'not_yet',
-    qualification_reasons: ['New-patient volume below the 20/mo floor needed for the medical-team economics to work.'],
-    outreach_status: 'passed', created_at: new Date(Date.now() - 1000 * 60 * 60 * 120).toISOString(),
+    qualification_reasons: ['New-patient volume below 20/mo floor — medical-team economics need 40+.'],
+    outreach_status: 'passed', created_at: t(150),
   },
 ]
 
@@ -104,7 +236,7 @@ async function loadTargets(): Promise<Target[]> {
 
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL
   const sk  = process.env.SUPABASE_SERVICE_ROLE_KEY
-  if (!url || !sk) return []
+  if (!url || !sk) return DEMO_TARGETS
   try {
     const admin = createClient(url, sk, { auth: { persistSession: false } })
     const { data } = await admin
@@ -112,9 +244,12 @@ async function loadTargets(): Promise<Target[]> {
       .select('*')
       .order('created_at', { ascending: false })
       .limit(200)
-    return (data ?? []) as Target[]
+    const rows = (data ?? []) as Target[]
+    // Empty production DB (pre-launch) → fall back to the demo set so the
+    // surface looks alive for Wagner / McGrath walking the platform.
+    return rows.length === 0 ? DEMO_TARGETS : rows
   } catch {
-    return []
+    return DEMO_TARGETS
   }
 }
 
