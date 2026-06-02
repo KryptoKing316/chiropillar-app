@@ -1,5 +1,5 @@
 import { cookies } from 'next/headers'
-import { createServerClient } from '@supabase/auth-helpers-nextjs'
+import { createServerClient } from '@supabase/ssr'
 import { redirect } from 'next/navigation'
 import { createClient } from '@supabase/supabase-js'
 import Sidebar from '@/components/dashboard/Sidebar'
@@ -25,10 +25,18 @@ export default async function DashLayout({ children }: { children: React.ReactNo
     // in read-only mode without a magic link.
     isDemoSession = cookieStore.get('chiropillar-demo')?.value === '1'
 
+    // @supabase/ssr requires getAll/setAll on the cookies adapter.
+    // setAll is a no-op here — server components can't mutate response cookies;
+    // session refresh happens via the /auth/callback route + middleware.
     const supabase = createServerClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-      { cookies: { get: (name: string) => cookieStore.get(name)?.value } }
+      {
+        cookies: {
+          getAll() { return cookieStore.getAll() },
+          setAll() { /* read-only in server component context */ },
+        },
+      }
     )
     const { data: { session } } = await supabase.auth.getSession()
 

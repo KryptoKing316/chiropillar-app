@@ -3,7 +3,7 @@
 // — the public chiropractor application form is the marketing surface.
 
 import { cookies } from 'next/headers'
-import { createServerClient } from '@supabase/auth-helpers-nextjs'
+import { createServerClient } from '@supabase/ssr'
 import { createClient } from '@supabase/supabase-js'
 import { redirect } from 'next/navigation'
 
@@ -21,7 +21,10 @@ export default async function Root() {
     const sk = process.env.SUPABASE_SERVICE_ROLE_KEY
     if (url && anon && sk) {
       const supabase = createServerClient(url, anon, {
-        cookies: { get: (n: string) => cookieStore.get(n)?.value },
+        cookies: {
+          getAll() { return cookieStore.getAll() },
+          setAll() { /* read-only in server component */ },
+        },
       })
       const { data: { session } } = await supabase.auth.getSession()
       const email = session?.user?.email?.toLowerCase()
