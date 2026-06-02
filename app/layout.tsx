@@ -3,33 +3,41 @@ import Script from 'next/script'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'KingdomBroker.com — Deal Intelligence Platform',
-  description: 'The Smarter Way to Buy and Sell Businesses. Financials analyzed, buyers matched, valuation built. Kingdom Broker runs 12 AI agents so your deal closes faster.',
+  metadataBase: new URL('https://chiropillar.com'),
+  title: 'ChiroPillar — Earn an extra $250,000 a year doing exactly what you\'re already doing',
+  description: 'Chiropractor partnership program. Add a mobile medical team to your existing practice. Unlock Medicare diagnostic billing. 5× revenue uplift without changing what you do.',
   icons: {
     icon: '/favicon.png',
-    apple: '/apple-touch-icon.png',
+    apple: '/chiropillar-icon.png',
     shortcut: '/favicon.png',
   },
   openGraph: {
-    title: 'KingdomBroker.com — Deal Intelligence Platform',
-    description: 'The Smarter Way to Buy and Sell Businesses. Financials analyzed. Buyers matched. Valuation built. 12 AI agents running so your deal closes faster.',
-    url: 'https://app.kingdombroker.com',
-    siteName: 'Kingdom Broker',
+    title: 'ChiroPillar · Earn an extra $250,000+ a year',
+    description: 'Chiropractor partnership program — add a mobile medical team to your practice, unlock Medicare diagnostic billing, and 5× revenue without changing your daily work. See if you qualify.',
+    url: 'https://chiropillar.com',
+    siteName: 'ChiroPillar',
     images: [
       {
-        url: 'https://app.kingdombroker.com/og-image.png',
+        url: '/og-chiropillar-app.svg',
         width: 1200,
         height: 630,
-        alt: 'Kingdom Broker — AI-Native Business Acquisition Platform',
+        alt: 'ChiroPillar · Strength in Alignment · Chiropractor Partnership Program',
+      },
+      // Fallback PNG for Twitter/X which doesn't render SVG OG
+      {
+        url: '/chiropillar-logo.png',
+        width: 1200,
+        height: 630,
+        alt: 'ChiroPillar — Strength in Alignment',
       },
     ],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'KingdomBroker.com — Deal Intelligence Platform',
-    description: 'The Smarter Way to Buy and Sell Businesses. 12 AI agents running. Buyers matched. Deals closed.',
-    images: ['https://app.kingdombroker.com/og-image.png'],
+    title: 'ChiroPillar · Earn an extra $250,000+ a year',
+    description: 'Chiropractor partnership program. Add mobile medical team. Unlock Medicare diagnostic billing. 5× revenue uplift. See if you qualify.',
+    images: ['/chiropillar-logo.png'],
   },
 }
 

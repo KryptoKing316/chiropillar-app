@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F7F4ED"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#E8C96A"/>
+      <stop offset="100%" stop-color="#C9A84C"/>
+    </linearGradient>
+    <linearGradient id="stripGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1F4E79"/>
+      <stop offset="50%" stop-color="#2E75B6"/>
+      <stop offset="100%" stop-color="#C9A84C"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background · cream/white -->
+  <rect width="1200" height="630" fill="url(#bgGrad)"/>
+
+  <!-- Top gradient strip · brand signal -->
+  <rect x="0" y="0" width="1200" height="10" fill="url(#stripGrad)"/>
+
+  <!-- ChiroPillar Cap mascot · stylized column -->
+  <g transform="translate(90, 145)">
+    <!-- Crown / capital -->
+    <rect x="-14" y="0" width="148" height="24" rx="3" fill="#EBD8A6"/>
+    <!-- Column shaft with flutes -->
+    <rect x="0" y="26" width="120" height="200" fill="#EBD8A6"/>
+    <line x1="18" y1="30" x2="18" y2="222" stroke="#7A6A45" stroke-width="2" opacity="0.5"/>
+    <line x1="38" y1="30" x2="38" y2="222" stroke="#7A6A45" stroke-width="2" opacity="0.5"/>
+    <line x1="60" y1="30" x2="60" y2="222" stroke="#7A6A45" stroke-width="2" opacity="0.5"/>
+    <line x1="82" y1="30" x2="82" y2="222" stroke="#7A6A45" stroke-width="2" opacity="0.5"/>
+    <line x1="102" y1="30" x2="102" y2="222" stroke="#7A6A45" stroke-width="2" opacity="0.5"/>
+    <!-- Friendly mascot face -->
+    <circle cx="42" cy="78" r="8" fill="#1F4E79"/>
+    <circle cx="78" cy="78" r="8" fill="#1F4E79"/>
+    <circle cx="44" cy="76" r="3" fill="white"/>
+    <circle cx="80" cy="76" r="3" fill="white"/>
+    <path d="M 42 100 Q 60 116 78 100" stroke="#1F4E79" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <!-- Base plinth -->
+    <rect x="-14" y="228" width="148" height="22" rx="3" fill="#2E75B6"/>
+    <ellipse cx="60" cy="262" rx="92" ry="7" fill="black" opacity="0.10"/>
+  </g>
+
+  <!-- ChiroPillar wordmark · big readable text -->
+  <text x="280" y="220" font-family="Georgia, 'Playfair Display', serif" font-size="90" font-weight="700" letter-spacing="-3">
+    <tspan fill="#2E75B6">Chiro</tspan><tspan fill="#1F4E79">Pillar</tspan>
+  </text>
+  <text x="280" y="262" font-family="'JetBrains Mono', 'Inter', sans-serif" font-size="20" font-weight="600" fill="#6B7785" letter-spacing="8">
+    STRENGTH IN ALIGNMENT
+  </text>
+
+  <!-- Divider -->
+  <rect x="90" y="340" width="1020" height="2" fill="url(#stripGrad)" opacity="0.5"/>
+
+  <!-- Main pitch -->
+  <text x="90" y="418" font-family="Georgia, 'Playfair Display', serif" font-size="56" font-weight="900" fill="#1F4E79" letter-spacing="-1.5">
+    Earn an extra <tspan fill="url(#goldGrad)">$250,000+ a year</tspan>
+  </text>
+  <text x="90" y="478" font-family="Georgia, 'Playfair Display', serif" font-size="40" font-weight="500" fill="#444" letter-spacing="-1" font-style="italic">
+    doing exactly what you&apos;re already doing.
+  </text>
+
+  <!-- Subtitle -->
+  <text x="90" y="540" font-family="'Inter', system-ui, sans-serif" font-size="20" font-weight="400" fill="#666">
+    Chiropractor Partnership Program · Mobile Medical Team · Medicare Diagnostic Billing
+  </text>
+
+  <!-- Bottom CTA pill -->
+  <g transform="translate(90, 570)" font-family="'JetBrains Mono', 'Inter', sans-serif">
+    <rect x="0" y="0" width="260" height="44" rx="22" fill="#1F4E79"/>
+    <text x="130" y="29" font-size="14" font-weight="700" fill="white" text-anchor="middle" letter-spacing="3">
+      SEE IF YOU QUALIFY →
+    </text>
+    <text x="288" y="29" font-size="14" font-weight="600" fill="#6B7785" letter-spacing="2">
+      CHIROPILLAR.COM/INTAKE
+    </text>
+  </g>
+</svg>

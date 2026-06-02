@@ -289,10 +289,10 @@ export default function Sidebar({ userEmail, isDemo, isAdmin }: { userEmail?: st
       transition: 'background 0.3s ease, border-color 0.3s ease',
     }}>
 
-      {/* Logo */}
-      <div style={{ padding: '22px 18px 18px', borderBottom: '1px solid var(--kb-border)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+      {/* Logo · ChiroPillar lockup inverted to white for dark sidebar */}
+      <div style={{ padding: '24px 16px 20px', borderBottom: '1px solid var(--kb-border)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={logoSrc} alt="KingdomBroker.com" style={{ width: '100%', maxWidth: '180px', height: 'auto', display: 'block' }} />
+        <img src={logoSrc} alt="ChiroPillar · Strength in Alignment" style={{ width: '100%', maxWidth: '208px', height: 'auto', display: 'block', filter: 'brightness(0) invert(1)' }} />
         <button
           onClick={() => setMobileOpen(false)}
           className="kb-hamburger"

@@ -166,20 +166,20 @@ export default function IntakePage() {
 
       {/* Top bar · ChiroPillar brand lockup on white (logo designed for light bg) */}
       <div style={{ background: 'white', borderBottom: '1px solid rgba(31,78,121,0.10)', boxShadow: '0 2px 8px rgba(31,78,121,0.04)' }}>
-        <div style={{ maxWidth: 1100, margin: '0 auto', padding: '20px 32px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 20, flexWrap: 'wrap' }}>
+        <div style={{ maxWidth: 1100, margin: '0 auto', padding: '28px 32px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 20, flexWrap: 'wrap' }}>
           <a href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }} aria-label="ChiroPillar home">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/chiropillar-logo.png"
               alt="ChiroPillar · Strength in Alignment"
-              style={{ height: 64, width: 'auto', display: 'block' }}
+              style={{ height: 'clamp(72px, 12vw, 120px)', width: 'auto', display: 'block' }}
             />
           </a>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap', justifyContent: 'flex-end' }}>
-            <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, letterSpacing: '0.18em', color: '#7A6A45', textTransform: 'uppercase', fontWeight: 700, padding: '5px 11px', background: 'rgba(201,168,76,0.10)', border: '1px solid rgba(201,168,76,0.30)', borderRadius: 999 }}>
+            <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, letterSpacing: '0.18em', color: '#7A6A45', textTransform: 'uppercase', fontWeight: 700, padding: '6px 12px', background: 'rgba(201,168,76,0.10)', border: '1px solid rgba(201,168,76,0.30)', borderRadius: 999 }}>
               Confidential
             </div>
-            <div style={{ color: '#1F4E79', fontFamily: 'Georgia, serif', fontSize: 14, fontWeight: 500, fontStyle: 'italic' }}>
+            <div style={{ color: '#1F4E79', fontFamily: 'Georgia, serif', fontSize: 15, fontWeight: 500, fontStyle: 'italic' }}>
               Chiropractor Partnership Application
             </div>
           </div>
