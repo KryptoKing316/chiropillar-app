@@ -83,14 +83,41 @@ export default function LoginPage() {
 
       <div style={{ width: '100%', maxWidth: '460px', position: 'relative' }}>
 
-        {/* ChiroPillar lockup designed for dark backgrounds (gold column + white text) */}
+        {/* ChiroPillar lockup · brand-guide mascot icon + solid white text */}
         <div style={{ textAlign: 'center', marginBottom: '32px' }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/chiropillar-logo-dark.svg"
-            alt="ChiroPillar · Strength in Alignment"
-            style={{ height: 'clamp(96px, 14vw, 124px)', width: 'auto', display: 'inline-block' }}
+            src="/chiropillar-icon.png"
+            alt="ChiroPillar mascot"
+            style={{
+              width: 'clamp(110px, 16vw, 140px)',
+              height: 'clamp(110px, 16vw, 140px)',
+              display: 'inline-block',
+              borderRadius: '24px',
+            }}
           />
+          <div style={{
+            fontFamily: "'Playfair Display', Georgia, serif",
+            fontSize: 'clamp(38px, 5vw, 48px)',
+            fontWeight: 700,
+            color: '#FFFFFF',
+            letterSpacing: '-0.02em',
+            lineHeight: 1,
+            marginTop: '20px',
+            marginBottom: '10px',
+          }}>
+            ChiroPillar
+          </div>
+          <div style={{
+            fontFamily: "'JetBrains Mono', 'DM Mono', monospace",
+            fontSize: '13px',
+            fontWeight: 600,
+            color: '#FFFFFF',
+            letterSpacing: '0.32em',
+            textTransform: 'uppercase',
+          }}>
+            Strength in Alignment
+          </div>
         </div>
 
         {/* Headline */}
@@ -211,7 +238,7 @@ export default function LoginPage() {
               </button>
             </div>
 
-            {/* ChiroPillar trust stats */}
+            {/* Wagner-specific trust stats — the deal math, personalized */}
             <div style={{
               display: 'flex',
               justifyContent: 'center',
@@ -219,11 +246,11 @@ export default function LoginPage() {
               marginBottom: '24px',
             }}>
               {[
-                { n: 'N=102', label: 'Real Comps' },
-                { n: '$45M+', label: 'EBITDA Target' },
-                { n: '8–10×', label: 'Exit Multiple' },
+                { n: '$25M',  label: 'Wagner EBITDA' },
+                { n: '+$20M', label: 'Bolt-On Target' },
+                { n: '$45M+', label: 'Combined Platform' },
               ].map(b => (
-                <div key={b.n} style={{ textAlign: 'center' }}>
+                <div key={b.label} style={{ textAlign: 'center' }}>
                   <div style={{
                     fontFamily: "'Playfair Display', Georgia, serif",
                     fontSize: '20px', color: '#C9A84C', fontWeight: 700,
