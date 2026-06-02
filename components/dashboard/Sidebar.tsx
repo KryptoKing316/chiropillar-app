@@ -300,12 +300,12 @@ export default function Sidebar({ userEmail, isDemo, isAdmin }: { userEmail?: st
         >✕</button>
       </div>
 
-      {/* Platform badge · Wagner Family Office */}
+      {/* Platform badge · ChiroPillar partnership */}
       <div style={{ padding: '14px 14px', borderBottom: '1px solid var(--kb-border-subtle)' }}>
         <div style={{ background: 'rgba(46,117,182,0.10)', border: '1px solid rgba(46,117,182,0.25)', borderRadius: '10px', padding: '12px 14px' }}>
           <div style={{ fontSize: '11px', color: 'var(--kb-text-secondary)', fontWeight: 600, letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: '5px' }}>Platform</div>
           <div style={{ fontSize: '15px', color: 'var(--kb-text)', fontWeight: 600, lineHeight: 1.3 }}>ChiroPillar</div>
-          <div style={{ fontSize: '12px', color: 'var(--kb-text-secondary)', marginTop: '4px', fontStyle: 'italic' }}>Wagner Family Office &middot; PE Fund I</div>
+          <div style={{ fontSize: '12px', color: 'var(--kb-text-secondary)', marginTop: '4px', fontStyle: 'italic' }}>Chiropractic Roll-Up Partnership</div>
         </div>
       </div>
 

@@ -5,7 +5,9 @@
 // This version supports the "Hide Rollup" toggle — when ON, the screen
 // shows ONLY the conservative single-office seller payout (what a
 // chiropractor would see). When OFF, it shows the full platform math
-// including Wagner 80% / KB 20% cap table at exit.
+// Equity structure (Wagner / KB) intentionally not yet displayed —
+// to be set in definitive documentation. Public + chiropractor-view
+// already hide it; admin view shows "TBD" placeholder.
 //
 // Per Dr. Wagner's directive: "We don't want the client knowing that
 // their true value is really 10 times. We only want them to see that
@@ -94,7 +96,7 @@ export default function CalculatorPage() {
             <h1 style={{ fontFamily: 'Georgia, serif', fontSize: 36, fontWeight: 700, color: '#1F4E79', margin: 0, letterSpacing: '-0.02em' }}>
               Seller Payout × Platform Returns
             </h1>
-            <p style={{ color: '#666', fontSize: 14, marginTop: 6 }}>11 flippable assumptions · live recalculation · Wagner 80% / KB 20% cap-table</p>
+            <p style={{ color: '#666', fontSize: 14, marginTop: 6 }}>11 flippable assumptions · live recalculation · seller payout + platform returns</p>
           </div>
 
           {/* HIDE ROLLUP TOGGLE — Wagner's directive */}
@@ -220,17 +222,11 @@ export default function CalculatorPage() {
                   <Scenario label="Premium · 10×" val={fmtMshort(evHigh)} moic={`${(evHigh/totalPrice).toFixed(1)}× MOIC`} />
                 </div>
 
-                <OutH style={{ marginTop: 32 }}>Cap Table at Exit · base case</OutH>
-                <div style={{ background: '#F7F4ED', borderRadius: 10, padding: 18, border: '1px solid rgba(31,78,121,0.08)' }}>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 80px 1fr', gap: 14, alignItems: 'baseline', padding: '6px 0' }}>
-                    <span style={{ fontSize: 14, color: '#1a1a1a', fontWeight: 500 }}>Dr. Scott Wagner · Main Equity Partner</span>
-                    <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 13, color: '#2E75B6', fontWeight: 700, textAlign: 'center' }}>80%</span>
-                    <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 14, color: '#1F4E79', fontWeight: 700, textAlign: 'right' }}>{fmtMshort(evBase * 0.80)}</span>
-                  </div>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 80px 1fr', gap: 14, alignItems: 'baseline', padding: '6px 0' }}>
-                    <span style={{ fontSize: 14, color: '#1a1a1a', fontWeight: 500 }}>Kingdom Broker · 20% Co-Partner</span>
-                    <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 13, color: '#2E75B6', fontWeight: 700, textAlign: 'center' }}>20%</span>
-                    <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 14, color: '#1F4E79', fontWeight: 700, textAlign: 'right' }}>{fmtMshort(evBase * 0.20)}</span>
+                <OutH style={{ marginTop: 32 }}>Equity Structure</OutH>
+                <div style={{ background: 'rgba(31,78,121,0.04)', border: '1px dashed rgba(31,78,121,0.20)', borderRadius: 10, padding: 18, textAlign: 'center' }}>
+                  <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, letterSpacing: '0.18em', color: '#2E75B6', textTransform: 'uppercase', fontWeight: 700, marginBottom: 8 }}>To be negotiated</div>
+                  <div style={{ fontFamily: 'Georgia, serif', fontStyle: 'italic', fontSize: 15, color: '#555', lineHeight: 1.5 }}>
+                    Final cap table to be set in definitive documentation between Dr. Wagner and Kingdom Broker.
                   </div>
                 </div>
               </>
