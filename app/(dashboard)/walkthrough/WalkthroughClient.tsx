@@ -212,7 +212,7 @@ export default function WalkthroughClient({ stats }: { stats: LiveStats }) {
       {/* Header */}
       <div style={{ marginBottom: 28 }}>
         <div style={{ fontFamily: F.mono, fontSize: 11, color: C.align, letterSpacing: '0.22em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 8 }}>
-          Self-Demo Guide
+          Self-Demo Guide · Strength in Alignment
         </div>
         <h1 style={{ fontFamily: F.display, fontSize: 'clamp(32px, 4.5vw, 44px)', fontWeight: 700, margin: '0 0 8px', letterSpacing: '-0.02em', color: C.text }}>
           How the ChiroPillar platform works

@@ -92,13 +92,13 @@ export default function DataRoomPage() {
           letterSpacing: '-0.02em', lineHeight: 1.1, margin: '0 0 12px',
           color: 'var(--kb-text)',
         }}>
-          Strategy library
+          Data Room
         </h1>
         <p style={{
           fontSize: 17, lineHeight: 1.6, maxWidth: 780,
           color: 'var(--kb-text-secondary)', margin: 0,
         }}>
-          The canonical ChiroPillar documents — thesis, ecosystem, product, brand. Click any tile to read in-browser or download. Per-clinic acquisition rooms (one per deal in flight) ship in Phase 3.
+          Upload clinic financials, connect QuickBooks, or download the canonical ChiroPillar strategy documents. Per-clinic acquisition rooms ship in Phase 3.
         </p>
       </div>
 

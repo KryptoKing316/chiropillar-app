@@ -98,51 +98,48 @@ export default function LoginPage() {
 
       <div style={{ width: '100%', maxWidth: '460px', position: 'relative' }}>
 
-        {/* ChiroPillar lockup · brand-guide mascot (with arms) + solid white text */}
-        <div style={{ textAlign: 'center', marginBottom: '24px' }}>
+        {/* ChiroPillar lockup · mascot + bold wordmark (no tagline — moved below) */}
+        <div style={{ textAlign: 'center', marginBottom: '20px' }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/chiropillar-mascot-dark.svg"
             alt="ChiroPillar mascot"
             style={{
-              width: 'clamp(84px, 11vw, 104px)',
-              height: 'clamp(84px, 11vw, 104px)',
+              width: 'clamp(96px, 13vw, 124px)',
+              height: 'clamp(96px, 13vw, 124px)',
               display: 'inline-block',
             }}
           />
           <div style={{
             fontFamily: "'Playfair Display', Georgia, serif",
-            fontSize: 'clamp(30px, 4vw, 38px)',
-            fontWeight: 700,
+            fontSize: 'clamp(38px, 5vw, 48px)',
+            fontWeight: 800,
             color: '#FFFFFF',
-            letterSpacing: '-0.02em',
+            letterSpacing: '-0.025em',
             lineHeight: 1,
             marginTop: '14px',
-            marginBottom: '8px',
           }}>
             ChiroPillar
           </div>
-          <div style={{
-            fontFamily: "'JetBrains Mono', 'DM Mono', monospace",
-            fontSize: '12px',
-            fontWeight: 600,
-            color: '#FFFFFF',
-            letterSpacing: '0.28em',
-            textTransform: 'uppercase',
-          }}>
-            Strength in Alignment
-          </div>
         </div>
 
-        {/* Headline */}
+        {/* Headline · "Strength in Alignment" pulled here as italic mantra */}
         <h1 style={{
           fontFamily: "'Playfair Display', Georgia, serif",
-          fontSize: '22px', fontWeight: 600,
-          color: '#F2EEE7', margin: '0 0 22px',
+          fontSize: '22px', fontWeight: 500, fontStyle: 'italic',
+          color: '#9CC4E4', margin: '0 0 6px',
           textAlign: 'center', lineHeight: 1.3,
         }}>
-          Chiropractic Roll-Up Platform
+          Strength in Alignment.
         </h1>
+        <div style={{
+          fontFamily: "'Inter', system-ui, sans-serif",
+          fontSize: '13px', fontWeight: 500,
+          color: '#7A8BAA', margin: '0 0 22px',
+          textAlign: 'center', letterSpacing: '0.04em',
+        }}>
+          Chiropractic Roll-Up Platform
+        </div>
 
         {!sent ? (
           <>

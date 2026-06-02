@@ -346,7 +346,7 @@ const NAV = [
   { href: '/calculator',   label: 'Deal Calculator'                     },
   { href: '/valuation',    label: 'AI Valuation',         badge: 'Soon' },
   { href: '/pipeline',     label: 'Acquisition Pipeline', badge: 'Soon' },
-  { href: '/data-room',    label: 'Per-Clinic Data Room', badge: 'Soon' },
+  { href: '/data-room',    label: 'Data Room',            badge: 'Live' },
   { href: '/scale',        label: 'Scale Services',       badge: 'Soon' },
   { href: '/outreach',     label: 'Outreach Campaigns',   badge: 'Soon' },
 ]
@@ -358,8 +358,8 @@ const ADMIN_DEMOS: { href: string; label: string }[] = []
 export default function Sidebar({ userEmail, isDemo, isAdmin }: { userEmail?: string; isDemo?: boolean; isAdmin?: boolean }) {
   const pathname = usePathname()
   const [mobileOpen, setMobileOpen] = useState(false)
-  // Dark-bg variant: gold column mascot + solid white wordmark + readable tagline
-  const logoSrc = '/chiropillar-logo-dark.svg'
+  // Mascot-only SVG (no baked text). Wordmark rendered as HTML below for crisp typography.
+  const logoSrc = '/chiropillar-mascot-dark.svg'
 
   useEffect(() => { setMobileOpen(false) }, [pathname])
 
@@ -377,10 +377,21 @@ export default function Sidebar({ userEmail, isDemo, isAdmin }: { userEmail?: st
       transition: 'background 0.3s ease, border-color 0.3s ease',
     }}>
 
-      {/* Logo · ChiroPillar dark-bg lockup (gold mascot + solid white text) */}
-      <div style={{ padding: '24px 16px 20px', borderBottom: '1px solid var(--kb-border)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+      {/* Logo · mascot icon + bold white ChiroPillar wordmark (no tagline — hard to read at this size) */}
+      <div style={{ padding: '22px 16px 18px', borderBottom: '1px solid var(--kb-border)', display: 'flex', alignItems: 'center', gap: '12px' }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={logoSrc} alt="ChiroPillar · Strength in Alignment" style={{ width: '100%', maxWidth: '220px', height: 'auto', display: 'block' }} />
+        <img src={logoSrc} alt="ChiroPillar mascot" style={{ width: '52px', height: '52px', display: 'block', flexShrink: 0 }} />
+        <div style={{
+          fontFamily: "'Playfair Display', Georgia, serif",
+          fontSize: '22px',
+          fontWeight: 800,
+          color: '#F2EEE7',
+          letterSpacing: '-0.02em',
+          lineHeight: 1,
+          flex: 1,
+        }}>
+          ChiroPillar
+        </div>
         <button
           onClick={() => setMobileOpen(false)}
           className="kb-hamburger"
