@@ -36,7 +36,9 @@ export default function LoginPage() {
       const { error: otpError } = await supabase.auth.signInWithOtp({
         email: trimmedEmail,
         options: {
-          emailRedirectTo: `${window.location.origin}/auth/callback?next=/overview`,
+          // Land on the polished walkthrough (live stats, 8 tabs explained)
+          // instead of the /overview placeholder.
+          emailRedirectTo: `${window.location.origin}/auth/callback?next=/walkthrough`,
         },
       })
       if (otpError) {

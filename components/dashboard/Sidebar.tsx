@@ -344,6 +344,7 @@ const NAV = [
   { href: '/overview',     label: 'Overview',             badge: 'Soon' },
   { href: '/targets',      label: 'Intake Submissions'                  },
   { href: '/calculator',   label: 'Deal Calculator'                     },
+  { href: '/analytics',    label: 'Analytics',            badge: 'Live' },
   { href: '/valuation',    label: 'AI Valuation',         badge: 'Soon' },
   { href: '/pipeline',     label: 'Acquisition Pipeline', badge: 'Soon' },
   { href: '/data-room',    label: 'Data Room',            badge: 'Live' },
