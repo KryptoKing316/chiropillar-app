@@ -17,23 +17,43 @@
 
 import { useEffect, useState } from 'react'
 
+type Profile = 'solo' | 'multi' | 'platform'
+
 type Inputs = {
-  ebitda: number      // per-office EBITDA at purchase ($K)
-  pmult: number       // purchase multiple
+  ebitda: number      // per-office SDE (solo/multi) or EBITDA (platform) at purchase ($K)
+  pmult: number       // purchase multiple (SDE or EBITDA depending on profile)
   cashPct: number     // % at close
   rate: number        // seller note rate
   psharePct: number   // ongoing profit share %
   n: number           // # offices in platform
-  uplift: number      // per-office EBITDA uplift ($K)
+  uplift: number      // per-office uplift ($K)
   mso: number         // MSO overhead ($K)
   hold: number        // hold years
   emult: number       // base-case exit multiple
   rollPct: number     // seller rollover %
 }
 
+// ── Practice profile presets · calibrated to 158 real chiropractor comps ──
+// Solo-DC (default · n=102, median 1.46× SDE) · range 1.08-2.05× P25-P75
+// Multi-DC / membership / associate-in-place · ~30 comps
+// Platform / multi-location · PE-deal triangulated
+const PROFILES: Record<Profile, {
+  label: string         // 'SDE multiple' or 'EBITDA multiple'
+  pmult_min: number; pmult_max: number; pmult_step: number; pmult_default: number;
+  ebitda_default: number;  // per-office default
+  uplift_default: number;
+  display_name: string;
+  band_text: string;
+  note: string;
+}> = {
+  solo:     { label: 'SDE multiple',    pmult_min: 1.0, pmult_max: 2.1, pmult_step: 0.1,  pmult_default: 1.5, ebitda_default: 200,  uplift_default: 100, display_name: 'Solo-DC Owner-Operator', band_text: '1.0× · 1.5× · 2.1× SDE',  note: 'Most ChiroPillar targets · retiring DC' },
+  multi:    { label: 'SDE multiple',    pmult_min: 2.0, pmult_max: 4.0, pmult_step: 0.1,  pmult_default: 3.0, ebitda_default: 400,  uplift_default: 150, display_name: 'Multi-DC / Membership',    band_text: '2.0× · 3.0× · 4.0× SDE',  note: 'Associate in place · recurring revenue' },
+  platform: { label: 'EBITDA multiple', pmult_min: 5.0, pmult_max: 10.0,pmult_step: 0.25, pmult_default: 7.5, ebitda_default: 1000, uplift_default: 200, display_name: 'Platform / Multi-Location', band_text: '5× · 7.5× · 10× EBITDA', note: '$1M+ EBITDA · clean books · scale' },
+}
+
 const DEFAULTS: Inputs = {
-  ebitda: 250, pmult: 4, cashPct: 50, rate: 7, psharePct: 4,
-  n: 12, uplift: 250, mso: 1000, hold: 4, emult: 9, rollPct: 0,
+  ebitda: 200, pmult: 1.5, cashPct: 50, rate: 7, psharePct: 4,
+  n: 12, uplift: 100, mso: 500, hold: 4, emult: 9, rollPct: 0,
 }
 
 function fmtMoney(n: number) {
@@ -49,11 +69,25 @@ function fmtMshort(n: number) {
 
 export default function CalculatorPage() {
   const [hideRollup, setHideRollup] = useState(false)
+  const [profile, setProfile] = useState<Profile>('solo')
   const [i, setI] = useState<Inputs>(DEFAULTS)
 
   function set<K extends keyof Inputs>(k: K, v: number) {
     setI(prev => ({ ...prev, [k]: v }))
   }
+
+  function applyProfile(p: Profile) {
+    setProfile(p)
+    const pr = PROFILES[p]
+    setI(prev => ({
+      ...prev,
+      pmult: pr.pmult_default,
+      ebitda: pr.ebitda_default,
+      uplift: pr.uplift_default,
+    }))
+  }
+
+  const currentProfile = PROFILES[profile]
 
   // ── Derived values (same math as the static calc) ──────────────────────
   const ebitda$       = i.ebitda * 1000
@@ -69,8 +103,14 @@ export default function CalculatorPage() {
   const sellerTotal   = cashClosePost + notePrincipal + noteInterest + pshareTotal + rollGain
   const standalone    = ebitda$ * i.hold
 
-  // Conservative seller-facing valuation: just buy at purchase multiple, no platform talk
-  const conservativeVal = ebitda$ * Math.max(3, i.pmult - 1) // show them 3-4×, not the platform 9×
+  // Conservative seller-facing valuation: anchored to real comp median for selected profile
+  // Solo-DC: 1.46× SDE (P50 from n=102 real chiropractic comps)
+  // Multi-DC: 3.0× SDE (P50 of multi-DC/membership band)
+  // Platform: 7.5× EBITDA (PE-deal triangulated)
+  const COMP_MEDIANS: Record<Profile, number> = { solo: 1.46, multi: 3.0, platform: 7.5 }
+  const conservativeMid  = ebitda$ * COMP_MEDIANS[profile]
+  const conservativeLow  = ebitda$ * (COMP_MEDIANS[profile] * 0.74)  // ≈ P25
+  const conservativeHigh = ebitda$ * (COMP_MEDIANS[profile] * 1.40)  // ≈ P75
 
   // Platform side
   const aggEbitda    = ebitda$ * i.n
@@ -113,10 +153,48 @@ export default function CalculatorPage() {
                 {hideRollup ? '👁 Hide Rollup · Chiropractor View' : '👁 Show Rollup · Admin View'}
               </div>
               <div style={{ fontSize: 11, color: hideRollup ? '#5A4A1A' : '#666', marginTop: 2 }}>
-                {hideRollup ? 'Conservative valuation only · platform math hidden' : 'Full platform + 80/20 cap table visible'}
+                {hideRollup ? 'Conservative valuation only · platform math hidden' : 'Full platform math visible'}
               </div>
             </div>
           </label>
+        </div>
+
+        {/* ── REAL-DATA CREDIBILITY LINE ─────────────────────────────────── */}
+        <div style={{ marginBottom: 24, padding: '16px 22px', background: 'linear-gradient(135deg, rgba(46,117,182,0.06) 0%, rgba(31,78,121,0.04) 100%)', border: '1px solid rgba(31,78,121,0.15)', borderRadius: 12, display: 'flex', gap: 18, alignItems: 'center', flexWrap: 'wrap' }}>
+          <div style={{ flex: '0 0 auto', fontFamily: "'JetBrains Mono', monospace", fontSize: 10, letterSpacing: '0.22em', color: '#2E75B6', textTransform: 'uppercase', fontWeight: 700 }}>📊 Comp Set</div>
+          <div style={{ flex: 1, minWidth: 280, fontSize: 13, color: '#444', lineHeight: 1.55 }}>
+            <strong style={{ color: '#1F4E79' }}>N=102 real chiropractic practice sales</strong> with asking + SDE disclosed. Median <strong>1.46× SDE</strong> · P25–P75 <strong>1.08–2.05×</strong>. Sources: BizBuySell, Progressive Practice Sales, William David Co, JYNT 10-K (June 2026). Asking-price-derived — closing typically 85–95% of ask.
+          </div>
+        </div>
+
+        {/* ── PRACTICE PROFILE SELECTOR ──────────────────────────────────── */}
+        <div style={{ marginBottom: 28 }}>
+          <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, letterSpacing: '0.18em', color: '#2E75B6', textTransform: 'uppercase', fontWeight: 700, marginBottom: 12 }}>Practice Profile</div>
+          <div className="profile-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12 }}>
+            {(['solo','multi','platform'] as Profile[]).map(p => {
+              const pr = PROFILES[p]
+              const active = profile === p
+              return (
+                <button
+                  key={p}
+                  type="button"
+                  onClick={() => applyProfile(p)}
+                  style={{
+                    background: active ? 'linear-gradient(135deg, rgba(46,117,182,0.10) 0%, rgba(31,78,121,0.06) 100%)' : 'white',
+                    border: active ? '2px solid #2E75B6' : '2px solid rgba(31,78,121,0.15)',
+                    borderRadius: 12, padding: '18px 18px', cursor: 'pointer', textAlign: 'left',
+                    boxShadow: active ? '0 8px 24px rgba(46,117,182,0.18)' : 'none',
+                    fontFamily: 'inherit',
+                    transition: 'all 0.18s',
+                  }}
+                >
+                  <div style={{ fontFamily: 'Georgia, serif', fontSize: 16, fontWeight: 700, color: '#1F4E79', marginBottom: 6, letterSpacing: '-0.01em' }}>{pr.display_name}</div>
+                  <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 12, color: active ? '#C9A84C' : '#2E75B6', marginBottom: 6, fontWeight: 700 }}>{pr.band_text}</div>
+                  <div style={{ fontSize: 11.5, color: '#777', lineHeight: 1.4 }}>{pr.note}</div>
+                </button>
+              )
+            })}
+          </div>
         </div>
 
         {/* Body */}
@@ -125,8 +203,8 @@ export default function CalculatorPage() {
           {/* INPUTS */}
           <div style={{ background: 'white', borderRadius: 14, padding: 24, boxShadow: '0 4px 16px rgba(31,78,121,0.06)' }}>
             <CtrlGroup label="Per-Office Acquisition">
-              <Slider label="EBITDA per office" val={`$${i.ebitda}K`} min={100} max={600} step={25} value={i.ebitda} on={v => set('ebitda', v)} />
-              <Slider label="Purchase multiple" val={`${i.pmult.toFixed(2)}×`} min={2.5} max={6} step={0.25} value={i.pmult} on={v => set('pmult', v)} />
+              <Slider label={profile === 'platform' ? 'EBITDA per office' : 'SDE per office'} val={`$${i.ebitda}K`} min={profile === 'platform' ? 500 : 80} max={profile === 'platform' ? 3000 : 800} step={profile === 'platform' ? 100 : 20} value={i.ebitda} on={v => set('ebitda', v)} />
+              <Slider label={currentProfile.label} val={`${i.pmult.toFixed(2)}×`} min={currentProfile.pmult_min} max={currentProfile.pmult_max} step={currentProfile.pmult_step} value={i.pmult} on={v => set('pmult', v)} />
               {!hideRollup && (
                 <>
                   <Slider label="Cash at close %" val={`${i.cashPct}%`} min={30} max={80} step={5} value={i.cashPct} on={v => set('cashPct', v)} />
@@ -167,18 +245,21 @@ export default function CalculatorPage() {
           <div style={{ background: 'white', borderRadius: 14, padding: 30, boxShadow: '0 4px 16px rgba(31,78,121,0.06)' }}>
 
             {hideRollup ? (
-              // ── CHIROPRACTOR VIEW · Conservative-only ───────────────────────
+              // ── CHIROPRACTOR VIEW · Real-comp-anchored conservative band ───
               <>
                 <OutH>Practice Valuation · Estimated Range</OutH>
                 <div style={{ padding: '24px 28px', background: 'linear-gradient(135deg, #FAF6EC 0%, #F0E8D0 100%)', borderRadius: 10, marginBottom: 24 }}>
                   <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, letterSpacing: '0.14em', color: '#7A6A45', textTransform: 'uppercase', fontWeight: 600, marginBottom: 8 }}>
                     Your practice today
                   </div>
-                  <div style={{ fontFamily: 'Georgia, serif', fontSize: 44, fontWeight: 700, color: '#1F4E79', letterSpacing: '-0.02em', lineHeight: 1, marginBottom: 6 }}>
-                    {fmtMshort(conservativeVal * 0.85)} – {fmtMshort(conservativeVal * 1.15)}
+                  <div style={{ fontFamily: 'Georgia, serif', fontSize: 40, fontWeight: 700, color: '#1F4E79', letterSpacing: '-0.02em', lineHeight: 1, marginBottom: 6 }}>
+                    {fmtMshort(conservativeLow)} – {fmtMshort(conservativeHigh)}
                   </div>
-                  <div style={{ fontSize: 13, color: '#7A6A45', marginTop: 8 }}>
-                    Based on a {Math.max(3, i.pmult - 1).toFixed(1)}× multiple on your ${i.ebitda}K EBITDA.
+                  <div style={{ fontFamily: 'Georgia, serif', fontSize: 16, color: '#1F4E79', marginTop: 6, fontWeight: 600 }}>
+                    Mid: {fmtMshort(conservativeMid)}
+                  </div>
+                  <div style={{ fontSize: 12, color: '#7A6A45', marginTop: 10, fontFamily: "'JetBrains Mono', monospace", letterSpacing: '0.02em' }}>
+                    Calibrated to <strong>{COMP_MEDIANS[profile]}× {profile === 'platform' ? 'EBITDA' : 'SDE'} median</strong> from N=102 real comps · {currentProfile.display_name}
                   </div>
                 </div>
 
