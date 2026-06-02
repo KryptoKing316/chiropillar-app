@@ -358,8 +358,8 @@ const ADMIN_DEMOS: { href: string; label: string }[] = []
 export default function Sidebar({ userEmail, isDemo, isAdmin }: { userEmail?: string; isDemo?: boolean; isAdmin?: boolean }) {
   const pathname = usePathname()
   const [mobileOpen, setMobileOpen] = useState(false)
-  // ChiroPillar always uses the dark-on-spine-blue lockup for sidebar
-  const logoSrc = '/chiropillar-logo.png'
+  // Dark-bg variant: gold column mascot + solid white wordmark + readable tagline
+  const logoSrc = '/chiropillar-logo-dark.svg'
 
   useEffect(() => { setMobileOpen(false) }, [pathname])
 
@@ -377,10 +377,10 @@ export default function Sidebar({ userEmail, isDemo, isAdmin }: { userEmail?: st
       transition: 'background 0.3s ease, border-color 0.3s ease',
     }}>
 
-      {/* Logo · ChiroPillar lockup inverted to white for dark sidebar */}
+      {/* Logo · ChiroPillar dark-bg lockup (gold mascot + solid white text) */}
       <div style={{ padding: '24px 16px 20px', borderBottom: '1px solid var(--kb-border)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={logoSrc} alt="ChiroPillar · Strength in Alignment" style={{ width: '100%', maxWidth: '208px', height: 'auto', display: 'block', filter: 'brightness(0) invert(1)' }} />
+        <img src={logoSrc} alt="ChiroPillar · Strength in Alignment" style={{ width: '100%', maxWidth: '220px', height: 'auto', display: 'block' }} />
         <button
           onClick={() => setMobileOpen(false)}
           className="kb-hamburger"

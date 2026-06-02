@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 200" width="720" height="200" preserveAspectRatio="xMidYMid meet">
+  <!--
+    ChiroPillar lockup · dark-background variant.
+    Matches the brand-guide lockup at /chiropractor/assets/chiropillar-lockup.png:
+      · Friendly stone-column mascot (capital, fluted shaft, face, waving arm, base plinth, shadow)
+      · "ChiroPillar" wordmark — SOLID WHITE for dark backgrounds
+      · "STRENGTH IN ALIGNMENT" tagline — SOLID WHITE, larger for readability
+  -->
+
+  <!-- ── COLUMN MASCOT · stone column with face + waving arm ────────────── -->
+  <g transform="translate(40, 24)">
+    <!-- Capital (top) -->
+    <ellipse cx="60" cy="14" rx="62" ry="6" fill="#7A6A45" opacity="0.20"/>
+    <rect x="-2" y="0" width="124" height="22" rx="3" fill="#EBD8A6" stroke="#7A6A45" stroke-width="1.5"/>
+    <rect x="6" y="6" width="108" height="10" rx="2" fill="#F0E0B8"/>
+
+    <!-- Shaft with flutes -->
+    <rect x="14" y="22" width="92" height="108" fill="#EBD8A6" stroke="#7A6A45" stroke-width="1.5"/>
+    <line x1="28" y1="26" x2="28" y2="126" stroke="#7A6A45" stroke-width="1.2" opacity="0.55"/>
+    <line x1="42" y1="26" x2="42" y2="126" stroke="#7A6A45" stroke-width="1.2" opacity="0.55"/>
+    <line x1="78" y1="26" x2="78" y2="126" stroke="#7A6A45" stroke-width="1.2" opacity="0.55"/>
+    <line x1="92" y1="26" x2="92" y2="126" stroke="#7A6A45" stroke-width="1.2" opacity="0.55"/>
+
+    <!-- Eyes -->
+    <circle cx="42" cy="60" r="6" fill="#FFFFFF" stroke="#1F4E79" stroke-width="1.2"/>
+    <circle cx="78" cy="60" r="6" fill="#FFFFFF" stroke="#1F4E79" stroke-width="1.2"/>
+    <circle cx="42" cy="60" r="3" fill="#1F4E79"/>
+    <circle cx="78" cy="60" r="3" fill="#1F4E79"/>
+    <circle cx="43" cy="58.5" r="1" fill="#FFFFFF"/>
+    <circle cx="79" cy="58.5" r="1" fill="#FFFFFF"/>
+
+    <!-- Cheek blush -->
+    <ellipse cx="30" cy="72" rx="4" ry="2.5" fill="#F2B0A0" opacity="0.75"/>
+    <ellipse cx="90" cy="72" rx="4" ry="2.5" fill="#F2B0A0" opacity="0.75"/>
+
+    <!-- Smile -->
+    <path d="M 46 76 Q 60 86 74 76" stroke="#1F4E79" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+
+    <!-- Waving arm on the right -->
+    <path d="M 108 50 Q 124 38 122 24" stroke="#EBD8A6" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <path d="M 108 50 Q 124 38 122 24" stroke="#7A6A45" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.45"/>
+    <!-- Hand -->
+    <circle cx="122" cy="22" r="6" fill="#EBD8A6" stroke="#7A6A45" stroke-width="1.5"/>
+
+    <!-- Left arm at side -->
+    <path d="M 12 86 Q 4 100 8 116" stroke="#EBD8A6" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <path d="M 12 86 Q 4 100 8 116" stroke="#7A6A45" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.45"/>
+    <circle cx="8" cy="118" r="6" fill="#EBD8A6" stroke="#7A6A45" stroke-width="1.5"/>
+
+    <!-- Base plinth (blue accent) -->
+    <rect x="-2" y="132" width="124" height="18" rx="3" fill="#2E75B6" stroke="#1F4E79" stroke-width="1.5"/>
+
+    <!-- Ground shadow -->
+    <ellipse cx="60" cy="160" rx="76" ry="6" fill="#000000" opacity="0.18"/>
+  </g>
+
+  <!-- ── WORDMARK · "ChiroPillar" · solid white serif ───────────────────── -->
+  <text x="200" y="106"
+    font-family="Georgia, 'Playfair Display', serif"
+    font-size="76" font-weight="700"
+    fill="#FFFFFF"
+    letter-spacing="-2">
+    ChiroPillar
+  </text>
+
+  <!-- ── TAGLINE · "STRENGTH IN ALIGNMENT" · solid white, large + readable -->
+  <text x="202" y="148"
+    font-family="'JetBrains Mono', 'DM Mono', 'Inter', sans-serif"
+    font-size="20" font-weight="600"
+    fill="#FFFFFF"
+    letter-spacing="8">
+    STRENGTH IN ALIGNMENT
+  </text>
+</svg>

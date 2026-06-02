@@ -83,13 +83,13 @@ export default function LoginPage() {
 
       <div style={{ width: '100%', maxWidth: '460px', position: 'relative' }}>
 
-        {/* ChiroPillar logo (inverted for dark bg) */}
-        <div style={{ textAlign: 'center', marginBottom: '28px' }}>
+        {/* ChiroPillar lockup designed for dark backgrounds (gold column + white text) */}
+        <div style={{ textAlign: 'center', marginBottom: '32px' }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/chiropillar-logo.png"
+            src="/chiropillar-logo-dark.svg"
             alt="ChiroPillar · Strength in Alignment"
-            style={{ height: '64px', width: 'auto', display: 'inline-block', filter: 'brightness(0) invert(1)' }}
+            style={{ height: 'clamp(96px, 14vw, 124px)', width: 'auto', display: 'inline-block' }}
           />
         </div>
 
