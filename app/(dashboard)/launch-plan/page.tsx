@@ -868,10 +868,10 @@ export default function LaunchPlanPage() {
 
 function Kpi({ label, val, sub, color, big }: { label: string; val: string; sub: string; color: string; big?: boolean }) {
   return (
-    <div style={big ? { padding: '8px 0', borderLeft: `3px solid ${color}`, paddingLeft: 14 } : {}}>
-      <div style={{ fontFamily: F.mono, fontSize: 10, color: big ? color : C.faint, letterSpacing: '0.12em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 4 }}>{label}</div>
-      <div style={{ fontSize: big ? 30 : 22, fontWeight: 800, color, fontFamily: F.display, lineHeight: 1, marginBottom: 4 }}>{val}</div>
-      <div style={{ fontFamily: F.mono, fontSize: 10, color: C.faint, letterSpacing: '0.04em' }}>{sub}</div>
+    <div style={big ? { padding: '10px 0', borderLeft: `3px solid ${color}`, paddingLeft: 14 } : {}}>
+      <div style={{ fontFamily: F.mono, fontSize: 11.5, color: big ? color : color, letterSpacing: '0.12em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 6 }}>{label}</div>
+      <div style={{ fontSize: big ? 32 : 26, fontWeight: 800, color, fontFamily: F.display, lineHeight: 1, marginBottom: 6, letterSpacing: '-0.01em' }}>{val}</div>
+      <div style={{ fontSize: 13, color: '#FFFFFF', lineHeight: 1.45, fontWeight: 500 }}>{sub}</div>
     </div>
   )
 }
