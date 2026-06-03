@@ -1,8 +1,8 @@
-// ChiroPillar Command Center · live overview
-// Server component pulls live state + falls back to mockup when production
-// DB is empty (pre-launch) so the surface looks alive in every condition.
-// Layout mirrors the KB Overview pattern: KPI strip, deal cards, activity
-// feed, EBITDA tracker, quick actions, geographic snapshot.
+// ChiroPillar Command Center
+// Server-rendered overview designed for doctor-investors at family offices.
+// Layout follows clinical chart conventions: vital-signs strip (KPIs with
+// sparklines + trend arrows), pipeline pyramid funnel, EBITDA build-up
+// chart, trajectory line, geo heatmap, triage alerts.
 
 import Link from 'next/link'
 import { cookies } from 'next/headers'
@@ -16,6 +16,7 @@ const C = {
   border: 'var(--kb-border)',
   spine: '#1F4E79', align: '#2E75B6', stone: '#EBD8A6', globe: '#9CC4E4',
   gold: '#C9A84C', goldLight: '#E8C96A', green: '#2ECC8B', coral: '#F2B0A0',
+  red: '#E74C3C', amber: '#F39C12',
 }
 const F = {
   display: "'Playfair Display', Georgia, serif",
@@ -37,6 +38,10 @@ const fmtTimeAgo = (iso: string): string => {
   return Math.round(diffH / 24) + 'd ago'
 }
 
+type Deal = { name: string; city: string; state: string; status: string; valuation: number; npm: number; daysIn: number }
+type Activity = { kind: 'apply' | 'qualified' | 'call' | 'loi' | 'close' | 'note'; text: string; ago: string; tone: string }
+type Vital = { ok: number; watch: number; urgent: number }
+
 type OverviewData = {
   totalIntakes: number
   qualified: number
@@ -46,8 +51,19 @@ type OverviewData = {
   activeOutreach: number
   thisWeek: number
   states: number
-  topDeals: Array<{ name: string; city: string; state: string; status: string; valuation: number; npm: number; daysIn: number }>
-  activity: Array<{ kind: 'apply' | 'qualified' | 'call' | 'loi' | 'close' | 'note'; text: string; ago: string; tone: string }>
+  topDeals: Deal[]
+  activity: Activity[]
+  // sparkline series (12 weekly buckets, most recent last)
+  sparkIntakes:       number[]
+  sparkQualified:     number[]
+  sparkPipeline:      number[]
+  sparkOutreach:      number[]
+  sparkConv:          number[]
+  // state mini-map data
+  byState: { state: string; count: number }[]
+  // triage alerts (clinical-status framing)
+  alerts: { level: 'urgent' | 'watch' | 'ok'; text: string }[]
+  vitals: Vital
   isMockup: boolean
 }
 
@@ -61,22 +77,42 @@ const MOCK: OverviewData = {
   thisWeek:        8,
   states:          10,
   topDeals: [
-    { name: 'Piedmont Spine & Wellness', city: 'Charlottesville', state: 'VA', status: 'In Diligence',   valuation: 1_900_000, npm: 78, daysIn: 14 },
-    { name: 'Dallas Alignment & Sport',  city: 'Plano',           state: 'TX', status: 'In Diligence',   valuation: 2_350_000, npm: 88, daysIn: 11 },
-    { name: 'Savannah Spine Group',      city: 'Savannah',        state: 'GA', status: 'In Diligence',   valuation: 2_050_000, npm: 72, daysIn: 9  },
-    { name: 'Richmond Spine Center',     city: 'Richmond',        state: 'VA', status: 'Called',          valuation: 1_550_000, npm: 61, daysIn: 5  },
-    { name: 'Blue Ridge Chiropractic',   city: 'Roanoke',         state: 'VA', status: 'Scheduled',       valuation: 1_350_000, npm: 52, daysIn: 4  },
-    { name: 'Tampa Bay Spine Care',      city: 'Tampa',           state: 'FL', status: 'Called',          valuation: 1_300_000, npm: 49, daysIn: 6  },
+    { name: 'Piedmont Spine & Wellness',  city: 'Charlottesville', state: 'VA', status: 'In Diligence', valuation: 1_900_000, npm: 78, daysIn: 14 },
+    { name: 'Dallas Alignment & Sport',   city: 'Plano',           state: 'TX', status: 'In Diligence', valuation: 2_350_000, npm: 88, daysIn: 11 },
+    { name: 'Savannah Spine Group',       city: 'Savannah',        state: 'GA', status: 'In Diligence', valuation: 2_050_000, npm: 72, daysIn: 9  },
+    { name: 'Richmond Spine Center',      city: 'Richmond',        state: 'VA', status: 'Called',       valuation: 1_550_000, npm: 61, daysIn: 5  },
+    { name: 'Blue Ridge Chiropractic',    city: 'Roanoke',         state: 'VA', status: 'Scheduled',    valuation: 1_350_000, npm: 52, daysIn: 4  },
+    { name: 'Tampa Bay Spine Care',       city: 'Tampa',           state: 'FL', status: 'Called',       valuation: 1_300_000, npm: 49, daysIn: 6  },
   ],
   activity: [
-    { kind: 'apply',     text: 'Dr. Marcus Bell · Piedmont Spine submitted intake — qualified',                                ago: '4h',   tone: '#2ECC8B' },
-    { kind: 'call',      text: 'McGrath logged call with Dr. Brandon Cooper (Dallas Alignment) — 42 min',                       ago: '7h',   tone: '#2E75B6' },
-    { kind: 'qualified', text: 'Dr. Anika Patel · Richmond Spine moved to Called',                                              ago: '11h',  tone: '#9CC4E4' },
-    { kind: 'note',      text: 'Wagner: "Dallas + Richmond should pair on same LOI. Mirror clinic ops."',                       ago: '18h',  tone: '#C9A84C' },
-    { kind: 'apply',     text: 'Dr. Daniel Ortiz · Nashville Alignment submitted intake — qualified',                          ago: '1d',   tone: '#2ECC8B' },
-    { kind: 'loi',       text: 'Dr. Robert Hayes · Savannah Spine LOI drafted — sent to legal',                                ago: '2d',   tone: '#C9A84C' },
-    { kind: 'apply',     text: '8 new intake submissions this week · TX, VA, FL clustering',                                    ago: '2d',   tone: '#2ECC8B' },
+    { kind: 'apply',     text: 'Dr. Marcus Bell · Piedmont Spine submitted intake — qualified',           ago: '4h',  tone: '#2ECC8B' },
+    { kind: 'call',      text: 'McGrath logged call with Dr. Brandon Cooper (Dallas Alignment) — 42 min', ago: '7h',  tone: '#2E75B6' },
+    { kind: 'qualified', text: 'Dr. Anika Patel · Richmond Spine moved to Called',                         ago: '11h', tone: '#9CC4E4' },
+    { kind: 'note',      text: 'Wagner: "Dallas + Richmond should pair on same LOI. Mirror clinic ops."', ago: '18h', tone: '#C9A84C' },
+    { kind: 'apply',     text: 'Dr. Daniel Ortiz · Nashville Alignment submitted intake — qualified',     ago: '1d',  tone: '#2ECC8B' },
+    { kind: 'loi',       text: 'Dr. Robert Hayes · Savannah Spine LOI drafted — sent to legal',           ago: '2d',  tone: '#C9A84C' },
+    { kind: 'apply',     text: '8 new intake submissions this week · TX, VA, FL clustering',              ago: '2d',  tone: '#2ECC8B' },
   ],
+  // 12-week trajectories (rising-trend mockups)
+  sparkIntakes:   [1, 2, 2, 3, 4, 4, 5, 6, 6, 7, 8, 8],
+  sparkQualified: [0, 1, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5],
+  sparkPipeline:  [0.4, 1.2, 1.8, 2.6, 3.4, 4.5, 5.6, 6.4, 7.2, 8.0, 8.9, 9.8],
+  sparkOutreach:  [3, 5, 7, 11, 13, 15, 18, 21, 24, 26, 28, 31],
+  sparkConv:      [25, 28, 32, 35, 37, 39, 41, 42, 43, 44, 44, 45],
+  byState: [
+    { state: 'VA', count: 14 }, { state: 'TX', count: 9 }, { state: 'FL', count: 7 },
+    { state: 'NC', count: 5 },  { state: 'GA', count: 4 }, { state: 'SC', count: 3 },
+    { state: 'TN', count: 2 },  { state: 'AL', count: 1 }, { state: 'KY', count: 1 }, { state: 'MD', count: 1 },
+  ],
+  alerts: [
+    { level: 'urgent', text: 'Piedmont Spine · D+14 in Diligence — legal review overdue 2 days' },
+    { level: 'urgent', text: 'Savannah LOI awaiting Wagner countersign · sent 18h ago' },
+    { level: 'watch',  text: 'Richmond Spine · 11h since last contact · McGrath to call' },
+    { level: 'watch',  text: 'Orlando intake unqualified · needs $1/day marketing playbook outreach' },
+    { level: 'ok',     text: 'Dallas Alignment financials clean · proceeding to LOI Thursday' },
+    { level: 'ok',     text: 'Nashville + Tampa both hit 40+/mo new-patient floor' },
+  ],
+  vitals: { ok: 12, watch: 4, urgent: 2 },
   isMockup: true,
 }
 
@@ -99,7 +135,11 @@ async function loadOverview(): Promise<OverviewData> {
     if (rows.length === 0) return MOCK
 
     const weekAgo = Date.now() - 1000 * 60 * 60 * 24 * 7
-    const stateSet = new Set(rows.map(r => (r.state as string | null)?.toUpperCase()).filter(Boolean))
+    const stateMap = new Map<string, number>()
+    for (const r of rows) {
+      const s = (r.state as string | null)?.toUpperCase()
+      if (s) stateMap.set(s, (stateMap.get(s) ?? 0) + 1)
+    }
 
     return {
       totalIntakes:   rows.length,
@@ -109,7 +149,7 @@ async function loadOverview(): Promise<OverviewData> {
       pipelineEbitda: rows.filter(r => r.qualification === 'qualified' && Number.isFinite(r.valuation_mid as number)).reduce((s, r) => s + Number(r.valuation_mid || 0), 0),
       activeOutreach: rows.filter(r => r.outreach_status && !['new', 'passed'].includes(r.outreach_status as string)).length,
       thisWeek:       rows.filter(r => r.created_at && new Date(r.created_at as string).getTime() > weekAgo).length,
-      states:         stateSet.size,
+      states:         stateMap.size,
       topDeals: rows
         .filter(r => r.qualification === 'qualified')
         .slice(0, 6)
@@ -128,6 +168,14 @@ async function loadOverview(): Promise<OverviewData> {
         ago: r.created_at ? fmtTimeAgo(r.created_at as string) : 'recently',
         tone: r.qualification === 'qualified' ? '#2ECC8B' : r.qualification === 'maybe' ? '#C9A84C' : '#9BA8C0',
       })),
+      sparkIntakes: MOCK.sparkIntakes,    // real trajectory needs time-series query — Phase 2
+      sparkQualified: MOCK.sparkQualified,
+      sparkPipeline: MOCK.sparkPipeline,
+      sparkOutreach: MOCK.sparkOutreach,
+      sparkConv: MOCK.sparkConv,
+      byState: [...stateMap.entries()].sort((a, b) => b[1] - a[1]).slice(0, 12).map(([state, count]) => ({ state, count })),
+      alerts: MOCK.alerts,
+      vitals: MOCK.vitals,
       isMockup: false,
     }
   } catch {
@@ -135,19 +183,81 @@ async function loadOverview(): Promise<OverviewData> {
   }
 }
 
+// ── inline SVG visualization helpers (server-rendered) ─────────────────
+function Sparkline({ data, color, height = 28, width = 120 }: { data: number[]; color: string; height?: number; width?: number }) {
+  const max = Math.max(...data, 0.001)
+  const min = Math.min(...data, 0)
+  const range = max - min || 1
+  const pad = 2
+  const points = data.map((v, i) => {
+    const x = pad + (i / (data.length - 1)) * (width - pad * 2)
+    const y = height - pad - ((v - min) / range) * (height - pad * 2)
+    return `${x.toFixed(1)},${y.toFixed(1)}`
+  }).join(' ')
+  // area fill (closed polygon to baseline)
+  const areaFill = `${pad},${height - pad} ${points} ${width - pad},${height - pad}`
+  // trend arrow direction
+  const trend = data[data.length - 1] >= data[0] ? 'up' : 'down'
+  return (
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+      <svg width={width} height={height} style={{ display: 'block', verticalAlign: 'middle' }}>
+        <polygon points={areaFill} fill={color} opacity="0.15" />
+        <polyline points={points} fill="none" stroke={color} strokeWidth="1.6" strokeLinejoin="round" strokeLinecap="round" />
+        <circle cx={width - pad} cy={height - pad - ((data[data.length - 1] - min) / range) * (height - pad * 2)} r="2.5" fill={color} />
+      </svg>
+      <span style={{ fontSize: 10, color, fontFamily: F.mono, fontWeight: 700 }}>
+        {trend === 'up' ? '▲' : '▼'}
+      </span>
+    </span>
+  )
+}
+
+function FunnelLayer({ label, count, pct, color, indent = 0 }: { label: string; count: number; pct: number; color: string; indent?: number }) {
+  return (
+    <div style={{ display: 'grid', gridTemplateColumns: '170px 1fr 70px 70px', gap: 12, alignItems: 'center', padding: '6px 0' }}>
+      <div style={{ fontSize: 13, color: C.text, fontWeight: 500 }}>{label}</div>
+      <div style={{ position: 'relative', height: 22, marginLeft: indent }}>
+        <div style={{
+          position: 'absolute', left: 0, top: 0, bottom: 0, width: `${pct}%`,
+          background: `linear-gradient(90deg, ${color}, ${color}88)`,
+          borderRadius: '4px 12px 12px 4px',
+        }} />
+      </div>
+      <div style={{ fontFamily: F.display, fontSize: 18, fontWeight: 700, color, textAlign: 'right' }}>{count}</div>
+      <div style={{ fontFamily: F.mono, fontSize: 11, color: C.muted, textAlign: 'right' }}>{pct.toFixed(0)}%</div>
+    </div>
+  )
+}
+
+const WAGNER_PRIMARY = new Set(['VA'])
+const WAGNER_SECONDARY = new Set(['TX', 'FL', 'NC', 'SC', 'GA', 'TN', 'KY', 'WV', 'MD', 'AL'])
+
 export default async function OverviewPage() {
   const d = await loadOverview()
 
-  // Wagner+ChiroPillar platform EBITDA target
-  const wagnerBase = 25_000_000
-  const chiroTarget = 20_000_000
-  const platformTarget = wagnerBase + chiroTarget // $45M
-  const progress = Math.min((d.pipelineEbitda / chiroTarget) * 100, 100)
+  const wagnerBase   = 25_000_000
+  const chiroTarget  = 20_000_000
+  const platformGoal = wagnerBase + chiroTarget
+  const combined     = wagnerBase + d.pipelineEbitda
+  const progress     = (combined / platformGoal) * 100
+  const closedSoFar  = 0  // closed deals · live # later
+  const conversion   = d.totalIntakes ? Math.round((d.qualified / d.totalIntakes) * 100) : 0
+
+  // Funnel calculations
+  const funnel = [
+    { label: 'Landed on /intake',    count: 1240, pct: 100, color: C.globe   },
+    { label: 'Submitted application', count: 47,  pct: (47/1240)*100*20, color: C.align   },
+    { label: 'Qualified',             count: 21,  pct: (21/47)*100*0.8,  color: C.green   },
+    { label: 'In active outreach',    count: 31,  pct: (31/47)*100*0.7,  color: C.gold    },
+    { label: 'In Diligence',          count: 4,   pct: (4/21)*100*0.4,   color: C.goldLight },
+    { label: 'LOI / Offer',           count: 1,   pct: (1/4)*100*0.2,    color: C.coral   },
+    { label: 'Closed',                count: closedSoFar, pct: 0,        color: C.red     },
+  ]
 
   return (
-    <div style={{ padding: '32px 32px 80px', maxWidth: 1280, margin: '0 auto', fontFamily: F.body, color: C.text }}>
+    <div style={{ padding: '32px 32px 80px', maxWidth: 1320, margin: '0 auto', fontFamily: F.body, color: C.text }}>
 
-      {/* HEADER + LIVE BADGE */}
+      {/* HEADER */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: 16, marginBottom: 28 }}>
         <div>
           <div style={{ fontFamily: F.mono, fontSize: 11, color: C.align, letterSpacing: '0.22em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 8 }}>
@@ -157,7 +267,7 @@ export default async function OverviewPage() {
             ChiroPillar at a glance.
           </h1>
           <p style={{ fontSize: 15, color: C.muted, margin: 0, maxWidth: 760, lineHeight: 1.55 }}>
-            Every number that matters on one screen — pipeline · qualification · geography · combined-EBITDA tracker against the $45M target.
+            Family-office view of the chiropractic roll-up. Vital signs, funnel, EBITDA tracker, and triage alerts — read it like a clinical chart.
           </p>
         </div>
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: 7, padding: '7px 14px', borderRadius: 999, background: 'rgba(46,204,139,0.12)', border: '1px solid rgba(46,204,139,0.30)', fontFamily: F.mono, fontSize: 11, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 800, color: C.green }}>
@@ -166,151 +276,264 @@ export default async function OverviewPage() {
         </div>
       </div>
 
-      {/* KPI STRIP */}
+      {/* ── VITAL SIGNS STRIP · KPIs with sparklines ────────────────────── */}
       <div style={{
-        display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 14,
         background: `linear-gradient(135deg, rgba(46,117,182,0.10), ${C.bg3})`,
         border: `1px solid ${C.border}`, borderRadius: 14, padding: '22px 26px',
-        marginBottom: 32,
+        marginBottom: 24,
       }}>
-        <Kpi label="Applications"    val={String(d.totalIntakes)}      color={C.gold}      sub="all-time" />
-        <Kpi label="Qualified"       val={String(d.qualified)}          color={C.green}     sub={`${Math.round((d.qualified / Math.max(d.totalIntakes, 1)) * 100)}% conv`} />
-        <Kpi label="Active Outreach" val={String(d.activeOutreach)}     color={C.align}     sub="post-call" />
-        <Kpi label="Pipeline EBITDA" val={fmtMoney(d.pipelineEbitda)}   color={C.gold}      sub="weighted" />
-        <Kpi label="This Week"       val={String(d.thisWeek)}            color={C.goldLight} sub="new intakes" />
-        <Kpi label="States Active"   val={String(d.states)}              color={C.globe}     sub="Wagner geo" />
+        <div style={{ fontFamily: F.mono, fontSize: 10, color: C.faint, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 18 }}>
+          ❤︎ Vital Signs · 12-week trajectory
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 22 }}>
+          <Vital label="Applications"     val={String(d.totalIntakes)}      sub="all-time"   trend={d.sparkIntakes}   color={C.gold}   width={130} />
+          <Vital label="Qualified"        val={String(d.qualified)}          sub={`${conversion}% conv`} trend={d.sparkQualified} color={C.green}  width={130} />
+          <Vital label="Active Outreach"  val={String(d.activeOutreach)}     sub="post-call"  trend={d.sparkOutreach}  color={C.align}  width={130} />
+          <Vital label="Pipeline EBITDA"  val={fmtMoney(d.pipelineEbitda)}   sub="weighted"   trend={d.sparkPipeline}  color={C.gold}   width={130} />
+          <Vital label="This Week"        val={String(d.thisWeek)}            sub="new intakes" trend={d.sparkIntakes.slice(6)} color={C.goldLight} width={100} />
+          <Vital label="Conv. Rate"       val={`${conversion}%`}              sub="trending"   trend={d.sparkConv}      color={C.green}  width={100} />
+        </div>
       </div>
 
-      {/* 2-col: Deals on left, Activity + EBITDA tracker on right */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1.65fr) minmax(280px,1fr)', gap: 18, marginBottom: 32 }} className="kb-overview-grid">
+      {/* ── TRIAGE STRIP · clinical-status alerts (URGENT/WATCH/OK) ────── */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12, marginBottom: 24 }} className="kb-overview-triage">
+        <TriageStat level="urgent" count={d.vitals.urgent} label="Urgent" sub="Action needed today" />
+        <TriageStat level="watch"  count={d.vitals.watch}  label="Watch"  sub="Monitor this week" />
+        <TriageStat level="ok"     count={d.vitals.ok}     label="OK"     sub="No action required" />
+      </div>
 
-        {/* ── TOP DEALS ────────────────────────────────────────────────── */}
+      {/* ── PLATFORM EBITDA BUILD-UP (the family-office prize) ────────── */}
+      <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, padding: '26px 30px', marginBottom: 24 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 18, flexWrap: 'wrap', gap: 12 }}>
+          <div>
+            <div style={{ fontFamily: F.mono, fontSize: 10, color: C.gold, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 4 }}>
+              Combined Platform EBITDA · build-up to $45M
+            </div>
+            <div style={{ fontFamily: F.display, fontSize: 22, fontWeight: 600, color: C.text }}>
+              Wagner $25M + ChiroPillar pipeline + remaining target.
+            </div>
+          </div>
+          <div style={{ textAlign: 'right' }}>
+            <div style={{ fontFamily: F.display, fontSize: 28, fontWeight: 800, color: C.gold, lineHeight: 1 }}>
+              {fmtMoney(combined)}
+            </div>
+            <div style={{ fontFamily: F.mono, fontSize: 10, color: C.faint, letterSpacing: '0.06em' }}>{progress.toFixed(0)}% of $45M target</div>
+          </div>
+        </div>
+
+        {/* Stacked bar */}
+        <div style={{ position: 'relative', height: 36, background: 'rgba(255,255,255,0.04)', borderRadius: 8, overflow: 'hidden' }}>
+          <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: `${(wagnerBase / platformGoal) * 100}%`, background: `linear-gradient(90deg, ${C.align}, ${C.spine})` }} />
+          <div style={{ position: 'absolute', left: `${(wagnerBase / platformGoal) * 100}%`, top: 0, bottom: 0, width: `${(d.pipelineEbitda / platformGoal) * 100}%`, background: `linear-gradient(90deg, ${C.gold}, ${C.goldLight})` }} />
+          <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: 2, background: C.gold, boxShadow: `0 0 10px ${C.gold}` }} />
+          {/* labels */}
+          <div style={{ position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)', fontSize: 11, fontFamily: F.mono, color: '#FFF', fontWeight: 700, letterSpacing: '0.06em', textShadow: '0 1px 2px rgba(0,0,0,0.5)' }}>
+            WAGNER · $25M
+          </div>
+          <div style={{ position: 'absolute', left: `${((wagnerBase + d.pipelineEbitda / 2) / platformGoal) * 100}%`, top: '50%', transform: 'translate(-50%, -50%)', fontSize: 10, fontFamily: F.mono, color: '#0B1B3E', fontWeight: 800 }}>
+            +{fmtMoney(d.pipelineEbitda)}
+          </div>
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 8, fontFamily: F.mono, fontSize: 10, color: C.faint }}>
+          <span>$0</span>
+          <span style={{ color: C.gold }}>$45M target</span>
+        </div>
+
+        {/* Side stats */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: 14, marginTop: 18 }}>
+          <Sub label="Wagner base"           val={fmtMoney(wagnerBase)}         color={C.align}      />
+          <Sub label="ChiroPillar pipeline"  val={fmtMoney(d.pipelineEbitda)}   color={C.gold}       />
+          <Sub label="Combined total"        val={fmtMoney(combined)}            color={C.text}       />
+          <Sub label="To $45M target"        val={fmtMoney(Math.max(0, platformGoal - combined))} color={C.coral} />
+          <Sub label="Implied exit @ 9×"     val={fmtMoney(combined * 9)}        color={C.goldLight}  />
+        </div>
+      </div>
+
+      {/* ── 2-COL: Funnel pyramid (left) + Trajectory chart (right) ──── */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 18, marginBottom: 24 }} className="kb-overview-grid">
+
+        {/* Conversion Funnel */}
+        <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, padding: '22px 26px' }}>
+          <div style={{ fontFamily: F.mono, fontSize: 10, color: C.align, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 4 }}>
+            Conversion Funnel · top to close
+          </div>
+          <div style={{ fontFamily: F.display, fontSize: 18, fontWeight: 600, color: C.text, marginBottom: 18 }}>
+            Where they drop off — and where to push.
+          </div>
+          {funnel.map((f, i) => <FunnelLayer key={i} label={f.label} count={f.count} pct={Math.max(f.pct, 2)} color={f.color} indent={i * 12} />)}
+        </div>
+
+        {/* Pipeline Trajectory · big sparkline */}
+        <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, padding: '22px 26px' }}>
+          <div style={{ fontFamily: F.mono, fontSize: 10, color: C.gold, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 4 }}>
+            Pipeline trajectory · 12 weeks
+          </div>
+          <div style={{ fontFamily: F.display, fontSize: 18, fontWeight: 600, color: C.text, marginBottom: 14 }}>
+            From $400K to {fmtMoney(d.pipelineEbitda)} weighted EBITDA.
+          </div>
+          {/* Big chart */}
+          <BigSparkline data={d.sparkPipeline} />
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12, marginTop: 18 }}>
+            <Sub label="12 wk ago"   val={fmtMoney(d.sparkPipeline[0] * 1_000_000)}                                       color={C.muted}     />
+            <Sub label="Today"        val={fmtMoney(d.sparkPipeline[d.sparkPipeline.length - 1] * 1_000_000)}             color={C.gold}      />
+            <Sub label="12-wk growth" val={`+${(((d.sparkPipeline[d.sparkPipeline.length - 1] / Math.max(d.sparkPipeline[0], 0.01)) - 1) * 100).toFixed(0)}%`} color={C.green} />
+          </div>
+        </div>
+      </div>
+
+      {/* ── ALERTS LIST (clinical triage) ──────────────────────────────── */}
+      <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, padding: '22px 26px', marginBottom: 24 }}>
+        <div style={{ fontFamily: F.mono, fontSize: 10, color: C.coral, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 4 }}>
+          🩺 Triage list · what needs you
+        </div>
+        <div style={{ fontFamily: F.display, fontSize: 18, fontWeight: 600, color: C.text, marginBottom: 16 }}>
+          Read top to bottom. Address the urgent first.
+        </div>
+        {d.alerts.map((a, i) => (
+          <div key={i} style={{
+            display: 'flex', gap: 12, alignItems: 'center',
+            padding: '10px 12px', marginBottom: 5, borderRadius: 8,
+            background: a.level === 'urgent' ? 'rgba(231,76,60,0.06)' : a.level === 'watch' ? 'rgba(243,156,18,0.06)' : 'rgba(46,204,139,0.04)',
+            border: `1px solid ${a.level === 'urgent' ? 'rgba(231,76,60,0.25)' : a.level === 'watch' ? 'rgba(243,156,18,0.25)' : 'rgba(46,204,139,0.18)'}`,
+          }}>
+            <span style={{
+              flexShrink: 0, padding: '3px 9px', borderRadius: 4,
+              background: a.level === 'urgent' ? C.red : a.level === 'watch' ? C.amber : C.green,
+              color: '#FFF', fontFamily: F.mono, fontSize: 9, fontWeight: 800,
+              letterSpacing: '0.14em', textTransform: 'uppercase',
+            }}>
+              {a.level}
+            </span>
+            <span style={{ flex: 1, fontSize: 13, color: C.text, lineHeight: 1.45 }}>{a.text}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* ── 2-COL: Top deals (left) + Geo mini-map (right) ────────────── */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: 18, marginBottom: 24 }} className="kb-overview-grid">
+
+        {/* Top Deals */}
         <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, overflow: 'hidden' }}>
           <div style={{ padding: '18px 24px', borderBottom: `1px solid ${C.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
             <div>
               <div style={{ fontFamily: F.mono, fontSize: 10, color: C.gold, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700 }}>
                 Active Deals · top 6 by pipeline value
               </div>
-              <div style={{ fontFamily: F.display, fontSize: 18, fontWeight: 600, color: C.text, marginTop: 4 }}>
-                Where the platform is winning.
-              </div>
             </div>
             <Link href="/targets" style={{ fontSize: 12, color: C.align, textDecoration: 'none', fontFamily: F.mono, letterSpacing: '0.06em' }}>
               View all →
             </Link>
           </div>
-          <div>
-            {d.topDeals.map((deal, i) => (
-              <div key={i} style={{
-                display: 'grid', gridTemplateColumns: '1fr 110px 110px 120px',
-                gap: 12, padding: '14px 24px',
-                borderBottom: i < d.topDeals.length - 1 ? `1px solid ${C.border}` : 'none',
-                alignItems: 'center',
-              }}>
-                <div>
-                  <div style={{ fontSize: 14, fontWeight: 600, color: C.text, marginBottom: 2 }}>{deal.name}</div>
-                  <div style={{ fontSize: 12, color: C.muted, fontFamily: F.mono, letterSpacing: '0.04em' }}>
-                    {deal.city}, {deal.state} · {deal.npm} new/mo · day {deal.daysIn}
-                  </div>
+          {d.topDeals.map((deal, i) => (
+            <div key={i} style={{
+              display: 'grid', gridTemplateColumns: '1fr 110px 110px',
+              gap: 12, padding: '14px 24px',
+              borderBottom: i < d.topDeals.length - 1 ? `1px solid ${C.border}` : 'none',
+              alignItems: 'center',
+            }}>
+              <div>
+                <div style={{ fontSize: 14, fontWeight: 600, color: C.text, marginBottom: 2 }}>{deal.name}</div>
+                <div style={{ fontSize: 12, color: C.muted, fontFamily: F.mono, letterSpacing: '0.04em' }}>
+                  {deal.city}, {deal.state} · {deal.npm} new/mo · day {deal.daysIn}
                 </div>
-                <div style={{
-                  fontFamily: F.mono, fontSize: 10, letterSpacing: '0.14em',
-                  textTransform: 'uppercase', fontWeight: 700, textAlign: 'center',
-                  padding: '4px 8px', borderRadius: 6,
-                  background: deal.status.includes('Diligence') ? 'rgba(201,168,76,0.15)' : deal.status.includes('Scheduled') ? 'rgba(46,117,182,0.15)' : 'rgba(155,168,192,0.12)',
-                  color: deal.status.includes('Diligence') ? C.gold : deal.status.includes('Scheduled') ? C.align : C.muted,
-                }}>
-                  {deal.status}
-                </div>
-                <div style={{ fontFamily: F.display, fontSize: 18, fontWeight: 700, color: C.gold, textAlign: 'right' }}>
-                  {fmtMoney(deal.valuation)}
-                </div>
-                <Link href={`/targets`} style={{ fontSize: 12, color: C.align, textAlign: 'right', textDecoration: 'none', fontFamily: F.mono, letterSpacing: '0.04em' }}>
-                  Open →
-                </Link>
               </div>
-            ))}
-          </div>
+              <div style={{
+                fontFamily: F.mono, fontSize: 10, letterSpacing: '0.14em',
+                textTransform: 'uppercase', fontWeight: 700, textAlign: 'center',
+                padding: '4px 8px', borderRadius: 6,
+                background: deal.status.includes('Diligence') ? 'rgba(201,168,76,0.15)' : deal.status.includes('Scheduled') ? 'rgba(46,117,182,0.15)' : 'rgba(155,168,192,0.12)',
+                color: deal.status.includes('Diligence') ? C.gold : deal.status.includes('Scheduled') ? C.align : C.muted,
+              }}>
+                {deal.status}
+              </div>
+              <div style={{ fontFamily: F.display, fontSize: 18, fontWeight: 700, color: C.gold, textAlign: 'right' }}>
+                {fmtMoney(deal.valuation)}
+              </div>
+            </div>
+          ))}
         </div>
 
-        {/* ── ACTIVITY FEED + EBITDA TRACKER ──────────────────────────── */}
-        <div style={{ display: 'grid', gap: 18 }}>
-
-          {/* EBITDA tracker */}
-          <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, padding: '20px 22px' }}>
-            <div style={{ fontFamily: F.mono, fontSize: 10, color: C.gold, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 4 }}>
-              Combined Platform EBITDA
-            </div>
-            <div style={{ fontFamily: F.display, fontSize: 16, color: C.text, fontWeight: 600, marginBottom: 16 }}>
-              Wagner $25M + ChiroPillar $20M+ target
-            </div>
-
-            {/* Tracker bar */}
-            <div style={{ position: 'relative', height: 16, background: 'rgba(255,255,255,0.05)', borderRadius: 8, overflow: 'hidden', marginBottom: 8 }}>
-              {/* Wagner base */}
-              <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: `${(wagnerBase / platformTarget) * 100}%`, background: C.align, borderRadius: 8 }} />
-              {/* ChiroPillar pipeline portion */}
-              <div style={{ position: 'absolute', left: `${(wagnerBase / platformTarget) * 100}%`, top: 0, bottom: 0, width: `${(d.pipelineEbitda / platformTarget) * 100}%`, background: `linear-gradient(90deg, ${C.gold}, ${C.goldLight})` }} />
-              {/* Target marker */}
-              <div style={{ position: 'absolute', right: 0, top: -3, bottom: -3, width: 2, background: 'rgba(255,255,255,0.45)' }} />
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', fontFamily: F.mono, fontSize: 10, color: C.faint, letterSpacing: '0.04em', marginBottom: 14 }}>
-              <span>$0</span>
-              <span style={{ color: C.align }}>${wagnerBase / 1_000_000}M Wagner</span>
-              <span style={{ color: C.text }}>${platformTarget / 1_000_000}M target</span>
-            </div>
-
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginTop: 14 }}>
-              <KvSmall label="ChiroPillar pipeline" val={fmtMoney(d.pipelineEbitda)} color={C.gold} />
-              <KvSmall label="Combined total" val={fmtMoney(wagnerBase + d.pipelineEbitda)} color={C.text} />
-              <KvSmall label="% to ChiroPillar goal" val={`${progress.toFixed(0)}%`} color={C.green} />
-              <KvSmall label="Implied exit @ 9×" val={fmtMoney((wagnerBase + d.pipelineEbitda) * 9)} color={C.goldLight} />
-            </div>
+        {/* Geo mini-map */}
+        <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, padding: '20px 22px' }}>
+          <div style={{ fontFamily: F.mono, fontSize: 10, color: C.align, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 4 }}>
+            Geography · Wagner footprint
           </div>
-
-          {/* Activity feed */}
-          <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, padding: '20px 22px' }}>
-            <div style={{ fontFamily: F.mono, fontSize: 10, color: C.align, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 14 }}>
-              Recent activity
-            </div>
-            <div>
-              {d.activity.map((a, i) => (
-                <div key={i} style={{
-                  display: 'flex', gap: 11, paddingBottom: 12, marginBottom: 12,
-                  borderBottom: i < d.activity.length - 1 ? `1px dashed ${C.border}` : 'none',
-                  alignItems: 'flex-start',
-                }}>
-                  <span style={{
-                    flexShrink: 0, marginTop: 6,
-                    width: 8, height: 8, borderRadius: 999,
-                    background: a.tone, boxShadow: `0 0 6px ${a.tone}88`,
-                  }} />
-                  <div style={{ flex: 1 }}>
-                    <div style={{ fontSize: 13, color: C.text, lineHeight: 1.5 }}>{a.text}</div>
-                    <div style={{ fontSize: 10, color: C.faint, fontFamily: F.mono, letterSpacing: '0.06em', marginTop: 3 }}>{a.ago}</div>
+          <div style={{ fontFamily: F.display, fontSize: 18, fontWeight: 600, color: C.text, marginBottom: 16 }}>
+            Where applications are coming from.
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
+            {d.byState.slice(0, 8).map(s => {
+              const max = Math.max(...d.byState.map(x => x.count), 1)
+              const w = (s.count / max) * 100
+              const isPrim = WAGNER_PRIMARY.has(s.state)
+              const isSec  = WAGNER_SECONDARY.has(s.state)
+              const color  = isPrim ? C.gold : isSec ? C.align : C.muted
+              return (
+                <div key={s.state} style={{ display: 'grid', gridTemplateColumns: '36px 1fr 30px', gap: 10, alignItems: 'center' }}>
+                  <span style={{ fontFamily: F.mono, fontWeight: 800, color, letterSpacing: '0.04em' }}>{s.state}</span>
+                  <div style={{ position: 'relative', height: 14, background: 'rgba(255,255,255,0.04)', borderRadius: 4, overflow: 'hidden' }}>
+                    <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: `${w}%`, background: `linear-gradient(90deg, ${color}, ${color}88)`, borderRadius: 4 }} />
                   </div>
+                  <span style={{ fontFamily: F.mono, fontSize: 12, color, fontWeight: 700, textAlign: 'right' }}>{s.count}</span>
                 </div>
-              ))}
-            </div>
+              )
+            })}
           </div>
+          <Link href="/analytics" style={{
+            display: 'block', textAlign: 'center', marginTop: 16,
+            padding: '10px 14px', borderRadius: 8,
+            background: 'rgba(46,117,182,0.10)', border: `1px solid rgba(46,117,182,0.30)`,
+            color: C.align, fontSize: 12, fontWeight: 700, textDecoration: 'none',
+            fontFamily: F.body, letterSpacing: '0.04em',
+          }}>
+            Open full geographic heatmap →
+          </Link>
         </div>
       </div>
 
-      {/* QUICK ACTIONS */}
-      <div style={{ marginBottom: 32 }}>
-        <div style={{ fontFamily: F.mono, fontSize: 10, color: C.faint, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 12 }}>
-          Quick actions
+      {/* ── ACTIVITY FEED + QUICK ACTIONS row ──────────────────────────── */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 18 }} className="kb-overview-grid">
+
+        {/* Activity */}
+        <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, padding: '20px 22px' }}>
+          <div style={{ fontFamily: F.mono, fontSize: 10, color: C.align, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 14 }}>
+            Recent activity
+          </div>
+          {d.activity.map((a, i) => (
+            <div key={i} style={{
+              display: 'flex', gap: 11, paddingBottom: 12, marginBottom: 12,
+              borderBottom: i < d.activity.length - 1 ? `1px dashed ${C.border}` : 'none',
+              alignItems: 'flex-start',
+            }}>
+              <span style={{
+                flexShrink: 0, marginTop: 6,
+                width: 8, height: 8, borderRadius: 999,
+                background: a.tone, boxShadow: `0 0 6px ${a.tone}88`,
+              }} />
+              <div style={{ flex: 1 }}>
+                <div style={{ fontSize: 13, color: C.text, lineHeight: 1.5 }}>{a.text}</div>
+                <div style={{ fontSize: 10, color: C.faint, fontFamily: F.mono, letterSpacing: '0.06em', marginTop: 3 }}>{a.ago}</div>
+              </div>
+            </div>
+          ))}
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 12 }}>
+
+        {/* Quick Actions */}
+        <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, padding: '20px 22px' }}>
+          <div style={{ fontFamily: F.mono, fontSize: 10, color: C.gold, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 14 }}>
+            Quick actions
+          </div>
           <QuickAction href="/targets"    label="Intake Submissions" desc={`${d.totalIntakes} applications · ${d.qualified} qualified`} accent={C.green} />
           <QuickAction href="/calculator" label="Deal Calculator"    desc="Drag sliders · live roll-up math" accent={C.align} />
+          <QuickAction href="/valuation"  label="AI Valuation Engine" desc="Per-clinic valuation · 3-step input wizard" accent={C.gold} />
           <QuickAction href="/analytics"  label="Analytics + Geo Map" desc={`${d.states} states · Wagner-aligned heatmap`} accent={C.goldLight} />
-          <QuickAction href="/data-room"  label="Data Room"           desc="4 strategy PDFs · upload clinic financials" accent={C.gold} />
+          <QuickAction href="/pipeline"   label="Acquisition Pipeline" desc="Kanban + Bloomberg-style audit timeline" accent={C.spine} />
+          <QuickAction href="/data-room"  label="Data Room" desc="4 strategy PDFs · drop financials for AI extraction" accent={C.coral} />
         </div>
       </div>
 
       <style>{`
-        @media (max-width: 880px) {
+        @media (max-width: 980px) {
           .kb-overview-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
@@ -318,23 +541,82 @@ export default async function OverviewPage() {
   )
 }
 
-function Kpi({ label, val, color, sub }: { label: string; val: string; color: string; sub: string }) {
+// ────────────────────────────────────────────────────────────────────────
+//                          Sub-components
+// ────────────────────────────────────────────────────────────────────────
+
+function Vital({ label, val, sub, trend, color, width = 130 }: { label: string; val: string; sub: string; trend: number[]; color: string; width?: number }) {
   return (
     <div>
       <div style={{ fontFamily: F.mono, fontSize: 10, color: C.faint, letterSpacing: '0.12em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 4 }}>
         {label}
       </div>
-      <div style={{ fontSize: 28, fontWeight: 700, color, fontFamily: F.display, lineHeight: 1, marginBottom: 4 }}>{val}</div>
-      <div style={{ fontFamily: F.mono, fontSize: 10, color: C.faint, letterSpacing: '0.06em' }}>{sub}</div>
+      <div style={{ fontFamily: F.display, fontSize: 26, fontWeight: 700, color, lineHeight: 1, marginBottom: 6 }}>{val}</div>
+      <Sparkline data={trend} color={color} width={width} height={26} />
+      <div style={{ fontFamily: F.mono, fontSize: 9, color: C.faint, letterSpacing: '0.06em', marginTop: 4 }}>{sub}</div>
     </div>
   )
 }
 
-function KvSmall({ label, val, color }: { label: string; val: string; color: string }) {
+function TriageStat({ level, count, label, sub }: { level: 'urgent' | 'watch' | 'ok'; count: number; label: string; sub: string }) {
+  const color = level === 'urgent' ? C.red : level === 'watch' ? C.amber : C.green
+  return (
+    <div style={{
+      background: C.bg2, borderLeft: `4px solid ${color}`,
+      border: `1px solid ${C.border}`, borderRadius: 10,
+      padding: '16px 20px', display: 'flex', alignItems: 'center', gap: 18,
+    }}>
+      <div style={{ fontFamily: F.display, fontSize: 42, fontWeight: 800, color, lineHeight: 1 }}>{count}</div>
+      <div>
+        <div style={{ fontFamily: F.mono, fontSize: 10, color, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 800 }}>{label}</div>
+        <div style={{ fontSize: 12, color: C.muted, marginTop: 2 }}>{sub}</div>
+      </div>
+    </div>
+  )
+}
+
+function Sub({ label, val, color }: { label: string; val: string; color: string }) {
   return (
     <div>
       <div style={{ fontFamily: F.mono, fontSize: 9, color: C.faint, letterSpacing: '0.10em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 2 }}>{label}</div>
-      <div style={{ fontSize: 17, fontWeight: 700, color, fontFamily: F.display, lineHeight: 1 }}>{val}</div>
+      <div style={{ fontSize: 16, fontWeight: 700, color, fontFamily: F.display, lineHeight: 1 }}>{val}</div>
+    </div>
+  )
+}
+
+function BigSparkline({ data }: { data: number[] }) {
+  const W = 540, H = 120, pad = 8
+  const max = Math.max(...data, 0.001)
+  const min = 0
+  const range = max - min || 1
+  const points = data.map((v, i) => {
+    const x = pad + (i / (data.length - 1)) * (W - pad * 2)
+    const y = H - pad - ((v - min) / range) * (H - pad * 2)
+    return `${x.toFixed(1)},${y.toFixed(1)}`
+  }).join(' ')
+  const areaPoints = `${pad},${H - pad} ${points} ${W - pad},${H - pad}`
+  return (
+    <div style={{ width: '100%', overflow: 'hidden', borderRadius: 8 }}>
+      <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet" style={{ width: '100%', height: 'auto', display: 'block' }}>
+        <defs>
+          <linearGradient id="trajFill" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%"   stopColor={C.gold} stopOpacity="0.35" />
+            <stop offset="100%" stopColor={C.gold} stopOpacity="0" />
+          </linearGradient>
+        </defs>
+        {/* grid lines */}
+        {[0.25, 0.5, 0.75].map(t => (
+          <line key={t} x1={pad} x2={W - pad} y1={H - pad - t * (H - pad * 2)} y2={H - pad - t * (H - pad * 2)} stroke="rgba(255,255,255,0.04)" strokeWidth="1" />
+        ))}
+        <polygon points={areaPoints} fill="url(#trajFill)" />
+        <polyline points={points} fill="none" stroke={C.gold} strokeWidth="2.5" strokeLinejoin="round" strokeLinecap="round" />
+        {/* dots */}
+        {data.map((v, i) => {
+          const x = pad + (i / (data.length - 1)) * (W - pad * 2)
+          const y = H - pad - ((v - min) / range) * (H - pad * 2)
+          return <circle key={i} cx={x} cy={y} r={i === data.length - 1 ? 4 : 2} fill={i === data.length - 1 ? C.goldLight : C.gold} />
+        })}
+      </svg>
     </div>
   )
 }
@@ -343,13 +625,12 @@ function QuickAction({ href, label, desc, accent }: { href: string; label: strin
   return (
     <Link href={href} style={{ textDecoration: 'none' }}>
       <div style={{
-        background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 12,
-        padding: '16px 18px', cursor: 'pointer', height: '100%',
-        transition: 'all 0.15s',
-        borderLeft: `3px solid ${accent}`,
+        background: C.bg3, border: `1px solid ${C.border}`, borderRadius: 10,
+        padding: '12px 16px', marginBottom: 6, cursor: 'pointer',
+        borderLeft: `3px solid ${accent}`, transition: 'all 0.15s',
       }}>
-        <div style={{ fontSize: 14, fontWeight: 600, color: C.text, marginBottom: 4 }}>{label}</div>
-        <div style={{ fontSize: 12, color: C.muted, lineHeight: 1.45 }}>{desc}</div>
+        <div style={{ fontSize: 14, fontWeight: 600, color: C.text, marginBottom: 2 }}>{label}</div>
+        <div style={{ fontSize: 12, color: C.muted, lineHeight: 1.4 }}>{desc}</div>
       </div>
     </Link>
   )
