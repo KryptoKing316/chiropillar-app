@@ -211,22 +211,23 @@ export default function WalkthroughClient({ stats }: { stats: LiveStats }) {
 
       {/* Header */}
       <div style={{ marginBottom: 28 }}>
-        <div style={{ fontFamily: F.mono, fontSize: 11, color: C.align, letterSpacing: '0.22em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 8 }}>
+        <div style={{ fontFamily: F.mono, fontSize: 12.5, color: C.align, letterSpacing: '0.22em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 10 }}>
           Self-Demo Guide · Strength in Alignment
         </div>
-        <h1 style={{ fontFamily: F.display, fontSize: 'clamp(32px, 4.5vw, 44px)', fontWeight: 700, margin: '0 0 8px', letterSpacing: '-0.02em', color: C.text }}>
+        <h1 style={{ fontFamily: F.display, fontSize: 'clamp(34px, 4.5vw, 46px)', fontWeight: 700, margin: '0 0 10px', letterSpacing: '-0.02em', color: C.text }}>
           How the ChiroPillar platform works
         </h1>
-        <p style={{ fontSize: 16, color: C.muted, margin: 0, maxWidth: 760, lineHeight: 1.6 }}>
+        <p style={{ fontSize: 16, color: '#FFFFFF', margin: 0, maxWidth: 760, lineHeight: 1.6, fontWeight: 400 }}>
           A plain-English tour of every tab. {stats.isDemo ? 'Numbers below are sample data from the demo session.' : 'All numbers are live from the production database.'}
         </p>
       </div>
 
       {/* LIVE STATS STRIP — mirrors app.KingdomBroker.com pattern */}
       <div style={{
-        background: `linear-gradient(135deg, rgba(46,117,182,0.08) 0%, ${C.bg3} 100%)`,
-        border: `1px solid ${C.border}`, borderRadius: 14, padding: '20px 24px',
-        marginBottom: 32, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: 18,
+        background: `linear-gradient(135deg, rgba(46,117,182,0.12) 0%, ${C.bg3} 100%)`,
+        border: `1px solid rgba(46,117,182,0.30)`, borderRadius: 14, padding: '24px 28px',
+        marginBottom: 32, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 20,
+        boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
       }}>
         <StatPill label="Total Intakes"      val={String(stats.totalIntakes)}            color={C.gold}  isDemo={stats.isDemo} />
         <StatPill label="Qualified"          val={String(stats.qualified)}               color={C.green} isDemo={stats.isDemo} />
@@ -238,24 +239,25 @@ export default function WalkthroughClient({ stats }: { stats: LiveStats }) {
       </div>
 
       {/* STEP NAV PILLS */}
-      <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 24 }}>
+      <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 24 }}>
         {STEPS.map((s, i) => (
           <button
             key={s.num}
             onClick={() => setStep(i)}
             style={{
-              padding: '7px 14px', borderRadius: 8, border: 'none', cursor: 'pointer',
-              fontFamily: F.body, fontSize: 12, fontWeight: step === i ? 700 : 500,
-              background: step === i ? s.color : 'rgba(255,255,255,0.04)',
-              color: step === i ? C.bg : C.muted,
+              padding: '9px 16px', borderRadius: 8, border: 'none', cursor: 'pointer',
+              fontFamily: F.body, fontSize: 13.5, fontWeight: step === i ? 800 : 600,
+              background: step === i ? s.color : 'rgba(255,255,255,0.06)',
+              color: step === i ? C.bg : '#FFFFFF',
               transition: 'all 0.15s',
-              display: 'flex', alignItems: 'center', gap: 6,
+              display: 'flex', alignItems: 'center', gap: 7,
+              boxShadow: step === i ? `0 4px 12px ${s.color}40` : 'none',
             }}
           >
-            <span style={{ fontFamily: F.mono, fontSize: 10, opacity: 0.7 }}>{s.num}</span>
+            <span style={{ fontFamily: F.mono, fontSize: 11.5, opacity: 0.8, fontWeight: 700 }}>{s.num}</span>
             {s.label}
             {s.status === 'Live' && step !== i && (
-              <span style={{ fontSize: 8, fontWeight: 800, padding: '1px 5px', borderRadius: 3, background: 'rgba(46,204,139,0.15)', color: C.green, letterSpacing: '0.08em' }}>LIVE</span>
+              <span style={{ fontSize: 9.5, fontWeight: 800, padding: '2px 6px', borderRadius: 3, background: 'rgba(46,204,139,0.20)', color: C.green, letterSpacing: '0.08em' }}>LIVE</span>
             )}
           </button>
         ))}
@@ -310,13 +312,13 @@ export default function WalkthroughClient({ stats }: { stats: LiveStats }) {
               Open Tab →
             </Link>
           </div>
-          <h2 style={{ fontFamily: F.display, fontSize: 32, fontWeight: 600, margin: '0 0 6px', letterSpacing: '-0.02em', color: C.text }}>
+          <h2 style={{ fontFamily: F.display, fontSize: 'clamp(28px, 3.5vw, 36px)', fontWeight: 700, margin: '0 0 8px', letterSpacing: '-0.02em', color: '#FFFFFF' }}>
             {current.label}
           </h2>
-          <div style={{ fontSize: 17, color: current.color, fontWeight: 500, fontStyle: 'italic', margin: '0 0 14px' }}>
+          <div style={{ fontSize: 18, color: current.color, fontWeight: 600, fontStyle: 'italic', margin: '0 0 16px' }}>
             {current.tagline}
           </div>
-          <p style={{ fontSize: 15, color: C.muted, margin: 0, lineHeight: 1.75, maxWidth: 720 }}>
+          <p style={{ fontSize: 15.5, color: '#FFFFFF', margin: 0, lineHeight: 1.7, maxWidth: 720, fontWeight: 400 }}>
             {current.what}
           </p>
         </div>
@@ -325,44 +327,44 @@ export default function WalkthroughClient({ stats }: { stats: LiveStats }) {
         <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1fr) 300px', gap: 0 }} className="walk-body">
 
           {/* Features list */}
-          <div style={{ padding: '28px 32px', borderRight: `1px solid ${C.border}` }}>
-            <div style={{ fontFamily: F.mono, fontSize: 10, color: C.faint, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 18 }}>
+          <div style={{ padding: '30px 34px', borderRight: `1px solid ${C.border}` }}>
+            <div style={{ fontFamily: F.mono, fontSize: 12.5, color: current.color, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 22 }}>
               What this tab does
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
               {current.features.map((f, i) => (
-                <div key={i} style={{ display: 'flex', gap: 14, paddingBottom: 18, marginBottom: 18, borderBottom: i < current.features.length - 1 ? `1px solid ${C.border}` : 'none' }}>
-                  <div style={{ width: 26, height: 26, borderRadius: 7, background: `${current.color}15`, border: `1px solid ${current.color}30`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 1, fontFamily: F.mono, fontSize: 11, fontWeight: 700, color: current.color }}>
+                <div key={i} style={{ display: 'flex', gap: 16, paddingBottom: 20, marginBottom: 20, borderBottom: i < current.features.length - 1 ? `1px solid ${C.border}` : 'none' }}>
+                  <div style={{ width: 32, height: 32, borderRadius: 8, background: `${current.color}20`, border: `1px solid ${current.color}50`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 2, fontFamily: F.mono, fontSize: 13, fontWeight: 800, color: current.color }}>
                     {String(i + 1).padStart(2, '0')}
                   </div>
                   <div>
-                    <div style={{ fontSize: 14, fontWeight: 600, color: C.text, marginBottom: 4 }}>{f.title}</div>
-                    <div style={{ fontSize: 13.5, color: C.muted, lineHeight: 1.7 }}>{f.desc}</div>
+                    <div style={{ fontSize: 15.5, fontWeight: 700, color: '#FFFFFF', marginBottom: 6, letterSpacing: '-0.01em' }}>{f.title}</div>
+                    <div style={{ fontSize: 14, color: '#FFFFFF', lineHeight: 1.65, fontWeight: 400, opacity: 0.85 }}>{f.desc}</div>
                   </div>
                 </div>
               ))}
             </div>
 
-            <div style={{ background: `${current.color}0d`, border: `1px solid ${current.color}30`, borderRadius: 10, padding: '16px 18px', marginTop: 6 }}>
-              <div style={{ fontFamily: F.mono, fontSize: 10, color: current.color, letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 8 }}>
-                Why this matters
+            <div style={{ background: `${current.color}15`, border: `1px solid ${current.color}45`, borderLeft: `4px solid ${current.color}`, borderRadius: 10, padding: '18px 22px', marginTop: 8 }}>
+              <div style={{ fontFamily: F.mono, fontSize: 12, color: current.color, letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 10 }}>
+                ★ Why this matters
               </div>
-              <p style={{ fontSize: 13.5, color: C.text, margin: 0, lineHeight: 1.7 }}>{current.callout}</p>
+              <p style={{ fontSize: 14.5, color: '#FFFFFF', margin: 0, lineHeight: 1.65, fontWeight: 500 }}>{current.callout}</p>
             </div>
           </div>
 
           {/* Right panel — live numbers */}
-          <div style={{ padding: '28px 24px', background: C.bg3 }}>
-            <div style={{ fontFamily: F.mono, fontSize: 10, color: C.faint, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 16 }}>
-              {stats.isDemo ? 'Demo numbers' : 'Live numbers'}
+          <div style={{ padding: '30px 26px', background: C.bg3 }}>
+            <div style={{ fontFamily: F.mono, fontSize: 12.5, color: '#FFFFFF', letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 20 }}>
+              {stats.isDemo ? '◐ Demo numbers' : '● Live numbers'}
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 24 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 24 }}>
               {current.visualKeys.map((k, i) => {
                 const v = statValue(k, stats)
                 return (
-                  <div key={i} style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 9, padding: '12px 14px', display: 'flex', flexDirection: 'column', gap: 4 }}>
-                    <div style={{ fontSize: 10, color: C.faint, fontFamily: F.mono, letterSpacing: '0.10em', textTransform: 'uppercase', fontWeight: 600 }}>{v.label}</div>
-                    <div style={{ fontSize: 18, fontWeight: 700, color: v.color, fontFamily: F.display }}>{v.val}</div>
+                  <div key={i} style={{ background: C.bg2, border: `1px solid ${C.border}`, borderLeft: `4px solid ${v.color}`, borderRadius: 10, padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 6 }}>
+                    <div style={{ fontSize: 11.5, color: v.color, fontFamily: F.mono, letterSpacing: '0.12em', textTransform: 'uppercase', fontWeight: 800 }}>{v.label}</div>
+                    <div style={{ fontSize: 24, fontWeight: 800, color: v.color, fontFamily: F.display, lineHeight: 1, letterSpacing: '-0.02em' }}>{v.val}</div>
                   </div>
                 )
               })}
@@ -370,7 +372,7 @@ export default function WalkthroughClient({ stats }: { stats: LiveStats }) {
 
             <Link
               href={current.href}
-              style={{ display: 'block', textAlign: 'center', padding: '12px', background: `${current.color}15`, border: `1px solid ${current.color}40`, borderRadius: 9, color: current.color, fontSize: 13, fontWeight: 700, textDecoration: 'none', fontFamily: F.body }}
+              style={{ display: 'block', textAlign: 'center', padding: '14px 18px', background: `${current.color}25`, border: `1px solid ${current.color}60`, borderRadius: 10, color: current.color, fontSize: 14, fontWeight: 800, textDecoration: 'none', fontFamily: F.body, letterSpacing: '0.02em', boxShadow: `0 4px 12px ${current.color}25` }}
             >
               Open {current.label} →
             </Link>
@@ -379,25 +381,25 @@ export default function WalkthroughClient({ stats }: { stats: LiveStats }) {
       </div>
 
       {/* QUICK REF GRID */}
-      <div style={{ marginTop: 36, background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 12, padding: 24 }}>
-        <div style={{ fontFamily: F.mono, fontSize: 10, color: C.faint, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 18 }}>
+      <div style={{ marginTop: 36, background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, padding: 28, boxShadow: '0 4px 16px rgba(0,0,0,0.12)' }}>
+        <div style={{ fontFamily: F.mono, fontSize: 12.5, color: C.gold, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 22 }}>
           All tabs · quick reference
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px,1fr))', gap: 12 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px,1fr))', gap: 14 }}>
           {STEPS.map((s, i) => (
             <Link key={s.num} href={s.href} style={{ textDecoration: 'none' }}>
               <div
                 onClick={() => setStep(i)}
-                style={{ padding: '14px 16px', background: step === i ? `${s.color}10` : C.bg3, border: `1px solid ${step === i ? s.color + '40' : C.border}`, borderRadius: 10, cursor: 'pointer', transition: 'all 0.15s', height: '100%' }}
+                style={{ padding: '16px 18px', background: step === i ? `${s.color}18` : C.bg3, border: `1px solid ${step === i ? s.color + '50' : C.border}`, borderLeft: `4px solid ${s.color}`, borderRadius: 10, cursor: 'pointer', transition: 'all 0.15s', height: '100%' }}
               >
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
-                  <span style={{ fontFamily: F.mono, fontSize: 10, color: s.color, fontWeight: 700 }}>{s.num}</span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
+                  <span style={{ fontFamily: F.mono, fontSize: 12, color: s.color, fontWeight: 800 }}>{s.num}</span>
                   {s.status === 'Live' && (
-                    <span style={{ fontSize: 8, fontWeight: 800, padding: '1px 5px', borderRadius: 3, background: 'rgba(46,204,139,0.15)', color: C.green, letterSpacing: '0.08em' }}>LIVE</span>
+                    <span style={{ fontSize: 10, fontWeight: 800, padding: '2px 7px', borderRadius: 4, background: 'rgba(46,204,139,0.20)', color: C.green, letterSpacing: '0.10em' }}>LIVE</span>
                   )}
                 </div>
-                <div style={{ fontSize: 14, fontWeight: 600, color: step === i ? s.color : C.text, marginBottom: 4 }}>{s.label}</div>
-                <div style={{ fontSize: 12, color: C.faint, lineHeight: 1.5 }}>{s.tagline}</div>
+                <div style={{ fontSize: 15.5, fontWeight: 700, color: step === i ? s.color : '#FFFFFF', marginBottom: 6, letterSpacing: '-0.01em' }}>{s.label}</div>
+                <div style={{ fontSize: 13, color: '#FFFFFF', lineHeight: 1.55, fontWeight: 500, opacity: 0.80 }}>{s.tagline}</div>
               </div>
             </Link>
           ))}
@@ -409,16 +411,16 @@ export default function WalkthroughClient({ stats }: { stats: LiveStats }) {
 
 function StatPill({ label, val, color, isDemo }: { label: string; val: string; color: string; isDemo: boolean }) {
   return (
-    <div>
-      <div style={{ fontFamily: F.mono, fontSize: 10, color: C.faint, letterSpacing: '0.12em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 6, display: 'flex', alignItems: 'center', gap: 6 }}>
+    <div style={{ padding: '4px 0' }}>
+      <div style={{ fontFamily: F.mono, fontSize: 11.5, color, letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 8, display: 'flex', alignItems: 'center', gap: 7 }}>
         {label}
         <span style={{
-          width: 5, height: 5, borderRadius: 999,
+          width: 7, height: 7, borderRadius: 999,
           background: isDemo ? C.gold : C.green,
-          boxShadow: `0 0 8px ${isDemo ? C.gold : C.green}`,
+          boxShadow: `0 0 10px ${isDemo ? C.gold : C.green}`,
         }} />
       </div>
-      <div style={{ fontSize: 22, fontWeight: 700, color, fontFamily: F.display }}>{val}</div>
+      <div style={{ fontSize: 30, fontWeight: 800, color, fontFamily: F.display, letterSpacing: '-0.02em', lineHeight: 1 }}>{val}</div>
     </div>
   )
 }
