@@ -241,6 +241,20 @@ const ICONS: Record<string, React.ReactNode> = {
       <line x1="4.5" y1="11" x2="6" y2="15"/>
     </IC>
   ),
+  '/leads': (
+    <IC>
+      {/* Stack of contact cards · CRM */}
+      <rect x="2" y="3" width="14" height="3" rx="1"/>
+      <rect x="2" y="7.5" width="14" height="3" rx="1"/>
+      <rect x="2" y="12" width="14" height="3" rx="1"/>
+      <circle cx="5" cy="4.5" r="0.7" fill="currentColor"/>
+      <line x1="7.5" y1="4.5" x2="14" y2="4.5"/>
+      <circle cx="5" cy="9" r="0.7" fill="currentColor"/>
+      <line x1="7.5" y1="9" x2="14" y2="9"/>
+      <circle cx="5" cy="13.5" r="0.7" fill="currentColor"/>
+      <line x1="7.5" y1="13.5" x2="14" y2="13.5"/>
+    </IC>
+  ),
   '/leaderboard': (
     <IC>
       {/* Trophy */}
@@ -350,15 +364,16 @@ const ICONS: Record<string, React.ReactNode> = {
 // "Soon" badge = wired in the nav, placeholder page for the Loom
 const NAV = [
   { href: '/walkthrough',  label: 'Self-Demo Guide',      badge: 'Live' },
-  { href: '/overview',     label: 'Overview',             badge: 'Soon' },
+  { href: '/overview',     label: 'Overview',             badge: 'Live' },
+  { href: '/leads',        label: 'VA Leads · CRM',       badge: 'Live' },
   { href: '/targets',      label: 'Intake Submissions'                  },
   { href: '/calculator',   label: 'Deal Calculator'                     },
   { href: '/analytics',    label: 'Analytics',            badge: 'Live' },
-  { href: '/valuation',    label: 'AI Valuation',         badge: 'Soon' },
-  { href: '/pipeline',     label: 'Acquisition Pipeline', badge: 'Soon' },
+  { href: '/valuation',    label: 'AI Valuation',         badge: 'Live' },
+  { href: '/pipeline',     label: 'Acquisition Pipeline', badge: 'Live' },
   { href: '/data-room',    label: 'Data Room',            badge: 'Live' },
   { href: '/nda-loi',      label: 'NDAs & LOIs',          badge: 'Soon' },
-  { href: '/scale',        label: 'Scale Services',       badge: 'Soon' },
+  { href: '/scale',        label: 'Scale Services',       badge: 'Live' },
   { href: '/outreach',     label: 'Outreach Campaigns',   badge: 'Soon' },
 ]
 

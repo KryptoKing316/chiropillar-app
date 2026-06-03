@@ -222,15 +222,41 @@ export default function ValuationPage() {
           <div style={{ fontFamily: F.mono, fontSize: 11, color: C.align, letterSpacing: '0.22em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 6 }}>
             New Valuation · step {step + 1} of 3
           </div>
-          <h1 style={{ fontFamily: F.display, fontSize: 'clamp(28px, 4vw, 36px)', fontWeight: 700, margin: '0 0 6px', letterSpacing: '-0.02em' }}>
+          <h1 style={{ fontFamily: F.display, fontSize: 'clamp(28px, 4vw, 36px)', fontWeight: 700, margin: '0 0 8px', letterSpacing: '-0.02em', color: '#FFFFFF' }}>
             {step === 0 && 'Tell us about the practice.'}
             {step === 1 && '3 years of financials.'}
             {step === 2 && 'Add-back capture.'}
           </h1>
-          <p style={{ fontSize: 14, color: C.muted, margin: 0 }}>
+          <p style={{ fontSize: 15, color: C.muted, margin: 0, lineHeight: 1.55 }}>
             Same engine the public /intake form uses, calibrated to nearly 200 chiropractic deals analyzed.
           </p>
         </div>
+
+        {/* "When to use which" explainer · ONLY on step 0 */}
+        {step === 0 && (
+          <div style={{
+            marginBottom: 24, padding: '18px 22px',
+            background: 'rgba(46,117,182,0.10)', border: `1px solid rgba(46,117,182,0.30)`, borderRadius: 12,
+          }}>
+            <div style={{ fontFamily: F.mono, fontSize: 11, color: C.globe, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 10 }}>
+              💡 When to use this vs. Data Room upload
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 18 }} className="kb-val-grid">
+              <div>
+                <div style={{ fontSize: 14, color: '#FFFFFF', fontWeight: 700, marginBottom: 6 }}>📝 Manual entry (this page)</div>
+                <div style={{ fontSize: 13, color: C.muted, lineHeight: 1.55 }}>
+                  Use when you have rough numbers in your head or on a sticky note. Fastest way to model a valuation on the fly during a sales call. Wagner walks a chiro through their own numbers in real time.
+                </div>
+              </div>
+              <div>
+                <div style={{ fontSize: 14, color: '#FFFFFF', fontWeight: 700, marginBottom: 6 }}>📂 PDF upload (<a href="/data-room" style={{ color: C.gold, textDecoration: 'underline' }}>Data Room</a>)</div>
+                <div style={{ fontSize: 13, color: C.muted, lineHeight: 1.55 }}>
+                  Use when the chiro has sent tax returns / P&Ls / bank statements. Claude reads the PDFs, extracts revenue + EBITDA + owner comp, flags add-backs automatically. Higher accuracy. 10-30 seconds per document.
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Progress */}
         <div style={{ display: 'flex', gap: 6, marginBottom: 28 }}>
@@ -788,22 +814,30 @@ function ResultView({ form, v, startWizard, loadExample }: {
 //                          UI HELPERS
 // ────────────────────────────────────────────────────────────────────────
 const inputStyle: React.CSSProperties = {
-  width: '100%', padding: '10px 14px',
-  background: 'rgba(255,255,255,0.04)',
-  border: `1px solid ${C.border}`, borderRadius: 8,
-  color: C.text, fontSize: 14, fontFamily: F.body,
+  width: '100%', padding: '14px 18px',
+  background: 'rgba(255,255,255,0.06)',
+  border: `1px solid rgba(255,255,255,0.18)`, borderRadius: 10,
+  color: '#FFFFFF', fontSize: 16, fontFamily: F.body, fontWeight: 500,
   outline: 'none', boxSizing: 'border-box',
 }
 const inputWrap: React.CSSProperties = { position: 'relative' }
 const inputPrefix: React.CSSProperties = {
-  position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)',
-  color: C.faint, fontSize: 13, fontFamily: F.mono, pointerEvents: 'none',
+  position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)',
+  color: '#9CC4E4', fontSize: 14, fontFamily: F.mono, fontWeight: 700, pointerEvents: 'none',
 }
 
 function Field({ label, children, full }: { label: string; children: React.ReactNode; full?: boolean }) {
   return (
     <div style={{ gridColumn: full ? 'span 2' : 'auto' }}>
-      <label style={{ display: 'block', fontFamily: F.mono, fontSize: 10, color: C.faint, letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 6 }}>{label}</label>
+      <label style={{
+        display: 'block',
+        fontFamily: F.body,
+        fontSize: 14,
+        color: '#FFFFFF',
+        fontWeight: 600,
+        marginBottom: 8,
+        letterSpacing: '0.01em',
+      }}>{label}</label>
       {children}
     </div>
   )
