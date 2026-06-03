@@ -138,22 +138,23 @@ export default function ScaleServicesPage() {
 
       {/* HEADER */}
       <div style={{ marginBottom: 28 }}>
-        <div style={{ fontFamily: F.mono, fontSize: 11, color: C.gold, letterSpacing: '0.22em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 8 }}>
+        <div style={{ fontFamily: F.mono, fontSize: 12.5, color: C.gold, letterSpacing: '0.22em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 10 }}>
           Scale Services · Wagner Standalone Revenue
         </div>
-        <h1 style={{ fontFamily: F.display, fontSize: 'clamp(34px, 4.5vw, 48px)', fontWeight: 700, margin: '0 0 8px', letterSpacing: '-0.02em' }}>
+        <h1 style={{ fontFamily: F.display, fontSize: 'clamp(36px, 4.5vw, 50px)', fontWeight: 700, margin: '0 0 12px', letterSpacing: '-0.02em' }}>
           Productized consulting — separate from the roll-up.
         </h1>
-        <p style={{ fontSize: 16, color: C.muted, margin: 0, maxWidth: 820, lineHeight: 1.55 }}>
+        <p style={{ fontSize: 16, color: '#FFFFFF', margin: 0, maxWidth: 820, lineHeight: 1.6, fontWeight: 400 }}>
           A chiropractor doesn&apos;t have to sell to work with Dr. Wagner. Four packages — strategy calls, practice audits, medical-team installations, and the ChiroPillar Mastermind — productized with clear pricing, Stripe checkout, and Calendly auto-booking. Revenue routes to Wagner&apos;s account separately from acquisition pipeline.
         </p>
       </div>
 
       {/* PROJECTED ECONOMICS STRIP */}
       <div style={{
-        background: `linear-gradient(135deg, rgba(46,204,139,0.08), ${C.bg3})`,
-        border: `1px solid rgba(46,204,139,0.20)`, borderRadius: 14, padding: '22px 26px',
+        background: `linear-gradient(135deg, rgba(46,204,139,0.12), ${C.bg3})`,
+        border: `1px solid rgba(46,204,139,0.30)`, borderRadius: 14, padding: '24px 28px',
         marginBottom: 32, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 20,
+        boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
       }}>
         <Econ label="Avg. revenue / customer" val="$8,200" sub="weighted across 4 packages" color={C.gold} />
         <Econ label="Margin per package"      val="78%"    sub="Wagner's time is the cost" color={C.green} />
@@ -164,78 +165,79 @@ export default function ScaleServicesPage() {
 
       {/* PACKAGES GRID */}
       <div style={{ marginBottom: 32 }}>
-        <div style={{ fontFamily: F.mono, fontSize: 10, color: C.faint, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 14 }}>
-          The 4 packages
+        <div style={{ fontFamily: F.mono, fontSize: 12.5, color: C.gold, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 18 }}>
+          ★ The 4 packages
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(310px, 1fr))', gap: 18 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 20 }}>
           {PACKAGES.map(p => (
             <div key={p.key} style={{
-              background: C.bg2, border: `1px solid ${C.border}`, borderLeft: `4px solid ${p.accent}`,
-              borderRadius: 14, padding: '24px 26px',
+              background: C.bg2, border: `1px solid ${p.accent}40`, borderLeft: `4px solid ${p.accent}`,
+              borderRadius: 14, padding: '26px 28px',
               display: 'flex', flexDirection: 'column',
               position: 'relative', overflow: 'hidden',
+              boxShadow: `0 4px 20px ${p.accent}20`,
             }}>
               {p.badge && (
                 <div style={{
-                  position: 'absolute', top: 16, right: 16,
-                  padding: '4px 10px', borderRadius: 6,
-                  background: p.accent + '22', border: `1px solid ${p.accent}66`,
-                  fontFamily: F.mono, fontSize: 9, fontWeight: 800, letterSpacing: '0.14em',
+                  position: 'absolute', top: 18, right: 18,
+                  padding: '5px 12px', borderRadius: 6,
+                  background: p.accent + '30', border: `1px solid ${p.accent}80`,
+                  fontFamily: F.mono, fontSize: 11, fontWeight: 800, letterSpacing: '0.14em',
                   textTransform: 'uppercase', color: p.accent,
                 }}>{p.badge}</div>
               )}
 
-              <div style={{ fontFamily: F.mono, fontSize: 10, color: p.accent, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 10 }}>
+              <div style={{ fontFamily: F.mono, fontSize: 12, color: p.accent, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 12 }}>
                 {p.category}
               </div>
 
-              <h3 style={{ fontFamily: F.display, fontSize: 22, fontWeight: 700, color: C.text, margin: '0 0 8px', letterSpacing: '-0.01em', lineHeight: 1.2 }}>
+              <h3 style={{ fontFamily: F.display, fontSize: 24, fontWeight: 700, color: '#FFFFFF', margin: '0 0 10px', letterSpacing: '-0.01em', lineHeight: 1.2 }}>
                 {p.name}
               </h3>
 
-              <p style={{ fontSize: 14, color: C.muted, fontStyle: 'italic', margin: '0 0 18px', lineHeight: 1.5 }}>
+              <p style={{ fontSize: 14.5, color: '#FFFFFF', fontStyle: 'italic', margin: '0 0 20px', lineHeight: 1.55, fontWeight: 500, opacity: 0.85 }}>
                 {p.tagline}
               </p>
 
-              <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: 14 }}>
-                <span style={{ fontFamily: F.display, fontSize: 30, fontWeight: 800, color: p.accent, letterSpacing: '-0.02em', lineHeight: 1 }}>
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: 18 }}>
+                <span style={{ fontFamily: F.display, fontSize: 34, fontWeight: 800, color: p.accent, letterSpacing: '-0.02em', lineHeight: 1 }}>
                   {p.priceLabel}
                 </span>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '90px 1fr', gap: 6, fontSize: 12, marginBottom: 16, lineHeight: 1.55 }}>
-                <span style={{ color: C.faint, fontFamily: F.mono, letterSpacing: '0.08em' }}>DURATION</span>
-                <span style={{ color: C.text }}>{p.duration}</span>
-                <span style={{ color: C.faint, fontFamily: F.mono, letterSpacing: '0.08em' }}>FORMAT</span>
-                <span style={{ color: C.text }}>{p.format}</span>
+              <div style={{ display: 'grid', gridTemplateColumns: '100px 1fr', gap: 8, fontSize: 13, marginBottom: 18, lineHeight: 1.55 }}>
+                <span style={{ color: p.accent, fontFamily: F.mono, letterSpacing: '0.10em', fontWeight: 800 }}>DURATION</span>
+                <span style={{ color: '#FFFFFF', fontWeight: 600 }}>{p.duration}</span>
+                <span style={{ color: p.accent, fontFamily: F.mono, letterSpacing: '0.10em', fontWeight: 800 }}>FORMAT</span>
+                <span style={{ color: '#FFFFFF', fontWeight: 600 }}>{p.format}</span>
               </div>
 
-              <div style={{ fontSize: 13, color: C.muted, lineHeight: 1.6, marginBottom: 16, fontStyle: 'italic', borderLeft: `2px solid ${C.border}`, paddingLeft: 12 }}>
-                <strong style={{ color: C.text, fontStyle: 'normal' }}>Who it&apos;s for:</strong> {p.audience}
+              <div style={{ fontSize: 13.5, color: '#FFFFFF', lineHeight: 1.65, marginBottom: 18, fontStyle: 'italic', borderLeft: `3px solid ${p.accent}`, paddingLeft: 14, fontWeight: 400, opacity: 0.90 }}>
+                <strong style={{ color: p.accent, fontStyle: 'normal' }}>Who it&apos;s for:</strong> {p.audience}
               </div>
 
-              <ul style={{ margin: '0 0 18px', padding: 0, listStyle: 'none', flex: 1 }}>
+              <ul style={{ margin: '0 0 20px', padding: 0, listStyle: 'none', flex: 1 }}>
                 {p.features.map((f, i) => (
-                  <li key={i} style={{ fontSize: 13, color: C.text, padding: '6px 0', display: 'flex', gap: 9, alignItems: 'flex-start', lineHeight: 1.5 }}>
-                    <span style={{ flexShrink: 0, marginTop: 6, width: 5, height: 5, borderRadius: 999, background: p.accent }} />
+                  <li key={i} style={{ fontSize: 14, color: '#FFFFFF', padding: '7px 0', display: 'flex', gap: 10, alignItems: 'flex-start', lineHeight: 1.55, fontWeight: 400 }}>
+                    <span style={{ flexShrink: 0, marginTop: 7, width: 6, height: 6, borderRadius: 999, background: p.accent, boxShadow: `0 0 6px ${p.accent}` }} />
                     <span>{f}</span>
                   </li>
                 ))}
               </ul>
 
-              <div style={{ display: 'flex', gap: 8, marginTop: 'auto' }}>
+              <div style={{ display: 'flex', gap: 10, marginTop: 'auto' }}>
                 <button type="button" style={{
-                  flex: 1, padding: '12px 14px', borderRadius: 8, border: 'none',
+                  flex: 1, padding: '14px 16px', borderRadius: 8, border: 'none',
                   background: p.accent, color: '#0B1B3E',
-                  fontFamily: F.body, fontSize: 13, fontWeight: 800, cursor: 'pointer',
-                  letterSpacing: '0.04em',
+                  fontFamily: F.body, fontSize: 14, fontWeight: 800, cursor: 'pointer',
+                  letterSpacing: '0.04em', boxShadow: `0 4px 12px ${p.accent}40`,
                 }}>
                   Book {p.duration.includes('60') ? 'Call' : p.duration.includes('week') ? 'Audit' : p.duration.includes('month') ? 'Seat' : 'Slot'} →
                 </button>
                 <button type="button" style={{
-                  padding: '12px 14px', borderRadius: 8,
+                  padding: '14px 16px', borderRadius: 8,
                   background: 'transparent', border: `1px solid ${C.border}`,
-                  color: C.muted, fontSize: 13, fontWeight: 600, cursor: 'pointer',
+                  color: '#FFFFFF', fontSize: 14, fontWeight: 600, cursor: 'pointer',
                   fontFamily: F.body,
                 }}>
                   Details
@@ -249,12 +251,13 @@ export default function ScaleServicesPage() {
       {/* WHY SEPARATE FROM ROLL-UP */}
       <div style={{
         background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14,
-        padding: '26px 30px', marginBottom: 24,
+        padding: '28px 32px', marginBottom: 24,
+        boxShadow: '0 4px 16px rgba(0,0,0,0.12)',
       }}>
-        <div style={{ fontFamily: F.mono, fontSize: 10, color: C.gold, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 6 }}>
-          Why Scale Services is separate from the roll-up
+        <div style={{ fontFamily: F.mono, fontSize: 12.5, color: C.gold, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 8 }}>
+          ★ Why Scale Services is separate from the roll-up
         </div>
-        <h2 style={{ fontFamily: F.display, fontSize: 24, fontWeight: 600, margin: '0 0 16px', letterSpacing: '-0.01em' }}>
+        <h2 style={{ fontFamily: F.display, fontSize: 26, fontWeight: 700, margin: '0 0 20px', letterSpacing: '-0.02em', color: '#FFFFFF' }}>
           Three reasons this is its own revenue line.
         </h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 18 }}>
@@ -281,10 +284,12 @@ export default function ScaleServicesPage() {
 
       {/* INTEGRATION ROADMAP */}
       <div style={{
-        background: 'rgba(46,117,182,0.05)', border: '1px dashed rgba(46,117,182,0.30)',
-        borderRadius: 12, padding: '22px 26px',
+        background: `linear-gradient(135deg, rgba(46,117,182,0.10), ${C.bg3})`,
+        border: '1px solid rgba(46,117,182,0.30)',
+        borderRadius: 12, padding: '26px 30px',
+        boxShadow: '0 4px 16px rgba(0,0,0,0.12)',
       }}>
-        <div style={{ fontFamily: F.mono, fontSize: 10, color: C.align, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 14 }}>
+        <div style={{ fontFamily: F.mono, fontSize: 12.5, color: C.align, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 18 }}>
           Integration roadmap · go-live checklist
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 14 }}>
@@ -294,14 +299,14 @@ export default function ScaleServicesPage() {
           <RoadItem label="Customer dashboard" desc="Mastermind members get a private cohort dashboard with content + Slack." status="Phase 3 · 2 days" color={C.align} />
           <RoadItem label="Revenue reporting"  desc="Per-package revenue + churn shown on /overview. Routes to Wagner directly." status="Phase 3 · 1 day" color={C.gold}  />
         </div>
-        <div style={{ marginTop: 18, fontSize: 13, color: C.muted, lineHeight: 1.55 }}>
-          <strong style={{ color: C.text }}>Estimated lift to combined platform EBITDA:</strong> $1.3M / yr by Year 3 from Scale Services alone — separate from the ChiroPillar acquisition pool but feeding the combined $45M+ target.
+        <div style={{ marginTop: 22, fontSize: 14, color: '#FFFFFF', lineHeight: 1.65, fontWeight: 400 }}>
+          <strong style={{ color: C.green }}>Estimated lift to combined platform EBITDA:</strong> $1.3M / yr by Year 3 from Scale Services alone — separate from the ChiroPillar acquisition pool but feeding the combined $45M+ target.
         </div>
       </div>
 
-      <div style={{ marginTop: 28, padding: '16px 22px', background: 'rgba(201,168,76,0.06)', border: '1px solid rgba(201,168,76,0.25)', borderRadius: 10, fontSize: 13, color: C.muted, lineHeight: 1.55 }}>
+      <div style={{ marginTop: 28, padding: '18px 24px', background: `linear-gradient(135deg, rgba(201,168,76,0.10), ${C.bg3})`, border: '1px solid rgba(201,168,76,0.30)', borderRadius: 10, fontSize: 14, color: '#FFFFFF', lineHeight: 1.65, fontWeight: 400 }}>
         <strong style={{ color: C.gold }}>For the demo:</strong> Scale Services pricing is locked. Stripe + Calendly integration ships in Phase 3 alongside the per-clinic data room. The Book buttons above will fire real checkout flows once payment is wired.{' '}
-        <Link href="/overview" style={{ color: C.align, textDecoration: 'underline' }}>Back to Overview →</Link>
+        <Link href="/overview" style={{ color: C.gold, textDecoration: 'underline', fontWeight: 700 }}>Back to Overview →</Link>
       </div>
     </div>
   )
@@ -309,20 +314,20 @@ export default function ScaleServicesPage() {
 
 function Econ({ label, val, sub, color }: { label: string; val: string; sub: string; color: string }) {
   return (
-    <div>
-      <div style={{ fontFamily: F.mono, fontSize: 10, color: C.faint, letterSpacing: '0.12em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 4 }}>{label}</div>
-      <div style={{ fontFamily: F.display, fontSize: 24, fontWeight: 700, color, lineHeight: 1, marginBottom: 4 }}>{val}</div>
-      <div style={{ fontFamily: F.mono, fontSize: 10, color: C.faint, letterSpacing: '0.04em' }}>{sub}</div>
+    <div style={{ padding: '4px 0' }}>
+      <div style={{ fontFamily: F.mono, fontSize: 11.5, color, letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 6 }}>{label}</div>
+      <div style={{ fontFamily: F.display, fontSize: 30, fontWeight: 800, color, lineHeight: 1, marginBottom: 6, letterSpacing: '-0.02em' }}>{val}</div>
+      <div style={{ fontFamily: F.body, fontSize: 12.5, color: '#FFFFFF', letterSpacing: '0.02em', fontWeight: 500, opacity: 0.80 }}>{sub}</div>
     </div>
   )
 }
 
 function Reason({ num, title, body, accent }: { num: string; title: string; body: string; accent: string }) {
   return (
-    <div style={{ background: C.bg3, border: `1px solid ${C.border}`, borderLeft: `3px solid ${accent}`, borderRadius: 10, padding: '18px 22px' }}>
-      <div style={{ fontFamily: F.mono, fontSize: 11, color: accent, letterSpacing: '0.18em', fontWeight: 800, marginBottom: 8 }}>{num}</div>
-      <div style={{ fontFamily: F.display, fontSize: 17, fontWeight: 600, color: C.text, marginBottom: 8, letterSpacing: '-0.01em' }}>{title}</div>
-      <div style={{ fontSize: 13, color: C.muted, lineHeight: 1.6 }}>{body}</div>
+    <div style={{ background: C.bg3, border: `1px solid ${accent}40`, borderLeft: `4px solid ${accent}`, borderRadius: 10, padding: '20px 24px' }}>
+      <div style={{ fontFamily: F.mono, fontSize: 13, color: accent, letterSpacing: '0.18em', fontWeight: 800, marginBottom: 10 }}>{num}</div>
+      <div style={{ fontFamily: F.display, fontSize: 19, fontWeight: 700, color: '#FFFFFF', marginBottom: 10, letterSpacing: '-0.01em' }}>{title}</div>
+      <div style={{ fontSize: 14, color: '#FFFFFF', lineHeight: 1.65, fontWeight: 400, opacity: 0.90 }}>{body}</div>
     </div>
   )
 }
@@ -330,14 +335,15 @@ function Reason({ num, title, body, accent }: { num: string; title: string; body
 function RoadItem({ label, desc, status, color }: { label: string; desc: string; status: string; color: string }) {
   return (
     <div>
-      <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 4 }}>
-        <span style={{ fontSize: 13, fontWeight: 700, color: C.text }}>{label}</span>
+      <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: 6, flexWrap: 'wrap' }}>
+        <span style={{ fontSize: 14.5, fontWeight: 700, color: '#FFFFFF', letterSpacing: '-0.01em' }}>{label}</span>
         <span style={{
-          fontFamily: 'JetBrains Mono, monospace', fontSize: 9, padding: '2px 6px', borderRadius: 4,
-          background: color + '22', color, letterSpacing: '0.08em', fontWeight: 700, textTransform: 'uppercase',
+          fontFamily: 'JetBrains Mono, monospace', fontSize: 11, padding: '3px 8px', borderRadius: 4,
+          background: color + '28', color, letterSpacing: '0.08em', fontWeight: 800, textTransform: 'uppercase',
+          border: `1px solid ${color}50`,
         }}>{status}</span>
       </div>
-      <div style={{ fontSize: 12, color: C.muted, lineHeight: 1.5 }}>{desc}</div>
+      <div style={{ fontSize: 13.5, color: '#FFFFFF', lineHeight: 1.55, fontWeight: 400, opacity: 0.85 }}>{desc}</div>
     </div>
   )
 }

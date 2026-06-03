@@ -90,28 +90,28 @@ export default function DataRoomPage() {
       {/* Header */}
       <div style={{ marginBottom: 32 }}>
         <div style={{
-          display: 'inline-flex', alignItems: 'center', gap: 8,
-          padding: '6px 14px', borderRadius: 999,
-          background: 'rgba(46,117,182,0.10)', border: '1px solid rgba(46,117,182,0.25)',
-          fontFamily: "'JetBrains Mono', monospace", fontSize: 11,
-          letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700,
-          color: 'var(--kb-accent)', marginBottom: 22,
+          display: 'inline-flex', alignItems: 'center', gap: 10,
+          padding: '8px 16px', borderRadius: 999,
+          background: 'rgba(46,117,182,0.14)', border: '1px solid rgba(46,117,182,0.35)',
+          fontFamily: "'JetBrains Mono', monospace", fontSize: 12.5,
+          letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 800,
+          color: '#9CC4E4', marginBottom: 22,
         }}>
-          <span style={{ width: 6, height: 6, borderRadius: 999, background: 'var(--kb-accent)' }} />
+          <span style={{ width: 8, height: 8, borderRadius: 999, background: '#9CC4E4', boxShadow: '0 0 8px #9CC4E4' }} />
           ChiroPillar · Data Room
         </div>
 
         <h1 style={{
           fontFamily: 'Georgia, "Playfair Display", serif',
-          fontSize: 'clamp(34px, 4.5vw, 48px)', fontWeight: 700,
-          letterSpacing: '-0.02em', lineHeight: 1.1, margin: '0 0 12px',
+          fontSize: 'clamp(36px, 4.5vw, 52px)', fontWeight: 700,
+          letterSpacing: '-0.02em', lineHeight: 1.1, margin: '0 0 14px',
           color: 'var(--kb-text)',
         }}>
           Data Room
         </h1>
         <p style={{
           fontSize: 17, lineHeight: 1.6, maxWidth: 780,
-          color: 'var(--kb-text-secondary)', margin: 0,
+          color: '#FFFFFF', margin: 0, fontWeight: 400,
         }}>
           Upload clinic financials, connect QuickBooks, or download the canonical ChiroPillar strategy documents. Per-clinic acquisition rooms ship in Phase 3.
         </p>
@@ -122,15 +122,15 @@ export default function DataRoomPage() {
 
       {/* Section divider for the strategy library */}
       <div style={{
-        display: 'flex', alignItems: 'center', gap: 16,
-        marginBottom: 22,
+        display: 'flex', alignItems: 'center', gap: 18,
+        marginBottom: 26,
       }}>
         <div style={{
-          fontFamily: "'JetBrains Mono', monospace", fontSize: 11,
-          letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700,
-          color: 'var(--kb-accent)',
+          fontFamily: "'JetBrains Mono', monospace", fontSize: 13,
+          letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 800,
+          color: '#C9A84C',
         }}>
-          Strategy library · canonical docs
+          ★ Strategy library · canonical docs
         </div>
         <div style={{ flex: 1, height: 1, background: 'var(--kb-border)' }} />
       </div>
@@ -145,6 +145,7 @@ export default function DataRoomPage() {
             background: 'var(--kb-bg-panel)', border: `1px solid var(--kb-border)`,
             borderRadius: 14, display: 'flex', flexDirection: 'column',
             position: 'relative', overflow: 'hidden',
+            boxShadow: '0 4px 24px rgba(0,0,0,0.20)',
           }}>
             {/* ── COVER IMAGE · 200px hero header per tile ────────────────── */}
             <div style={{
@@ -169,67 +170,69 @@ export default function DataRoomPage() {
               }} />
               {/* Category eyebrow over the image */}
               <div style={{
-                position: 'absolute', left: 16, bottom: 14,
-                fontFamily: "'JetBrains Mono', monospace", fontSize: 10,
+                position: 'absolute', left: 18, bottom: 16,
+                fontFamily: "'JetBrains Mono', monospace", fontSize: 12,
                 letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 800,
                 color: '#FFFFFF',
-                textShadow: '0 1px 2px rgba(0,0,0,0.5)',
+                textShadow: '0 2px 4px rgba(0,0,0,0.7)',
               }}>
                 {CAT_LABEL[d.category]}
               </div>
               {/* Accent ribbon — top-right corner */}
               <div style={{
-                position: 'absolute', top: 14, right: 14,
-                padding: '4px 10px', borderRadius: 6,
+                position: 'absolute', top: 16, right: 16,
+                padding: '6px 12px', borderRadius: 6,
                 background: d.accent, color: '#0B1B3E',
-                fontFamily: "'JetBrains Mono', monospace", fontSize: 10, fontWeight: 800,
+                fontFamily: "'JetBrains Mono', monospace", fontSize: 11.5, fontWeight: 800,
                 letterSpacing: '0.14em',
+                boxShadow: `0 4px 12px ${d.accent}50`,
               }}>
                 PDF
               </div>
             </div>
 
             {/* ── BODY ────────────────────────────────────────────────────── */}
-            <div style={{ padding: 24, display: 'flex', flexDirection: 'column', flex: 1 }}>
+            <div style={{ padding: 26, display: 'flex', flexDirection: 'column', flex: 1 }}>
 
             <h3 style={{
               fontFamily: 'Georgia, "Playfair Display", serif',
-              fontSize: 22, fontWeight: 600, color: 'var(--kb-text)',
-              margin: '0 0 6px', letterSpacing: '-0.01em', lineHeight: 1.2,
+              fontSize: 24, fontWeight: 700, color: 'var(--kb-text)',
+              margin: '0 0 8px', letterSpacing: '-0.01em', lineHeight: 1.2,
             }}>
               {d.title}
             </h3>
             <div style={{
-              fontFamily: 'Georgia, serif', fontSize: 14,
-              fontStyle: 'italic', fontWeight: 500,
-              color: d.accent, marginBottom: 14, lineHeight: 1.45,
+              fontFamily: 'Georgia, serif', fontSize: 15.5,
+              fontStyle: 'italic', fontWeight: 600,
+              color: d.accent, marginBottom: 16, lineHeight: 1.45,
             }}>
               {d.oneLiner}
             </div>
             <p style={{
-              fontSize: 13.5, color: 'var(--kb-text-secondary)',
-              lineHeight: 1.65, margin: '0 0 20px', flex: 1,
+              fontSize: 14.5, color: '#FFFFFF',
+              lineHeight: 1.65, margin: '0 0 22px', flex: 1, fontWeight: 400, opacity: 0.90,
             }}>
               {d.paragraph}
             </p>
 
             <div style={{
-              fontFamily: "'JetBrains Mono', monospace", fontSize: 10,
-              color: 'var(--kb-text-muted)', letterSpacing: '0.05em',
-              marginBottom: 12, opacity: 0.7,
+              fontFamily: "'JetBrains Mono', monospace", fontSize: 11.5,
+              color: '#FFFFFF', letterSpacing: '0.05em',
+              marginBottom: 14, opacity: 0.65, fontWeight: 600,
               overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
             }}>
               {d.fileName}
             </div>
 
-            <div style={{ display: 'flex', gap: 8 }}>
+            <div style={{ display: 'flex', gap: 10 }}>
               <Link
                 href={d.href} target="_blank" rel="noopener"
                 style={{
-                  flex: 1, padding: '11px 14px', borderRadius: 8,
+                  flex: 1, padding: '13px 16px', borderRadius: 8,
                   background: d.accent, color: '#0B1B3E',
-                  fontSize: 13, fontWeight: 700, textAlign: 'center',
+                  fontSize: 14, fontWeight: 800, textAlign: 'center',
                   textDecoration: 'none', fontFamily: "'Inter', system-ui, sans-serif",
+                  letterSpacing: '0.02em', boxShadow: `0 4px 12px ${d.accent}30`,
                 }}
               >
                 View PDF →
