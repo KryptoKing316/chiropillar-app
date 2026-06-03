@@ -343,6 +343,15 @@ const ICONS: Record<string, React.ReactNode> = {
       <path d="M11 13.5l1.5-1.5 1.5 1.5"/>
     </IC>
   ),
+  '/launch-plan': (
+    <IC>
+      {/* Rocket / launch */}
+      <path d="M9 1.5L13 6v6l-4 3-4-3V6z"/>
+      <line x1="6" y1="13.5" x2="5" y2="16.5"/>
+      <line x1="12" y1="13.5" x2="13" y2="16.5"/>
+      <circle cx="9" cy="7.5" r="1.5"/>
+    </IC>
+  ),
   '/scale': (
     <IC>
       {/* Upward stair-step growth */}
@@ -374,6 +383,7 @@ const NAV = [
   { href: '/data-room',    label: 'Data Room',            badge: 'Live' },
   { href: '/nda-loi',      label: 'NDAs & LOIs',          badge: 'Soon' },
   { href: '/scale',        label: 'Scale Services',       badge: 'Live' },
+  { href: '/launch-plan',  label: '24-Mo Launch Plan',    badge: 'NEW'  },
   { href: '/outreach',     label: 'Outreach Campaigns',   badge: 'Soon' },
 ]
 
