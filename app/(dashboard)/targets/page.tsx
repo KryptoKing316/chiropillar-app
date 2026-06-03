@@ -284,21 +284,21 @@ export default async function TargetsPage() {
 
       {/* Header */}
       <div style={{ marginBottom: 28 }}>
-        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, letterSpacing: '0.22em', color: 'var(--cp-globe, #9CC4E4)', textTransform: 'uppercase', fontWeight: 700, marginBottom: 8 }}>
+        <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 12.5, letterSpacing: '0.22em', color: '#9CC4E4', textTransform: 'uppercase', fontWeight: 800, marginBottom: 10 }}>
           ChiroPillar · Pipeline
         </div>
-        <h1 style={{ fontFamily: 'Georgia, serif', fontSize: 38, fontWeight: 700, color: 'var(--kb-text)', margin: 0, letterSpacing: '-0.02em' }}>
+        <h1 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(36px, 4.5vw, 46px)', fontWeight: 700, color: 'var(--kb-text)', margin: '0 0 10px', letterSpacing: '-0.02em' }}>
           Intake Submissions
         </h1>
-        <p style={{ color: 'var(--kb-text-secondary)', fontSize: 14, marginTop: 6 }}>Every chiropractor who&apos;s applied via the /intake form. Score is auto-computed against Wagner&apos;s qualification criteria.</p>
+        <p style={{ color: '#FFFFFF', fontSize: 16, marginTop: 0, maxWidth: 760, lineHeight: 1.6, fontWeight: 400 }}>Every chiropractor who&apos;s applied via the /intake form. Score is auto-computed against Wagner&apos;s qualification criteria.</p>
       </div>
 
       {/* Stat strip — collapses to 2×2 on tablet + single col on phone */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 14, marginBottom: 32 }}>
-        <StatCard label="Total submissions" value={counts.total} accent="#2E75B6" />
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 16, marginBottom: 32 }}>
+        <StatCard label="Total submissions" value={counts.total} accent="#9CC4E4" />
         <StatCard label="Qualified" value={counts.qualified} accent="#2ECC8B" />
         <StatCard label="Maybe" value={counts.maybe} accent="#C9A84C" />
-        <StatCard label="Not yet" value={counts.not_yet} accent="#9BA8C0" />
+        <StatCard label="Not yet" value={counts.not_yet} accent="#E8C96A" />
       </div>
 
       {/* Table · horizontal scroll on narrow screens */}
@@ -306,20 +306,20 @@ export default async function TargetsPage() {
         <EmptyState />
       ) : (
         <div style={{ overflowX: 'auto', borderRadius: 12 }}>
-        <div style={{ background: 'var(--kb-bg-panel)', border: '1px solid var(--kb-border)', borderRadius: 12, overflow: 'hidden', minWidth: 980 }}>
+        <div style={{ background: 'var(--kb-bg-panel)', border: '1px solid var(--kb-border)', borderRadius: 12, overflow: 'hidden', minWidth: 980, boxShadow: '0 4px 20px rgba(0,0,0,0.15)' }}>
           <div style={{
             display: 'grid',
-            gridTemplateColumns: '1.6fr 1.4fr 80px 100px 120px 120px 110px 110px',
-            gap: 12,
-            padding: '14px 22px',
-            background: 'var(--kb-table-header)',
+            gridTemplateColumns: '1.6fr 1.4fr 90px 110px 130px 130px 120px 110px',
+            gap: 14,
+            padding: '16px 24px',
+            background: 'rgba(201,168,76,0.06)',
             borderBottom: '1px solid var(--kb-border)',
             fontFamily: "'JetBrains Mono', monospace",
-            fontSize: 10,
+            fontSize: 12,
             letterSpacing: '0.14em',
             textTransform: 'uppercase',
-            color: 'var(--kb-text-secondary)',
-            fontWeight: 600,
+            color: '#FFFFFF',
+            fontWeight: 800,
           }}>
             <div>Chiropractor</div>
             <div>Practice</div>
@@ -338,53 +338,53 @@ export default async function TargetsPage() {
             return (
               <div key={t.id} style={{
                 display: 'grid',
-                gridTemplateColumns: '1.6fr 1.4fr 80px 100px 120px 120px 110px 110px',
-                gap: 12,
-                padding: '16px 22px',
-                background: i % 2 ? 'var(--kb-row-alt)' : 'transparent',
+                gridTemplateColumns: '1.6fr 1.4fr 90px 110px 130px 130px 120px 110px',
+                gap: 14,
+                padding: '18px 24px',
+                background: i % 2 ? 'rgba(255,255,255,0.025)' : 'transparent',
                 borderBottom: '1px solid var(--kb-border-subtle)',
                 fontSize: 14,
                 alignItems: 'center',
-                color: 'var(--kb-text)',
+                color: '#FFFFFF',
               }}>
                 <div>
-                  <div style={{ fontWeight: 600, color: 'var(--kb-text)' }}>{t.full_name}</div>
-                  <div style={{ fontSize: 12, color: 'var(--kb-text-secondary)', fontFamily: "'JetBrains Mono', monospace" }}>{t.email}</div>
+                  <div style={{ fontWeight: 700, color: '#FFFFFF', fontSize: 15, marginBottom: 3, letterSpacing: '-0.01em' }}>{t.full_name}</div>
+                  <div style={{ fontSize: 12.5, color: '#FFFFFF', fontFamily: "'JetBrains Mono', monospace", opacity: 0.75, fontWeight: 500 }}>{t.email}</div>
                 </div>
                 <div>
-                  <div style={{ color: 'var(--kb-text)' }}>{t.practice_name}</div>
-                  <div style={{ fontSize: 12, color: 'var(--kb-text-secondary)' }}>{[t.city, t.state].filter(Boolean).join(', ')}</div>
+                  <div style={{ color: '#FFFFFF', fontSize: 14.5, fontWeight: 600 }}>{t.practice_name}</div>
+                  <div style={{ fontSize: 12.5, color: '#FFFFFF', opacity: 0.75, fontWeight: 500, marginTop: 3 }}>{[t.city, t.state].filter(Boolean).join(', ')}</div>
                 </div>
-                <div style={{ textAlign: 'right', fontFamily: "'JetBrains Mono', monospace", color: 'var(--kb-text)', fontWeight: 600 }}>
+                <div style={{ textAlign: 'right', fontFamily: "'JetBrains Mono', monospace", color: '#FFFFFF', fontWeight: 700, fontSize: 15 }}>
                   {t.new_patients_per_month_avg_2yr || '—'}
                 </div>
-                <div style={{ textAlign: 'right', fontFamily: "'JetBrains Mono', monospace", color: 'var(--kb-text)' }}>
+                <div style={{ textAlign: 'right', fontFamily: "'JetBrains Mono', monospace", color: '#FFFFFF', fontSize: 14, fontWeight: 600 }}>
                   {t.avg_visits_per_patient ? `${t.avg_visits_per_patient}v` : '—'}
                 </div>
-                <div style={{ textAlign: 'right', fontFamily: "'JetBrains Mono', monospace", color: 'var(--kb-text-secondary)', fontSize: 13 }}>
+                <div style={{ textAlign: 'right', fontFamily: "'JetBrains Mono', monospace", color: '#C9A84C', fontSize: 14, fontWeight: 700 }}>
                   {t.gross_revenue_last_year || '—'}
                 </div>
                 <div>
                   <span style={{
-                    display: 'inline-block', padding: '4px 10px',
+                    display: 'inline-block', padding: '5px 11px',
                     background: qStyle.bg, color: qStyle.color,
                     border: `1px solid ${qStyle.border}`,
-                    borderRadius: 6, fontSize: 11,
+                    borderRadius: 6, fontSize: 12,
                     fontFamily: "'JetBrains Mono', monospace",
-                    fontWeight: 700, letterSpacing: '0.08em',
+                    fontWeight: 800, letterSpacing: '0.08em',
                   }}>{qStyle.label}</span>
                 </div>
                 <div>
                   <span style={{
-                    display: 'inline-block', padding: '3px 9px',
+                    display: 'inline-block', padding: '4px 10px',
                     background: sStyle.bg, color: sStyle.color,
-                    borderRadius: 4, fontSize: 10,
+                    borderRadius: 5, fontSize: 11,
                     fontFamily: "'JetBrains Mono', monospace",
-                    fontWeight: 700, letterSpacing: '0.10em',
+                    fontWeight: 800, letterSpacing: '0.10em',
                     textTransform: 'uppercase',
                   }}>{t.outreach_status || 'new'}</span>
                 </div>
-                <div style={{ textAlign: 'right', fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: 'var(--kb-text-secondary)' }}>
+                <div style={{ textAlign: 'right', fontFamily: "'JetBrains Mono', monospace", fontSize: 12.5, color: '#FFFFFF', opacity: 0.75, fontWeight: 600 }}>
                   {new Date(t.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                 </div>
               </div>
@@ -400,13 +400,15 @@ export default async function TargetsPage() {
 function StatCard({ label, value, accent }: { label: string; value: number; accent: string }) {
   return (
     <div style={{
-      background: 'var(--kb-bg-panel)',
-      border: '1px solid var(--kb-border)',
-      borderRadius: 10,
-      padding: '20px 22px',
+      background: `linear-gradient(135deg, ${accent}10, var(--kb-bg-panel))`,
+      border: `1px solid ${accent}40`,
+      borderLeft: `4px solid ${accent}`,
+      borderRadius: 12,
+      padding: '22px 26px',
+      boxShadow: `0 4px 16px ${accent}15`,
     }}>
-      <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--kb-text-secondary)', fontWeight: 600, marginBottom: 8 }}>{label}</div>
-      <div style={{ fontFamily: 'Georgia, serif', fontSize: 36, fontWeight: 700, color: accent, lineHeight: 1, letterSpacing: '-0.02em' }}>{value}</div>
+      <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 12, letterSpacing: '0.16em', textTransform: 'uppercase', color: accent, fontWeight: 800, marginBottom: 10 }}>{label}</div>
+      <div style={{ fontFamily: 'Georgia, serif', fontSize: 44, fontWeight: 800, color: accent, lineHeight: 1, letterSpacing: '-0.03em' }}>{value}</div>
     </div>
   )
 }
