@@ -153,7 +153,110 @@ export default function AnalyticsClient({ stats }: { stats: AnalyticsStats }) {
         <Kpi label="States active" val={String(stats.byState.length)}      color={C.align} isDemo={stats.isDemo} />
       </div>
 
-      {/* ── 1. INTAKE QUIZ FUNNEL ────────────────────────────────────────── */}
+      {/* ── 1. CHARLOTTESVILLE GOOGLE MAPS DEEP-DIVE (moved to TOP per Eric directive) ── */}
+      <SectionHead eyebrow="Wagner's home market · Charlottesville VA + Albemarle County" title="The 18 nearby practices — mapped + listed." />
+      <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, overflow: 'hidden', marginBottom: 40 }}>
+        <div style={{ padding: '20px 28px', borderBottom: `1px solid ${C.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap', gap: 12 }}>
+          <div>
+            <div style={{ fontFamily: F.mono, fontSize: 10, color: C.gold, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 4 }}>
+              Wagner Primary Market
+            </div>
+            <div style={{ fontFamily: F.display, fontSize: 22, fontWeight: 600, color: C.text }}>
+              Charlottesville, Virginia · Albemarle County
+            </div>
+            <div style={{ fontSize: 13, color: C.muted, fontStyle: 'italic', marginTop: 2 }}>
+              &quot;I know the reimbursement codes. I know the area. I know exactly what markets to attack.&quot;
+            </div>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14 }}>
+            <MiniStat label="Known practices" val="18" accent={C.gold} />
+            <MiniStat label="Wagner reach"    val="9" accent={C.align} />
+            <MiniStat label="Stage 1 target"  val="3-5" accent={C.green} />
+          </div>
+        </div>
+
+        <iframe
+          title="Charlottesville + Albemarle County chiropractic market"
+          src="https://maps.google.com/maps?q=chiropractor+OR+chiropractic+Charlottesville+Albemarle+County+VA&t=m&z=10&ie=UTF8&iwloc=&output=embed"
+          style={{ width: '100%', height: 480, border: 0, display: 'block' }}
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        />
+
+        <div style={{ padding: '24px 28px', borderTop: `1px solid ${C.border}` }}>
+          <div style={{
+            fontFamily: F.mono, fontSize: 10, color: C.gold, letterSpacing: '0.18em',
+            textTransform: 'uppercase', fontWeight: 700, marginBottom: 14,
+            display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12,
+          }}>
+            <span>📍 18 known practices · Wagner&apos;s local network</span>
+            <span style={{ display: 'flex', gap: 14, fontSize: 9, color: C.faint, letterSpacing: '0.08em', flexWrap: 'wrap' }}>
+              <PinLegend dot={C.goldLight} label="★ Wagner HQ" />
+              <PinLegend dot={C.green}     label="In conversation" />
+              <PinLegend dot={C.gold}      label="Wagner network" />
+              <PinLegend dot={C.align}     label="Cold target" />
+              <PinLegend dot={C.coral}     label="Direct competitor" />
+            </span>
+          </div>
+
+          <div style={{
+            display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(245px, 1fr))', gap: 8,
+          }}>
+            {CHARLOTTESVILLE_PRACTICES.map((p, i) => {
+              const tone = p.status === 'hq'              ? C.goldLight
+                         : p.status === 'in_conversation' ? C.green
+                         : p.status === 'wagner_network'  ? C.gold
+                         : p.status === 'competitor'      ? C.coral
+                         : C.align
+              const bg = p.status === 'hq'              ? 'rgba(232,201,106,0.15)'
+                       : p.status === 'in_conversation' ? 'rgba(46,204,139,0.08)'
+                       : p.status === 'wagner_network'  ? 'rgba(201,168,76,0.08)'
+                       : p.status === 'competitor'      ? 'rgba(242,176,160,0.10)'
+                       : 'rgba(46,117,182,0.05)'
+              const border = p.status === 'hq'              ? '2px solid rgba(232,201,106,0.55)'
+                           : p.status === 'in_conversation' ? '1px solid rgba(46,204,139,0.25)'
+                           : p.status === 'wagner_network'  ? '1px solid rgba(201,168,76,0.25)'
+                           : p.status === 'competitor'      ? '1px solid rgba(242,176,160,0.25)'
+                           : '1px solid rgba(46,117,182,0.15)'
+              return (
+                <div key={i} style={{
+                  display: 'flex', gap: 10, alignItems: 'flex-start',
+                  padding: '10px 12px', borderRadius: 8,
+                  background: bg, border,
+                }}>
+                  <span style={{
+                    flexShrink: 0, marginTop: 5,
+                    width: p.status === 'hq' ? 12 : 9,
+                    height: p.status === 'hq' ? 12 : 9,
+                    borderRadius: 999,
+                    background: tone,
+                    boxShadow: `0 0 ${p.status === 'hq' ? 10 : 6}px ${tone}aa`,
+                  }} />
+                  <div style={{ minWidth: 0, flex: 1 }}>
+                    <div style={{
+                      fontSize: 13, fontWeight: p.status === 'hq' ? 800 : 600,
+                      color: p.status === 'hq' ? C.goldLight : C.text,
+                      lineHeight: 1.2, marginBottom: 2,
+                    }}>
+                      {p.name}
+                    </div>
+                    <div style={{ fontSize: 11, color: C.muted, fontFamily: F.mono, letterSpacing: '0.02em' }}>
+                      {p.area} · {p.note}
+                    </div>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+
+        <div style={{ padding: '16px 28px', borderTop: `1px solid ${C.border}`, fontSize: 13, color: C.muted, lineHeight: 1.55 }}>
+          <strong style={{ color: C.text }}>Why start here:</strong>{' '}
+          Wagner&apos;s personal network covers <strong style={{ color: C.gold }}>9 of the 18 practices</strong>. Local credibility + reimbursement-code knowledge = highest-probability first wins. Branded as &quot;corporate company offering medical add-ons,&quot; not &quot;Dr. Wagner buying you out.&quot;
+        </div>
+      </div>
+
+      {/* ── 2. INTAKE QUIZ FUNNEL ────────────────────────────────────────── */}
       <SectionHead eyebrow="Intake Quiz Funnel · where chiropractors drop off" title="Where they fall out of the form." />
       <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, padding: '24px 28px', marginBottom: 40 }}>
         {quizRows.map((row, i) => {
@@ -298,111 +401,6 @@ export default function AnalyticsClient({ stats }: { stats: AnalyticsStats }) {
               </div>
             </>
           )}
-        </div>
-      </div>
-
-      {/* ── 3. CHARLOTTESVILLE GOOGLE MAPS DEEP-DIVE ─────────────────────── */}
-      <SectionHead eyebrow="Wagner's home market · Charlottesville VA + Albemarle County" title="The 18 nearby practices — mapped + listed." />
-      <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, overflow: 'hidden', marginBottom: 40 }}>
-        <div style={{ padding: '20px 28px', borderBottom: `1px solid ${C.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap', gap: 12 }}>
-          <div>
-            <div style={{ fontFamily: F.mono, fontSize: 10, color: C.gold, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 4 }}>
-              Wagner Primary Market
-            </div>
-            <div style={{ fontFamily: F.display, fontSize: 22, fontWeight: 600, color: C.text }}>
-              Charlottesville, Virginia · Albemarle County
-            </div>
-            <div style={{ fontSize: 13, color: C.muted, fontStyle: 'italic', marginTop: 2 }}>
-              &quot;I know the reimbursement codes. I know the area. I know exactly what markets to attack.&quot;
-            </div>
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14 }}>
-            <MiniStat label="Known practices" val="18" accent={C.gold} />
-            <MiniStat label="Wagner reach"    val="9" accent={C.align} />
-            <MiniStat label="Stage 1 target"  val="3-5" accent={C.green} />
-          </div>
-        </div>
-
-        {/* MAP — wider query + lower zoom = more chiropractor pins visible across city + county */}
-        <iframe
-          title="Charlottesville + Albemarle County chiropractic market"
-          src="https://maps.google.com/maps?q=chiropractor+OR+chiropractic+Charlottesville+Albemarle+County+VA&t=m&z=10&ie=UTF8&iwloc=&output=embed"
-          style={{ width: '100%', height: 480, border: 0, display: 'block' }}
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-        />
-
-        {/* CURATED LIST · 18 known practices in Wagner's market with status pins */}
-        <div style={{ padding: '24px 28px', borderTop: `1px solid ${C.border}` }}>
-          <div style={{
-            fontFamily: F.mono, fontSize: 10, color: C.gold, letterSpacing: '0.18em',
-            textTransform: 'uppercase', fontWeight: 700, marginBottom: 14,
-            display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12,
-          }}>
-            <span>📍 18 known practices · Wagner&apos;s local network</span>
-            <span style={{ display: 'flex', gap: 14, fontSize: 9, color: C.faint, letterSpacing: '0.08em', flexWrap: 'wrap' }}>
-              <PinLegend dot={C.goldLight} label="★ Wagner HQ" />
-              <PinLegend dot={C.green}     label="In conversation" />
-              <PinLegend dot={C.gold}      label="Wagner network" />
-              <PinLegend dot={C.align}     label="Cold target" />
-              <PinLegend dot={C.coral}     label="Direct competitor" />
-            </span>
-          </div>
-
-          <div style={{
-            display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(245px, 1fr))', gap: 8,
-          }}>
-            {CHARLOTTESVILLE_PRACTICES.map((p, i) => {
-              const tone = p.status === 'hq'              ? C.goldLight
-                         : p.status === 'in_conversation' ? C.green
-                         : p.status === 'wagner_network'  ? C.gold
-                         : p.status === 'competitor'      ? C.coral
-                         : C.align
-              const bg = p.status === 'hq'              ? 'rgba(232,201,106,0.15)'
-                       : p.status === 'in_conversation' ? 'rgba(46,204,139,0.08)'
-                       : p.status === 'wagner_network'  ? 'rgba(201,168,76,0.08)'
-                       : p.status === 'competitor'      ? 'rgba(242,176,160,0.10)'
-                       : 'rgba(46,117,182,0.05)'
-              const border = p.status === 'hq'              ? '2px solid rgba(232,201,106,0.55)'
-                           : p.status === 'in_conversation' ? '1px solid rgba(46,204,139,0.25)'
-                           : p.status === 'wagner_network'  ? '1px solid rgba(201,168,76,0.25)'
-                           : p.status === 'competitor'      ? '1px solid rgba(242,176,160,0.25)'
-                           : '1px solid rgba(46,117,182,0.15)'
-              return (
-                <div key={i} style={{
-                  display: 'flex', gap: 10, alignItems: 'flex-start',
-                  padding: '10px 12px', borderRadius: 8,
-                  background: bg, border,
-                }}>
-                  <span style={{
-                    flexShrink: 0, marginTop: 5,
-                    width: p.status === 'hq' ? 12 : 9,
-                    height: p.status === 'hq' ? 12 : 9,
-                    borderRadius: 999,
-                    background: tone,
-                    boxShadow: `0 0 ${p.status === 'hq' ? 10 : 6}px ${tone}aa`,
-                  }} />
-                  <div style={{ minWidth: 0, flex: 1 }}>
-                    <div style={{
-                      fontSize: 13, fontWeight: p.status === 'hq' ? 800 : 600,
-                      color: p.status === 'hq' ? C.goldLight : C.text,
-                      lineHeight: 1.2, marginBottom: 2,
-                    }}>
-                      {p.name}
-                    </div>
-                    <div style={{ fontSize: 11, color: C.muted, fontFamily: F.mono, letterSpacing: '0.02em' }}>
-                      {p.area} · {p.note}
-                    </div>
-                  </div>
-                </div>
-              )
-            })}
-          </div>
-        </div>
-
-        <div style={{ padding: '16px 28px', borderTop: `1px solid ${C.border}`, fontSize: 13, color: C.muted, lineHeight: 1.55 }}>
-          <strong style={{ color: C.text }}>Why start here:</strong>{' '}
-          Wagner&apos;s personal network covers <strong style={{ color: C.gold }}>9 of the 18 practices</strong>. Local credibility + reimbursement-code knowledge = highest-probability first wins. Branded as &quot;corporate company offering medical add-ons,&quot; not &quot;Dr. Wagner buying you out.&quot;
         </div>
       </div>
 
