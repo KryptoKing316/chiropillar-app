@@ -77,7 +77,7 @@ const VALUE_CHAIN: Stage[] = [
       { label: 'Response rate',  val: '0.8% blended (QR scan + call)' },
     ],
     monthly_cost: 2_500,
-    what: '"Your competitor just sold for $3.2M. Here\'s what your practice is worth." Postcards with QR code to chiropillar.com/intake + a phone number routing to McGrath\'s line.',
+    what: '"Your competitor just sold for $3.2M. Here\'s what your practice is worth." Postcards with QR code to chiropillar.com/intake + a phone number routing to Eric\'s line.',
     accent: '#C9A84C',
   },
   {
