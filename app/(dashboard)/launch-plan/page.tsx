@@ -92,14 +92,14 @@ const VALUE_CHAIN: Stage[] = [
       { label: 'Time to first email', val: '< 60 seconds (Resend triggered)' },
     ],
     monthly_cost: 350,
-    what: '7-field form auto-scores against Wagner\'s qualification criteria. Returns instant valuation band. Qualified → routed to McGrath. Maybe → routed to Scale Services. Not_yet → 90-day nurture drip.',
+    what: '7-field form auto-scores against Wagner\'s qualification criteria. Returns instant valuation band. Qualified → routed to Eric + BD team. Maybe → routed to Scale Services. Not_yet → 90-day nurture drip.',
     accent: '#2ECC8B',
   },
   {
     num: '04',
-    name: 'Biz Dev · McGrath',
-    ownership: 'McGrath + 1 SDR (month 4+)',
-    tools: ['Instantly.ai', 'Apollo enrichment', 'Aircall', 'Calendly'],
+    name: 'Biz Dev · Eric + Team',
+    ownership: 'Eric + BDR + Closer #1 (month 4+)',
+    tools: ['Instantly.ai', 'Clay enrichment', 'Aircall', 'Calendly'],
     metrics: [
       { label: 'Discovery calls / mo', val: '~35 qualified leads contacted' },
       { label: 'Show rate',            val: '65% (Calendly reminders + SMS)' },
@@ -107,7 +107,7 @@ const VALUE_CHAIN: Stage[] = [
       { label: 'Qualified -> diligence', val: '~30%' },
     ],
     monthly_cost: 17_500,
-    what: 'McGrath runs the relationship side. Senior DC operator credentials open doors. SDR (hired month 4) handles outbound cold + inbound triage to free McGrath for closing conversations.',
+    what: 'Eric runs the relationship + closing side with the BD team. BDR (hired month 4) handles outbound cold + inbound triage. Closer #1 takes qualified discovery calls to LOI. McGrath provides warm intro support on his network deals.',
     accent: '#9CC4E4',
   },
   {
