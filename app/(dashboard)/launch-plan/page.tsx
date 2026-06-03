@@ -107,7 +107,7 @@ const VALUE_CHAIN: Stage[] = [
       { label: 'Qualified -> diligence', val: '~30%' },
     ],
     monthly_cost: 17_500,
-    what: 'Eric runs the relationship + closing side with the BD team. BDR (hired month 4) handles outbound cold + inbound triage. Closer #1 takes qualified discovery calls to LOI. McGrath provides warm intro support on his network deals.',
+    what: 'Eric runs the relationship + closing side with the BD team. BDR (hired month 4) handles outbound cold + inbound triage. Closer #1 takes qualified discovery calls to LOI. McGrath provides network access via DC associations + sponsorship of the largest chiropractic events — warm-door coverage at the top of the funnel.',
     accent: '#9CC4E4',
   },
   {
@@ -155,8 +155,8 @@ type Hire = {
 
 const HIRES: Hire[] = [
   // ─── DAY 0 · PARTNERS ───
-  { role: 'Eric Skeldon · Founder/CEO',              when: 'Day 0',   comp: '$25K upfront + $12.5K/mo + 2% acq + 2.5% exit',           comp_low: 162_500, comp_high: 162_500, fulltime: true,  responsibilities: 'Platform · deal structure · Wagner relationship · final closing · ChiroPillar owner · 2% of each acq EV ($38K/close) + 2.5% of exit slice + 5% ongoing rev share flows to ChiroPillar' },
-  { role: 'Scott McGrath · BD Partner',              when: 'Day 0',   comp: '$5K/mo + 2% acq + 2.5% exit',     comp_low: 60_000,  comp_high: 60_000,   fulltime: false, responsibilities: 'Brought Dr. Wagner to the table · sources seller chiropractors · 2% of each acq EV ($38K/close · ~$1.25M over 33 closes) + 2.5% of exit slice (his half of KB\'s 4% acq + 5% exit fees)' },
+  { role: 'Eric Skeldon · Founder/CEO',              when: 'Day 0',   comp: '$25K upfront + $12.5K/mo',                comp_low: 175_000, comp_high: 175_000, fulltime: true,  responsibilities: 'Platform · deal structure · final closing · ChiroPillar owner + operator' },
+  { role: 'Scott McGrath · BD Partner',              when: 'Day 0',   comp: '$5K/mo',                                  comp_low: 60_000,  comp_high: 60_000,  fulltime: false, responsibilities: 'Brought Dr. Wagner to the table · networks with DC associations · sponsors largest chiropractic + DC events · opens doors via senior DC reputation' },
   { role: 'Dr. Scott Wagner · Clinical Partner',     when: 'Day 0',   comp: 'Owns clinics outright',           comp_low: 0,       comp_high: 0,        fulltime: false, responsibilities: 'Clinical playbook · medical-team install · operator credibility' },
 
   // ─── 90-120 DAY HIRES · full sales + ops engine built in Q1-Q2 ───
@@ -560,7 +560,7 @@ export default function LaunchPlanPage() {
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 14 }}>
             <Sub label="Total clinic value" val={fmtMoney(totalAcqValue)} color={C.text} />
-            <Sub label="Wagner cash (50%)" val={fmtMoney(totalWagnerCash)} color={C.spine} />
+            <Sub label="Wagner cash (50%)" val={fmtMoney(totalWagnerCash)} color={C.globe} />
             <Sub label="Bank debt drawn (50%)" val={fmtMoney(totalBankDebt)} color={C.align} />
             <Sub label="Annual debt service" val={`~${fmtMoney(annualDebtServiceTotal)}/yr`} color={C.coral} />
             <Sub label="DSCR (Y2+ acquired EBITDA)" val={`${dscrAcq.toFixed(2)}×`} color={C.green} />
@@ -700,7 +700,7 @@ export default function LaunchPlanPage() {
 
       <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, padding: '24px 28px', marginBottom: 18 }}>
         <p style={{ fontSize: 14, color: C.muted, lineHeight: 1.65, marginTop: 0, marginBottom: 22 }}>
-          Same audience, escalating ticket size. The <strong style={{ color: C.green }}>$9/month ChiroPillar Digital app</strong> is the top of funnel — a chiropractor whose patient sees the app eventually subscribes themselves. <strong style={{ color: C.gold }}>Scale Services</strong> ($500 → $50K) productizes Wagner&apos;s playbook for chiros who don&apos;t want to sell. <strong style={{ color: C.spine }}>Acquisition</strong> ($1.9M each) captures the operators ready to step out. <strong style={{ color: C.goldLight }}>Multiple arbitrage</strong> on exit re-rates every dollar of EBITDA from 1.5–3× (cost basis) to 8–10× (platform).
+          Same audience, escalating ticket size. The <strong style={{ color: C.green }}>$9/month ChiroPillar Digital app</strong> is the top of funnel — a chiropractor whose patient sees the app eventually subscribes themselves. <strong style={{ color: C.gold }}>Scale Services</strong> ($500 → $50K) productizes Wagner&apos;s playbook for chiros who don&apos;t want to sell. <strong style={{ color: C.globe }}>Acquisition</strong> ($1.9M each) captures the operators ready to step out. <strong style={{ color: C.goldLight }}>Multiple arbitrage</strong> on exit re-rates every dollar of EBITDA from 1.5–3× (cost basis) to 8–10× (platform).
         </p>
 
         {/* The 5-tier value ladder visualized */}
@@ -710,7 +710,7 @@ export default function LaunchPlanPage() {
           <LadderRow tier="TIER 3" name="Practice Audit · 2-week diagnostic + plan"  audience="DCs · committed"     price="$5-10K"     y3="$680K / yr" accent={C.align}    width={50} />
           <LadderRow tier="TIER 4" name="Medical-Team Installation · 90-day install" audience="DCs · serious scaling" price="$25-50K"  y3="$1.4M / yr" accent={C.gold}     width={65} />
           <LadderRow tier="TIER 5" name="ChiroPillar Mastermind · 12-mo cohort"      audience="DCs · scaling without selling" price="$12K/yr" y3="$700K / yr" accent={C.goldLight} width={75} />
-          <LadderRow tier="TIER 6" name="Acquisition · 4-stream offer + medical-team add-on" audience="DCs · ready to step out" price="$1.9M avg" y3="33 clinics" accent={C.spine}    width={100} />
+          <LadderRow tier="TIER 6" name="Acquisition · 4-stream offer + medical-team add-on" audience="DCs · ready to step out" price="$1.9M avg" y3="33 clinics" accent={C.globe}    width={100} />
         </div>
 
         {/* 3-year pro forma table */}
@@ -731,7 +731,7 @@ export default function LaunchPlanPage() {
             <ProFormaRow line="Practice Audits · $5-10K"                                     units="85 audits/yr"  y1={180_000}    y2={400_000}    y3={680_000}    accent={C.align} />
             <ProFormaRow line="Medical-Team Installations · $25-50K"                         units="35 installs/yr" y1={350_000}    y2={825_000}    y3={1_400_000}  accent={C.gold} />
             <ProFormaRow line="Mastermind · $12K/yr × 60 members"                           units="60 members"    y1={300_000}    y2={500_000}    y3={700_000}    accent={C.goldLight} />
-            <ProFormaRow line="Acquired clinic revenue (post-lift, blended)"                units="33 clinics"    y1={11_200_000} y2={36_500_000} y3={62_000_000} accent={C.spine} bold />
+            <ProFormaRow line="Acquired clinic revenue (post-lift, blended)"                units="33 clinics"    y1={11_200_000} y2={36_500_000} y3={62_000_000} accent={C.globe} bold />
             <ProFormaRow line="TOTAL ANNUALIZED REVENUE"                                    units="—"             y1={12_250_000} y2={39_300_000} y3={68_200_000} accent={C.gold} total />
           </div>
         </div>
@@ -766,7 +766,7 @@ export default function LaunchPlanPage() {
             <KvLine label="33 clinics × ~$1.9M each"             val={fmtMoney(totalAcqValue)} />
             <KvLine label="Multiple paid (avg)"                   val="2.4× SDE" />
             <KvLine label="ChiroPillar acquired EBITDA (post-lift)" val={fmtMoney(finalEbitda)} />
-            <KvLine label="Wagner existing EBITDA · siloed value (5-7×)" val={`${fmtMoney(25_000_000 * 5)}-${fmtMoney(25_000_000 * 7)}`} accent={C.spine} />
+            <KvLine label="Wagner existing EBITDA · siloed value (5-7×)" val={`${fmtMoney(25_000_000 * 5)}-${fmtMoney(25_000_000 * 7)}`} accent={C.globe} />
             <KvLine label="Total cost basis"                       val={fmtMoney(47_500_000 + 25_000_000 * 6)} accent={C.text} />
           </div>
 
@@ -786,7 +786,7 @@ export default function LaunchPlanPage() {
           <br/><br/>
           <strong style={{ color: C.green }}>1. Clinic-level re-rate:</strong> ChiroPillar buys clinics at <strong style={{ color: C.text }}>2.4× SDE</strong> (~$1.9M each). Wagner installs the medical-team playbook → EBITDA lifts $250K-$500K Y1. At exit, those clinics are valued at the <strong style={{ color: C.gold }}>platform-level 8-10× EBITDA</strong>{' '}instead of the standalone solo-DC multiple. That&apos;s a 3-4× re-rate per clinic on the EBITDA we created.
           <br/><br/>
-          <strong style={{ color: C.green }}>2. Wagner-existing-EBITDA re-rate:</strong> Wagner&apos;s $25M of medical-practice EBITDA today is valued <strong style={{ color: C.spine }}>at 5-7× siloed</strong> ($125-175M). Once inside the combined <strong style={{ color: C.gold }}>$32.3M ChiroPillar+Wagner platform</strong> with national brand, RTM/telehealth recurring revenue layer, and proven roll-up engine, every dollar of that same $25M trades at <strong style={{ color: C.gold }}>8-10× alongside the new EBITDA</strong>. That alone is a <strong style={{ color: C.green }}>$25-75M re-rate</strong> on EBITDA Wagner already owns.
+          <strong style={{ color: C.green }}>2. Wagner-existing-EBITDA re-rate:</strong> Wagner&apos;s $25M of medical-practice EBITDA today is valued <strong style={{ color: C.globe }}>at 5-7× siloed</strong> ($125-175M). Once inside the combined <strong style={{ color: C.gold }}>$32.3M ChiroPillar+Wagner platform</strong> with national brand, RTM/telehealth recurring revenue layer, and proven roll-up engine, every dollar of that same $25M trades at <strong style={{ color: C.gold }}>8-10× alongside the new EBITDA</strong>. That alone is a <strong style={{ color: C.green }}>$25-75M re-rate</strong> on EBITDA Wagner already owns.
           <br/><br/>
           <strong style={{ color: C.text }}>The arbitrage isn&apos;t just on the new acquisitions — it&apos;s on the rerating of the entire enterprise.</strong>
         </div>
@@ -906,10 +906,10 @@ function Ask({ label, val, sub, color }: { label: string; val: string; sub: stri
 
 function Stream({ pct, amount, sub, accent }: { pct: string; amount: string; sub: string; accent: string }) {
   return (
-    <div style={{ background: C.bg3, border: `1px solid ${C.border}`, borderRadius: 12, padding: '16px 18px', borderLeft: `3px solid ${accent}` }}>
-      <div style={{ fontFamily: F.mono, fontSize: 10, color: accent, letterSpacing: '0.14em', fontWeight: 800 }}>{pct}</div>
-      <div style={{ fontFamily: F.display, fontSize: 18, fontWeight: 800, color: accent, lineHeight: 1.1, margin: '4px 0 6px' }}>{amount}</div>
-      <div style={{ fontSize: 11, color: C.muted, lineHeight: 1.45 }}>{sub}</div>
+    <div style={{ background: C.bg3, border: `1px solid ${C.border}`, borderRadius: 12, padding: '16px 18px', borderLeft: `4px solid ${accent}` }}>
+      <div style={{ fontFamily: F.mono, fontSize: 12, color: accent, letterSpacing: '0.14em', fontWeight: 800 }}>{pct}</div>
+      <div style={{ fontFamily: F.display, fontSize: 20, fontWeight: 800, color: '#FFFFFF', lineHeight: 1.1, margin: '6px 0 8px', letterSpacing: '-0.01em' }}>{amount}</div>
+      <div style={{ fontSize: 13, color: '#FFFFFF', lineHeight: 1.5 }}>{sub}</div>
     </div>
   )
 }
