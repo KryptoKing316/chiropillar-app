@@ -192,7 +192,7 @@ export default async function FounderCompPage() {
           </div>
         </div>
         <div style={{ marginTop: 18, fontSize: 14, color: '#FFFFFF', lineHeight: 1.65, padding: '14px 20px', background: 'rgba(46,117,182,0.06)', border: '1px solid rgba(46,117,182,0.18)', borderRadius: 10 }}>
-          <strong style={{ color: '#FFFFFF' }}>How Scott and Eric win:</strong> base salary + 2% acquisition consulting fee (each, half of KB&apos;s 4%) <strong style={{ color: C.green }}>only on platform-sourced clinic closes</strong> + 2.5% exit fee (each, half of KB&apos;s 5%) <strong style={{ color: C.green }}>only on the eventual sale of platform-sourced clinics we helped scale</strong>. Equal split on every transaction-level fee. <strong style={{ color: C.gold }}>The ongoing 5% rev share is platform operating capital</strong> — it funds the dev team, IT, hosting, coders, and infrastructure to run the platform. Surplus accrues to ChiroPillar entity equity (Eric 80% / Wagner 20%).
+          <strong style={{ color: '#FFFFFF' }}>How Scott and Eric win:</strong> base salary + 2% acquisition consulting fee (each, half of KB&apos;s 4%) <strong style={{ color: C.green }}>only on platform-sourced clinic closes</strong> + 2.5% exit fee (each, half of KB&apos;s 5%) <strong style={{ color: C.green }}>only on the eventual sale of platform-sourced clinics we helped scale</strong>. Equal split on every transaction-level fee.
         </div>
       </div>
 
