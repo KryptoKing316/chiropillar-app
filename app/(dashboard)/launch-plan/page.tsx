@@ -457,7 +457,7 @@ export default function LaunchPlanPage() {
           Wagner keeps 100% of every clinic. KB earns only on deals we source.
         </h2>
         <div style={{ fontSize: 14, color: C.muted, lineHeight: 1.65, marginBottom: 18 }}>
-          <strong style={{ color: C.text }}>Wagner walks away with:</strong> 100% equity in every acquired clinic, all the multiple arbitrage on exit (2.4× cost basis → 8-10× platform), the entire acquisition + roll-up engine (sales team + ad system + intake funnel + CRM + Clay enrichment), the ChiroPillar tech platform (digital twin + dashboards + AI-tracked attribution that earns a higher tech multiple at exit), and Wagner&apos;s existing $25M+ EBITDA re-rated from 5-7× siloed to 8-10× platform. <strong style={{ color: C.green }}>KB only earns on the deals KB actually sources and the offices we bring on — and only on the exit of those specific deals we sourced and helped scale.</strong>
+          <strong style={{ color: C.text }}>Wagner walks away with:</strong> 100% equity in every acquired clinic, all the multiple arbitrage on exit (2.4× cost basis → 8-10× platform), the entire acquisition + roll-up engine, the ChiroPillar tech platform, and Wagner&apos;s existing $25M+ EBITDA re-rated from 5-7× siloed to 8-10× platform. <strong style={{ color: C.green }}>KB only earns on the deals KB actually sources and the offices we bring on — and only on the exit of those specific deals we sourced and helped scale.</strong>
         </div>
 
         <div style={{ fontFamily: F.mono, fontSize: 10, color: C.faint, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 10 }}>
