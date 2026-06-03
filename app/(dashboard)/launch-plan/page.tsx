@@ -190,7 +190,7 @@ const STACK = [
   { tool: 'DocuSeal Pro',              cost_mo: 99,    use: 'NDA + LOI + APA e-signature' },
   { tool: 'Stripe · 2.9% + 30c',       cost_mo: 250,   use: 'Scale Services checkout' },
   { tool: 'QuickBooks Online',         cost_mo: 90,    use: 'Per-entity books · Phase 3 OAuth integration' },
-  { tool: 'Calendly · Team',           cost_mo: 96,    use: 'Auto-book Wagner + McGrath calls' },
+  { tool: 'Calendly · Team',           cost_mo: 96,    use: 'Auto-book ChiroPillar team calls (BD + Closers) · Wagner only at final close' },
   { tool: 'Slack + Notion',            cost_mo: 150,   use: 'Internal ops' },
 ]
 const stackTotalMo = STACK.reduce((s, t) => s + t.cost_mo, 0)
@@ -456,74 +456,22 @@ export default function LaunchPlanPage() {
         <h2 style={{ fontFamily: F.display, fontSize: 24, fontWeight: 700, color: C.text, margin: '0 0 14px', letterSpacing: '-0.01em' }}>
           Wagner keeps 100% of every clinic. KB earns only on deals we source.
         </h2>
-        <div style={{ fontSize: 14, color: C.muted, lineHeight: 1.65, marginBottom: 18 }}>
-          <strong style={{ color: C.text }}>Wagner walks away with:</strong> 100% equity in every acquired clinic, all the multiple arbitrage on exit (2.4× cost basis → 8-10× platform), the entire acquisition + roll-up engine, the ChiroPillar tech platform, and Wagner&apos;s existing $25M+ EBITDA re-rated from 5-7× siloed to 8-10× platform. <strong style={{ color: C.green }}>KB only earns on the deals KB actually sources and the offices we bring on — and only on the exit of those specific deals we sourced and helped scale.</strong>
+        <div style={{ fontSize: 15, color: '#C9CCDB', lineHeight: 1.7, marginBottom: 22 }}>
+          <strong style={{ color: '#FFFFFF' }}>Wagner walks away with:</strong> 100% equity in every acquired clinic, all the multiple arbitrage on exit (2.4× cost basis → 8-10× platform), the entire acquisition + roll-up engine, the ChiroPillar tech platform, and Wagner&apos;s existing $25M+ EBITDA re-rated from 5-7× siloed to 8-10× platform. <strong style={{ color: C.green }}>KB only earns on the deals KB actually sources and the offices we bring on — and only on the exit of those specific deals we sourced and helped scale.</strong>
         </div>
 
-        <div style={{ fontFamily: F.mono, fontSize: 10, color: C.faint, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 10 }}>
+        <div style={{ fontFamily: F.mono, fontSize: 13, color: '#FFFFFF', letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 14 }}>
           KB compensation · on platform-sourced deals only
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 14, marginBottom: 18 }}>
-          <Sub label="4% acq consulting · on platform-sourced closes only"  val={fmtMoney(kbOneTimeFee)}       color={C.green} />
-          <Sub label="5% × revenue from platform-sourced clinics × 5yr"     val={fmtMoney(kbRevenueShare5yr)} color={C.gold} />
-          <Sub label="5% × Scale Services revenue (Y1-Y3)"                   val={fmtMoney(kbScaleShare)}      color={C.green} />
-          <Sub label="5% × exit of platform-sourced clinics · 2.5/2.5"      val={fmtMoney(kbExitFee)}         color={C.goldLight} />
-          <Sub label="Total KB earned (24mo + hold + exit)"                  val={fmtMoney(totalKbShare)}     color={C.gold} />
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 14, marginBottom: 18 }}>
+          <KbFeeCard label="4% acq consulting"          detail="on platform-sourced closes only" val={fmtMoney(kbOneTimeFee)}       accent={C.green} />
+          <KbFeeCard label="5% revenue share"            detail="platform-sourced clinics · 5yr"  val={fmtMoney(kbRevenueShare5yr)}  accent={C.gold} />
+          <KbFeeCard label="5% Scale Services"           detail="Y1-Y3 ancillary revenue"          val={fmtMoney(kbScaleShare)}      accent={C.green} />
+          <KbFeeCard label="5% exit fee"                  detail="platform-sourced clinics only"   val={fmtMoney(kbExitFee)}         accent={C.goldLight} />
+          <KbFeeCard label="Total KB earned"              detail="24mo + 5yr hold + exit"           val={fmtMoney(totalKbShare)}      accent={C.gold} bold />
         </div>
         <div style={{ fontSize: 13.5, color: C.muted, lineHeight: 1.65, padding: '14px 18px', background: 'rgba(46,117,182,0.06)', border: '1px solid rgba(46,117,182,0.18)', borderRadius: 10 }}>
           <strong style={{ color: C.text }}>The 4% acquisition fee</strong> is paid <strong style={{ color: C.green }}>only on chiropractor offices KB sources through the platform</strong>. Sized on EV — <strong style={{ color: C.green }}>$1.9M clinic = ~$76K to KB at close</strong>, split 2% Eric/ChiroPillar + 2% McGrath. <strong style={{ color: C.text }}>The 5% ongoing</strong> flows 100% to ChiroPillar on revenue from platform-sourced clinics + Scale Services. <strong style={{ color: C.text }}>The 5% exit fee applies only on the platform-sourced clinics.</strong>
-        </div>
-      </div>
-
-      {/* FOUNDER COMP BREAKDOWN · Eric vs McGrath individual takes */}
-      <div style={{
-        background: `linear-gradient(135deg, rgba(201,168,76,0.08), ${C.bg3})`,
-        border: `1px solid rgba(201,168,76,0.30)`, borderRadius: 14, padding: '24px 28px',
-        marginBottom: 32,
-      }}>
-        <div style={{ fontFamily: F.mono, fontSize: 11, color: C.gold, letterSpacing: '0.20em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 8 }}>
-          ★ Founder Comp · Eric + Scott individual takes
-        </div>
-        <h2 style={{ fontFamily: F.display, fontSize: 22, fontWeight: 700, color: C.text, margin: '0 0 14px', letterSpacing: '-0.01em' }}>
-          Base + acquisition fee + exit fee. Aligned with deal flow.
-        </h2>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 18 }} className="kb-founder-grid">
-          {/* ERIC */}
-          <div style={{ background: C.bg3, border: `1px solid ${C.border}`, borderLeft: `4px solid ${C.gold}`, borderRadius: 12, padding: '20px 22px' }}>
-            <div style={{ fontFamily: F.display, fontSize: 18, fontWeight: 700, color: C.text, marginBottom: 4 }}>Eric Skeldon · Founder/CEO · ChiroPillar owner</div>
-            <div style={{ fontSize: 12, color: C.gold, fontFamily: F.mono, letterSpacing: '0.10em', marginBottom: 14, fontWeight: 700 }}>FULL-TIME · DAY 0</div>
-            <div style={{ display: 'grid', gap: 8, marginBottom: 14 }}>
-              <FounderLine label="Upfront on signing"          val="$25,000"                                    note="cash at term-sheet execution" accent={C.gold} />
-              <FounderLine label="Monthly draw × 24mo"          val={`$12,500/mo · ${fmtMoney(12_500 * 24)}`}    note="paid from Wagner operating check" />
-              <FounderLine label="2% acq consulting fee"        val={`${fmtMoney(totalAcqValue * 0.02)}`}        note="~$38K per $1.9M close · 25 closes · half of KB's 4%" accent={C.green} />
-              <FounderLine label="2.5% exit fee · ChiroPillar slice" val={`${fmtMoney(kbExitFee * 0.5)}`}         note="paid at eventual platform sale · half of 5%" accent={C.goldLight} />
-              <FounderLine label="5% ongoing rev share · to ChiroPillar" val={fmtMoney(kbRevenueShare5yr + kbScaleShare)} note="flows to ChiroPillar entity (Eric owns)" accent={C.gold} />
-            </div>
-            <div style={{ padding: '10px 14px', background: 'rgba(201,168,76,0.10)', borderRadius: 8, fontSize: 13, color: C.text, fontFamily: F.mono, fontWeight: 700, display: 'flex', justifyContent: 'space-between' }}>
-              <span style={{ color: C.gold }}>ERIC TOTAL (24mo + hold + exit)</span>
-              <span style={{ fontFamily: F.display, fontSize: 18, color: C.gold }}>{fmtMoney(25_000 + 12_500 * 24 + totalAcqValue * 0.02 + kbExitFee * 0.5 + kbRevenueShare5yr + kbScaleShare)}</span>
-            </div>
-          </div>
-
-          {/* SCOTT MCGRATH */}
-          <div style={{ background: C.bg3, border: `1px solid ${C.border}`, borderLeft: `4px solid ${C.green}`, borderRadius: 12, padding: '20px 22px' }}>
-            <div style={{ fontFamily: F.display, fontSize: 18, fontWeight: 700, color: C.text, marginBottom: 4 }}>Scott McGrath · BD Partner</div>
-            <div style={{ fontSize: 12, color: C.green, fontFamily: F.mono, letterSpacing: '0.10em', marginBottom: 14, fontWeight: 700 }}>FRACTIONAL · DAY 0 · BROUGHT WAGNER</div>
-            <div style={{ display: 'grid', gap: 8, marginBottom: 14 }}>
-              <FounderLine label="Monthly base × 24mo"          val={`$5,000/mo · ${fmtMoney(5_000 * 24)}`}      note="consultant retainer · paid monthly" accent={C.gold} />
-              <FounderLine label="2% acq consulting fee"        val={`${fmtMoney(totalAcqValue * 0.02)}`}        note="~$38K per $1.9M close · 25 closes · half of KB's 4%" accent={C.green} />
-              <FounderLine label="2.5% exit fee · ChiroPillar slice" val={`${fmtMoney(kbExitFee * 0.5)}`}         note="paid at eventual platform sale · half of 5%" accent={C.goldLight} />
-              <FounderLine label="No ongoing rev share"          val="—"                                          note="ongoing 5% flows to ChiroPillar entity" />
-              <FounderLine label="No equity"                      val="—"                                          note="all comp is fee-based · clean" />
-            </div>
-            <div style={{ padding: '10px 14px', background: 'rgba(46,204,139,0.10)', borderRadius: 8, fontSize: 13, color: C.text, fontFamily: F.mono, fontWeight: 700, display: 'flex', justifyContent: 'space-between' }}>
-              <span style={{ color: C.green }}>SCOTT TOTAL (24mo + exit)</span>
-              <span style={{ fontFamily: F.display, fontSize: 18, color: C.green }}>{fmtMoney(5_000 * 24 + totalAcqValue * 0.02 + kbExitFee * 0.5)}</span>
-            </div>
-          </div>
-        </div>
-        <div style={{ marginTop: 16, fontSize: 13, color: C.muted, lineHeight: 1.65, padding: '12px 18px', background: 'rgba(46,117,182,0.06)', border: '1px solid rgba(46,117,182,0.18)', borderRadius: 10 }}>
-          <strong style={{ color: C.text }}>How Scott and Eric win:</strong> base salary + 2% acquisition consulting fee (each, half of KB&apos;s 4%) <strong style={{ color: C.green }}>only on platform-sourced clinic closes</strong> + 2.5% exit fee (each, half of KB&apos;s 5%) <strong style={{ color: C.green }}>only on the eventual sale of platform-sourced clinics we helped scale</strong>. Equal split on transaction-level fees. The ongoing 5% revenue share is a ChiroPillar entity fee on revenue from platform-sourced clinics + Scale Services — Eric owns ChiroPillar, so it accrues to him as owner equity value, not a personal line item.
         </div>
       </div>
 
@@ -542,24 +490,24 @@ export default function LaunchPlanPage() {
                 <h3 style={{ fontFamily: F.display, fontSize: 22, fontWeight: 700, color: C.text, margin: 0, letterSpacing: '-0.01em' }}>{s.name}</h3>
                 <span style={{ fontSize: 11, color: s.accent, fontFamily: F.mono, letterSpacing: '0.12em', textTransform: 'uppercase', fontWeight: 700 }}>{s.ownership}</span>
               </div>
-              <p style={{ fontSize: 14, color: C.muted, lineHeight: 1.6, margin: '0 0 14px' }}>{s.what}</p>
-              <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 14 }}>
+              <p style={{ fontSize: 15, color: '#C9CCDB', lineHeight: 1.6, margin: '0 0 14px' }}>{s.what}</p>
+              <div style={{ display: 'flex', gap: 7, flexWrap: 'wrap', marginBottom: 14 }}>
                 {s.tools.map(t => (
-                  <span key={t} style={{ fontSize: 11, padding: '3px 9px', borderRadius: 5, background: `${s.accent}18`, color: s.accent, fontFamily: F.mono, fontWeight: 700, letterSpacing: '0.04em' }}>{t}</span>
+                  <span key={t} style={{ fontSize: 12, padding: '4px 10px', borderRadius: 5, background: `${s.accent}22`, color: s.accent, fontFamily: F.mono, fontWeight: 700, letterSpacing: '0.04em' }}>{t}</span>
                 ))}
               </div>
             </div>
-            <div style={{ background: C.bg3, border: `1px solid ${C.border}`, borderRadius: 10, padding: '14px 16px' }}>
-              <div style={{ fontFamily: F.mono, fontSize: 9, color: C.faint, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 10 }}>Metrics</div>
+            <div style={{ background: C.bg3, border: `1px solid ${C.border}`, borderRadius: 10, padding: '16px 18px' }}>
+              <div style={{ fontFamily: F.mono, fontSize: 12, color: '#FFFFFF', letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 12 }}>Metrics</div>
               {s.metrics.map((m, j) => (
-                <div key={j} style={{ display: 'flex', justifyContent: 'space-between', padding: '3px 0', fontSize: 11.5, color: C.muted }}>
-                  <span>{m.label}</span>
-                  <span style={{ color: C.text, fontFamily: F.mono, fontWeight: 700 }}>{m.val}</span>
+                <div key={j} style={{ display: 'flex', justifyContent: 'space-between', padding: '5px 0', fontSize: 13, color: '#C9CCDB', gap: 8 }}>
+                  <span style={{ flexShrink: 1, lineHeight: 1.4 }}>{m.label}</span>
+                  <span style={{ color: '#FFFFFF', fontFamily: F.mono, fontWeight: 700, flexShrink: 0 }}>{m.val}</span>
                 </div>
               ))}
-              <div style={{ marginTop: 8, paddingTop: 8, borderTop: `1px dashed ${C.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
-                <span style={{ fontFamily: F.mono, fontSize: 10, color: s.accent, letterSpacing: '0.10em', textTransform: 'uppercase', fontWeight: 800 }}>Run rate</span>
-                <span style={{ fontFamily: F.display, fontSize: 17, fontWeight: 800, color: s.accent }}>{fmtMoney(s.monthly_cost)}/mo</span>
+              <div style={{ marginTop: 10, paddingTop: 10, borderTop: `1px dashed ${C.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                <span style={{ fontFamily: F.mono, fontSize: 12, color: s.accent, letterSpacing: '0.12em', textTransform: 'uppercase', fontWeight: 800 }}>Run rate</span>
+                <span style={{ fontFamily: F.display, fontSize: 20, fontWeight: 800, color: s.accent }}>{fmtMoney(s.monthly_cost)}/mo</span>
               </div>
             </div>
           </div>
@@ -732,7 +680,7 @@ export default function LaunchPlanPage() {
           ★ The Ask · Y1 Operating Capital Only (Y2 self-funded)
         </div>
         <h2 style={{ fontFamily: F.display, fontSize: 32, fontWeight: 700, color: C.text, margin: '0 0 16px', letterSpacing: '-0.02em' }}>
-          {fmtMoney(monthlyBurnY1 * 12)} over 12 months. That&apos;s it.
+          $1.71 Million for an Empire-Build Acquisition System.
         </h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 16, marginBottom: 18 }}>
           <Ask label="Operating capital · 12mo"  val={fmtMoney(monthlyBurnY1 * 12)} sub={`~$${Math.round(monthlyBurnY1 / 1_000)}K/mo · team + marketing + SaaS · drawn monthly`} color={C.gold} />
@@ -946,10 +894,10 @@ function Sub({ label, val, color }: { label: string; val: string; color: string 
 
 function Ask({ label, val, sub, color }: { label: string; val: string; sub: string; color?: string }) {
   return (
-    <div style={{ background: 'rgba(255,255,255,0.04)', border: `1px solid ${color ? color + '55' : C.border}`, borderRadius: 12, padding: '14px 18px' }}>
-      <div style={{ fontFamily: F.mono, fontSize: 10, color: C.faint, letterSpacing: '0.12em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 4 }}>{label}</div>
-      <div style={{ fontSize: 24, fontWeight: 800, color: color || C.text, fontFamily: F.display, lineHeight: 1, marginBottom: 4 }}>{val}</div>
-      <div style={{ fontFamily: F.mono, fontSize: 10, color: C.faint, letterSpacing: '0.04em' }}>{sub}</div>
+    <div style={{ background: 'rgba(255,255,255,0.05)', border: `1px solid ${color ? color + '66' : C.border}`, borderRadius: 12, padding: '18px 20px' }}>
+      <div style={{ fontFamily: F.display, fontSize: 15, color: '#FFFFFF', letterSpacing: '-0.01em', fontWeight: 700, marginBottom: 8 }}>{label}</div>
+      <div style={{ fontSize: 28, fontWeight: 800, color: color || '#FFFFFF', fontFamily: F.display, lineHeight: 1, marginBottom: 8, letterSpacing: '-0.02em' }}>{val}</div>
+      <div style={{ fontSize: 13, color: '#C9CCDB', lineHeight: 1.5 }}>{sub}</div>
     </div>
   )
 }
@@ -991,6 +939,22 @@ function FounderLine({ label, val, note, accent }: { label: string; val: string;
         <div style={{ fontSize: 11, color: C.muted, marginTop: 2, fontStyle: 'italic' }}>{note}</div>
       </div>
       <div style={{ fontFamily: F.display, fontSize: 16, fontWeight: 800, color: accent || C.text, textAlign: 'right' }}>{val}</div>
+    </div>
+  )
+}
+
+function KbFeeCard({ label, detail, val, accent, bold }: { label: string; detail: string; val: string; accent: string; bold?: boolean }) {
+  return (
+    <div style={{
+      padding: bold ? '18px 20px' : '16px 18px',
+      background: bold ? `${accent}1A` : 'rgba(255,255,255,0.04)',
+      border: `${bold ? 2 : 1}px solid ${bold ? accent : C.border}`,
+      borderLeft: `4px solid ${accent}`,
+      borderRadius: 10,
+    }}>
+      <div style={{ fontFamily: F.display, fontSize: 16, fontWeight: 700, color: '#FFFFFF', marginBottom: 3, letterSpacing: '-0.01em' }}>{label}</div>
+      <div style={{ fontSize: 12, color: '#C9CCDB', marginBottom: 10, lineHeight: 1.4 }}>{detail}</div>
+      <div style={{ fontFamily: F.display, fontSize: bold ? 28 : 24, fontWeight: 800, color: accent, lineHeight: 1, letterSpacing: '-0.02em' }}>{val}</div>
     </div>
   )
 }
