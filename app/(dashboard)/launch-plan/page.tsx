@@ -156,7 +156,7 @@ type Hire = {
 const HIRES: Hire[] = [
   // ─── DAY 0 · PARTNERS ───
   { role: 'Eric Skeldon · Founder/CEO',              when: 'Day 0',   comp: '$25K upfront + $12.5K/mo',                comp_low: 175_000, comp_high: 175_000, fulltime: true,  responsibilities: 'Platform · deal structure · final closing · ChiroPillar owner + operator' },
-  { role: 'Scott McGrath · BD Partner',              when: 'Day 0',   comp: '$5K/mo',                                  comp_low: 60_000,  comp_high: 60_000,  fulltime: false, responsibilities: 'Brought Dr. Wagner to the table · networks with DC associations · sponsors largest chiropractic + DC events · opens doors via senior DC reputation' },
+  { role: 'Scott McGrath · BD Partner',              when: 'Day 0',   comp: '$5K/mo',                                  comp_low: 60_000,  comp_high: 60_000,  fulltime: false, responsibilities: 'Wagner relationship · networks with DC associations · sponsors largest chiropractic + DC events · opens doors via senior DC reputation' },
   { role: 'Dr. Scott Wagner · Clinical Partner',     when: 'Day 0',   comp: 'Owns clinics outright',           comp_low: 0,       comp_high: 0,        fulltime: false, responsibilities: 'Clinical playbook · medical-team install · operator credibility' },
 
   // ─── 90-120 DAY HIRES · full sales + ops engine built in Q1-Q2 ───
