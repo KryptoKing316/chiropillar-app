@@ -327,42 +327,69 @@ export default function LaunchPlanPage() {
           One small check. Acquisitions on bank debt. Wagner owns clinics from Day 1.
         </h1>
         <p style={{ fontSize: 15, color: C.muted, margin: 0, maxWidth: 880, lineHeight: 1.55 }}>
-          Wagner writes <strong style={{ color: C.gold }}>{fmtMoney(totalOperating)}</strong> over 24 months for operating capital (team + ads + SaaS). Acquisitions get financed through senior debt secured by Wagner&apos;s existing <strong style={{ color: C.gold }}>$25M EBITDA</strong> — Wagner puts 50% cash at close per clinic, the rest is a seller note. <strong style={{ color: C.text }}>Wagner owns 100% of each clinic the moment the seller-DC signs.</strong> KB earns 4% one-time consulting + 5% ongoing rev share + 5% exit fee. <strong style={{ color: C.gold }}>All multiple arbitrage on exit goes to Wagner.</strong>
+          Wagner writes <strong style={{ color: C.gold }}>{fmtMoney(monthlyBurnY1 * 12)}</strong> over the first 12 months for operating capital (team + ads + SaaS) — drawn monthly. <strong style={{ color: C.green }}>Y2 is self-funding</strong> from clinic cash flow + Scale Services revenue. Acquisitions get financed through senior debt secured by Wagner&apos;s existing <strong style={{ color: C.gold }}>$25M EBITDA</strong> — Wagner puts 50% cash at close per clinic, the rest is a seller note. <strong style={{ color: C.text }}>Wagner owns 100% of each clinic the moment the seller-DC signs.</strong> KB earns 4% one-time consulting + 5% ongoing rev share + 5% exit fee. <strong style={{ color: C.gold }}>All multiple arbitrage on exit goes to Wagner.</strong>
         </p>
       </div>
 
       {/* HEADLINE STATS · operating ask only · brighter colors for readability */}
       <div style={{
-        display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 14,
-        background: `linear-gradient(135deg, rgba(201,168,76,0.12), ${C.bg3})`,
-        border: `2px solid rgba(201,168,76,0.40)`, borderRadius: 14, padding: '24px 28px',
-        marginBottom: 24,
+        background: `linear-gradient(135deg, rgba(201,168,76,0.14), ${C.bg3})`,
+        border: `2px solid rgba(201,168,76,0.45)`, borderRadius: 14, padding: '26px 30px',
+        marginBottom: 18,
       }}>
-        <Kpi label="★ WAGNER OPERATING CHECK"   val={fmtMoney(totalOperating)}    sub="24 months · drawn monthly" color={C.gold} big />
-        <Kpi label="Acquisition value funded"   val={fmtMoney(totalAcqValue)}     sub={`${totalAcqCount} clinics @ ~$1.9M avg`} color={C.goldLight} />
-        <Kpi label="Wagner cash at close (50%)" val={fmtMoney(totalWagnerCash)}   sub="from $25M EBITDA cash flow" color={C.globe} />
-        <Kpi label="Bank debt drawn"            val={fmtMoney(totalBankDebt)}     sub="cross-collateralized · prime + 2-3.75%" color={C.align} />
-        <Kpi label="ChiroPillar EBITDA"         val={fmtMoney(finalEbitda)}       sub="month 24 · bolt-on to Wagner" color={C.green} />
-        <Kpi label="Exit · 8-10×"               val={`${fmtMoney(exitLow)}-${fmtMoney(exitHigh)}`} sub={`combined ${fmtMoney(25_000_000 + finalEbitda)} EBITDA`} color={C.goldLight} />
+        {/* WAGNER MONTHLY DRAW · the headline ask (12-month framing) */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 24, alignItems: 'center', paddingBottom: 22, marginBottom: 20, borderBottom: `1px solid ${C.border}` }} className="kb-wagner-hero">
+          <div>
+            <div style={{ fontFamily: F.mono, fontSize: 11, color: C.gold, letterSpacing: '0.20em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 6 }}>
+              ★ Wagner Monthly Draw · to build platform + roll-up
+            </div>
+            <div style={{ fontFamily: F.display, fontSize: 'clamp(48px, 6vw, 64px)', fontWeight: 800, color: C.gold, lineHeight: 1, marginBottom: 8, letterSpacing: '-0.02em' }}>
+              ~${Math.round(monthlyBurnY1 / 1_000)}K<span style={{ fontSize: '0.5em', color: C.goldLight, fontWeight: 600 }}>/mo</span>
+            </div>
+            <div style={{ fontFamily: F.mono, fontSize: 12, color: C.goldLight, letterSpacing: '0.06em', fontWeight: 700 }}>
+              Y1 average · drawn monthly per signed expense forecast · {fmtMoney(monthlyBurnY1 * 12)} for the first 12 months
+            </div>
+          </div>
+          <div style={{ background: 'rgba(255,255,255,0.04)', border: `1px solid ${C.border}`, borderRadius: 12, padding: '18px 22px' }}>
+            <div style={{ fontFamily: F.mono, fontSize: 10, color: C.faint, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 8 }}>
+              Operating Capital Over 12 Months*
+            </div>
+            <div style={{ fontFamily: F.display, fontSize: 28, fontWeight: 800, color: C.text, lineHeight: 1.1, marginBottom: 6 }}>
+              {fmtMoney(monthlyBurnY1 * 12)} total
+            </div>
+            <div style={{ fontSize: 12, color: C.muted, lineHeight: 1.5 }}>
+              Team + marketing + SaaS for Y1 build. <span style={{ color: C.goldLight, fontFamily: F.mono }}>*</span>Wagner releases first <strong style={{ color: C.text }}>$120K at signing</strong> for Day-1 hires, then monthly thereafter. <strong style={{ color: C.green }}>Y2 is self-funding</strong> from clinic cash flow + Scale Services revenue.
+            </div>
+          </div>
+        </div>
+
+        {/* SUPPORTING KPIs */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 14 }}>
+          <Kpi label="Acquisition value funded"   val={fmtMoney(totalAcqValue)}     sub={`${totalAcqCount} clinics @ ~$1.9M avg · 24mo`} color={C.goldLight} />
+          <Kpi label="Wagner cash at close (50%)" val={fmtMoney(totalWagnerCash)}   sub="from $25M EBITDA cash flow" color={C.globe} />
+          <Kpi label="Bank debt drawn"            val={fmtMoney(totalBankDebt)}     sub="cross-collateralized · prime + 2-3.75%" color={C.align} />
+          <Kpi label="ChiroPillar EBITDA"         val={fmtMoney(finalEbitda)}       sub="month 24 · bolt-on to Wagner" color={C.green} />
+          <Kpi label="Exit · 8-10×"               val={`${fmtMoney(exitLow)}-${fmtMoney(exitHigh)}`} sub={`combined ${fmtMoney(25_000_000 + finalEbitda)} EBITDA`} color={C.goldLight} />
+        </div>
       </div>
 
-      {/* MONTHLY BURN STRIP · what Wagner actually writes per month */}
+      {/* MONTHLY BURN STRIP · what Wagner actually writes per month (Y1 only — Y2 self-funded) */}
       <div style={{
         background: `linear-gradient(135deg, rgba(46,117,182,0.10), ${C.bg3})`,
         border: `1px solid rgba(46,117,182,0.30)`, borderRadius: 14, padding: '22px 28px',
         marginBottom: 24,
       }}>
         <div style={{ fontFamily: F.mono, fontSize: 11, color: C.align, letterSpacing: '0.20em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 10 }}>
-          💸 Monthly draw schedule · what Wagner actually wires each month
+          💸 Monthly draw schedule · Y1 Wagner-funded · Y2 self-funded from operations
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 16 }}>
-          <BurnPill label="Q1 (Mo 1-3) · build phase"           val={`$${Math.round(((TIMELINE[0].team_cost + TIMELINE[0].marketing + TIMELINE[0].saas) / 3) / 1_000)}K/mo`} sub="Eric + McGrath + Ops Lead + Marketer" color={C.globe} />
-          <BurnPill label="Q2 (Mo 4-6) · sales staffed"         val={`$${Math.round(((TIMELINE[1].team_cost + TIMELINE[1].marketing + TIMELINE[1].saas) / 3) / 1_000)}K/mo`} sub="8 people · full sales engine" color={C.align} />
-          <BurnPill label="Y1 average · months 1-12"            val={`$${Math.round(monthlyBurnY1 / 1_000)}K/mo`} sub="blended · ramping up" color={C.goldLight} />
-          <BurnPill label="Y2 average · months 13-24"           val={`$${Math.round(monthlyBurnY2 / 1_000)}K/mo`} sub="steady state · 13 hires + agencies" color={C.gold} bold />
+          <BurnPill label="Q1 (Mo 1-3) · build phase"           val={`$${Math.round(((TIMELINE[0].team_cost + TIMELINE[0].marketing + TIMELINE[0].saas) / 3) / 1_000)}K/mo`} sub="Eric + McGrath + Ops Lead + Marketer · Wagner-funded" color={C.globe} />
+          <BurnPill label="Q2 (Mo 4-6) · sales staffed"         val={`$${Math.round(((TIMELINE[1].team_cost + TIMELINE[1].marketing + TIMELINE[1].saas) / 3) / 1_000)}K/mo`} sub="8 people · full sales engine · Wagner-funded" color={C.align} />
+          <BurnPill label="★ Y1 average · Wagner ask"           val={`$${Math.round(monthlyBurnY1 / 1_000)}K/mo`} sub={`${fmtMoney(monthlyBurnY1 * 12)} total over 12 months`} color={C.gold} bold />
+          <BurnPill label="Y2 average · SELF-FUNDED"            val={`$${Math.round(monthlyBurnY2 / 1_000)}K/mo`} sub="paid from clinic cash flow + Scale Services revenue" color={C.green} />
         </div>
         <div style={{ marginTop: 16, padding: '12px 18px', background: 'rgba(255,255,255,0.04)', borderRadius: 10, fontSize: 13, color: C.muted, lineHeight: 1.6 }}>
-          <strong style={{ color: C.text }}>Practical draw schedule:</strong> Wagner wires the Y1 average (<strong style={{ color: C.goldLight }}>~${Math.round(monthlyBurnY1 / 1_000)}K/month</strong>) for the first 12 months, then steps up to the Y2 average (<strong style={{ color: C.gold }}>~${Math.round(monthlyBurnY2 / 1_000)}K/month</strong>) for months 13-24. Total {fmtMoney(totalOperating)} over 24 months. First $120K released at signing to cover Day-1 hires (Eric + McGrath) and Month-3 onboarding (Ops Lead + Marketer). Subsequent draws monthly against signed expense forecast.
+          <strong style={{ color: C.text }}>Practical draw schedule:</strong> Wagner wires the Y1 average (<strong style={{ color: C.gold }}>~${Math.round(monthlyBurnY1 / 1_000)}K/month</strong>) for the first 12 months — <strong style={{ color: C.gold }}>{fmtMoney(monthlyBurnY1 * 12)} total Y1 ask</strong>. First $120K released at signing to cover Day-1 hires (Eric + McGrath) and Month-3 onboarding (Ops Lead + Marketer). Subsequent draws monthly against signed expense forecast. <strong style={{ color: C.green }}>Y2 (months 13-24) is self-funded</strong> from clinic cash flow + Scale Services revenue — by month 12 ChiroPillar EBITDA covers the Y2 burn with cushion.
         </div>
       </div>
 
@@ -644,18 +671,19 @@ export default function LaunchPlanPage() {
         padding: '28px 32px', marginBottom: 24,
       }}>
         <div style={{ fontFamily: F.mono, fontSize: 11, color: C.gold, letterSpacing: '0.22em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 8 }}>
-          ★ The Ask · Operating Capital Only
+          ★ The Ask · Y1 Operating Capital Only (Y2 self-funded)
         </div>
         <h2 style={{ fontFamily: F.display, fontSize: 32, fontWeight: 700, color: C.text, margin: '0 0 16px', letterSpacing: '-0.02em' }}>
-          {fmtMoney(totalOperating)} over 24 months. That&apos;s it.
+          {fmtMoney(monthlyBurnY1 * 12)} over 12 months. That&apos;s it.
         </h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 16, marginBottom: 18 }}>
-          <Ask label="Operating capital · 24mo"  val={fmtMoney(totalOperating)}    sub="team + marketing + SaaS · drawn monthly" color={C.gold} />
+          <Ask label="Operating capital · 12mo"  val={fmtMoney(monthlyBurnY1 * 12)} sub={`~$${Math.round(monthlyBurnY1 / 1_000)}K/mo · team + marketing + SaaS · drawn monthly`} color={C.gold} />
+          <Ask label="Y2 (months 13-24)"          val="Self-funded"                 sub="from clinic cash flow + Scale Services revenue · no further Wagner capital" color={C.green} />
           <Ask label="Acquisitions"               val="Bank financed"               sub={`${fmtMoney(totalWagnerCash)} from Wagner cash flow + ${fmtMoney(totalBankDebt)} senior debt`} />
           <Ask label="KB compensation"            val="4% + 5% + 5%"                sub="acq consulting (2/2) · ongoing rev share (100% CP) · exit fee (2.5/2.5)" color={C.green} />
         </div>
         <div style={{ fontSize: 14, color: C.muted, lineHeight: 1.65, padding: '16px 20px', background: 'rgba(46,117,182,0.08)', border: '1px solid rgba(46,117,182,0.20)', borderRadius: 10 }}>
-          <strong style={{ color: C.text }}>Why the small ask works:</strong> Wagner&apos;s $25M existing EBITDA gives him $75M+ senior debt capacity at favorable rates. We don&apos;t need his cash for acquisitions — we need his <strong style={{ color: C.gold }}>credit profile and EBITDA cross-collateralization</strong>. KB needs the {fmtMoney(totalOperating)} to run the engine (build the team, run the ads, pay the SaaS). Then KB takes 4% at each close (split 2% Eric / 2% Scott), 5% of revenue ongoing (100% to ChiroPillar), and 5% of ChiroPillar&apos;s slice of the eventual exit (split 2.5% Eric / 2.5% Scott). <strong style={{ color: C.green }}>Wagner owns 100% of every clinic from Day 1</strong> the moment each seller signs — no PE waterfalls, no carry splits, no LP commitments. All multiple arbitrage on exit accrues to Wagner.
+          <strong style={{ color: C.text }}>Why the small ask works:</strong> Wagner&apos;s $25M existing EBITDA gives him $75M+ senior debt capacity at favorable rates. We don&apos;t need his cash for acquisitions — we need his <strong style={{ color: C.gold }}>credit profile and EBITDA cross-collateralization</strong>. KB needs only <strong style={{ color: C.gold }}>{fmtMoney(monthlyBurnY1 * 12)} for Y1</strong> to run the engine (build the team, run the ads, pay the SaaS). <strong style={{ color: C.green }}>By month 12, ChiroPillar EBITDA + Scale Services cash flow covers Y2 burn with cushion — the platform pays for itself.</strong> KB takes 4% at each close (split 2% Eric / 2% Scott), 5% of revenue ongoing (100% to ChiroPillar), and 5% of ChiroPillar&apos;s slice of the eventual exit (split 2.5% Eric / 2.5% Scott). <strong style={{ color: C.green }}>Wagner owns 100% of every clinic from Day 1</strong> the moment each seller signs — no PE waterfalls, no carry splits, no LP commitments. All multiple arbitrage on exit accrues to Wagner.
         </div>
       </div>
 
