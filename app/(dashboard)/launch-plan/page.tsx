@@ -156,15 +156,15 @@ type Hire = {
 const HIRES: Hire[] = [
   // ─── DAY 0 · PARTNERS ───
   { role: 'Eric Skeldon · Founder/CEO',              when: 'Day 0',   comp: '$120K + equity + 5% rev share',  comp_low: 120_000, comp_high: 120_000, fulltime: true,  responsibilities: 'Platform · deal structure · LP relations · final closing' },
-  { role: 'Scott McGrath · BD Partner',              when: 'Day 0',   comp: '$0 base + 4% origination',        comp_low: 0,       comp_high: 0,        fulltime: false, responsibilities: 'Relationship side · senior DC credibility · opens warm doors' },
+  { role: 'Scott McGrath · BD Partner',              when: 'Day 0',   comp: '$5K/mo base ($60K/yr) + 4% origination', comp_low: 60_000,  comp_high: 60_000,   fulltime: false, responsibilities: 'Relationship side · senior DC credibility · opens warm doors' },
   { role: 'Dr. Scott Wagner · Clinical Partner',     when: 'Day 0',   comp: 'Owns clinics outright',           comp_low: 0,       comp_high: 0,        fulltime: false, responsibilities: 'Clinical playbook · medical-team install · operator credibility' },
 
-  // ─── SALES STACK · the human funnel from cold to close ───
+  // ─── 90-120 DAY HIRES · full sales + ops engine built in Q1-Q2 ───
+  { role: 'Operations Lead',                          when: 'Month 3', comp: '$95-130K',                        comp_low: 95_000,  comp_high: 130_000, fulltime: true, responsibilities: 'Post-close integration playbook · acquired-clinic onboarding · standard playbook install' },
+  { role: 'Junior Marketer / Media Buyer',           when: 'Month 3', comp: '$60-80K',                          comp_low: 60_000,  comp_high: 80_000,  fulltime: true, responsibilities: 'Daily ad management (FB + Google) · creative testing · direct mail vendor · BlitzMetrics liaison' },
   { role: 'Appointment Setter #1',                   when: 'Month 4', comp: '$45K base + $75/appt set ($55-72K OTE)', comp_low: 55_000, comp_high: 72_000, fulltime: true, responsibilities: 'High-volume dials · 80-100/day · books discovery calls · works inbound triage' },
   { role: 'BDR / Cold Outreach Specialist',          when: 'Month 4', comp: '$65K base + commission ($85-105K OTE)',  comp_low: 85_000, comp_high: 105_000, fulltime: true, responsibilities: 'Owns Instantly + Apollo · personalized cold email · LinkedIn · qualifies down to discovery' },
-  { role: 'Sales Closer / Account Executive #1',     when: 'Month 6', comp: '$95K base + commission ($155-200K OTE)', comp_low: 155_000, comp_high: 200_000, fulltime: true, responsibilities: 'Closes acquisition LOIs · handles seller objections · works alongside McGrath on warm leads' },
-  { role: 'Operations Lead',                          when: 'Month 6', comp: '$95-130K',                        comp_low: 95_000,  comp_high: 130_000, fulltime: true, responsibilities: 'Post-close integration · runs the playbook install at each clinic' },
-  { role: 'Junior Marketer / Media Buyer',           when: 'Month 6', comp: '$60-80K',                          comp_low: 60_000,  comp_high: 80_000,  fulltime: true, responsibilities: 'Daily ad management · creative testing · direct mail vendor liaison' },
+  { role: 'Sales Closer / Account Executive #1',     when: 'Month 4', comp: '$95K base + commission ($155-200K OTE)', comp_low: 155_000, comp_high: 200_000, fulltime: true, responsibilities: 'Closes acquisition LOIs · handles seller objections · works alongside McGrath on warm leads' },
 
   // ─── MONTH 8-9 · RETENTION + BACK-OFFICE ───
   { role: 'Appointment Setter #2',                   when: 'Month 8', comp: '$45K base + $75/appt set ($55-72K OTE)', comp_low: 55_000, comp_high: 72_000, fulltime: true, responsibilities: 'Doubles dial capacity once funnel proves out · also books Scale Services strategy calls' },
@@ -183,8 +183,8 @@ const STACK = [
   { tool: 'Vercel Pro',                cost_mo: 20,    use: 'Hosting (chiropillar.com)' },
   { tool: 'Anthropic API · Claude',    cost_mo: 800,   use: 'PDF extraction · valuation · add-back detection' },
   { tool: 'Resend (email)',            cost_mo: 80,    use: 'Magic-link + intake notifications + drip' },
-  { tool: 'Apollo.io · 3 seats',       cost_mo: 597,   use: 'Lead enrichment + contact data' },
-  { tool: 'ZoomInfo (optional Phase 2)', cost_mo: 1_200, use: 'Higher-fidelity revenue estimates' },
+  { tool: 'Clay.com Pro · 10K credits/mo', cost_mo: 720, use: 'Lead enrichment · multi-source waterfalls (Apollo + ZoomInfo + RocketReach + Hunter + 50+ providers)' },
+  { tool: 'Clay.com Enterprise upgrade · Phase 2', cost_mo: 1_500, use: 'Higher credit cap + custom waterfalls as deal volume scales' },
   { tool: 'Instantly.ai · 100 inboxes', cost_mo: 297,  use: 'Cold email outbound infrastructure' },
   { tool: 'Aircall + Twilio · 4 lines', cost_mo: 350,  use: 'Click-to-call + SMS' },
   { tool: 'DocuSeal Pro',              cost_mo: 99,    use: 'NDA + LOI + APA e-signature' },
@@ -263,15 +263,24 @@ type Quarter = {
 }
 
 const TIMELINE: Quarter[] = [
-  { q: 'Q1 (Mo 1-3)',   team_cost:  95_000, marketing:  72_000, saas: 12_000, acq_count: 0, acq_value:          0, wagner_cash:         0, bank_debt:         0, cumulative_ebitda:        0, notes: 'Build the engine. Eric + McGrath + Wagner only. First 50 intakes test the funnel.' },
-  { q: 'Q2 (Mo 4-6)',   team_cost: 215_000, marketing: 105_000, saas: 12_000, acq_count: 0, acq_value:          0, wagner_cash:         0, bank_debt:         0, cumulative_ebitda:        0, notes: 'Appt Setter + BDR + Closer #1 + Ops Lead + Marketer hired. Sales engine staffed. Pipeline fills. First LOI signed end-Q2.' },
-  { q: 'Q3 (Mo 7-9)',   team_cost: 335_000, marketing: 135_000, saas: 14_000, acq_count: 2, acq_value:  3_800_000, wagner_cash: 1_900_000, bank_debt: 1_900_000, cumulative_ebitda:   970_000, notes: 'Appt Setter #2 + Account Manager + Bookkeeper added. First 2 clinics @ $1.9M each. Sales team converting.' },
-  { q: 'Q4 (Mo 10-12)', team_cost: 380_000, marketing: 135_000, saas: 16_000, acq_count: 3, acq_value:  5_700_000, wagner_cash: 2_850_000, bank_debt: 2_850_000, cumulative_ebitda: 1_720_000, notes: 'Diligence Analyst hired. 3 more closes. Scale Services revenue ramping under AM #1.' },
-  { q: 'Q5 (Mo 13-15)', team_cost: 480_000, marketing: 150_000, saas: 18_000, acq_count: 4, acq_value:  7_600_000, wagner_cash: 3_800_000, bank_debt: 3_800_000, cumulative_ebitda: 2_770_000, notes: 'Closer #2 + AM #2 (acquired-clinic liaison) hired. 4 acquisitions. 30 active Scale Services customers.' },
-  { q: 'Q6 (Mo 16-18)', team_cost: 525_000, marketing: 165_000, saas: 20_000, acq_count: 5, acq_value:  9_500_000, wagner_cash: 4_750_000, bank_debt: 4_750_000, cumulative_ebitda: 4_010_000, notes: 'Sales engine at full headcount: 2 setters + 1 BDR + 2 Closers + 2 AMs. Pace doubles. 5 closes.' },
-  { q: 'Q7 (Mo 19-21)', team_cost: 545_000, marketing: 165_000, saas: 22_000, acq_count: 5, acq_value:  9_500_000, wagner_cash: 4_750_000, bank_debt: 4_750_000, cumulative_ebitda: 5_510_000, notes: 'Mature pipeline. Predictable cadence. Closer commission load fully running. First exit conversations.' },
-  { q: 'Q8 (Mo 22-24)', team_cost: 570_000, marketing: 165_000, saas: 24_000, acq_count: 6, acq_value: 11_400_000, wagner_cash: 5_700_000, bank_debt: 5_700_000, cumulative_ebitda: 7_260_000, notes: 'Final push to $20M+ ChiroPillar bolt-on EBITDA. Exit conversations open at $45M+ combined platform.' },
+  { q: 'Q1 (Mo 1-3)',   team_cost: 130_000, marketing:  72_000, saas: 14_000, acq_count: 0, acq_value:          0, wagner_cash:         0, bank_debt:         0, cumulative_ebitda:        0, notes: 'Eric + McGrath + Wagner Day 0. Ops Lead + Marketer onboarded Month 3. Engine being built. First 50 intakes test funnel.' },
+  { q: 'Q2 (Mo 4-6)',   team_cost: 285_000, marketing: 105_000, saas: 14_000, acq_count: 0, acq_value:          0, wagner_cash:         0, bank_debt:         0, cumulative_ebitda:        0, notes: 'Sales engine fully staffed Month 4: Appt Setter + BDR + Closer #1 on board. Pipeline fills. First LOI signed end-Q2.' },
+  { q: 'Q3 (Mo 7-9)',   team_cost: 350_000, marketing: 135_000, saas: 16_000, acq_count: 2, acq_value:  3_800_000, wagner_cash: 1_900_000, bank_debt: 1_900_000, cumulative_ebitda:   970_000, notes: 'Appt Setter #2 + Account Manager + Bookkeeper added. First 2 clinics @ $1.9M each. Sales team converting.' },
+  { q: 'Q4 (Mo 10-12)', team_cost: 390_000, marketing: 135_000, saas: 18_000, acq_count: 3, acq_value:  5_700_000, wagner_cash: 2_850_000, bank_debt: 2_850_000, cumulative_ebitda: 1_720_000, notes: 'Diligence Analyst hired. 3 more closes. Scale Services revenue ramping under AM #1.' },
+  { q: 'Q5 (Mo 13-15)', team_cost: 490_000, marketing: 150_000, saas: 20_000, acq_count: 4, acq_value:  7_600_000, wagner_cash: 3_800_000, bank_debt: 3_800_000, cumulative_ebitda: 2_770_000, notes: 'Closer #2 + AM #2 (acquired-clinic liaison) hired. 4 acquisitions. 30 active Scale Services customers.' },
+  { q: 'Q6 (Mo 16-18)', team_cost: 535_000, marketing: 165_000, saas: 22_000, acq_count: 5, acq_value:  9_500_000, wagner_cash: 4_750_000, bank_debt: 4_750_000, cumulative_ebitda: 4_010_000, notes: 'Sales engine at full headcount: 2 setters + 1 BDR + 2 Closers + 2 AMs. Pace doubles. 5 closes.' },
+  { q: 'Q7 (Mo 19-21)', team_cost: 555_000, marketing: 165_000, saas: 24_000, acq_count: 5, acq_value:  9_500_000, wagner_cash: 4_750_000, bank_debt: 4_750_000, cumulative_ebitda: 5_510_000, notes: 'Mature pipeline. Predictable cadence. Closer commission load fully running. First exit conversations.' },
+  { q: 'Q8 (Mo 22-24)', team_cost: 580_000, marketing: 165_000, saas: 26_000, acq_count: 6, acq_value: 11_400_000, wagner_cash: 5_700_000, bank_debt: 5_700_000, cumulative_ebitda: 7_260_000, notes: 'Final push to $20M+ ChiroPillar bolt-on EBITDA. Exit conversations open at $45M+ combined platform.' },
 ]
+
+// Monthly burn approximations for the headline (used by KPI strip)
+const monthlyBurnY1 = (TIMELINE[0].team_cost + TIMELINE[1].team_cost + TIMELINE[2].team_cost + TIMELINE[3].team_cost
+                      + TIMELINE[0].marketing + TIMELINE[1].marketing + TIMELINE[2].marketing + TIMELINE[3].marketing
+                      + TIMELINE[0].saas + TIMELINE[1].saas + TIMELINE[2].saas + TIMELINE[3].saas) / 12
+const monthlyBurnY2 = (TIMELINE[4].team_cost + TIMELINE[5].team_cost + TIMELINE[6].team_cost + TIMELINE[7].team_cost
+                      + TIMELINE[4].marketing + TIMELINE[5].marketing + TIMELINE[6].marketing + TIMELINE[7].marketing
+                      + TIMELINE[4].saas + TIMELINE[5].saas + TIMELINE[6].saas + TIMELINE[7].saas) / 12
+const monthlyBurnAvg = (monthlyBurnY1 + monthlyBurnY2) / 2
 
 const totalOperating = TIMELINE.reduce((s, q) => s + q.team_cost + q.marketing + q.saas, 0)
 const totalAcqValue  = TIMELINE.reduce((s, q) => s + q.acq_value, 0)
@@ -282,12 +291,16 @@ const finalEbitda     = TIMELINE[TIMELINE.length - 1].cumulative_ebitda
 const exitLow         = (25_000_000 + finalEbitda) * 8
 const exitHigh        = (25_000_000 + finalEbitda) * 10
 
-// KB Revenue Share: 5% of platform-tracked revenue from acquired clinics + Scale Services
+// KB compensation structure (per Eric directive · revised 2026-06-03):
+//   4% one-time consulting fee on acquisition enterprise value (paid at close)
+//   5% quarterly revenue share on platform-tracked revenue (ongoing)
+// NO equity rollover · Wagner owns 100% of acquired clinics
 const avgAcqRevenue = 1_600_000   // avg clinic revenue (post-lift)
+const kbOneTimeFee  = totalAcqValue * 0.04  // 4% × total acquisition EV
 const kbRevenueShare5yr = totalAcqCount * avgAcqRevenue * 0.05 * 5  // 5% × 5 years average hold
 const scaleSvcsRevenue3yr = 1_650_000 + 2_800_000 + 4_200_000  // Y1 + Y2 + Y3 Scale Services
 const kbScaleShare = scaleSvcsRevenue3yr * 0.05
-const totalKbShare = kbRevenueShare5yr + kbScaleShare
+const totalKbShare = kbOneTimeFee + kbRevenueShare5yr + kbScaleShare
 
 // Bank debt service math
 const blendedRate = 0.085   // 8.5% blended (SBA 7a + senior mix)
@@ -313,7 +326,7 @@ export default function LaunchPlanPage() {
         </p>
       </div>
 
-      {/* HEADLINE STATS · operating ask only */}
+      {/* HEADLINE STATS · operating ask only · brighter colors for readability */}
       <div style={{
         display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 14,
         background: `linear-gradient(135deg, rgba(201,168,76,0.12), ${C.bg3})`,
@@ -321,32 +334,53 @@ export default function LaunchPlanPage() {
         marginBottom: 24,
       }}>
         <Kpi label="★ WAGNER OPERATING CHECK"   val={fmtMoney(totalOperating)}    sub="24 months · drawn monthly" color={C.gold} big />
-        <Kpi label="Acquisition value funded"   val={fmtMoney(totalAcqValue)}     sub={`${totalAcqCount} clinics @ ~$1.9M avg`} color={C.muted} />
-        <Kpi label="Wagner cash at close (50%)" val={fmtMoney(totalWagnerCash)}   sub="from his $25M EBITDA cash flow" color={C.spine} />
+        <Kpi label="Acquisition value funded"   val={fmtMoney(totalAcqValue)}     sub={`${totalAcqCount} clinics @ ~$1.9M avg`} color={C.goldLight} />
+        <Kpi label="Wagner cash at close (50%)" val={fmtMoney(totalWagnerCash)}   sub="from $25M EBITDA cash flow" color={C.globe} />
         <Kpi label="Bank debt drawn"            val={fmtMoney(totalBankDebt)}     sub="cross-collateralized · prime + 2-3.75%" color={C.align} />
         <Kpi label="ChiroPillar EBITDA"         val={fmtMoney(finalEbitda)}       sub="month 24 · bolt-on to Wagner" color={C.green} />
         <Kpi label="Exit · 8-10×"               val={`${fmtMoney(exitLow)}-${fmtMoney(exitHigh)}`} sub={`combined ${fmtMoney(25_000_000 + finalEbitda)} EBITDA`} color={C.goldLight} />
       </div>
 
-      {/* KB REVENUE SHARE CALLOUT */}
+      {/* MONTHLY BURN STRIP · what Wagner actually writes per month */}
+      <div style={{
+        background: `linear-gradient(135deg, rgba(46,117,182,0.10), ${C.bg3})`,
+        border: `1px solid rgba(46,117,182,0.30)`, borderRadius: 14, padding: '22px 28px',
+        marginBottom: 24,
+      }}>
+        <div style={{ fontFamily: F.mono, fontSize: 11, color: C.align, letterSpacing: '0.20em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 10 }}>
+          💸 Monthly draw schedule · what Wagner actually wires each month
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 16 }}>
+          <BurnPill label="Q1 (Mo 1-3) · build phase"           val={`$${Math.round(((TIMELINE[0].team_cost + TIMELINE[0].marketing + TIMELINE[0].saas) / 3) / 1_000)}K/mo`} sub="Eric + McGrath + Ops Lead + Marketer" color={C.globe} />
+          <BurnPill label="Q2 (Mo 4-6) · sales staffed"         val={`$${Math.round(((TIMELINE[1].team_cost + TIMELINE[1].marketing + TIMELINE[1].saas) / 3) / 1_000)}K/mo`} sub="8 people · full sales engine" color={C.align} />
+          <BurnPill label="Y1 average · months 1-12"            val={`$${Math.round(monthlyBurnY1 / 1_000)}K/mo`} sub="blended · ramping up" color={C.goldLight} />
+          <BurnPill label="Y2 average · months 13-24"           val={`$${Math.round(monthlyBurnY2 / 1_000)}K/mo`} sub="steady state · 13 hires + agencies" color={C.gold} bold />
+        </div>
+        <div style={{ marginTop: 16, padding: '12px 18px', background: 'rgba(255,255,255,0.04)', borderRadius: 10, fontSize: 13, color: C.muted, lineHeight: 1.6 }}>
+          <strong style={{ color: C.text }}>Practical draw schedule:</strong> Wagner wires the Y1 average (<strong style={{ color: C.goldLight }}>~${Math.round(monthlyBurnY1 / 1_000)}K/month</strong>) for the first 12 months, then steps up to the Y2 average (<strong style={{ color: C.gold }}>~${Math.round(monthlyBurnY2 / 1_000)}K/month</strong>) for months 13-24. Total {fmtMoney(totalOperating)} over 24 months. First $120K released at signing to cover Day-1 hires (Eric + McGrath) and Month-3 onboarding (Ops Lead + Marketer). Subsequent draws monthly against signed expense forecast.
+        </div>
+      </div>
+
+      {/* KB COMPENSATION CALLOUT · 4% one-time + 5% ongoing */}
       <div style={{
         background: `linear-gradient(135deg, rgba(46,204,139,0.10), ${C.bg3})`,
         border: `1px solid rgba(46,204,139,0.35)`, borderRadius: 14, padding: '24px 28px',
         marginBottom: 32,
       }}>
         <div style={{ fontFamily: F.mono, fontSize: 11, color: C.green, letterSpacing: '0.20em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 8 }}>
-          ★ KB Revenue Share · 5% of Platform-Tracked Revenue
+          ★ KB Compensation · 4% One-Time + 5% Ongoing
         </div>
         <h2 style={{ fontFamily: F.display, fontSize: 22, fontWeight: 700, color: C.text, margin: '0 0 14px', letterSpacing: '-0.01em' }}>
-          KB earns 5% of every dollar of revenue our marketing + platform brings in.
+          KB earns on every acquisition + every revenue dollar the platform drives.
         </h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 16, marginBottom: 18 }}>
-          <Sub label="Acquired clinic revenue × 5% × 5 yr hold" val={fmtMoney(kbRevenueShare5yr)} color={C.gold} />
-          <Sub label="Scale Services revenue × 5% (Y1-Y3)"     val={fmtMoney(kbScaleShare)}      color={C.green} />
-          <Sub label="Total KB earned (24mo + hold)"            val={fmtMoney(totalKbShare)}     color={C.gold} />
+          <Sub label="4% one-time consulting fee · 24mo"     val={fmtMoney(kbOneTimeFee)}       color={C.green} />
+          <Sub label="5% × clinic revenue × 5yr hold"        val={fmtMoney(kbRevenueShare5yr)} color={C.gold} />
+          <Sub label="5% × Scale Services revenue (Y1-Y3)"   val={fmtMoney(kbScaleShare)}      color={C.green} />
+          <Sub label="Total KB earned (24mo + hold)"          val={fmtMoney(totalKbShare)}     color={C.goldLight} />
         </div>
         <div style={{ fontSize: 13.5, color: C.muted, lineHeight: 1.65, padding: '14px 18px', background: 'rgba(46,117,182,0.06)', border: '1px solid rgba(46,117,182,0.18)', borderRadius: 10 }}>
-          <strong style={{ color: C.text }}>How tracking works:</strong> every applicant comes through chiropillar.com/intake or a tracked direct mail QR. Every Scale Services purchase routes through Stripe with KB as the platform partner. Revenue attribution is built into the schema. Wagner can audit at any time. Paid quarterly net of refunds.
+          <strong style={{ color: C.text }}>The 4% one-time fee</strong> is paid at each acquisition close from Wagner&apos;s capital — sized on the enterprise value (e.g. a <strong style={{ color: C.green }}>$1.9M clinic = ~$76K to KB at close</strong>). <strong style={{ color: C.text }}>The 5% ongoing</strong> is tracked through the platform (every intake form submission + every Scale Services Stripe transaction routes via KB attribution) and paid quarterly net of refunds. Wagner can audit at any time.
         </div>
       </div>
 
@@ -394,13 +428,36 @@ export default function LaunchPlanPage() {
 
       <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, padding: '26px 30px', marginBottom: 24 }}>
         <h3 style={{ fontFamily: F.display, fontSize: 22, fontWeight: 700, color: C.text, margin: '0 0 16px', letterSpacing: '-0.01em' }}>
-          The 4-stream structure means Wagner only needs 50% cash at close.
+          50% cash + 50% seller note. Wagner owns 100%. KB earns fees.
         </h3>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 12, marginBottom: 18 }}>
-          <Stream pct="50%" amount="Cash at close" sub="Bank financed against Wagner's $25M EBITDA · 7-yr amort · ~8.5% blended" accent={C.gold} />
-          <Stream pct="40%" amount="Seller note" sub="Paid from clinic cash flow · 5-7 yr · 6% int · zero up-front cash" accent={C.align} />
-          <Stream pct="10%" amount="Rollover equity" sub="Seller takes ChiroPillar equity · zero up-front cash" accent={C.green} />
-          <Stream pct="4%" amount="Profit share / yr" sub="Ongoing · paid from improved EBITDA · post-close, not at close" accent={C.goldLight} />
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 18, marginBottom: 18 }}>
+          {/* SELLER PAYOUT side */}
+          <div style={{ background: C.bg3, border: `1px solid ${C.border}`, borderRadius: 12, padding: '18px 22px' }}>
+            <div style={{ fontFamily: F.mono, fontSize: 10, color: C.gold, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 12 }}>
+              Seller payout · 100% of EV
+            </div>
+            <div style={{ display: 'grid', gap: 10 }}>
+              <Stream pct="50%" amount="Cash at close" sub="Wagner bank-financed · seller wired at close" accent={C.gold} />
+              <Stream pct="50%" amount="Seller note" sub="Paid from clinic cash flow · 5-7 yr · 6% int" accent={C.align} />
+            </div>
+            <div style={{ marginTop: 12, padding: '10px 14px', background: 'rgba(46,117,182,0.06)', borderRadius: 8, fontSize: 12, color: C.muted, lineHeight: 1.5 }}>
+              No equity rollover. Seller cashes out fully via cash + note. <strong style={{ color: C.text }}>Wagner owns 100%</strong> of the clinic at close.
+            </div>
+          </div>
+
+          {/* KB FEES side */}
+          <div style={{ background: C.bg3, border: `2px solid rgba(46,204,139,0.40)`, borderRadius: 12, padding: '18px 22px' }}>
+            <div style={{ fontFamily: F.mono, fontSize: 10, color: C.green, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 12 }}>
+              ★ KB Fees · how we get paid
+            </div>
+            <div style={{ display: 'grid', gap: 10 }}>
+              <Stream pct="4%" amount="One-time consulting fee" sub={`On acquisition EV · ~$76K avg per $1.9M deal · ${fmtMoney(totalAcqValue * 0.04)} total over 24mo`} accent={C.green} />
+              <Stream pct="5%" amount="Quarterly revenue share" sub="Of platform-tracked clinic + Scale Services revenue · ongoing" accent={C.goldLight} />
+            </div>
+            <div style={{ marginTop: 12, padding: '10px 14px', background: 'rgba(46,204,139,0.06)', borderRadius: 8, fontSize: 12, color: C.muted, lineHeight: 1.5 }}>
+              4% one-time fee due at close from Wagner&apos;s acquisition capital. 5% quarterly from platform-tracked revenue going forward. <strong style={{ color: C.green }}>Aligned with deal volume + revenue growth.</strong>
+            </div>
+          </div>
         </div>
 
         <div style={{ background: C.bg3, border: `1px solid ${C.border}`, borderRadius: 12, padding: '18px 22px', marginBottom: 18 }}>
@@ -492,31 +549,31 @@ export default function LaunchPlanPage() {
       {/* QUARTERLY DEPLOYMENT · revised */}
       <SectionHead eyebrow="Capital deployment · operating vs acquisitions" title="Wagner's check on the left. Bank debt on the right." />
       <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, overflow: 'hidden', marginBottom: 24 }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '110px 90px 90px 80px 70px 110px 110px 1fr', gap: 10, padding: '12px 20px', background: C.bg3, borderBottom: `1px solid ${C.border}`, fontFamily: F.mono, fontSize: 9.5, letterSpacing: '0.10em', textTransform: 'uppercase', color: C.faint, fontWeight: 700 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '120px 100px 100px 90px 80px 120px 120px 1.5fr', gap: 12, padding: '14px 22px', background: C.bg3, borderBottom: `1px solid ${C.border}`, fontFamily: F.mono, fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#FFFFFF', fontWeight: 700 }}>
           <div>Quarter</div>
           <div style={{ textAlign: 'right' }}>Team</div>
           <div style={{ textAlign: 'right' }}>Mkt</div>
           <div style={{ textAlign: 'right' }}>SaaS</div>
           <div style={{ textAlign: 'right' }}>Closes</div>
-          <div style={{ textAlign: 'right' }}>Wagner Cash</div>
-          <div style={{ textAlign: 'right' }}>Bank Debt</div>
+          <div style={{ textAlign: 'right' }}>Wagner $</div>
+          <div style={{ textAlign: 'right' }}>Bank $</div>
           <div>Milestone</div>
         </div>
         {TIMELINE.map((t, i) => (
           <div key={i} style={{
-            display: 'grid', gridTemplateColumns: '110px 90px 90px 80px 70px 110px 110px 1fr', gap: 10,
-            padding: '12px 20px',
+            display: 'grid', gridTemplateColumns: '120px 100px 100px 90px 80px 120px 120px 1.5fr', gap: 12,
+            padding: '14px 22px',
             borderBottom: i < TIMELINE.length - 1 ? `1px solid ${C.border}` : 'none',
-            alignItems: 'center', fontSize: 12,
+            alignItems: 'center', fontSize: 14,
           }}>
-            <div style={{ fontFamily: F.mono, color: C.gold, fontWeight: 700 }}>{t.q}</div>
-            <div style={{ textAlign: 'right', color: C.text, fontFamily: F.mono }}>{fmtMoney(t.team_cost)}</div>
-            <div style={{ textAlign: 'right', color: C.text, fontFamily: F.mono }}>{fmtMoney(t.marketing)}</div>
-            <div style={{ textAlign: 'right', color: C.muted, fontFamily: F.mono }}>{fmtMoney(t.saas)}</div>
-            <div style={{ textAlign: 'right', color: t.acq_count > 0 ? C.green : C.faint, fontFamily: F.display, fontWeight: 800, fontSize: 16 }}>{t.acq_count}</div>
-            <div style={{ textAlign: 'right', color: C.spine, fontFamily: F.display, fontWeight: 700 }}>{fmtMoney(t.wagner_cash)}</div>
-            <div style={{ textAlign: 'right', color: C.align, fontFamily: F.display, fontWeight: 700 }}>{fmtMoney(t.bank_debt)}</div>
-            <div style={{ color: C.muted, fontSize: 11, lineHeight: 1.45 }}>{t.notes}</div>
+            <div style={{ fontFamily: F.mono, color: C.gold, fontWeight: 800, fontSize: 13 }}>{t.q}</div>
+            <div style={{ textAlign: 'right', color: '#FFFFFF', fontFamily: F.mono, fontWeight: 600 }}>{fmtMoney(t.team_cost)}</div>
+            <div style={{ textAlign: 'right', color: '#FFFFFF', fontFamily: F.mono, fontWeight: 600 }}>{fmtMoney(t.marketing)}</div>
+            <div style={{ textAlign: 'right', color: '#C9CCDB', fontFamily: F.mono, fontWeight: 500 }}>{fmtMoney(t.saas)}</div>
+            <div style={{ textAlign: 'right', color: t.acq_count > 0 ? C.green : C.faint, fontFamily: F.display, fontWeight: 800, fontSize: 20 }}>{t.acq_count}</div>
+            <div style={{ textAlign: 'right', color: C.globe, fontFamily: F.display, fontWeight: 800, fontSize: 15 }}>{fmtMoney(t.wagner_cash)}</div>
+            <div style={{ textAlign: 'right', color: C.goldLight, fontFamily: F.display, fontWeight: 800, fontSize: 15 }}>{fmtMoney(t.bank_debt)}</div>
+            <div style={{ color: '#C9CCDB', fontSize: 13, lineHeight: 1.55 }}>{t.notes}</div>
           </div>
         ))}
       </div>
@@ -767,6 +824,16 @@ function KvLine({ label, val, accent }: { label: string; val: string; accent?: s
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', padding: '8px 0', borderBottom: `1px solid ${C.border}` }}>
       <span style={{ fontSize: 13, color: C.muted }}>{label}</span>
       <span style={{ fontFamily: F.display, fontSize: 18, fontWeight: 800, color: accent || C.text }}>{val}</span>
+    </div>
+  )
+}
+
+function BurnPill({ label, val, sub, color, bold }: { label: string; val: string; sub: string; color: string; bold?: boolean }) {
+  return (
+    <div style={{ padding: bold ? '14px 18px' : '12px 16px', background: bold ? `${color}15` : 'rgba(255,255,255,0.04)', border: `${bold ? 2 : 1}px solid ${bold ? color : C.border}`, borderRadius: 10 }}>
+      <div style={{ fontFamily: F.mono, fontSize: 10, color: bold ? color : C.faint, letterSpacing: '0.12em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 6 }}>{label}</div>
+      <div style={{ fontFamily: F.display, fontSize: bold ? 28 : 24, fontWeight: 800, color, lineHeight: 1, marginBottom: 4 }}>{val}</div>
+      <div style={{ fontSize: 11, color: C.muted, lineHeight: 1.45 }}>{sub}</div>
     </div>
   )
 }

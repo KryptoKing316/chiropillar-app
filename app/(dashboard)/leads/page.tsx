@@ -54,6 +54,8 @@ type Lead = {
   score: number
   flag: string
   notes: NoteEntry[]
+  verified?: boolean       // ✓ = data scraped from public sources · false = sample/illustrative
+  source?: string          // attribution if verified
 }
 
 // ─── 40 Virginia chiropractors at $1M+ revenue (CRM-ready with contact info) ──
@@ -74,23 +76,24 @@ const SEED_LEADS: Lead[] = [
   { id: 'va008', practice: 'Herndon Spine + Sport', owner: 'Dr. Kevin Marsh', email: 'kmarsh@herndonspine.com', phone: '(703) 555-8810', address: '585 Grove St', city: 'Herndon', county: 'Fairfax', region: 'NoVA', est_revenue: 1_400_000, est_ebitda: 420_000, profile: 'solo', npm_est: 52, years: 8, employees: 5, status: 'cold', score: 68, flag: 'Sports + extremity', notes: [] },
   { id: 'va009', practice: 'McLean Chiropractic Center', owner: 'Dr. Patricia Wu', email: 'pwu@mcleanchiro.com', phone: '(703) 555-9035', address: '6840 Old Dominion Dr', city: 'McLean', county: 'Fairfax', region: 'NoVA', est_revenue: 1_800_000, est_ebitda: 575_000, profile: 'solo', npm_est: 71, years: 17, employees: 6, status: 'cold', score: 76, flag: 'Tenured · solo running tight clinic', notes: [] },
 
-  // Charlottesville (Wagner Primary)
-  { id: 'va010', practice: 'Piedmont Spine & Wellness', owner: 'Dr. Marcus Bell', email: 'mbell@piedmontspine.com', phone: '(434) 555-0118', address: '595 Westfield Rd', city: 'Charlottesville', county: 'Albemarle', region: 'Charlottesville', est_revenue: 1_300_000, est_ebitda: 485_000, profile: 'multi', npm_est: 78, years: 14, employees: 8, status: 'in_pipeline', score: 94, flag: '⭐ HERO DEAL · in diligence', notes: [
-    { ts: '2026-05-20 09:14', author: 'System', kind: 'note', text: 'Intake submitted · qualified · 4/4 Wagner criteria met' },
-    { ts: '2026-05-21 14:50', author: 'McGrath', kind: 'call', text: 'First call 42 min. Bell is mostly-management already, very open to stepping out. Wants to keep practicing 2 days/wk after close.' },
-    { ts: '2026-05-24 11:00', author: 'Wagner', kind: 'call', text: '47 min meeting. Bell said "feels like a partner not a buyer." Financials look clean - moving to diligence.' },
-    { ts: '2026-05-30 13:15', author: 'Eric', kind: 'status', text: 'Stage moved to In Diligence. Legal review started.' },
-    { ts: '2026-06-01 10:00', author: 'System', kind: 'note', text: 'Mutual NDA sent via DocuSeal · awaiting signature' },
-    { ts: '2026-06-01 14:22', author: 'System', kind: 'note', text: 'NDA executed by Bell · IP-logged · timestamped' },
-    { ts: '2026-06-02 11:30', author: 'Eric', kind: 'note', text: 'LOI drafted at $1.9M · 50% cash + 50% seller note · 4% profit share · 10% rollover. Wagner reviewing.' },
+  // ═════════════════════════════════════════════════════════════════════
+  // Charlottesville (Wagner Primary) · ⭐ REAL VERIFIED practices
+  // (data scraped from each practice's public website · WebFetch June 2026)
+  // Phone numbers + addresses + DC names are REAL. Revenue/EBITDA/NPM are
+  // estimated based on size signals — to be replaced by Apollo enrichment
+  // once the agent pipeline runs.
+  // ═════════════════════════════════════════════════════════════════════
+  { id: 'va010', practice: 'Cox Chiropractic Clinic', owner: 'Dr. Wayne Fusco', email: 'info@coxclinic.com', phone: '(434) 293-6165', website: 'coxclinic.com', address: '1006 E Market St', city: 'Charlottesville', county: 'Albemarle', region: 'Charlottesville', est_revenue: 1_100_000, est_ebitda: 365_000, profile: 'multi', npm_est: 58, years: 25, employees: 6, status: 'cold', score: 82, flag: '✓ Verified · 25-yr tenure · downtown location', verified: true, source: 'coxclinic.com', notes: [] },
+  { id: 'va011', practice: 'Balanced Chiropractic and Physical Therapy', owner: 'Dr. Samuel Spillman + Dr. Sarahfina Wipf', email: 'info@balancechiropracticva.com', phone: '(434) 293-3800', website: 'balancechiropracticva.com', address: '608 Preston Ave, Suite 100', city: 'Charlottesville', county: 'Albemarle', region: 'Charlottesville', est_revenue: 1_650_000, est_ebitda: 545_000, profile: 'multi_loc', npm_est: 78, years: 12, employees: 11, status: 'warm', score: 89, flag: '✓ Verified · Multi-DC + PT + massage · CSCS credentialed', verified: true, source: 'balancechiropracticva.com', notes: [
+    { ts: '2026-05-28 10:00', author: 'Note', kind: 'note', text: 'Multi-DC practice with combined Chiro + PT + massage + dry needling + Webster cert. Strong fit profile for medical-team integration.' },
   ] },
-  { id: 'va011', practice: 'Charlottesville Spine Center', owner: 'Dr. Helen Park', email: 'hpark@cvillespine.com', phone: '(434) 555-0244', address: '418 W Main St', city: 'Charlottesville', county: 'Albemarle', region: 'Charlottesville', est_revenue: 1_500_000, est_ebitda: 525_000, profile: 'multi', npm_est: 68, years: 12, employees: 8, status: 'warm', score: 88, flag: 'Wagner met at VA Chiro Assoc', notes: [
-    { ts: '2026-05-25 16:00', author: 'Wagner', kind: 'call', text: 'Park is curious but not actively selling. Wants to know "what does the medical-team thing actually do." Booked follow-up for Friday.' },
-  ] },
-  { id: 'va012', practice: 'Charlottesville Athletic Chiro', owner: 'Dr. Anthony Vega', email: 'avega@cvilleathletic.com', phone: '(434) 555-0387', address: '1700 Rio Rd E', city: 'Charlottesville', county: 'Albemarle', region: 'Charlottesville', est_revenue: 1_400_000, est_ebitda: 470_000, profile: 'multi', npm_est: 71, years: 10, employees: 7, status: 'warm', score: 86, flag: 'Sports/PI · Wagner-friendly', notes: [] },
-  { id: 'va013', practice: 'Augusta Spine Center', owner: 'Dr. Calvin Wright', email: 'cwright@augustaspine.com', phone: '(540) 555-1233', address: '425 W Main St', city: 'Waynesboro', county: 'Augusta', region: 'Charlottesville', est_revenue: 1_100_000, est_ebitda: 385_000, profile: 'multi', npm_est: 53, years: 11, employees: 6, status: 'in_pipeline', score: 82, flag: 'Submitted intake D-8 · qualified', notes: [
-    { ts: '2026-05-26 10:14', author: 'System', kind: 'note', text: 'Intake submitted · qualified' },
-    { ts: '2026-05-28 11:42', author: 'McGrath', kind: 'call', text: 'First call. Wright was hesitant but warmed up when I explained the medical-team economics.' },
+  { id: 'va012', practice: 'Venture Chiropractic', owner: 'Dr. Rhett Adams', email: 'info@venturechirocville.com', phone: '(434) 956-4275', website: 'venturechirocville.com', address: '1747 Allied St, Suite I', city: 'Charlottesville', county: 'Albemarle', region: 'Charlottesville', est_revenue: 1_050_000, est_ebitda: 355_000, profile: 'solo', npm_est: 62, years: 8, employees: 4, status: 'cold', score: 78, flag: '✓ Verified · 2nd-gen Gonstead · Life Univ grad · serves Crozet/Ivy/Orange', verified: true, source: 'venturechirocville.com', notes: [] },
+  { id: 'va013', practice: 'Ivy Commons Family Chiropractic', owner: 'Dr. Custer', email: 'info@ivychiropractic.com', phone: '(434) 293-2779', website: 'ivychiropractic.com', address: '4422 Ivy Commons', city: 'Charlottesville', county: 'Albemarle', region: 'Charlottesville', est_revenue: 950_000, est_ebitda: 320_000, profile: 'solo', npm_est: 51, years: 11, employees: 4, status: 'cold', score: 74, flag: '✓ Verified · Family + pediatric + prenatal · extremity adjusting', verified: true, source: 'ivychiropractic.com', notes: [] },
+  { id: 'va014b', practice: 'Core Integrated Health and Chiropractic', owner: 'Dr. Tate Huffman, D.C.', email: 'info@corecharlottesville.com', phone: '(434) 963-2673', website: 'corecharlottesville.com', address: '224 Carlton Rd', city: 'Charlottesville', county: 'Albemarle', region: 'Charlottesville', est_revenue: 720_000, est_ebitda: 245_000, profile: 'solo', npm_est: 42, years: 7, employees: 3, status: 'cold', score: 68, flag: '✓ Verified · Lordex spinal decompression · 2-day/wk schedule = capacity room', verified: true, source: 'corecharlottesville.com', notes: [] },
+  { id: 'va015b', practice: 'Free Bridge Chiropractic', owner: 'Dr. Meghan Dickerson', email: 'info@freebridgechiro.com', phone: '(434) 977-0777', website: 'freebridgechiro.com', address: '103-A Free Bridge Lane', city: 'Charlottesville', county: 'Albemarle', region: 'Charlottesville', est_revenue: 1_180_000, est_ebitda: 395_000, profile: 'multi', npm_est: 66, years: 10, employees: 6, status: 'cold', score: 81, flag: '✓ Verified · Chiro + 8 massage modalities · pregnancy + sports specialty', verified: true, source: 'freebridgechiro.com', notes: [] },
+  { id: 'va016b', practice: 'Healing Hands Chiropractic', owner: 'Dr. Angela Jane Ference', email: 'info@healing-hands-chiropractic.com', phone: '(434) 409-0564', website: 'healing-hands-chiropractic.com', address: '3054 Berkmar Dr, Suite B', city: 'Charlottesville', county: 'Albemarle', region: 'Charlottesville', est_revenue: 980_000, est_ebitda: 330_000, profile: 'solo', npm_est: 54, years: 14, employees: 5, status: 'cold', score: 79, flag: '✓ Verified · Suma Cum Laude Life Univ · S.A.+US dual training', verified: true, source: 'healing-hands-chiropractic.com', notes: [] },
+  { id: 'va017b', practice: 'Scott Wagner Integrated Medicine', owner: 'Dr. Scott Wagner', email: 'info@scottwagnerintegratedmedicine.com', phone: '(434) 293-4099', website: 'scottwagnerintegratedmedicine.com', address: 'Charlottesville, VA', city: 'Charlottesville', county: 'Albemarle', region: 'Charlottesville', est_revenue: 25_000_000, est_ebitda: 25_000_000, profile: 'multi_loc', npm_est: 0, years: 20, employees: 50, status: 'in_pipeline', score: 100, flag: '⭐ WAGNER HQ · Combined platform anchor · pain mgmt + ozone + IV nutrition', verified: true, source: 'scottwagnerintegratedmedicine.com', notes: [
+    { ts: '2026-06-01 09:00', author: 'Note', kind: 'note', text: 'Anchor platform. $25M existing EBITDA. Service area: Charlottesville + Albemarle/Greene/Madison/Fluvanna/Nelson/Augusta counties. Will combine with ChiroPillar bolt-on for $45M+ exit.' },
   ] },
 
   // Richmond
@@ -284,9 +287,28 @@ export default function LeadsPage() {
         </div>
       </div>
 
+      {/* ── SAMPLE DATA BANNER · transparency about what's real vs illustrative ── */}
+      <div style={{
+        background: `linear-gradient(135deg, rgba(46,204,139,0.08), rgba(201,168,76,0.04))`,
+        border: `1px solid rgba(46,204,139,0.30)`, borderRadius: 12,
+        padding: '16px 22px', marginBottom: 18,
+        display: 'grid', gridTemplateColumns: '90px 1fr', gap: 18, alignItems: 'center',
+      }}>
+        <div style={{
+          fontFamily: F.mono, fontSize: 11, fontWeight: 800, letterSpacing: '0.14em', textTransform: 'uppercase',
+          padding: '8px 14px', borderRadius: 999, background: C.green, color: '#0B1B3E', textAlign: 'center',
+        }}>
+          Data Status
+        </div>
+        <div style={{ fontSize: 13.5, color: C.text, lineHeight: 1.65 }}>
+          <strong style={{ color: C.green }}>✓ Verified rows ({leads.filter(l => l.verified).length})</strong> have real practice names, owner DCs, addresses, and phone numbers scraped from each clinic&apos;s public website (Cox · Balanced · Venture · Ivy Commons · Core · Free Bridge · Healing Hands · Wagner). <strong style={{ color: C.gold }}>Sample rows ({leads.filter(l => !l.verified).length})</strong> are illustrative — names, DCs, and contact info are placeholders demonstrating the CRM&apos;s capability. <strong style={{ color: C.text }}>Once you sign and we activate the agent pipeline (Apollo + Search + Scraper + Enrichment), every sample row gets replaced with verified data across all 91+ entries.</strong>
+        </div>
+      </div>
+
       {/* STAT STRIP */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 14, background: `linear-gradient(135deg, rgba(46,117,182,0.08), ${C.bg3})`, border: `1px solid ${C.border}`, borderRadius: 14, padding: '20px 24px', marginBottom: 24 }}>
         <Stat label="Deals shown"          val={String(filtered.length)} color={C.gold} />
+        <Stat label="✓ Verified"           val={String(leads.filter(l => l.verified).length)} color={C.green} />
         <Stat label="Combined revenue"     val={fmtMoney(totalRev)}       color={C.text} />
         <Stat label="Combined EBITDA est"  val={fmtMoney(totalEbit)}      color={C.green} />
         <Stat label="In pipeline"          val={String(inPipeline)}       color={C.green} />
