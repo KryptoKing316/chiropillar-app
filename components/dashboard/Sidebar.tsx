@@ -399,7 +399,7 @@ const NAV = [
 // Admin-only surfaces · Eric / Wagner / McGrath
 const ADMIN_DEMOS = [
   { href: '/agents',       label: 'Agent Center'                    },
-  { href: '/founder-comp', label: 'Founder Comp · Eric/Scott split' },
+  { href: '/founder-comp', label: 'Founder Comp' },
   { href: '/admin',        label: 'Admin Panel'                     },
 ]
 

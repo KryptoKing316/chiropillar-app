@@ -156,7 +156,7 @@ type Hire = {
 const HIRES: Hire[] = [
   // ─── DAY 0 · PARTNERS ───
   { role: 'Eric Skeldon · Founder/CEO',              when: 'Day 0',   comp: '$25K upfront + $12.5K/mo + 2% acq + 2.5% exit',           comp_low: 162_500, comp_high: 162_500, fulltime: true,  responsibilities: 'Platform · deal structure · Wagner relationship · final closing · ChiroPillar owner · 2% of each acq EV ($38K/close) + 2.5% of exit slice + 5% ongoing rev share flows to ChiroPillar' },
-  { role: 'Scott McGrath · BD Partner',              when: 'Day 0',   comp: '$5K/mo + 2% acq + 2.5% exit',     comp_low: 60_000,  comp_high: 60_000,   fulltime: false, responsibilities: 'Brought Dr. Wagner to the table · sources seller chiropractors · 2% of each acq EV ($38K/close · ~$950K over 25 closes) + 2.5% of exit slice (his half of KB\'s 4% acq + 5% exit fees)' },
+  { role: 'Scott McGrath · BD Partner',              when: 'Day 0',   comp: '$5K/mo + 2% acq + 2.5% exit',     comp_low: 60_000,  comp_high: 60_000,   fulltime: false, responsibilities: 'Brought Dr. Wagner to the table · sources seller chiropractors · 2% of each acq EV ($38K/close · ~$1.25M over 33 closes) + 2.5% of exit slice (his half of KB\'s 4% acq + 5% exit fees)' },
   { role: 'Dr. Scott Wagner · Clinical Partner',     when: 'Day 0',   comp: 'Owns clinics outright',           comp_low: 0,       comp_high: 0,        fulltime: false, responsibilities: 'Clinical playbook · medical-team install · operator credibility' },
 
   // ─── 90-120 DAY HIRES · full sales + ops engine built in Q1-Q2 ───
@@ -264,13 +264,13 @@ type Quarter = {
 
 const TIMELINE: Quarter[] = [
   { q: 'Q1 (Mo 1-3)',   team_cost: 165_000, marketing:  72_000, saas: 14_000, acq_count: 0, acq_value:          0, wagner_cash:         0, bank_debt:         0, cumulative_ebitda:        0, notes: 'Eric ($25K upfront + $12.5K/mo) + McGrath ($5K/mo) + Wagner Day 0. Ops Lead + Marketer onboarded Month 3. Engine being built. First 50 intakes test funnel.' },
-  { q: 'Q2 (Mo 4-6)',   team_cost: 295_000, marketing: 105_000, saas: 14_000, acq_count: 0, acq_value:          0, wagner_cash:         0, bank_debt:         0, cumulative_ebitda:        0, notes: 'Sales engine fully staffed Month 4: Appt Setter + BDR + Closer #1 on board. Pipeline fills. First LOI signed end-Q2.' },
-  { q: 'Q3 (Mo 7-9)',   team_cost: 350_000, marketing: 135_000, saas: 16_000, acq_count: 2, acq_value:  3_800_000, wagner_cash: 1_900_000, bank_debt: 1_900_000, cumulative_ebitda:   970_000, notes: 'Appt Setter #2 + Account Manager + Bookkeeper added. First 2 clinics @ $1.9M each. Sales team converting.' },
-  { q: 'Q4 (Mo 10-12)', team_cost: 390_000, marketing: 135_000, saas: 18_000, acq_count: 3, acq_value:  5_700_000, wagner_cash: 2_850_000, bank_debt: 2_850_000, cumulative_ebitda: 1_720_000, notes: 'Diligence Analyst hired. 3 more closes. Scale Services revenue ramping under AM #1.' },
-  { q: 'Q5 (Mo 13-15)', team_cost: 490_000, marketing: 150_000, saas: 20_000, acq_count: 4, acq_value:  7_600_000, wagner_cash: 3_800_000, bank_debt: 3_800_000, cumulative_ebitda: 2_770_000, notes: 'Closer #2 + AM #2 (acquired-clinic liaison) hired. 4 acquisitions. 30 active Scale Services customers.' },
-  { q: 'Q6 (Mo 16-18)', team_cost: 535_000, marketing: 165_000, saas: 22_000, acq_count: 5, acq_value:  9_500_000, wagner_cash: 4_750_000, bank_debt: 4_750_000, cumulative_ebitda: 4_010_000, notes: 'Sales engine at full headcount: 2 setters + 1 BDR + 2 Closers + 2 AMs. Pace doubles. 5 closes.' },
-  { q: 'Q7 (Mo 19-21)', team_cost: 555_000, marketing: 165_000, saas: 24_000, acq_count: 5, acq_value:  9_500_000, wagner_cash: 4_750_000, bank_debt: 4_750_000, cumulative_ebitda: 5_510_000, notes: 'Mature pipeline. Predictable cadence. Closer commission load fully running. First exit conversations.' },
-  { q: 'Q8 (Mo 22-24)', team_cost: 580_000, marketing: 165_000, saas: 26_000, acq_count: 6, acq_value: 11_400_000, wagner_cash: 5_700_000, bank_debt: 5_700_000, cumulative_ebitda: 7_260_000, notes: 'Final push to $20M+ ChiroPillar bolt-on EBITDA. Exit conversations open at $45M+ combined platform.' },
+  { q: 'Q2 (Mo 4-6)',   team_cost: 295_000, marketing: 120_000, saas: 14_000, acq_count: 2, acq_value:  3_800_000, wagner_cash: 1_900_000, bank_debt: 1_900_000, cumulative_ebitda:   100_000, notes: 'Sales engine fully staffed Month 4: Appt Setter + BDR + Closer #1. McGrath warm intros convert. First 2 closes late Q2.' },
+  { q: 'Q3 (Mo 7-9)',   team_cost: 365_000, marketing: 150_000, saas: 16_000, acq_count: 4, acq_value:  7_600_000, wagner_cash: 3_800_000, bank_debt: 3_800_000, cumulative_ebitda:   680_000, notes: 'Appt Setter #2 + Account Manager + Bookkeeper added. 4 closes Q3 — pace doubles. Sales team converting at 30%.' },
+  { q: 'Q4 (Mo 10-12)', team_cost: 410_000, marketing: 165_000, saas: 18_000, acq_count: 5, acq_value:  9_500_000, wagner_cash: 4_750_000, bank_debt: 4_750_000, cumulative_ebitda: 1_700_000, notes: 'Diligence Analyst + Closer #2 hired. 5 closes Q4 (cumulative 11). Scale Services ramping under AM #1.' },
+  { q: 'Q5 (Mo 13-15)', team_cost: 510_000, marketing: 180_000, saas: 20_000, acq_count: 5, acq_value:  9_500_000, wagner_cash: 4_750_000, bank_debt: 4_750_000, cumulative_ebitda: 3_100_000, notes: 'AM #2 (acquired-clinic liaison) hired. 5 closes (cumulative 16). 35 active Scale Services customers.' },
+  { q: 'Q6 (Mo 16-18)', team_cost: 555_000, marketing: 195_000, saas: 22_000, acq_count: 5, acq_value:  9_500_000, wagner_cash: 4_750_000, bank_debt: 4_750_000, cumulative_ebitda: 4_900_000, notes: '★ 21 clinics owned. Platform-level economics emerging. Sales engine at full headcount: 2 setters + 1 BDR + 2 Closers + 2 AMs.' },
+  { q: 'Q7 (Mo 19-21)', team_cost: 575_000, marketing: 195_000, saas: 24_000, acq_count: 6, acq_value: 11_400_000, wagner_cash: 5_700_000, bank_debt: 5_700_000, cumulative_ebitda: 6_900_000, notes: 'Pace accelerates · 6 closes (cumulative 27). Mature pipeline · predictable cadence. First exit conversations open.' },
+  { q: 'Q8 (Mo 22-24)', team_cost: 600_000, marketing: 195_000, saas: 26_000, acq_count: 6, acq_value: 11_400_000, wagner_cash: 5_700_000, bank_debt: 5_700_000, cumulative_ebitda: 9_200_000, notes: '33 clinics owned by Mo 24. Combined $34M+ EBITDA platform. Exit conversations open at $300M+ combined.' },
 ]
 
 // Monthly burn approximations for the headline (used by KPI strip)
@@ -414,7 +414,7 @@ export default function LaunchPlanPage() {
           Month 24 · ChiroPillar EBITDA sources
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 14, marginBottom: 24 }}>
-          <EbitdaSourceCard num="1" label="Acquired clinics" detail="25 closed × ~$290K avg" val={fmtMoney(finalEbitda)} accent={C.globe} />
+          <EbitdaSourceCard num="1" label="Acquired clinics" detail="33 closed × ~$280K avg" val={fmtMoney(finalEbitda)} accent={C.globe} />
           <EbitdaSourceCard num="2" label="Scale Services" detail="$2.8M rev × 75% margin" val={fmtMoney(2_100_000)} accent={C.gold} />
           <EbitdaSourceCard num="3" label="Digital app" detail="$825K rev × 85% margin" val={fmtMoney(700_000)} accent={C.green} />
           <EbitdaSourceCard num="Σ" label="TOTAL · Mo 24" detail="all 3 engines combined" val={fmtMoney(finalEbitda + 2_100_000 + 700_000)} accent={C.goldLight} bold />
@@ -433,10 +433,10 @@ export default function LaunchPlanPage() {
             <div style={{ textAlign: 'right' }}>Total CP</div>
             <div>Combined w/ Wagner $25M+ · 9× midpoint exit</div>
           </div>
-          <ScaleRow year="Y2 · Mo 24" clinics="25" clinicEb={finalEbitda} scaleEb={2_800_000} note="$32M+ combined · ~$290M exit potential" totalColor={C.gold} />
-          <ScaleRow year="Y3" clinics="45" clinicEb={13_500_000} scaleEb={4_500_000} note="$43M+ combined · ~$385M exit potential" totalColor={C.gold} />
-          <ScaleRow year="Y4" clinics="70" clinicEb={22_400_000} scaleEb={7_200_000} note="$54M+ combined · ~$490M exit potential" totalColor={C.goldLight} />
-          <ScaleRow year="Y5" clinics="100" clinicEb={34_000_000} scaleEb={10_500_000} note="$69M+ combined · ~$625M exit potential" totalColor={C.goldLight} bold />
+          <ScaleRow year="Y2 · Mo 24" clinics="33" clinicEb={finalEbitda} scaleEb={2_800_000} note="$37M+ combined · ~$335M exit potential" totalColor={C.gold} />
+          <ScaleRow year="Y3" clinics="55" clinicEb={16_500_000} scaleEb={4_500_000} note="$46M+ combined · ~$415M exit potential" totalColor={C.gold} />
+          <ScaleRow year="Y4" clinics="85" clinicEb={27_200_000} scaleEb={7_200_000} note="$59M+ combined · ~$535M exit potential" totalColor={C.goldLight} />
+          <ScaleRow year="Y5" clinics="120" clinicEb={40_800_000} scaleEb={10_500_000} note="$76M+ combined · ~$685M exit potential" totalColor={C.goldLight} bold />
         </div>
 
         <div style={{ fontSize: 13, color: C.muted, lineHeight: 1.65, padding: '14px 18px', background: 'rgba(46,117,182,0.06)', border: '1px solid rgba(46,117,182,0.18)', borderRadius: 10 }}>
@@ -710,7 +710,7 @@ export default function LaunchPlanPage() {
           <LadderRow tier="TIER 3" name="Practice Audit · 2-week diagnostic + plan"  audience="DCs · committed"     price="$5-10K"     y3="$680K / yr" accent={C.align}    width={50} />
           <LadderRow tier="TIER 4" name="Medical-Team Installation · 90-day install" audience="DCs · serious scaling" price="$25-50K"  y3="$1.4M / yr" accent={C.gold}     width={65} />
           <LadderRow tier="TIER 5" name="ChiroPillar Mastermind · 12-mo cohort"      audience="DCs · scaling without selling" price="$12K/yr" y3="$700K / yr" accent={C.goldLight} width={75} />
-          <LadderRow tier="TIER 6" name="Acquisition · 4-stream offer + medical-team add-on" audience="DCs · ready to step out" price="$1.9M avg" y3="25 clinics" accent={C.spine}    width={100} />
+          <LadderRow tier="TIER 6" name="Acquisition · 4-stream offer + medical-team add-on" audience="DCs · ready to step out" price="$1.9M avg" y3="33 clinics" accent={C.spine}    width={100} />
         </div>
 
         {/* 3-year pro forma table */}
@@ -731,17 +731,17 @@ export default function LaunchPlanPage() {
             <ProFormaRow line="Practice Audits · $5-10K"                                     units="85 audits/yr"  y1={180_000}    y2={400_000}    y3={680_000}    accent={C.align} />
             <ProFormaRow line="Medical-Team Installations · $25-50K"                         units="35 installs/yr" y1={350_000}    y2={825_000}    y3={1_400_000}  accent={C.gold} />
             <ProFormaRow line="Mastermind · $12K/yr × 60 members"                           units="60 members"    y1={300_000}    y2={500_000}    y3={700_000}    accent={C.goldLight} />
-            <ProFormaRow line="Acquired clinic revenue (post-lift, blended)"                units="25 clinics"    y1={8_000_000}  y2={27_750_000} y3={52_500_000} accent={C.spine} bold />
-            <ProFormaRow line="TOTAL ANNUALIZED REVENUE"                                    units="—"             y1={9_050_000}  y2={30_550_000} y3={58_700_000} accent={C.gold} total />
+            <ProFormaRow line="Acquired clinic revenue (post-lift, blended)"                units="33 clinics"    y1={11_200_000} y2={36_500_000} y3={62_000_000} accent={C.spine} bold />
+            <ProFormaRow line="TOTAL ANNUALIZED REVENUE"                                    units="—"             y1={12_250_000} y2={39_300_000} y3={68_200_000} accent={C.gold} total />
           </div>
         </div>
 
         {/* KB 5% share of the totals */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 12, marginBottom: 18 }}>
-          <Sub label="KB 5% of Y1 revenue"   val={fmtMoney(9_050_000 * 0.05)}  color={C.green} />
-          <Sub label="KB 5% of Y2 revenue"   val={fmtMoney(30_550_000 * 0.05)} color={C.gold} />
-          <Sub label="KB 5% of Y3 revenue"   val={fmtMoney(58_700_000 * 0.05)} color={C.gold} />
-          <Sub label="KB 3-yr cumulative"     val={fmtMoney((9_050_000 + 30_550_000 + 58_700_000) * 0.05)} color={C.goldLight} />
+          <Sub label="KB 5% of Y1 revenue"   val={fmtMoney(12_250_000 * 0.05)} color={C.green} />
+          <Sub label="KB 5% of Y2 revenue"   val={fmtMoney(39_300_000 * 0.05)} color={C.gold} />
+          <Sub label="KB 5% of Y3 revenue"   val={fmtMoney(68_200_000 * 0.05)} color={C.gold} />
+          <Sub label="KB 3-yr cumulative"     val={fmtMoney((12_250_000 + 39_300_000 + 68_200_000) * 0.05)} color={C.goldLight} />
         </div>
       </div>
 
@@ -763,9 +763,9 @@ export default function LaunchPlanPage() {
           {/* Cost basis side */}
           <div style={{ background: C.bg3, border: `1px solid ${C.border}`, borderRadius: 12, padding: '20px 22px' }}>
             <div style={{ fontFamily: F.mono, fontSize: 10, color: C.muted, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 14 }}>Cost basis · what we paid</div>
-            <KvLine label="25 clinics × ~$1.9M each"             val={fmtMoney(47_500_000)} />
+            <KvLine label="33 clinics × ~$1.9M each"             val={fmtMoney(totalAcqValue)} />
             <KvLine label="Multiple paid (avg)"                   val="2.4× SDE" />
-            <KvLine label="ChiroPillar acquired EBITDA (post-lift)" val={fmtMoney(7_260_000)} />
+            <KvLine label="ChiroPillar acquired EBITDA (post-lift)" val={fmtMoney(finalEbitda)} />
             <KvLine label="Wagner existing EBITDA · siloed value (5-7×)" val={`${fmtMoney(25_000_000 * 5)}-${fmtMoney(25_000_000 * 7)}`} accent={C.spine} />
             <KvLine label="Total cost basis"                       val={fmtMoney(47_500_000 + 25_000_000 * 6)} accent={C.text} />
           </div>
@@ -797,22 +797,22 @@ export default function LaunchPlanPage() {
         <SectionHead eyebrow="Wagner's return · 24 months out" title="What does the small check turn into?" />
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }} className="kb-val-grid">
           <div>
-            <div style={{ fontFamily: F.mono, fontSize: 10, color: C.faint, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 10 }}>What Wagner puts in</div>
-            <KvLine label="Operating capital (KB run rate)"  val={fmtMoney(totalOperating)} />
+            <div style={{ fontFamily: F.mono, fontSize: 12, color: '#FFFFFF', letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 12 }}>What Wagner puts in</div>
+            <KvLine label="Y1 operating capital (12mo)"      val={fmtMoney(monthlyBurnY1 * 12)} />
             <KvLine label="Cash at close (50% per deal)"      val={fmtMoney(totalWagnerCash)} />
-            <KvLine label="Total Wagner cash deployed"        val={fmtMoney(totalOperating + totalWagnerCash)} accent={C.gold} />
+            <KvLine label="Total Wagner cash deployed"        val={fmtMoney(monthlyBurnY1 * 12 + totalWagnerCash)} accent={C.gold} />
             <KvLine label="Bank debt (separate · serviced by acquired EBITDA)" val={fmtMoney(totalBankDebt)} accent={C.align} />
           </div>
           <div>
-            <div style={{ fontFamily: F.mono, fontSize: 10, color: C.faint, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 10 }}>What Wagner gets</div>
+            <div style={{ fontFamily: F.mono, fontSize: 12, color: '#FFFFFF', letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 12 }}>What Wagner gets</div>
             <KvLine label="ChiroPillar EBITDA at month 24"   val={fmtMoney(finalEbitda)} />
             <KvLine label="Combined platform EBITDA"          val={fmtMoney(25_000_000 + finalEbitda)} accent={C.gold} />
             <KvLine label="Exit at 8× (conservative)"          val={fmtMoney(exitLow)} />
             <KvLine label="Exit at 10× (premium)"              val={fmtMoney(exitHigh)} accent={C.green} />
           </div>
         </div>
-        <div style={{ marginTop: 20, padding: '18px 22px', background: 'rgba(46,204,139,0.08)', border: '1px solid rgba(46,204,139,0.28)', borderRadius: 10, fontSize: 13.5, color: C.muted, lineHeight: 1.7 }}>
-          <strong style={{ color: C.green }}>The math:</strong> Wagner&apos;s total cash deployed = <strong style={{ color: C.gold }}>{fmtMoney(totalOperating + totalWagnerCash)}</strong> ({fmtMoney(totalOperating)} operating + {fmtMoney(totalWagnerCash)} cash at close). His existing $25M EBITDA gets re-rated at <strong style={{ color: C.gold }}>8-10× inside the combined platform</strong>. That alone is <strong style={{ color: C.green }}>${(25_000_000 * 8 / 1_000_000).toFixed(0)}M-${(25_000_000 * 10 / 1_000_000).toFixed(0)}M of platform-multiple-arbitrage value</strong> on EBITDA he already owns — before counting the ChiroPillar acquisitions. Plus the {fmtMoney(finalEbitda)} of new acquired EBITDA at 8-10× = ${(finalEbitda * 8 / 1_000_000).toFixed(1)}-${(finalEbitda * 10 / 1_000_000).toFixed(1)}M more. Total exit <strong style={{ color: C.gold }}>{fmtMoney(exitLow)}-{fmtMoney(exitHigh)}</strong>. Bank debt of <strong style={{ color: C.align }}>{fmtMoney(totalBankDebt)}</strong> retired at exit from cash flow, leaving Wagner with <strong style={{ color: C.gold }}>{fmtMoney(exitLow - totalBankDebt)}-{fmtMoney(exitHigh - totalBankDebt)}</strong> net.
+        <div style={{ marginTop: 20, padding: '18px 22px', background: 'rgba(46,204,139,0.08)', border: '1px solid rgba(46,204,139,0.28)', borderRadius: 10, fontSize: 14, color: '#FFFFFF', lineHeight: 1.7 }}>
+          <strong style={{ color: C.green }}>The math:</strong> Wagner&apos;s total cash deployed = <strong style={{ color: C.gold }}>{fmtMoney(monthlyBurnY1 * 12 + totalWagnerCash)}</strong> ({fmtMoney(monthlyBurnY1 * 12)} Y1 operating + {fmtMoney(totalWagnerCash)} cash at close · Y2 ops self-funded). His existing <strong style={{ color: C.gold }}>$25M+ EBITDA</strong> gets re-rated at <strong style={{ color: C.gold }}>8-10× inside the combined platform</strong>. That alone is <strong style={{ color: C.green }}>${(25_000_000 * 8 / 1_000_000).toFixed(0)}M-${(25_000_000 * 10 / 1_000_000).toFixed(0)}M of platform-multiple-arbitrage value</strong> on EBITDA he already owns — before counting the ChiroPillar acquisitions. Plus the {fmtMoney(finalEbitda)} of new acquired EBITDA at 8-10× = ${(finalEbitda * 8 / 1_000_000).toFixed(1)}-${(finalEbitda * 10 / 1_000_000).toFixed(1)}M more. Total exit <strong style={{ color: C.gold }}>{fmtMoney(exitLow)}-{fmtMoney(exitHigh)}</strong>. Bank debt of <strong style={{ color: C.align }}>{fmtMoney(totalBankDebt)}</strong> retired at exit from cash flow, leaving Wagner with <strong style={{ color: C.gold }}>{fmtMoney(exitLow - totalBankDebt)}-{fmtMoney(exitHigh - totalBankDebt)}</strong> net.
         </div>
       </div>
 
@@ -836,7 +836,7 @@ export default function LaunchPlanPage() {
           </div>
         </div>
         <div style={{ marginTop: 18, padding: '14px 18px', background: 'rgba(46,117,182,0.06)', border: '1px solid rgba(46,117,182,0.18)', borderRadius: 10, fontSize: 13, color: C.muted, lineHeight: 1.6 }}>
-          <strong style={{ color: C.text }}>Why 5%, why revenue not profit:</strong> KB controls the inputs (ads, marketing, platform, intake). Wagner controls the outputs (clinical install, EBITDA margins). Tying KB&apos;s compensation to revenue means KB is incentivized to drive volume + quality leads — not to cut corners that hurt the eventual EBITDA. KB doesn&apos;t get to make excuses about Wagner&apos;s margins. Wagner doesn&apos;t get to hide profit. Clean.
+          <strong style={{ color: C.text }}>Why 5% of gross revenue (minus refunds) — not profit:</strong> KB is incentivized two ways. <strong style={{ color: C.gold }}>(1) The 5% exit fee on platform-sourced clinics</strong> means KB only wins big if Wagner wins big — we&apos;re directly tied to EBITDA quality and the eventual exit multiple. <strong style={{ color: C.gold }}>(2) The ongoing 5% is clean off gross revenue net of refunds.</strong> No arguing about overhead allocations, no debating EBITDA margins, no quarterly fights over what counts as profit. KB controls the inputs (ads, marketing, platform, intake). Wagner controls the outputs (clinical install, margins). Revenue is the only number both sides see the same way. <strong style={{ color: C.green }}>Nobody complains about profit margins. Clean.</strong>
         </div>
       </div>
 
