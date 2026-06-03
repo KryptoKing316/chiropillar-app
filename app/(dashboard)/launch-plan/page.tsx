@@ -498,16 +498,18 @@ export default function LaunchPlanPage() {
               </div>
             </div>
             <div style={{ background: C.bg3, border: `1px solid ${C.border}`, borderRadius: 10, padding: '16px 18px' }}>
-              <div style={{ fontFamily: F.mono, fontSize: 12, color: '#FFFFFF', letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 12 }}>Metrics</div>
-              {s.metrics.map((m, j) => (
-                <div key={j} style={{ display: 'flex', justifyContent: 'space-between', padding: '5px 0', fontSize: 13, color: '#FFFFFF', gap: 8 }}>
-                  <span style={{ flexShrink: 1, lineHeight: 1.4 }}>{m.label}</span>
-                  <span style={{ color: '#FFFFFF', fontFamily: F.mono, fontWeight: 700, flexShrink: 0 }}>{m.val}</span>
-                </div>
-              ))}
-              <div style={{ marginTop: 10, paddingTop: 10, borderTop: `1px dashed ${C.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
-                <span style={{ fontFamily: F.mono, fontSize: 12, color: s.accent, letterSpacing: '0.12em', textTransform: 'uppercase', fontWeight: 800 }}>Run rate</span>
-                <span style={{ fontFamily: F.display, fontSize: 20, fontWeight: 800, color: s.accent }}>{fmtMoney(s.monthly_cost)}/mo</span>
+              <div style={{ fontFamily: F.mono, fontSize: 12, color: '#FFFFFF', letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 14 }}>Metrics</div>
+              <div style={{ display: 'grid', gap: 12 }}>
+                {s.metrics.map((m, j) => (
+                  <div key={j}>
+                    <div style={{ fontFamily: F.mono, fontSize: 10.5, color: '#9CC4E4', letterSpacing: '0.10em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 3 }}>{m.label}</div>
+                    <div style={{ fontSize: 13.5, color: '#FFFFFF', fontWeight: 600, lineHeight: 1.4 }}>{m.val}</div>
+                  </div>
+                ))}
+              </div>
+              <div style={{ marginTop: 14, paddingTop: 12, borderTop: `1px dashed ${C.border}` }}>
+                <div style={{ fontFamily: F.mono, fontSize: 10.5, color: s.accent, letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 4 }}>Run rate</div>
+                <div style={{ fontFamily: F.display, fontSize: 24, fontWeight: 800, color: s.accent, lineHeight: 1 }}>{fmtMoney(s.monthly_cost)}<span style={{ fontSize: '0.55em', color: s.accent, fontWeight: 600 }}>/mo</span></div>
               </div>
             </div>
           </div>
