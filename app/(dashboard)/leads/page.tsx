@@ -265,13 +265,13 @@ export default function LeadsPage() {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: 16, marginBottom: 28 }}>
         <div>
           <div style={{ fontFamily: F.mono, fontSize: 11, color: C.gold, letterSpacing: '0.22em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 8 }}>
-            VA Chiropractor Target List · $1M+ Revenue · CRM
+            Chiropractor Deal Pipeline · $1M+ Revenue · Wagner Territory · CRM
           </div>
           <h1 style={{ fontFamily: F.display, fontSize: 'clamp(32px, 4.5vw, 44px)', fontWeight: 700, margin: '0 0 8px', letterSpacing: '-0.02em' }}>
-            40 leads. Callable. Notes-ready.
+            {leads.length} deals. Callable. Notes-ready.
           </h1>
           <p style={{ fontSize: 15, color: C.muted, margin: 0, maxWidth: 820, lineHeight: 1.55 }}>
-            Click any practice → CRM drawer opens with phone (click-to-call), email, address, status dropdown, and a notes log. Calls and notes timestamped automatically. List built by the agent pipeline (search → scrape → enrich → score).
+            Click any practice → CRM drawer opens with phone (click-to-call), email, address, status dropdown, and a notes log. Calls and notes timestamped automatically. Deal list built by the agent pipeline (search → scrape → enrich → score) across Wagner&apos;s primary VA market + 10 secondary states (TX, FL, NC, SC, GA, TN, AL, KY, MD, WV).
           </p>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
@@ -286,7 +286,7 @@ export default function LeadsPage() {
 
       {/* STAT STRIP */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 14, background: `linear-gradient(135deg, rgba(46,117,182,0.08), ${C.bg3})`, border: `1px solid ${C.border}`, borderRadius: 14, padding: '20px 24px', marginBottom: 24 }}>
-        <Stat label="Leads shown"          val={String(filtered.length)} color={C.gold} />
+        <Stat label="Deals shown"          val={String(filtered.length)} color={C.gold} />
         <Stat label="Combined revenue"     val={fmtMoney(totalRev)}       color={C.text} />
         <Stat label="Combined EBITDA est"  val={fmtMoney(totalEbit)}      color={C.green} />
         <Stat label="In pipeline"          val={String(inPipeline)}       color={C.green} />

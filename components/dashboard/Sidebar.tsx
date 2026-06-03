@@ -374,7 +374,7 @@ const ICONS: Record<string, React.ReactNode> = {
 const NAV = [
   { href: '/walkthrough',  label: 'Self-Demo Guide',      badge: 'Live' },
   { href: '/overview',     label: 'Overview',             badge: 'Live' },
-  { href: '/leads',        label: 'VA Leads · CRM',       badge: 'Live' },
+  { href: '/leads',        label: 'Deal Pipeline · CRM',  badge: 'Live' },
   { href: '/targets',      label: 'Intake Submissions'                  },
   { href: '/calculator',   label: 'Deal Calculator'                     },
   { href: '/analytics',    label: 'Analytics',            badge: 'Live' },
