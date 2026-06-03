@@ -543,6 +543,103 @@ export default function LaunchPlanPage() {
         </div>
       </div>
 
+      {/* ── PRO FORMA · FULL REVENUE LADDER ─────────────────────────────── */}
+      <SectionHead eyebrow="Pro Forma · the full value ladder" title="$9/mo app to $25M acquisition · 3-year build." />
+
+      <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, padding: '24px 28px', marginBottom: 18 }}>
+        <p style={{ fontSize: 14, color: C.muted, lineHeight: 1.65, marginTop: 0, marginBottom: 22 }}>
+          Same audience, escalating ticket size. The <strong style={{ color: C.green }}>$9/month ChiroPillar Digital app</strong> is the top of funnel — a chiropractor whose patient sees the app eventually subscribes themselves. <strong style={{ color: C.gold }}>Scale Services</strong> ($500 → $50K) productizes Wagner&apos;s playbook for chiros who don&apos;t want to sell. <strong style={{ color: C.spine }}>Acquisition</strong> ($1.9M each) captures the operators ready to step out. <strong style={{ color: C.goldLight }}>Multiple arbitrage</strong> on exit re-rates every dollar of EBITDA from 1.5–3× (cost basis) to 8–10× (platform).
+        </p>
+
+        {/* The 5-tier value ladder visualized */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 24 }}>
+          <LadderRow tier="TIER 1" name="ChiroPillar Digital App · $9/mo or $74/yr"  audience="Patients (consumer)"  price="$9-74"      y3="$3.0M / yr" accent={C.green}    width={20} />
+          <LadderRow tier="TIER 2" name="Strategy Call · 60-min 1:1 with Wagner"     audience="DCs · single touch"  price="$500-2.5K"  y3="$420K / yr" accent={C.globe}    width={35} />
+          <LadderRow tier="TIER 3" name="Practice Audit · 2-week diagnostic + plan"  audience="DCs · committed"     price="$5-10K"     y3="$680K / yr" accent={C.align}    width={50} />
+          <LadderRow tier="TIER 4" name="Medical-Team Installation · 90-day install" audience="DCs · serious scaling" price="$25-50K"  y3="$1.4M / yr" accent={C.gold}     width={65} />
+          <LadderRow tier="TIER 5" name="ChiroPillar Mastermind · 12-mo cohort"      audience="DCs · scaling without selling" price="$12K/yr" y3="$700K / yr" accent={C.goldLight} width={75} />
+          <LadderRow tier="TIER 6" name="Acquisition · 4-stream offer + medical-team add-on" audience="DCs · ready to step out" price="$1.9M avg" y3="25 clinics" accent={C.spine}    width={100} />
+        </div>
+
+        {/* 3-year pro forma table */}
+        <div style={{ marginBottom: 22 }}>
+          <div style={{ fontFamily: F.mono, fontSize: 10, color: C.gold, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 12 }}>
+            3-Year Revenue Pro Forma (annualized run rate)
+          </div>
+          <div style={{ background: C.bg3, border: `1px solid ${C.border}`, borderRadius: 12, overflow: 'hidden' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '2.2fr 0.7fr 0.9fr 1fr 1fr', gap: 12, padding: '12px 18px', background: 'rgba(255,255,255,0.04)', borderBottom: `1px solid ${C.border}`, fontFamily: F.mono, fontSize: 10, letterSpacing: '0.12em', textTransform: 'uppercase', color: C.faint, fontWeight: 700 }}>
+              <div>Revenue Line</div>
+              <div style={{ textAlign: 'right' }}>Units Y3</div>
+              <div style={{ textAlign: 'right' }}>Y1</div>
+              <div style={{ textAlign: 'right' }}>Y2</div>
+              <div style={{ textAlign: 'right' }}>Y3</div>
+            </div>
+            <ProFormaRow line="ChiroPillar Digital App · $9/mo + $74/yr blended"            units="50,000 users"  y1={100_000}    y2={825_000}    y3={3_000_000}  accent={C.green} />
+            <ProFormaRow line="Strategy Calls · $500-$2.5K"                                  units="280 calls/yr"  y1={120_000}    y2={250_000}    y3={420_000}    accent={C.globe} />
+            <ProFormaRow line="Practice Audits · $5-10K"                                     units="85 audits/yr"  y1={180_000}    y2={400_000}    y3={680_000}    accent={C.align} />
+            <ProFormaRow line="Medical-Team Installations · $25-50K"                         units="35 installs/yr" y1={350_000}    y2={825_000}    y3={1_400_000}  accent={C.gold} />
+            <ProFormaRow line="Mastermind · $12K/yr × 60 members"                           units="60 members"    y1={300_000}    y2={500_000}    y3={700_000}    accent={C.goldLight} />
+            <ProFormaRow line="Acquired clinic revenue (post-lift, blended)"                units="25 clinics"    y1={8_000_000}  y2={27_750_000} y3={52_500_000} accent={C.spine} bold />
+            <ProFormaRow line="TOTAL ANNUALIZED REVENUE"                                    units="—"             y1={9_050_000}  y2={30_550_000} y3={58_700_000} accent={C.gold} total />
+          </div>
+        </div>
+
+        {/* KB 5% share of the totals */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 12, marginBottom: 18 }}>
+          <Sub label="KB 5% of Y1 revenue"   val={fmtMoney(9_050_000 * 0.05)}  color={C.green} />
+          <Sub label="KB 5% of Y2 revenue"   val={fmtMoney(30_550_000 * 0.05)} color={C.gold} />
+          <Sub label="KB 5% of Y3 revenue"   val={fmtMoney(58_700_000 * 0.05)} color={C.gold} />
+          <Sub label="KB 3-yr cumulative"     val={fmtMoney((9_050_000 + 30_550_000 + 58_700_000) * 0.05)} color={C.goldLight} />
+        </div>
+      </div>
+
+      {/* ── MULTIPLE ARBITRAGE BREAKDOWN ────────────────────────────────── */}
+      <div style={{
+        background: `linear-gradient(135deg, rgba(201,168,76,0.10), ${C.bg3})`,
+        border: `2px solid rgba(201,168,76,0.40)`, borderRadius: 14,
+        padding: '26px 30px', marginBottom: 32,
+      }}>
+        <div style={{ fontFamily: F.mono, fontSize: 11, color: C.gold, letterSpacing: '0.22em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 8 }}>
+          ★ Multiple Arbitrage · The Real Prize
+        </div>
+        <h3 style={{ fontFamily: F.display, fontSize: 26, fontWeight: 700, color: C.text, margin: '0 0 18px', letterSpacing: '-0.02em' }}>
+          Buy at 2–3× SDE. Exit at 8–10× EBITDA. Re-rate every dollar.
+        </h3>
+
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }} className="kb-val-grid">
+
+          {/* Cost basis side */}
+          <div style={{ background: C.bg3, border: `1px solid ${C.border}`, borderRadius: 12, padding: '20px 22px' }}>
+            <div style={{ fontFamily: F.mono, fontSize: 10, color: C.muted, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 14 }}>Cost basis · what we paid</div>
+            <KvLine label="25 clinics × ~$1.9M each"             val={fmtMoney(47_500_000)} />
+            <KvLine label="Multiple paid (avg)"                   val="2.4× SDE" />
+            <KvLine label="ChiroPillar acquired EBITDA (post-lift)" val={fmtMoney(7_260_000)} />
+            <KvLine label="Wagner existing EBITDA · siloed value (5-7×)" val={`${fmtMoney(25_000_000 * 5)}-${fmtMoney(25_000_000 * 7)}`} accent={C.spine} />
+            <KvLine label="Total cost basis"                       val={fmtMoney(47_500_000 + 25_000_000 * 6)} accent={C.text} />
+          </div>
+
+          {/* Exit value side */}
+          <div style={{ background: C.bg3, border: `2px solid rgba(46,204,139,0.40)`, borderRadius: 12, padding: '20px 22px' }}>
+            <div style={{ fontFamily: F.mono, fontSize: 10, color: C.green, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 14 }}>Exit value · what we sell for</div>
+            <KvLine label="Combined EBITDA at exit"                val={fmtMoney(32_260_000)} accent={C.gold} />
+            <KvLine label="Exit multiple applied"                   val="8–10×" />
+            <KvLine label="Exit at 8× (conservative)"               val={fmtMoney(258_080_000)} />
+            <KvLine label="Exit at 10× (premium)"                   val={fmtMoney(322_600_000)} accent={C.green} />
+            <KvLine label="Multiple arbitrage gain"                 val={`${fmtMoney(258_080_000 - 47_500_000 - 25_000_000 * 6)} – ${fmtMoney(322_600_000 - 47_500_000 - 25_000_000 * 6)}`} accent={C.gold} />
+          </div>
+        </div>
+
+        <div style={{ marginTop: 20, padding: '16px 22px', background: 'rgba(46,117,182,0.06)', border: '1px solid rgba(46,117,182,0.20)', borderRadius: 10, fontSize: 14, color: C.muted, lineHeight: 1.7 }}>
+          <strong style={{ color: C.gold }}>Two arbitrage engines firing at once:</strong>
+          <br/><br/>
+          <strong style={{ color: C.green }}>1. Clinic-level re-rate:</strong> ChiroPillar buys clinics at <strong style={{ color: C.text }}>2.4× SDE</strong> (~$1.9M each). Wagner installs the medical-team playbook → EBITDA lifts $250K-$500K Y1. At exit, those clinics are valued at the <strong style={{ color: C.gold }}>platform-level 8-10× EBITDA</strong> instead of the standalone solo-DC multiple. That&apos;s a 3-4× re-rate per clinic on the EBITDA we created.
+          <br/><br/>
+          <strong style={{ color: C.green }}>2. Wagner-existing-EBITDA re-rate:</strong> Wagner&apos;s $25M of medical-practice EBITDA today is valued <strong style={{ color: C.spine }}>at 5-7× siloed</strong> ($125-175M). Once inside the combined <strong style={{ color: C.gold }}>$32.3M ChiroPillar+Wagner platform</strong> with national brand, RTM/telehealth recurring revenue layer, and proven roll-up engine, every dollar of that same $25M trades at <strong style={{ color: C.gold }}>8-10× alongside the new EBITDA</strong>. That alone is a <strong style={{ color: C.green }}>$25-75M re-rate</strong> on EBITDA Wagner already owns.
+          <br/><br/>
+          <strong style={{ color: C.text }}>The arbitrage isn&apos;t just on the new acquisitions — it&apos;s on the rerating of the entire enterprise.</strong>
+        </div>
+      </div>
+
       {/* WAGNER RETURN · revised MOIC math */}
       <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, padding: '24px 28px', marginBottom: 24 }}>
         <SectionHead eyebrow="Wagner's return · 24 months out" title="What does the small check turn into?" />
@@ -672,6 +769,49 @@ function KvLine({ label, val, accent }: { label: string; val: string; accent?: s
       <span style={{ fontFamily: F.display, fontSize: 18, fontWeight: 800, color: accent || C.text }}>{val}</span>
     </div>
   )
+}
+
+function LadderRow({ tier, name, audience, price, y3, accent, width }: { tier: string; name: string; audience: string; price: string; y3: string; accent: string; width: number }) {
+  return (
+    <div style={{ display: 'grid', gridTemplateColumns: '70px 1fr 140px 100px 130px', gap: 14, padding: '12px 16px', borderRadius: 10, background: 'rgba(255,255,255,0.025)', border: `1px solid ${C.border}`, alignItems: 'center' }}>
+      <div style={{ fontFamily: F.mono, fontSize: 10, color: accent, letterSpacing: '0.14em', fontWeight: 800 }}>{tier}</div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+        <span style={{ fontSize: 13, color: C.text, fontWeight: 600, flexShrink: 0 }}>{name}</span>
+        <div style={{ flex: 1, height: 6, background: 'rgba(255,255,255,0.04)', borderRadius: 3, overflow: 'hidden' }}>
+          <div style={{ width: `${width}%`, height: '100%', background: `linear-gradient(90deg, ${accent}, ${accent}88)`, borderRadius: 3 }} />
+        </div>
+      </div>
+      <div style={{ fontSize: 11, color: C.muted, fontFamily: F.mono, letterSpacing: '0.04em' }}>{audience}</div>
+      <div style={{ fontSize: 12, color: accent, fontFamily: F.display, fontWeight: 800, textAlign: 'right' }}>{price}</div>
+      <div style={{ fontSize: 13, color: C.green, fontFamily: F.display, fontWeight: 700, textAlign: 'right' }}>{y3}</div>
+    </div>
+  )
+}
+
+function ProFormaRow({ line, units, y1, y2, y3, accent, bold, total }: { line: string; units: string; y1: number; y2: number; y3: number; accent: string; bold?: boolean; total?: boolean }) {
+  return (
+    <div style={{
+      display: 'grid', gridTemplateColumns: '2.2fr 0.7fr 0.9fr 1fr 1fr', gap: 12,
+      padding: '11px 18px',
+      borderBottom: total ? 'none' : `1px solid ${C.border}`,
+      borderTop: total ? `2px solid ${accent}` : 'none',
+      background: total ? `${accent}10` : 'transparent',
+      alignItems: 'baseline',
+      fontSize: 12.5,
+    }}>
+      <div style={{ color: total ? accent : (bold ? C.text : C.muted), fontWeight: total || bold ? 800 : 500, fontFamily: total ? F.display : F.body, fontSize: total ? 14 : 12.5 }}>{line}</div>
+      <div style={{ textAlign: 'right', color: C.faint, fontFamily: F.mono, fontSize: 11 }}>{units}</div>
+      <div style={{ textAlign: 'right', color: total ? accent : C.muted, fontFamily: F.mono, fontWeight: total ? 800 : 500 }}>{fmtMoneyShort(y1)}</div>
+      <div style={{ textAlign: 'right', color: total ? accent : C.text, fontFamily: F.mono, fontWeight: total ? 800 : 600 }}>{fmtMoneyShort(y2)}</div>
+      <div style={{ textAlign: 'right', color: total ? accent : C.gold, fontFamily: total ? F.display : F.mono, fontWeight: 800, fontSize: total ? 16 : 13 }}>{fmtMoneyShort(y3)}</div>
+    </div>
+  )
+}
+
+function fmtMoneyShort(n: number) {
+  if (n >= 1_000_000) return '$' + (n / 1_000_000).toFixed(2) + 'M'
+  if (n >= 1_000) return '$' + Math.round(n / 1_000) + 'K'
+  return '$' + n
 }
 
 function Risk({ title, desc }: { title: string; desc: string }) {
