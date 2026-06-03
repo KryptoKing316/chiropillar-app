@@ -214,17 +214,18 @@ function Sparkline({ data, color, height = 28, width = 120 }: { data: number[]; 
 
 function FunnelLayer({ label, count, pct, color, indent = 0 }: { label: string; count: number; pct: number; color: string; indent?: number }) {
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '170px 1fr 70px 70px', gap: 12, alignItems: 'center', padding: '6px 0' }}>
-      <div style={{ fontSize: 13, color: C.text, fontWeight: 500 }}>{label}</div>
-      <div style={{ position: 'relative', height: 22, marginLeft: indent }}>
+    <div style={{ display: 'grid', gridTemplateColumns: '180px 1fr 80px 70px', gap: 14, alignItems: 'center', padding: '8px 0' }}>
+      <div style={{ fontSize: 14, color: '#FFFFFF', fontWeight: 600 }}>{label}</div>
+      <div style={{ position: 'relative', height: 24, marginLeft: indent }}>
         <div style={{
           position: 'absolute', left: 0, top: 0, bottom: 0, width: `${pct}%`,
           background: `linear-gradient(90deg, ${color}, ${color}88)`,
           borderRadius: '4px 12px 12px 4px',
+          boxShadow: `0 0 12px ${color}40`,
         }} />
       </div>
-      <div style={{ fontFamily: F.display, fontSize: 18, fontWeight: 700, color, textAlign: 'right' }}>{count}</div>
-      <div style={{ fontFamily: F.mono, fontSize: 11, color: C.muted, textAlign: 'right' }}>{pct.toFixed(0)}%</div>
+      <div style={{ fontFamily: F.display, fontSize: 22, fontWeight: 800, color, textAlign: 'right', letterSpacing: '-0.02em' }}>{count}</div>
+      <div style={{ fontFamily: F.mono, fontSize: 13, color: '#FFFFFF', textAlign: 'right', fontWeight: 600 }}>{pct.toFixed(0)}%</div>
     </div>
   )
 }
@@ -266,7 +267,7 @@ export default async function OverviewPage() {
           <h1 style={{ fontFamily: F.display, fontSize: 'clamp(34px, 4.5vw, 48px)', fontWeight: 700, margin: '0 0 6px', letterSpacing: '-0.02em' }}>
             ChiroPillar at a glance.
           </h1>
-          <p style={{ fontSize: 15, color: C.muted, margin: 0, maxWidth: 760, lineHeight: 1.55 }}>
+          <p style={{ fontSize: 16, color: '#FFFFFF', margin: 0, maxWidth: 760, lineHeight: 1.6, fontWeight: 400 }}>
             Family-office view of the chiropractic roll-up. Vital signs, funnel, EBITDA tracker, and triage alerts — read it like a clinical chart.
           </p>
         </div>
@@ -278,11 +279,12 @@ export default async function OverviewPage() {
 
       {/* ── VITAL SIGNS STRIP · KPIs with sparklines ────────────────────── */}
       <div style={{
-        background: `linear-gradient(135deg, rgba(46,117,182,0.10), ${C.bg3})`,
-        border: `1px solid ${C.border}`, borderRadius: 14, padding: '22px 26px',
+        background: `linear-gradient(135deg, rgba(46,117,182,0.12), ${C.bg3})`,
+        border: `1px solid rgba(46,117,182,0.30)`, borderRadius: 14, padding: '24px 28px',
         marginBottom: 24,
+        boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
       }}>
-        <div style={{ fontFamily: F.mono, fontSize: 10, color: C.faint, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 18 }}>
+        <div style={{ fontFamily: F.mono, fontSize: 12.5, color: C.align, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 22 }}>
           ❤︎ Vital Signs · 12-week trajectory
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 22 }}>
@@ -303,21 +305,26 @@ export default async function OverviewPage() {
       </div>
 
       {/* ── PLATFORM EBITDA BUILD-UP (the family-office prize) ────────── */}
-      <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, padding: '26px 30px', marginBottom: 24 }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 18, flexWrap: 'wrap', gap: 12 }}>
+      <div style={{
+        background: `linear-gradient(135deg, rgba(201,168,76,0.08), ${C.bg2})`,
+        border: `1px solid rgba(201,168,76,0.25)`, borderRadius: 14,
+        padding: '28px 32px', marginBottom: 24,
+        boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
+      }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 22, flexWrap: 'wrap', gap: 12 }}>
           <div>
-            <div style={{ fontFamily: F.mono, fontSize: 10, color: C.gold, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 4 }}>
-              Combined Platform EBITDA · build-up to $45M
+            <div style={{ fontFamily: F.mono, fontSize: 12.5, color: C.gold, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 6 }}>
+              ★ Combined Platform EBITDA · build-up to $45M
             </div>
-            <div style={{ fontFamily: F.display, fontSize: 22, fontWeight: 600, color: C.text }}>
+            <div style={{ fontFamily: F.display, fontSize: 24, fontWeight: 700, color: C.text, letterSpacing: '-0.01em' }}>
               Wagner $25M + ChiroPillar pipeline + remaining target.
             </div>
           </div>
           <div style={{ textAlign: 'right' }}>
-            <div style={{ fontFamily: F.display, fontSize: 28, fontWeight: 800, color: C.gold, lineHeight: 1 }}>
+            <div style={{ fontFamily: F.display, fontSize: 36, fontWeight: 800, color: C.gold, lineHeight: 1, letterSpacing: '-0.02em' }}>
               {fmtMoney(combined)}
             </div>
-            <div style={{ fontFamily: F.mono, fontSize: 10, color: C.faint, letterSpacing: '0.06em' }}>{progress.toFixed(0)}% of $45M target</div>
+            <div style={{ fontFamily: F.mono, fontSize: 12, color: C.goldLight, letterSpacing: '0.06em', fontWeight: 700, marginTop: 4 }}>{progress.toFixed(0)}% of $45M target</div>
           </div>
         </div>
 
@@ -334,9 +341,9 @@ export default async function OverviewPage() {
             +{fmtMoney(d.pipelineEbitda)}
           </div>
         </div>
-        <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 8, fontFamily: F.mono, fontSize: 10, color: C.faint }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 10, fontFamily: F.mono, fontSize: 12, color: '#FFFFFF', fontWeight: 600 }}>
           <span>$0</span>
-          <span style={{ color: C.gold }}>$45M target</span>
+          <span style={{ color: C.gold, fontWeight: 700 }}>$45M target</span>
         </div>
 
         {/* Side stats */}
@@ -353,22 +360,22 @@ export default async function OverviewPage() {
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 18, marginBottom: 24 }} className="kb-overview-grid">
 
         {/* Conversion Funnel */}
-        <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, padding: '22px 26px' }}>
-          <div style={{ fontFamily: F.mono, fontSize: 10, color: C.align, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 4 }}>
+        <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, padding: '24px 28px', boxShadow: '0 4px 16px rgba(0,0,0,0.12)' }}>
+          <div style={{ fontFamily: F.mono, fontSize: 12.5, color: C.align, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 6 }}>
             Conversion Funnel · top to close
           </div>
-          <div style={{ fontFamily: F.display, fontSize: 18, fontWeight: 600, color: C.text, marginBottom: 18 }}>
+          <div style={{ fontFamily: F.display, fontSize: 20, fontWeight: 700, color: C.text, marginBottom: 22, letterSpacing: '-0.01em' }}>
             Where they drop off — and where to push.
           </div>
           {funnel.map((f, i) => <FunnelLayer key={i} label={f.label} count={f.count} pct={Math.max(f.pct, 2)} color={f.color} indent={i * 12} />)}
         </div>
 
         {/* Pipeline Trajectory · big sparkline */}
-        <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, padding: '22px 26px' }}>
-          <div style={{ fontFamily: F.mono, fontSize: 10, color: C.gold, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 4 }}>
+        <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, padding: '24px 28px', boxShadow: '0 4px 16px rgba(0,0,0,0.12)' }}>
+          <div style={{ fontFamily: F.mono, fontSize: 12.5, color: C.gold, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 6 }}>
             Pipeline trajectory · 12 weeks
           </div>
-          <div style={{ fontFamily: F.display, fontSize: 18, fontWeight: 600, color: C.text, marginBottom: 14 }}>
+          <div style={{ fontFamily: F.display, fontSize: 20, fontWeight: 700, color: C.text, marginBottom: 18, letterSpacing: '-0.01em' }}>
             From $400K to {fmtMoney(d.pipelineEbitda)} weighted EBITDA.
           </div>
           {/* Big chart */}
@@ -382,11 +389,11 @@ export default async function OverviewPage() {
       </div>
 
       {/* ── ALERTS LIST (clinical triage) ──────────────────────────────── */}
-      <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, padding: '22px 26px', marginBottom: 24 }}>
-        <div style={{ fontFamily: F.mono, fontSize: 10, color: C.coral, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 4 }}>
+      <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, padding: '24px 28px', marginBottom: 24, boxShadow: '0 4px 16px rgba(0,0,0,0.12)' }}>
+        <div style={{ fontFamily: F.mono, fontSize: 12.5, color: C.coral, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 6 }}>
           🩺 Triage list · what needs you
         </div>
-        <div style={{ fontFamily: F.display, fontSize: 18, fontWeight: 600, color: C.text, marginBottom: 16 }}>
+        <div style={{ fontFamily: F.display, fontSize: 20, fontWeight: 700, color: C.text, marginBottom: 18, letterSpacing: '-0.01em' }}>
           Read top to bottom. Address the urgent first.
         </div>
         {d.alerts.map((a, i) => (
@@ -397,14 +404,14 @@ export default async function OverviewPage() {
             border: `1px solid ${a.level === 'urgent' ? 'rgba(231,76,60,0.25)' : a.level === 'watch' ? 'rgba(243,156,18,0.25)' : 'rgba(46,204,139,0.18)'}`,
           }}>
             <span style={{
-              flexShrink: 0, padding: '3px 9px', borderRadius: 4,
+              flexShrink: 0, padding: '4px 10px', borderRadius: 5,
               background: a.level === 'urgent' ? C.red : a.level === 'watch' ? C.amber : C.green,
-              color: '#FFF', fontFamily: F.mono, fontSize: 9, fontWeight: 800,
+              color: '#FFF', fontFamily: F.mono, fontSize: 11, fontWeight: 800,
               letterSpacing: '0.14em', textTransform: 'uppercase',
             }}>
               {a.level}
             </span>
-            <span style={{ flex: 1, fontSize: 13, color: C.text, lineHeight: 1.45 }}>{a.text}</span>
+            <span style={{ flex: 1, fontSize: 14, color: '#FFFFFF', lineHeight: 1.5, fontWeight: 500 }}>{a.text}</span>
           </div>
         ))}
       </div>
@@ -413,40 +420,41 @@ export default async function OverviewPage() {
       <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr', gap: 18, marginBottom: 24 }} className="kb-overview-grid">
 
         {/* Top Deals */}
-        <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, overflow: 'hidden' }}>
-          <div style={{ padding: '18px 24px', borderBottom: `1px solid ${C.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+        <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, overflow: 'hidden', boxShadow: '0 4px 16px rgba(0,0,0,0.12)' }}>
+          <div style={{ padding: '20px 26px', borderBottom: `1px solid ${C.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', background: 'rgba(201,168,76,0.06)' }}>
             <div>
-              <div style={{ fontFamily: F.mono, fontSize: 10, color: C.gold, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700 }}>
+              <div style={{ fontFamily: F.mono, fontSize: 12.5, color: C.gold, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 800 }}>
                 Active Deals · top 6 by pipeline value
               </div>
             </div>
-            <Link href="/targets" style={{ fontSize: 12, color: C.align, textDecoration: 'none', fontFamily: F.mono, letterSpacing: '0.06em' }}>
+            <Link href="/targets" style={{ fontSize: 13, color: C.align, textDecoration: 'none', fontFamily: F.mono, letterSpacing: '0.06em', fontWeight: 700 }}>
               View all →
             </Link>
           </div>
           {d.topDeals.map((deal, i) => (
             <div key={i} style={{
-              display: 'grid', gridTemplateColumns: '1fr 110px 110px',
-              gap: 12, padding: '14px 24px',
+              display: 'grid', gridTemplateColumns: '1fr 120px 120px',
+              gap: 14, padding: '16px 26px',
               borderBottom: i < d.topDeals.length - 1 ? `1px solid ${C.border}` : 'none',
               alignItems: 'center',
             }}>
               <div>
-                <div style={{ fontSize: 14, fontWeight: 600, color: C.text, marginBottom: 2 }}>{deal.name}</div>
-                <div style={{ fontSize: 12, color: C.muted, fontFamily: F.mono, letterSpacing: '0.04em' }}>
+                <div style={{ fontSize: 15, fontWeight: 700, color: '#FFFFFF', marginBottom: 4, letterSpacing: '-0.01em' }}>{deal.name}</div>
+                <div style={{ fontSize: 12.5, color: '#FFFFFF', fontFamily: F.mono, letterSpacing: '0.04em', fontWeight: 500 }}>
                   {deal.city}, {deal.state} · {deal.npm} new/mo · day {deal.daysIn}
                 </div>
               </div>
               <div style={{
-                fontFamily: F.mono, fontSize: 10, letterSpacing: '0.14em',
-                textTransform: 'uppercase', fontWeight: 700, textAlign: 'center',
-                padding: '4px 8px', borderRadius: 6,
-                background: deal.status.includes('Diligence') ? 'rgba(201,168,76,0.15)' : deal.status.includes('Scheduled') ? 'rgba(46,117,182,0.15)' : 'rgba(155,168,192,0.12)',
-                color: deal.status.includes('Diligence') ? C.gold : deal.status.includes('Scheduled') ? C.align : C.muted,
+                fontFamily: F.mono, fontSize: 11, letterSpacing: '0.14em',
+                textTransform: 'uppercase', fontWeight: 800, textAlign: 'center',
+                padding: '6px 10px', borderRadius: 6,
+                background: deal.status.includes('Diligence') ? 'rgba(201,168,76,0.20)' : deal.status.includes('Scheduled') ? 'rgba(46,117,182,0.20)' : 'rgba(155,168,192,0.15)',
+                color: deal.status.includes('Diligence') ? C.gold : deal.status.includes('Scheduled') ? C.globe : '#FFFFFF',
+                border: `1px solid ${deal.status.includes('Diligence') ? 'rgba(201,168,76,0.40)' : deal.status.includes('Scheduled') ? 'rgba(46,117,182,0.40)' : 'rgba(155,168,192,0.25)'}`,
               }}>
                 {deal.status}
               </div>
-              <div style={{ fontFamily: F.display, fontSize: 18, fontWeight: 700, color: C.gold, textAlign: 'right' }}>
+              <div style={{ fontFamily: F.display, fontSize: 22, fontWeight: 800, color: C.gold, textAlign: 'right', letterSpacing: '-0.02em' }}>
                 {fmtMoney(deal.valuation)}
               </div>
             </div>
@@ -454,37 +462,38 @@ export default async function OverviewPage() {
         </div>
 
         {/* Geo mini-map */}
-        <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, padding: '20px 22px' }}>
-          <div style={{ fontFamily: F.mono, fontSize: 10, color: C.align, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 4 }}>
+        <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, padding: '22px 24px', boxShadow: '0 4px 16px rgba(0,0,0,0.12)' }}>
+          <div style={{ fontFamily: F.mono, fontSize: 12.5, color: C.align, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 6 }}>
             Geography · Wagner footprint
           </div>
-          <div style={{ fontFamily: F.display, fontSize: 18, fontWeight: 600, color: C.text, marginBottom: 16 }}>
+          <div style={{ fontFamily: F.display, fontSize: 20, fontWeight: 700, color: C.text, marginBottom: 18, letterSpacing: '-0.01em' }}>
             Where applications are coming from.
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             {d.byState.slice(0, 8).map(s => {
               const max = Math.max(...d.byState.map(x => x.count), 1)
               const w = (s.count / max) * 100
               const isPrim = WAGNER_PRIMARY.has(s.state)
               const isSec  = WAGNER_SECONDARY.has(s.state)
-              const color  = isPrim ? C.gold : isSec ? C.align : C.muted
+              const color  = isPrim ? C.gold : isSec ? C.align : '#FFFFFF'
               return (
-                <div key={s.state} style={{ display: 'grid', gridTemplateColumns: '36px 1fr 30px', gap: 10, alignItems: 'center' }}>
-                  <span style={{ fontFamily: F.mono, fontWeight: 800, color, letterSpacing: '0.04em' }}>{s.state}</span>
-                  <div style={{ position: 'relative', height: 14, background: 'rgba(255,255,255,0.04)', borderRadius: 4, overflow: 'hidden' }}>
-                    <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: `${w}%`, background: `linear-gradient(90deg, ${color}, ${color}88)`, borderRadius: 4 }} />
+                <div key={s.state} style={{ display: 'grid', gridTemplateColumns: '42px 1fr 36px', gap: 12, alignItems: 'center' }}>
+                  <span style={{ fontFamily: F.mono, fontSize: 14, fontWeight: 800, color, letterSpacing: '0.04em' }}>{s.state}</span>
+                  <div style={{ position: 'relative', height: 16, background: 'rgba(255,255,255,0.06)', borderRadius: 4, overflow: 'hidden' }}>
+                    <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: `${w}%`, background: `linear-gradient(90deg, ${color}, ${color}88)`, borderRadius: 4, boxShadow: `0 0 8px ${color}40` }} />
                   </div>
-                  <span style={{ fontFamily: F.mono, fontSize: 12, color, fontWeight: 700, textAlign: 'right' }}>{s.count}</span>
+                  <span style={{ fontFamily: F.mono, fontSize: 13, color, fontWeight: 800, textAlign: 'right' }}>{s.count}</span>
                 </div>
               )
             })}
           </div>
           <Link href="/analytics" style={{
-            display: 'block', textAlign: 'center', marginTop: 16,
-            padding: '10px 14px', borderRadius: 8,
-            background: 'rgba(46,117,182,0.10)', border: `1px solid rgba(46,117,182,0.30)`,
-            color: C.align, fontSize: 12, fontWeight: 700, textDecoration: 'none',
+            display: 'block', textAlign: 'center', marginTop: 18,
+            padding: '12px 16px', borderRadius: 8,
+            background: 'rgba(46,117,182,0.12)', border: `1px solid rgba(46,117,182,0.35)`,
+            color: C.align, fontSize: 13, fontWeight: 700, textDecoration: 'none',
             fontFamily: F.body, letterSpacing: '0.04em',
+            transition: 'all 0.15s',
           }}>
             Open full geographic heatmap →
           </Link>
@@ -495,39 +504,39 @@ export default async function OverviewPage() {
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 18 }} className="kb-overview-grid">
 
         {/* Activity */}
-        <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, padding: '20px 22px' }}>
-          <div style={{ fontFamily: F.mono, fontSize: 10, color: C.align, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 14 }}>
+        <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, padding: '22px 24px', boxShadow: '0 4px 16px rgba(0,0,0,0.12)' }}>
+          <div style={{ fontFamily: F.mono, fontSize: 12.5, color: C.align, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 18 }}>
             Recent activity
           </div>
           {d.activity.map((a, i) => (
             <div key={i} style={{
-              display: 'flex', gap: 11, paddingBottom: 12, marginBottom: 12,
+              display: 'flex', gap: 13, paddingBottom: 14, marginBottom: 14,
               borderBottom: i < d.activity.length - 1 ? `1px dashed ${C.border}` : 'none',
               alignItems: 'flex-start',
             }}>
               <span style={{
-                flexShrink: 0, marginTop: 6,
-                width: 8, height: 8, borderRadius: 999,
-                background: a.tone, boxShadow: `0 0 6px ${a.tone}88`,
+                flexShrink: 0, marginTop: 7,
+                width: 10, height: 10, borderRadius: 999,
+                background: a.tone, boxShadow: `0 0 10px ${a.tone}aa`,
               }} />
               <div style={{ flex: 1 }}>
-                <div style={{ fontSize: 13, color: C.text, lineHeight: 1.5 }}>{a.text}</div>
-                <div style={{ fontSize: 10, color: C.faint, fontFamily: F.mono, letterSpacing: '0.06em', marginTop: 3 }}>{a.ago}</div>
+                <div style={{ fontSize: 14, color: '#FFFFFF', lineHeight: 1.55, fontWeight: 500 }}>{a.text}</div>
+                <div style={{ fontSize: 12, color: C.goldLight, fontFamily: F.mono, letterSpacing: '0.06em', marginTop: 5, fontWeight: 600 }}>{a.ago}</div>
               </div>
             </div>
           ))}
         </div>
 
         {/* Quick Actions */}
-        <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, padding: '20px 22px' }}>
-          <div style={{ fontFamily: F.mono, fontSize: 10, color: C.gold, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 14 }}>
+        <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, padding: '22px 24px', boxShadow: '0 4px 16px rgba(0,0,0,0.12)' }}>
+          <div style={{ fontFamily: F.mono, fontSize: 12.5, color: C.gold, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 18 }}>
             Quick actions
           </div>
           <QuickAction href="/targets"    label="Intake Submissions" desc={`${d.totalIntakes} applications · ${d.qualified} qualified`} accent={C.green} />
           <QuickAction href="/calculator" label="Deal Calculator"    desc="Drag sliders · live roll-up math" accent={C.align} />
           <QuickAction href="/valuation"  label="AI Valuation Engine" desc="Per-clinic valuation · 3-step input wizard" accent={C.gold} />
           <QuickAction href="/analytics"  label="Analytics + Geo Map" desc={`${d.states} states · Wagner-aligned heatmap`} accent={C.goldLight} />
-          <QuickAction href="/pipeline"   label="Acquisition Pipeline" desc="Kanban + Bloomberg-style audit timeline" accent={C.spine} />
+          <QuickAction href="/pipeline"   label="Acquisition Pipeline" desc="Kanban + Bloomberg-style audit timeline" accent={C.globe} />
           <QuickAction href="/data-room"  label="Data Room" desc="4 strategy PDFs · drop financials for AI extraction" accent={C.coral} />
         </div>
       </div>
@@ -547,13 +556,13 @@ export default async function OverviewPage() {
 
 function Vital({ label, val, sub, trend, color, width = 130 }: { label: string; val: string; sub: string; trend: number[]; color: string; width?: number }) {
   return (
-    <div>
-      <div style={{ fontFamily: F.mono, fontSize: 10, color: C.faint, letterSpacing: '0.12em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 4 }}>
+    <div style={{ padding: '4px 0' }}>
+      <div style={{ fontFamily: F.mono, fontSize: 11.5, color, letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 8 }}>
         {label}
       </div>
-      <div style={{ fontFamily: F.display, fontSize: 26, fontWeight: 700, color, lineHeight: 1, marginBottom: 6 }}>{val}</div>
-      <Sparkline data={trend} color={color} width={width} height={26} />
-      <div style={{ fontFamily: F.mono, fontSize: 9, color: C.faint, letterSpacing: '0.06em', marginTop: 4 }}>{sub}</div>
+      <div style={{ fontFamily: F.display, fontSize: 30, fontWeight: 800, color, lineHeight: 1, marginBottom: 10, letterSpacing: '-0.02em' }}>{val}</div>
+      <Sparkline data={trend} color={color} width={width} height={28} />
+      <div style={{ fontSize: 12.5, color: '#FFFFFF', letterSpacing: '0.02em', marginTop: 8, fontWeight: 500 }}>{sub}</div>
     </div>
   )
 }
@@ -562,14 +571,16 @@ function TriageStat({ level, count, label, sub }: { level: 'urgent' | 'watch' | 
   const color = level === 'urgent' ? C.red : level === 'watch' ? C.amber : C.green
   return (
     <div style={{
-      background: C.bg2, borderLeft: `4px solid ${color}`,
-      border: `1px solid ${C.border}`, borderRadius: 10,
-      padding: '16px 20px', display: 'flex', alignItems: 'center', gap: 18,
+      background: `linear-gradient(135deg, ${color}10, ${C.bg2})`,
+      borderLeft: `4px solid ${color}`,
+      border: `1px solid ${C.border}`, borderRadius: 12,
+      padding: '20px 24px', display: 'flex', alignItems: 'center', gap: 22,
+      boxShadow: `0 4px 14px ${color}15`,
     }}>
-      <div style={{ fontFamily: F.display, fontSize: 42, fontWeight: 800, color, lineHeight: 1 }}>{count}</div>
+      <div style={{ fontFamily: F.display, fontSize: 48, fontWeight: 800, color, lineHeight: 1, letterSpacing: '-0.03em' }}>{count}</div>
       <div>
-        <div style={{ fontFamily: F.mono, fontSize: 10, color, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 800 }}>{label}</div>
-        <div style={{ fontSize: 12, color: C.muted, marginTop: 2 }}>{sub}</div>
+        <div style={{ fontFamily: F.mono, fontSize: 12, color, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 4 }}>{label}</div>
+        <div style={{ fontSize: 13.5, color: '#FFFFFF', fontWeight: 500 }}>{sub}</div>
       </div>
     </div>
   )
@@ -577,9 +588,9 @@ function TriageStat({ level, count, label, sub }: { level: 'urgent' | 'watch' | 
 
 function Sub({ label, val, color }: { label: string; val: string; color: string }) {
   return (
-    <div>
-      <div style={{ fontFamily: F.mono, fontSize: 9, color: C.faint, letterSpacing: '0.10em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 2 }}>{label}</div>
-      <div style={{ fontSize: 16, fontWeight: 700, color, fontFamily: F.display, lineHeight: 1 }}>{val}</div>
+    <div style={{ padding: '4px 0' }}>
+      <div style={{ fontFamily: F.mono, fontSize: 11.5, color, letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 5 }}>{label}</div>
+      <div style={{ fontSize: 22, fontWeight: 800, color, fontFamily: F.display, lineHeight: 1, letterSpacing: '-0.02em' }}>{val}</div>
     </div>
   )
 }
@@ -626,11 +637,11 @@ function QuickAction({ href, label, desc, accent }: { href: string; label: strin
     <Link href={href} style={{ textDecoration: 'none' }}>
       <div style={{
         background: C.bg3, border: `1px solid ${C.border}`, borderRadius: 10,
-        padding: '12px 16px', marginBottom: 6, cursor: 'pointer',
-        borderLeft: `3px solid ${accent}`, transition: 'all 0.15s',
+        padding: '14px 18px', marginBottom: 8, cursor: 'pointer',
+        borderLeft: `4px solid ${accent}`, transition: 'all 0.15s',
       }}>
-        <div style={{ fontSize: 14, fontWeight: 600, color: C.text, marginBottom: 2 }}>{label}</div>
-        <div style={{ fontSize: 12, color: C.muted, lineHeight: 1.4 }}>{desc}</div>
+        <div style={{ fontSize: 15, fontWeight: 700, color: '#FFFFFF', marginBottom: 4, letterSpacing: '-0.01em' }}>{label}</div>
+        <div style={{ fontSize: 13, color: '#FFFFFF', lineHeight: 1.5, fontWeight: 500, opacity: 0.85 }}>{desc}</div>
       </div>
     </Link>
   )
