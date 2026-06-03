@@ -33,7 +33,7 @@ type Inputs = {
   rollPct: number     // seller rollover %
 }
 
-// ── Practice profile presets · calibrated to 158 real chiropractor comps ──
+// ── Practice profile presets · calibrated to nearly 200 chiropractic deals analyzed ──
 // Solo-DC (default · n=102, median 1.46× SDE) · range 1.08-2.05× P25-P75
 // Multi-DC / membership / associate-in-place · ~30 comps
 // Platform / multi-location · PE-deal triangulated
