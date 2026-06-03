@@ -219,15 +219,15 @@ export default function ValuationPage() {
 
         {/* Header */}
         <div style={{ marginBottom: 24 }}>
-          <div style={{ fontFamily: F.mono, fontSize: 11, color: C.align, letterSpacing: '0.22em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 6 }}>
+          <div style={{ fontFamily: F.mono, fontSize: 12.5, color: C.align, letterSpacing: '0.22em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 8 }}>
             New Valuation · step {step + 1} of 3
           </div>
-          <h1 style={{ fontFamily: F.display, fontSize: 'clamp(28px, 4vw, 36px)', fontWeight: 700, margin: '0 0 8px', letterSpacing: '-0.02em', color: '#FFFFFF' }}>
+          <h1 style={{ fontFamily: F.display, fontSize: 'clamp(30px, 4vw, 40px)', fontWeight: 700, margin: '0 0 10px', letterSpacing: '-0.02em', color: '#FFFFFF' }}>
             {step === 0 && 'Tell us about the practice.'}
             {step === 1 && '3 years of financials.'}
             {step === 2 && 'Add-back capture.'}
           </h1>
-          <p style={{ fontSize: 15, color: C.muted, margin: 0, lineHeight: 1.55 }}>
+          <p style={{ fontSize: 16, color: '#FFFFFF', margin: 0, lineHeight: 1.6, fontWeight: 400 }}>
             Same engine the public /intake form uses, calibrated to nearly 200 chiropractic deals analyzed.
           </p>
         </div>
@@ -235,22 +235,23 @@ export default function ValuationPage() {
         {/* "When to use which" explainer · ONLY on step 0 */}
         {step === 0 && (
           <div style={{
-            marginBottom: 24, padding: '18px 22px',
-            background: 'rgba(46,117,182,0.10)', border: `1px solid rgba(46,117,182,0.30)`, borderRadius: 12,
+            marginBottom: 24, padding: '22px 26px',
+            background: `linear-gradient(135deg, rgba(46,117,182,0.12), ${C.bg3})`, border: `1px solid rgba(46,117,182,0.35)`, borderRadius: 12,
+            boxShadow: '0 4px 14px rgba(0,0,0,0.10)',
           }}>
-            <div style={{ fontFamily: F.mono, fontSize: 11, color: C.globe, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 10 }}>
+            <div style={{ fontFamily: F.mono, fontSize: 12.5, color: C.globe, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 14 }}>
               💡 When to use this vs. Data Room upload
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 18 }} className="kb-val-grid">
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 22 }} className="kb-val-grid">
               <div>
-                <div style={{ fontSize: 14, color: '#FFFFFF', fontWeight: 700, marginBottom: 6 }}>📝 Manual entry (this page)</div>
-                <div style={{ fontSize: 13, color: C.muted, lineHeight: 1.55 }}>
+                <div style={{ fontSize: 15.5, color: '#FFFFFF', fontWeight: 700, marginBottom: 8, letterSpacing: '-0.01em' }}>📝 Manual entry (this page)</div>
+                <div style={{ fontSize: 14, color: '#FFFFFF', lineHeight: 1.6, fontWeight: 400 }}>
                   Use when you have rough numbers in your head or on a sticky note. Fastest way to model a valuation on the fly during a sales call. Wagner walks a chiro through their own numbers in real time.
                 </div>
               </div>
               <div>
-                <div style={{ fontSize: 14, color: '#FFFFFF', fontWeight: 700, marginBottom: 6 }}>📂 PDF upload (<a href="/data-room" style={{ color: C.gold, textDecoration: 'underline' }}>Data Room</a>)</div>
-                <div style={{ fontSize: 13, color: C.muted, lineHeight: 1.55 }}>
+                <div style={{ fontSize: 15.5, color: '#FFFFFF', fontWeight: 700, marginBottom: 8, letterSpacing: '-0.01em' }}>📂 PDF upload (<a href="/data-room" style={{ color: C.gold, textDecoration: 'underline' }}>Data Room</a>)</div>
+                <div style={{ fontSize: 14, color: '#FFFFFF', lineHeight: 1.6, fontWeight: 400 }}>
                   Use when the chiro has sent tax returns / P&Ls / bank statements. Claude reads the PDFs, extracts revenue + EBITDA + owner comp, flags add-backs automatically. Higher accuracy. 10-30 seconds per document.
                 </div>
               </div>
@@ -363,12 +364,12 @@ function Step2Financials({ draft, setDraft }: { draft: FormData; setDraft: (d: F
   }
   return (
     <div>
-      <p style={{ fontSize: 13, color: C.muted, marginTop: 0, marginBottom: 20, lineHeight: 1.5 }}>
+      <p style={{ fontSize: 15, color: '#FFFFFF', marginTop: 0, marginBottom: 22, lineHeight: 1.6, fontWeight: 400 }}>
         Enter the last 3 years. Most recent year first. Round numbers OK — the AI will normalize on extraction once PDFs are uploaded in Phase 3.
       </p>
 
       {/* Header */}
-      <div style={{ display: 'grid', gridTemplateColumns: '80px 1fr 1fr 1fr', gap: 12, padding: '8px 12px', borderBottom: `1px solid ${C.border}`, fontFamily: F.mono, fontSize: 10, color: C.faint, letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 700 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '90px 1fr 1fr 1fr', gap: 14, padding: '10px 14px', borderBottom: `1px solid ${C.border}`, fontFamily: F.mono, fontSize: 12, color: C.gold, letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 800 }}>
         <span>Year</span>
         <span>Gross Revenue</span>
         <span>EBITDA (reported)</span>
@@ -393,8 +394,8 @@ function Step2Financials({ draft, setDraft }: { draft: FormData; setDraft: (d: F
         </div>
       ))}
 
-      <div style={{ marginTop: 18, padding: '14px 18px', background: 'rgba(46,117,182,0.06)', border: `1px solid rgba(46,117,182,0.20)`, borderRadius: 10, fontSize: 12, color: C.muted, lineHeight: 1.55 }}>
-        <strong style={{ color: C.text }}>Don&apos;t know exact EBITDA?</strong> Most chiropractic practices report ~30–40% EBITDA margin. Multiply revenue × 0.35 as a rough estimate. The add-back step (next) will normalize it.
+      <div style={{ marginTop: 20, padding: '16px 20px', background: 'rgba(46,117,182,0.12)', border: `1px solid rgba(46,117,182,0.35)`, borderLeft: `4px solid ${C.globe}`, borderRadius: 10, fontSize: 14, color: '#FFFFFF', lineHeight: 1.6, fontWeight: 400 }}>
+        <strong style={{ color: C.globe }}>Don&apos;t know exact EBITDA?</strong> Most chiropractic practices report ~30–40% EBITDA margin. Multiply revenue × 0.35 as a rough estimate. The add-back step (next) will normalize it.
       </div>
     </div>
   )
@@ -413,7 +414,7 @@ function Step3AddBacks({ draft, setDraft }: { draft: FormData; setDraft: (d: For
   const total = draft.addBacks.filter(a => a.enabled).reduce((s, a) => s + (a.amount || 0), 0)
   return (
     <div>
-      <p style={{ fontSize: 13, color: C.muted, marginTop: 0, marginBottom: 20, lineHeight: 1.55 }}>
+      <p style={{ fontSize: 15, color: '#FFFFFF', marginTop: 0, marginBottom: 22, lineHeight: 1.6, fontWeight: 400 }}>
         Toggle each item that applies, enter the annual dollar amount, and (optional) add context. These are the legitimate add-backs that bump reported EBITDA → normalized EBITDA → higher valuation.
       </p>
 
@@ -453,10 +454,10 @@ function Step3AddBacks({ draft, setDraft }: { draft: FormData; setDraft: (d: For
         border: `2px solid ${C.gold}55`,
         display: 'flex', justifyContent: 'space-between', alignItems: 'center',
       }}>
-        <span style={{ fontFamily: F.mono, fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', color: C.gold, fontWeight: 700 }}>
+        <span style={{ fontFamily: F.mono, fontSize: 13, letterSpacing: '0.18em', textTransform: 'uppercase', color: C.gold, fontWeight: 800 }}>
           Total add-backs
         </span>
-        <span style={{ fontFamily: F.display, fontSize: 26, fontWeight: 800, color: C.gold }}>+{fmtMoney(total)}</span>
+        <span style={{ fontFamily: F.display, fontSize: 32, fontWeight: 800, color: C.gold, letterSpacing: '-0.02em' }}>+{fmtMoney(total)}</span>
       </div>
     </div>
   )
@@ -509,13 +510,13 @@ function ResultView({ form, v, startWizard, loadExample }: {
 
       {/* HEADER */}
       <div style={{ marginBottom: 28 }}>
-        <div style={{ fontFamily: F.mono, fontSize: 11, color: C.gold, letterSpacing: '0.22em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 8 }}>
+        <div style={{ fontFamily: F.mono, fontSize: 12.5, color: C.gold, letterSpacing: '0.22em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 10 }}>
           AI Valuation · {form.profile === 'solo' ? 'Solo-DC' : form.profile === 'multi' ? 'Multi-DC' : 'Platform'} profile
         </div>
-        <h1 style={{ fontFamily: F.display, fontSize: 'clamp(30px, 4vw, 40px)', fontWeight: 700, margin: '0 0 6px', letterSpacing: '-0.02em' }}>
+        <h1 style={{ fontFamily: F.display, fontSize: 'clamp(32px, 4vw, 44px)', fontWeight: 700, margin: '0 0 10px', letterSpacing: '-0.02em' }}>
           {form.practiceName || '(no practice name)'}
         </h1>
-        <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', fontSize: 14, color: C.muted, lineHeight: 1.6 }}>
+        <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', fontSize: 15, color: '#FFFFFF', lineHeight: 1.6, fontWeight: 500, opacity: 0.85 }}>
           {form.ownerName && <span>{form.ownerName}</span>}
           {form.ownerName && form.city && <span>·</span>}
           {form.city && <span>{form.city}, {form.state}</span>}
@@ -527,28 +528,29 @@ function ResultView({ form, v, startWizard, loadExample }: {
 
       {/* VALUATION GAUGE */}
       <div style={{
-        background: `linear-gradient(135deg, rgba(201,168,76,0.10) 0%, ${C.bg3} 100%)`,
-        border: `1px solid rgba(201,168,76,0.30)`, borderRadius: 14,
-        padding: '32px 36px', marginBottom: 24,
+        background: `linear-gradient(135deg, rgba(201,168,76,0.12) 0%, ${C.bg3} 100%)`,
+        border: `1px solid rgba(201,168,76,0.35)`, borderRadius: 14,
+        padding: '34px 38px', marginBottom: 24,
+        boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
       }}>
-        <div style={{ fontFamily: F.mono, fontSize: 11, color: C.gold, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 14 }}>
+        <div style={{ fontFamily: F.mono, fontSize: 13, color: C.gold, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 18 }}>
           ★ Estimated Valuation Range
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 18, marginBottom: 20 }} className="kb-val-grid">
-          <Pillar label="Conservative"  val={fmtMoney(v.valLow)}  sub="P25 of comp set"            color={C.muted} />
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 20, marginBottom: 24 }} className="kb-val-grid">
+          <Pillar label="Conservative"  val={fmtMoney(v.valLow)}  sub="P25 of comp set"            color={C.globe} />
           <Pillar label="Fair Market"   val={fmtMoney(v.valMid)}  sub={`Median ${v.mult}× ${v.metric}`} color={C.gold} big />
           <Pillar label="Premium"       val={fmtMoney(v.valHigh)} sub="P75 of comp set"            color={C.green} />
         </div>
 
-        <div style={{ position: 'relative', height: 14, background: 'rgba(255,255,255,0.06)', borderRadius: 7, marginBottom: 14, overflow: 'hidden' }}>
-          <div style={{ position: 'absolute', left: '0%', right: '0%', top: 0, bottom: 0, background: `linear-gradient(90deg, rgba(155,168,192,0.3), ${C.gold}, ${C.green})`, borderRadius: 7 }} />
-          <div style={{ position: 'absolute', left: '50%', top: -3, bottom: -3, width: 3, background: '#FFFFFF', boxShadow: '0 0 8px rgba(255,255,255,0.6)' }} />
+        <div style={{ position: 'relative', height: 16, background: 'rgba(255,255,255,0.08)', borderRadius: 8, marginBottom: 16, overflow: 'hidden' }}>
+          <div style={{ position: 'absolute', left: '0%', right: '0%', top: 0, bottom: 0, background: `linear-gradient(90deg, ${C.globe}80, ${C.gold}, ${C.green})`, borderRadius: 8 }} />
+          <div style={{ position: 'absolute', left: '50%', top: -3, bottom: -3, width: 3, background: '#FFFFFF', boxShadow: '0 0 10px rgba(255,255,255,0.8)' }} />
         </div>
-        <div style={{ display: 'flex', justifyContent: 'space-between', fontFamily: F.mono, fontSize: 10, color: C.faint, letterSpacing: '0.06em' }}>
-          <span>{fmtMoney(v.valLow)}</span>
-          <span style={{ color: C.gold, fontWeight: 700 }}>FMV · {fmtMoney(v.valMid)}</span>
-          <span>{fmtMoney(v.valHigh)}</span>
+        <div style={{ display: 'flex', justifyContent: 'space-between', fontFamily: F.mono, fontSize: 13, color: '#FFFFFF', letterSpacing: '0.06em', fontWeight: 700 }}>
+          <span style={{ color: C.globe }}>{fmtMoney(v.valLow)}</span>
+          <span style={{ color: C.gold, fontWeight: 800 }}>FMV · {fmtMoney(v.valMid)}</span>
+          <span style={{ color: C.green }}>{fmtMoney(v.valHigh)}</span>
         </div>
 
         <div style={{ marginTop: 20, padding: '14px 18px', background: 'rgba(46,117,182,0.06)', border: `1px solid rgba(46,117,182,0.18)`, borderRadius: 10, fontSize: 13, color: C.muted, lineHeight: 1.6 }}>
@@ -846,23 +848,25 @@ function Field({ label, children, full }: { label: string; children: React.React
 function Pillar({ label, val, sub, color, big }: { label: string; val: string; sub: string; color: string; big?: boolean }) {
   return (
     <div style={{
-      textAlign: 'center', padding: big ? '20px 14px 22px' : '14px 14px',
-      background: big ? 'linear-gradient(180deg, rgba(201,168,76,0.10), rgba(201,168,76,0.04))' : 'transparent',
-      border: big ? `2px solid ${C.gold}` : `1px solid ${C.border}`, borderRadius: 10,
+      textAlign: 'center', padding: big ? '24px 18px 26px' : '18px 16px',
+      background: big ? `linear-gradient(180deg, ${color}25, ${color}10)` : `${color}10`,
+      border: big ? `2px solid ${color}` : `1px solid ${color}50`,
+      borderRadius: 10,
+      boxShadow: big ? `0 4px 16px ${color}30` : 'none',
     }}>
-      <div style={{ fontFamily: F.mono, fontSize: 10, color: C.faint, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 700 }}>{label}</div>
-      <div style={{ fontFamily: F.display, fontSize: big ? 38 : 28, fontWeight: 800, color, lineHeight: 1, margin: '8px 0 4px' }}>{val}</div>
-      <div style={{ fontFamily: F.mono, fontSize: 10, color: C.faint, letterSpacing: '0.06em' }}>{sub}</div>
+      <div style={{ fontFamily: F.mono, fontSize: 12, color: color, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 800 }}>{label}</div>
+      <div style={{ fontFamily: F.display, fontSize: big ? 44 : 32, fontWeight: 800, color, lineHeight: 1, margin: '10px 0 6px', letterSpacing: '-0.03em' }}>{val}</div>
+      <div style={{ fontFamily: F.mono, fontSize: 12, color: '#FFFFFF', letterSpacing: '0.06em', fontWeight: 600, opacity: 0.85 }}>{sub}</div>
     </div>
   )
 }
 
 function Kpi({ label, val, color, sub }: { label: string; val: string; color: string; sub?: string }) {
   return (
-    <div>
-      <div style={{ fontFamily: F.mono, fontSize: 10, color: C.faint, letterSpacing: '0.12em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 4 }}>{label}</div>
-      <div style={{ fontSize: 22, fontWeight: 700, color, fontFamily: F.display, lineHeight: 1 }}>{val}</div>
-      {sub && <div style={{ fontFamily: F.mono, fontSize: 10, color: C.faint, marginTop: 3, letterSpacing: '0.04em' }}>{sub}</div>}
+    <div style={{ padding: '4px 0' }}>
+      <div style={{ fontFamily: F.mono, fontSize: 11.5, color, letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 6 }}>{label}</div>
+      <div style={{ fontSize: 28, fontWeight: 800, color, fontFamily: F.display, lineHeight: 1, letterSpacing: '-0.02em' }}>{val}</div>
+      {sub && <div style={{ fontFamily: F.mono, fontSize: 11.5, color: '#FFFFFF', marginTop: 5, letterSpacing: '0.04em', fontWeight: 500, opacity: 0.80 }}>{sub}</div>}
     </div>
   )
 }
