@@ -156,7 +156,7 @@ type Hire = {
 const HIRES: Hire[] = [
   // ─── DAY 0 · PARTNERS ───
   { role: 'Eric Skeldon · Founder/CEO',              when: 'Day 0',   comp: '$25K upfront + $12.5K/mo + 2% acq + 2.5% exit',           comp_low: 162_500, comp_high: 162_500, fulltime: true,  responsibilities: 'Platform · deal structure · Wagner relationship · final closing · ChiroPillar owner · 2% of each acq EV ($38K/close) + 2.5% of exit slice + 5% ongoing rev share flows to ChiroPillar' },
-  { role: 'Scott McGrath · BD Partner',              when: 'Day 0',   comp: '$5K/mo + 2% acq + 2.5% exit',     comp_low: 60_000,  comp_high: 60_000,   fulltime: false, responsibilities: 'Brought Dr. Wagner to the table · sources seller DCs · 2% of each acq EV ($38K/close · ~$950K over 25 closes) + 2.5% of exit slice (his half of KB\'s 4% acq + 5% exit fees)' },
+  { role: 'Scott McGrath · BD Partner',              when: 'Day 0',   comp: '$5K/mo + 2% acq + 2.5% exit',     comp_low: 60_000,  comp_high: 60_000,   fulltime: false, responsibilities: 'Brought Dr. Wagner to the table · sources seller chiropractors · 2% of each acq EV ($38K/close · ~$950K over 25 closes) + 2.5% of exit slice (his half of KB\'s 4% acq + 5% exit fees)' },
   { role: 'Dr. Scott Wagner · Clinical Partner',     when: 'Day 0',   comp: 'Owns clinics outright',           comp_low: 0,       comp_high: 0,        fulltime: false, responsibilities: 'Clinical playbook · medical-team install · operator credibility' },
 
   // ─── 90-120 DAY HIRES · full sales + ops engine built in Q1-Q2 ───
@@ -324,10 +324,10 @@ export default function LaunchPlanPage() {
           24-Month Launch Plan · Real Numbers
         </div>
         <h1 style={{ fontFamily: F.display, fontSize: 'clamp(34px, 4.5vw, 48px)', fontWeight: 700, margin: '0 0 8px', letterSpacing: '-0.02em' }}>
-          One small check. Acquisitions on bank debt. Wagner owns clinics from Day 1.
+          One small check. Acquisitions on bank debt or cash. Wagner owns clinics from Day 1.
         </h1>
         <p style={{ fontSize: 15, color: C.muted, margin: 0, maxWidth: 880, lineHeight: 1.55 }}>
-          Wagner writes <strong style={{ color: C.gold }}>{fmtMoney(monthlyBurnY1 * 12)}</strong> over the first 12 months for operating capital (team + ads + SaaS) — drawn monthly. <strong style={{ color: C.green }}>Y2 is self-funding</strong> from clinic cash flow + Scale Services revenue. Acquisitions get financed through senior debt secured by Wagner&apos;s existing <strong style={{ color: C.gold }}>$25M EBITDA</strong> — Wagner puts 50% cash at close per clinic, the rest is a seller note. <strong style={{ color: C.text }}>Wagner owns 100% of each clinic the moment the seller-DC signs.</strong> KB earns 4% one-time consulting + 5% ongoing rev share + 5% exit fee. <strong style={{ color: C.gold }}>All multiple arbitrage on exit goes to Wagner.</strong>
+          Wagner writes <strong style={{ color: C.gold }}>{fmtMoney(monthlyBurnY1 * 12)}</strong> over the first 12 months for operating capital (team + ads + SaaS) — drawn monthly. <strong style={{ color: C.green }}>Y2 is self-funding</strong> from clinic cash flow + Scale Services revenue. <strong style={{ color: C.text }}>Acquisitions can be paid two ways:</strong> <strong style={{ color: C.gold }}>(A) senior debt secured by Wagner&apos;s existing $25M+ EBITDA</strong> — Wagner puts 50% cash at close per clinic, the rest is a seller note — or <strong style={{ color: C.gold }}>(B) all-cash from Wagner&apos;s practice cash flow</strong> if he prefers to skip leverage on a specific deal. Wagner picks per clinic based on rate environment + deal economics. <strong style={{ color: C.text }}>Wagner owns 100% of each clinic the moment the seller chiropractor signs.</strong> KB earns 4% one-time consulting fee on deals sourced on platform + 5% ongoing rev share + 5% exit fee. <strong style={{ color: C.gold }}>All multiple arbitrage on exit goes to Wagner.</strong>
         </p>
       </div>
 
@@ -341,7 +341,7 @@ export default function LaunchPlanPage() {
         <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 24, alignItems: 'center', paddingBottom: 22, marginBottom: 20, borderBottom: `1px solid ${C.border}` }} className="kb-wagner-hero">
           <div>
             <div style={{ fontFamily: F.mono, fontSize: 11, color: C.gold, letterSpacing: '0.20em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 6 }}>
-              ★ Wagner Monthly Draw · to build platform + roll-up
+              ★ Monthly Draw · to build platform + roll-up
             </div>
             <div style={{ fontFamily: F.display, fontSize: 'clamp(48px, 6vw, 64px)', fontWeight: 800, color: C.gold, lineHeight: 1, marginBottom: 8, letterSpacing: '-0.02em' }}>
               ~${Math.round(monthlyBurnY1 / 1_000)}K<span style={{ fontSize: '0.5em', color: C.goldLight, fontWeight: 600 }}>/mo</span>
@@ -366,7 +366,7 @@ export default function LaunchPlanPage() {
         {/* SUPPORTING KPIs */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 14 }}>
           <Kpi label="Acquisition value funded"   val={fmtMoney(totalAcqValue)}     sub={`${totalAcqCount} clinics @ ~$1.9M avg · 24mo`} color={C.goldLight} />
-          <Kpi label="Wagner cash at close (50%)" val={fmtMoney(totalWagnerCash)}   sub="from $25M EBITDA cash flow" color={C.globe} />
+          <Kpi label="Wagner cash at close (50%)" val={fmtMoney(totalWagnerCash)}   sub="from $25M+ EBITDA cash flow · debt OR cash option" color={C.globe} />
           <Kpi label="Bank debt drawn"            val={fmtMoney(totalBankDebt)}     sub="cross-collateralized · prime + 2-3.75%" color={C.align} />
           <Kpi label="ChiroPillar EBITDA"         val={fmtMoney(finalEbitda)}       sub="month 24 · bolt-on to Wagner" color={C.green} />
           <Kpi label="Exit · 8-10×"               val={`${fmtMoney(exitLow)}-${fmtMoney(exitHigh)}`} sub={`combined ${fmtMoney(25_000_000 + finalEbitda)} EBITDA`} color={C.goldLight} />
@@ -509,11 +509,11 @@ export default function LaunchPlanPage() {
       </div>
 
       {/* ── ACQUISITION FINANCING STRATEGY ──────────────────────────────── */}
-      <SectionHead eyebrow="Acquisition financing · Wagner's $25M EBITDA as collateral" title="How acquisitions get paid for." />
+      <SectionHead eyebrow="Acquisition financing · debt or cash · Wagner's $25M+ EBITDA as backstop" title="How acquisitions get paid for." />
 
       <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, padding: '26px 30px', marginBottom: 24 }}>
         <h3 style={{ fontFamily: F.display, fontSize: 22, fontWeight: 700, color: C.text, margin: '0 0 16px', letterSpacing: '-0.01em' }}>
-          50% cash + 50% seller note. Wagner owns 100%. KB earns fees.
+          Bank debt or all-cash. Wagner owns 100% from Day 1. KB earns fees.
         </h3>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 18, marginBottom: 18 }}>
           {/* SELLER PAYOUT side */}
@@ -522,11 +522,11 @@ export default function LaunchPlanPage() {
               Seller payout · 100% of EV
             </div>
             <div style={{ display: 'grid', gap: 10 }}>
-              <Stream pct="50%" amount="Cash at close" sub="Wagner bank-financed · seller wired at close" accent={C.gold} />
+              <Stream pct="50%" amount="Cash at close" sub="Wagner picks: bank debt OR all-cash from practice cash flow · seller wired at close" accent={C.gold} />
               <Stream pct="50%" amount="Seller note" sub="Paid from clinic cash flow · 5-7 yr · 6% int" accent={C.align} />
             </div>
             <div style={{ marginTop: 12, padding: '10px 14px', background: 'rgba(46,117,182,0.06)', borderRadius: 8, fontSize: 12, color: C.muted, lineHeight: 1.5 }}>
-              No equity rollover. Seller cashes out fully via cash + note. <strong style={{ color: C.text }}>Wagner owns 100% of the clinic from Day 1</strong> — the moment the seller-DC signs. All multiple arbitrage on exit accrues to Wagner.
+              No equity rollover. Seller cashes out fully via cash + note. <strong style={{ color: C.text }}>Wagner owns 100% of the clinic from Day 1</strong> — the moment the seller chiropractor signs. All multiple arbitrage on exit accrues to Wagner.
             </div>
           </div>
 
@@ -548,7 +548,7 @@ export default function LaunchPlanPage() {
 
         <div style={{ background: C.bg3, border: `1px solid ${C.border}`, borderRadius: 12, padding: '18px 22px', marginBottom: 18 }}>
           <div style={{ fontFamily: F.mono, fontSize: 10, color: C.gold, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 12 }}>
-            Bank debt math · 24-month aggregate
+            Bank debt math · 24-month aggregate (if Wagner uses leverage path)
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 14 }}>
             <Sub label="Total clinic value" val={fmtMoney(totalAcqValue)} color={C.text} />
@@ -560,7 +560,7 @@ export default function LaunchPlanPage() {
         </div>
 
         <div style={{ fontSize: 14, color: C.muted, lineHeight: 1.65, padding: '14px 18px', background: 'rgba(46,117,182,0.06)', border: '1px solid rgba(46,117,182,0.18)', borderRadius: 10 }}>
-          <strong style={{ color: C.text }}>Why this works:</strong> Wagner has $25M existing EBITDA. At 3× senior leverage, that supports <strong style={{ color: C.gold }}>$75M+ debt capacity</strong> — comfortably above the <strong style={{ color: C.align }}>{fmtMoney(totalBankDebt)}</strong> needed over 24 months. Each acquired clinic generates <strong style={{ color: C.green }}>+$250K-$500K EBITDA</strong> in year 1 (Wagner&apos;s medical-team install), which covers debt service with cushion. By month 24, acquired-clinic cash flow alone services the debt — Wagner&apos;s existing $25M is locked into the platform for the exit re-rate, not at risk for operating coverage.
+          <strong style={{ color: C.text }}>Why this works:</strong> Wagner has $25M+ existing EBITDA. At 3× senior leverage, that supports <strong style={{ color: C.gold }}>$75M+ debt capacity</strong> — comfortably above the <strong style={{ color: C.align }}>{fmtMoney(totalBankDebt)}</strong> needed over 24 months. Wagner can also choose <strong style={{ color: C.gold }}>all-cash on individual deals</strong> from practice cash flow when rate environment or deal economics favor it. Each acquired clinic generates <strong style={{ color: C.green }}>+$250K-$500K EBITDA</strong> in year 1 (Wagner&apos;s medical-team install), which covers debt service with cushion. By month 24, acquired-clinic cash flow alone services the debt — Wagner&apos;s existing $25M+ is locked into the platform for the exit re-rate, not at risk for operating coverage.
         </div>
       </div>
 
@@ -679,11 +679,11 @@ export default function LaunchPlanPage() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 16, marginBottom: 18 }}>
           <Ask label="Operating capital · 12mo"  val={fmtMoney(monthlyBurnY1 * 12)} sub={`~$${Math.round(monthlyBurnY1 / 1_000)}K/mo · team + marketing + SaaS · drawn monthly`} color={C.gold} />
           <Ask label="Y2 (months 13-24)"          val="Self-funded"                 sub="from clinic cash flow + Scale Services revenue · no further Wagner capital" color={C.green} />
-          <Ask label="Acquisitions"               val="Bank financed"               sub={`${fmtMoney(totalWagnerCash)} from Wagner cash flow + ${fmtMoney(totalBankDebt)} senior debt`} />
+          <Ask label="Acquisitions"               val="Debt OR cash"                 sub={`Wagner picks per deal · ${fmtMoney(totalWagnerCash)} cash from $25M+ EBITDA + ${fmtMoney(totalBankDebt)} senior debt (if leveraged)`} />
           <Ask label="KB compensation"            val="4% + 5% + 5%"                sub="acq consulting (2/2) · ongoing rev share (100% CP) · exit fee (2.5/2.5)" color={C.green} />
         </div>
         <div style={{ fontSize: 14, color: C.muted, lineHeight: 1.65, padding: '16px 20px', background: 'rgba(46,117,182,0.08)', border: '1px solid rgba(46,117,182,0.20)', borderRadius: 10 }}>
-          <strong style={{ color: C.text }}>Why the small ask works:</strong> Wagner&apos;s $25M existing EBITDA gives him $75M+ senior debt capacity at favorable rates. We don&apos;t need his cash for acquisitions — we need his <strong style={{ color: C.gold }}>credit profile and EBITDA cross-collateralization</strong>. KB needs only <strong style={{ color: C.gold }}>{fmtMoney(monthlyBurnY1 * 12)} for Y1</strong> to run the engine (build the team, run the ads, pay the SaaS). <strong style={{ color: C.green }}>By month 12, ChiroPillar EBITDA + Scale Services cash flow covers Y2 burn with cushion — the platform pays for itself.</strong> KB takes 4% at each close (split 2% Eric / 2% Scott), 5% of revenue ongoing (100% to ChiroPillar), and 5% of ChiroPillar&apos;s slice of the eventual exit (split 2.5% Eric / 2.5% Scott). <strong style={{ color: C.green }}>Wagner owns 100% of every clinic from Day 1</strong> the moment each seller signs — no PE waterfalls, no carry splits, no LP commitments. All multiple arbitrage on exit accrues to Wagner.
+          <strong style={{ color: C.text }}>Why the small ask works:</strong> Wagner&apos;s $25M+ existing EBITDA gives him $75M+ senior debt capacity at favorable rates — <strong style={{ color: C.gold }}>or he can pay all-cash on individual deals from practice cash flow</strong> when he prefers to skip leverage. Either way, we don&apos;t need his cash for acquisitions, we need his <strong style={{ color: C.gold }}>credit profile and EBITDA backstop</strong>. KB needs only <strong style={{ color: C.gold }}>{fmtMoney(monthlyBurnY1 * 12)} for Y1</strong> to run the engine (build the team, run the ads, pay the SaaS). <strong style={{ color: C.green }}>By month 12, ChiroPillar EBITDA + Scale Services cash flow covers Y2 burn with cushion — the platform pays for itself.</strong> KB takes 4% one-time consulting fee on deals sourced on platform (split 2% Eric / 2% Scott), 5% of revenue ongoing (100% to ChiroPillar), and 5% of ChiroPillar&apos;s slice of the eventual exit (split 2.5% Eric / 2.5% Scott). <strong style={{ color: C.green }}>Wagner owns 100% of every clinic from Day 1</strong> the moment each seller signs — no PE waterfalls, no carry splits, no LP commitments. All multiple arbitrage on exit accrues to Wagner.
         </div>
       </div>
 
