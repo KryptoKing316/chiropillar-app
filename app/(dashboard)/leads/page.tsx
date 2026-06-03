@@ -267,21 +267,21 @@ export default function LeadsPage() {
       {/* HEADER */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: 16, marginBottom: 28 }}>
         <div>
-          <div style={{ fontFamily: F.mono, fontSize: 11, color: C.gold, letterSpacing: '0.22em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 8 }}>
+          <div style={{ fontFamily: F.mono, fontSize: 12.5, color: C.gold, letterSpacing: '0.22em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 10 }}>
             Chiropractor Deal Pipeline · $1M+ Revenue · Wagner Territory · CRM
           </div>
-          <h1 style={{ fontFamily: F.display, fontSize: 'clamp(32px, 4.5vw, 44px)', fontWeight: 700, margin: '0 0 8px', letterSpacing: '-0.02em' }}>
+          <h1 style={{ fontFamily: F.display, fontSize: 'clamp(34px, 4.5vw, 46px)', fontWeight: 700, margin: '0 0 10px', letterSpacing: '-0.02em' }}>
             {leads.length} deals. Callable. Notes-ready.
           </h1>
-          <p style={{ fontSize: 15, color: C.muted, margin: 0, maxWidth: 820, lineHeight: 1.55 }}>
+          <p style={{ fontSize: 16, color: '#FFFFFF', margin: 0, maxWidth: 820, lineHeight: 1.6, fontWeight: 400 }}>
             Click any practice → CRM drawer opens with phone (click-to-call), email, address, status dropdown, and a notes log. Calls and notes timestamped automatically. Deal list built by the agent pipeline (search → scrape → enrich → score) across Wagner&apos;s primary VA market + 10 secondary states (TX, FL, NC, SC, GA, TN, AL, KY, MD, WV).
           </p>
         </div>
-        <div style={{ display: 'flex', gap: 8 }}>
-          <button type="button" style={{ padding: '10px 16px', borderRadius: 8, background: C.gold, color: C.bg, border: 'none', fontSize: 13, fontWeight: 800, cursor: 'pointer', letterSpacing: '0.04em' }}>
+        <div style={{ display: 'flex', gap: 10 }}>
+          <button type="button" style={{ padding: '12px 18px', borderRadius: 8, background: C.gold, color: C.bg, border: 'none', fontSize: 14, fontWeight: 800, cursor: 'pointer', letterSpacing: '0.04em', boxShadow: '0 4px 12px rgba(201,168,76,0.30)' }}>
             + Add to Outreach
           </button>
-          <button type="button" style={{ padding: '10px 16px', borderRadius: 8, background: 'transparent', border: `1px solid ${C.border}`, color: C.muted, fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>
+          <button type="button" style={{ padding: '12px 18px', borderRadius: 8, background: 'transparent', border: `1px solid ${C.border}`, color: '#FFFFFF', fontSize: 14, fontWeight: 600, cursor: 'pointer' }}>
             Export CSV
           </button>
         </div>
@@ -317,14 +317,14 @@ export default function LeadsPage() {
       </div>
 
       {/* FILTERS */}
-      <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 12, padding: '16px 20px', marginBottom: 18, display: 'flex', gap: 16, flexWrap: 'wrap', alignItems: 'center' }}>
-        <div style={{ fontFamily: F.mono, fontSize: 10, color: C.faint, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 700, marginRight: 6 }}>Filters:</div>
+      <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 12, padding: '18px 22px', marginBottom: 18, display: 'flex', gap: 18, flexWrap: 'wrap', alignItems: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.10)' }}>
+        <div style={{ fontFamily: F.mono, fontSize: 12, color: '#FFFFFF', letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 800, marginRight: 6 }}>Filters:</div>
         <FilterGroup label="Region" value={region} options={[{ v: 'all', label: 'All' }, ...REGIONS.map(r => ({ v: r, label: r }))]} onChange={v => setRegion(v as Region | 'all')} />
         <FilterGroup label="Status" value={status} options={[{ v: 'all', label: 'All' }, { v: 'in_pipeline', label: 'In Pipeline' }, { v: 'hot', label: 'Hot' }, { v: 'warm', label: 'Warm' }, { v: 'cold', label: 'Cold' }]} onChange={v => setStatus(v as Status | 'all')} />
         <FilterGroup label="Profile" value={profile} options={[{ v: 'all', label: 'All' }, { v: 'solo', label: 'Solo' }, { v: 'multi', label: 'Multi-DC' }, { v: 'multi_loc', label: 'Multi-Loc' }]} onChange={v => setProfile(v as Profile | 'all')} />
-        <div style={{ marginLeft: 'auto', display: 'flex', gap: 8, alignItems: 'center' }}>
-          <span style={{ fontSize: 11, color: C.faint, fontFamily: F.mono, letterSpacing: '0.08em' }}>SORT BY</span>
-          <select value={sort} onChange={e => setSort(e.target.value as 'score' | 'revenue')} style={{ padding: '7px 12px', borderRadius: 6, background: 'rgba(255,255,255,0.04)', border: `1px solid ${C.border}`, color: C.text, fontFamily: F.body, fontSize: 12, outline: 'none' }}>
+        <div style={{ marginLeft: 'auto', display: 'flex', gap: 10, alignItems: 'center' }}>
+          <span style={{ fontSize: 12, color: '#FFFFFF', fontFamily: F.mono, letterSpacing: '0.10em', fontWeight: 700 }}>SORT BY</span>
+          <select value={sort} onChange={e => setSort(e.target.value as 'score' | 'revenue')} style={{ padding: '9px 14px', borderRadius: 6, background: 'rgba(255,255,255,0.06)', border: `1px solid ${C.border}`, color: '#FFFFFF', fontFamily: F.body, fontSize: 13, outline: 'none', fontWeight: 600 }}>
             <option value="score">Fit score</option>
             <option value="revenue">Est revenue</option>
           </select>
@@ -332,11 +332,11 @@ export default function LeadsPage() {
       </div>
 
       {/* TABLE */}
-      <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, overflow: 'hidden' }}>
+      <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, overflow: 'hidden', boxShadow: '0 4px 20px rgba(0,0,0,0.15)' }}>
         <div style={{
-          display: 'grid', gridTemplateColumns: 'minmax(0,2fr) minmax(0,1.2fr) 110px 90px 90px 110px 70px 70px',
-          gap: 12, padding: '14px 22px', background: C.bg3, borderBottom: `1px solid ${C.border}`,
-          fontFamily: F.mono, fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: C.faint, fontWeight: 700,
+          display: 'grid', gridTemplateColumns: 'minmax(0,2fr) minmax(0,1.2fr) 120px 100px 100px 120px 80px 80px',
+          gap: 14, padding: '16px 24px', background: 'rgba(201,168,76,0.06)', borderBottom: `1px solid ${C.border}`,
+          fontFamily: F.mono, fontSize: 12, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#FFFFFF', fontWeight: 800,
         }}>
           <div>Practice / Owner</div>
           <div>City</div>
@@ -351,36 +351,37 @@ export default function LeadsPage() {
           <div key={l.id}
             onClick={() => { setOpen(l.id); setDraft('') }}
             style={{
-              display: 'grid', gridTemplateColumns: 'minmax(0,2fr) minmax(0,1.2fr) 110px 90px 90px 110px 70px 70px',
-              gap: 12, padding: '14px 22px',
+              display: 'grid', gridTemplateColumns: 'minmax(0,2fr) minmax(0,1.2fr) 120px 100px 100px 120px 80px 80px',
+              gap: 14, padding: '16px 24px',
               borderBottom: i < filtered.length - 1 ? `1px solid ${C.border}` : 'none',
               alignItems: 'center', cursor: 'pointer',
-              background: l.status === 'in_pipeline' ? 'rgba(46,204,139,0.04)' : 'transparent',
+              background: l.status === 'in_pipeline' ? 'rgba(46,204,139,0.06)' : 'transparent',
+              transition: 'background 0.12s',
             }}>
             <div>
-              <div style={{ fontSize: 14, fontWeight: 600, color: C.text }}>{l.practice}</div>
-              <div style={{ fontSize: 11, color: C.muted, fontFamily: F.mono, letterSpacing: '0.02em', marginTop: 2 }}>{l.owner} · {l.years}yr · {l.employees} emp · {l.npm_est} npm</div>
-              {l.flag && <div style={{ fontSize: 11, color: C.gold, marginTop: 4, fontStyle: 'italic' }}>{l.flag}</div>}
+              <div style={{ fontSize: 15, fontWeight: 700, color: '#FFFFFF', letterSpacing: '-0.01em' }}>{l.practice}</div>
+              <div style={{ fontSize: 12.5, color: '#FFFFFF', fontFamily: F.mono, letterSpacing: '0.02em', marginTop: 4, opacity: 0.75, fontWeight: 500 }}>{l.owner} · {l.years}yr · {l.employees} emp · {l.npm_est} npm</div>
+              {l.flag && <div style={{ fontSize: 12, color: C.gold, marginTop: 5, fontStyle: 'italic', fontWeight: 600 }}>{l.flag}</div>}
             </div>
-            <div style={{ fontSize: 12, color: C.muted }}>
-              <div>{l.city}</div>
-              <div style={{ fontSize: 10, color: C.align, marginTop: 2, fontFamily: F.mono, letterSpacing: '0.04em' }}>{l.region}</div>
+            <div>
+              <div style={{ fontSize: 14, color: '#FFFFFF', fontWeight: 600 }}>{l.city}</div>
+              <div style={{ fontSize: 11.5, color: C.globe, marginTop: 3, fontFamily: F.mono, letterSpacing: '0.04em', fontWeight: 700 }}>{l.region}</div>
             </div>
-            <a href={`tel:${l.phone.replace(/[^0-9+]/g, '')}`} onClick={e => e.stopPropagation()} style={{ fontFamily: F.mono, fontSize: 12, color: C.green, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 4, fontWeight: 700 }}>
+            <a href={`tel:${l.phone.replace(/[^0-9+]/g, '')}`} onClick={e => e.stopPropagation()} style={{ fontFamily: F.mono, fontSize: 13, color: C.green, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 5, fontWeight: 800 }}>
               📞 {l.phone}
             </a>
-            <div style={{ fontFamily: F.display, fontSize: 16, fontWeight: 700, color: C.gold, textAlign: 'right' }}>{fmtMoney(l.est_revenue)}</div>
-            <div style={{ fontFamily: F.display, fontSize: 14, fontWeight: 600, color: C.green, textAlign: 'right' }}>{fmtMoney(l.est_ebitda)}</div>
+            <div style={{ fontFamily: F.display, fontSize: 18, fontWeight: 800, color: C.gold, textAlign: 'right', letterSpacing: '-0.02em' }}>{fmtMoney(l.est_revenue)}</div>
+            <div style={{ fontFamily: F.display, fontSize: 16, fontWeight: 700, color: C.green, textAlign: 'right', letterSpacing: '-0.01em' }}>{fmtMoney(l.est_ebitda)}</div>
             <div><StatusBadge s={l.status} /></div>
-            <div style={{ fontFamily: F.display, fontSize: 22, fontWeight: 800, color: l.score >= 80 ? C.green : l.score >= 70 ? C.gold : C.muted, textAlign: 'right' }}>{l.score}</div>
-            <div style={{ fontSize: 11, color: C.faint, fontFamily: F.mono, letterSpacing: '0.04em' }}>{l.notes.length} {l.notes.length === 1 ? 'note' : 'notes'}</div>
+            <div style={{ fontFamily: F.display, fontSize: 26, fontWeight: 800, color: l.score >= 80 ? C.green : l.score >= 70 ? C.gold : '#FFFFFF', textAlign: 'right', letterSpacing: '-0.03em' }}>{l.score}</div>
+            <div style={{ fontSize: 12.5, color: '#FFFFFF', fontFamily: F.mono, letterSpacing: '0.04em', fontWeight: 600, opacity: 0.75 }}>{l.notes.length} {l.notes.length === 1 ? 'note' : 'notes'}</div>
           </div>
         ))}
       </div>
 
       {/* Agent pipeline note */}
-      <div style={{ marginTop: 24, padding: '16px 20px', background: 'rgba(46,117,182,0.06)', border: '1px solid rgba(46,117,182,0.20)', borderRadius: 10, fontSize: 13, color: C.muted, lineHeight: 1.55 }}>
-        <strong style={{ color: C.align }}>How this list is built:</strong> the Agent Center pipeline runs continuously — Search fires queries against VA chiropractic directories, Scraper extracts practice + owner data, Qualifier scores against Wagner&apos;s 7-metric criteria, Enrichment adds revenue estimates via Apollo + LinkedIn, Outreach Writer drafts personalized first-touch emails. New leads appear here when the pipeline runs nightly.
+      <div style={{ marginTop: 24, padding: '18px 22px', background: 'rgba(46,117,182,0.10)', border: '1px solid rgba(46,117,182,0.30)', borderRadius: 10, fontSize: 14, color: '#FFFFFF', lineHeight: 1.6, fontWeight: 400 }}>
+        <strong style={{ color: C.globe }}>How this list is built:</strong> the Agent Center pipeline runs continuously — Search fires queries against VA chiropractic directories, Scraper extracts practice + owner data, Qualifier scores against Wagner&apos;s 7-metric criteria, Enrichment adds revenue estimates via Clay + LinkedIn, Outreach Writer drafts personalized first-touch emails. New leads appear here when the pipeline runs nightly.
       </div>
 
       {/* ── CRM DRAWER ──────────────────────────────────────────────────── */}
@@ -593,24 +594,25 @@ function qButtonStyle(color: string, hasDraft: boolean): React.CSSProperties {
 
 function Stat({ label, val, color }: { label: string; val: string; color: string }) {
   return (
-    <div>
-      <div style={{ fontFamily: F.mono, fontSize: 10, color: C.faint, letterSpacing: '0.12em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 4 }}>{label}</div>
-      <div style={{ fontSize: 22, fontWeight: 700, color, fontFamily: F.display, lineHeight: 1 }}>{val}</div>
+    <div style={{ padding: '4px 0' }}>
+      <div style={{ fontFamily: F.mono, fontSize: 11.5, color, letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 6 }}>{label}</div>
+      <div style={{ fontSize: 28, fontWeight: 800, color, fontFamily: F.display, lineHeight: 1, letterSpacing: '-0.02em' }}>{val}</div>
     </div>
   )
 }
 
 function FilterGroup({ label, value, options, onChange }: { label: string; value: string; options: { v: string; label: string }[]; onChange: (v: string) => void }) {
   return (
-    <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
-      <span style={{ fontSize: 11, color: C.faint, fontFamily: F.mono, letterSpacing: '0.08em', marginRight: 4 }}>{label.toUpperCase()}</span>
+    <div style={{ display: 'flex', gap: 7, alignItems: 'center', flexWrap: 'wrap' }}>
+      <span style={{ fontSize: 12, color: '#FFFFFF', fontFamily: F.mono, letterSpacing: '0.10em', marginRight: 5, fontWeight: 700 }}>{label.toUpperCase()}</span>
       {options.map(opt => (
         <button key={opt.v} type="button" onClick={() => onChange(opt.v)} style={{
-          padding: '5px 10px', borderRadius: 5, cursor: 'pointer',
-          background: value === opt.v ? C.gold : 'rgba(255,255,255,0.04)',
+          padding: '7px 12px', borderRadius: 6, cursor: 'pointer',
+          background: value === opt.v ? C.gold : 'rgba(255,255,255,0.06)',
           border: `1px solid ${value === opt.v ? C.gold : C.border}`,
-          color: value === opt.v ? C.bg : C.muted,
-          fontSize: 11, fontFamily: F.body, fontWeight: value === opt.v ? 700 : 500,
+          color: value === opt.v ? C.bg : '#FFFFFF',
+          fontSize: 12.5, fontFamily: F.body, fontWeight: value === opt.v ? 800 : 600,
+          transition: 'all 0.12s',
         }}>{opt.label}</button>
       ))}
     </div>
@@ -619,35 +621,35 @@ function FilterGroup({ label, value, options, onChange }: { label: string; value
 
 function KvRow({ label, val, copy }: { label: string; val: string; copy?: boolean }) {
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '100px 1fr', gap: 12, padding: '7px 0', borderBottom: `1px solid ${C.border}`, alignItems: 'baseline' }}>
-      <div style={{ fontFamily: F.mono, fontSize: 11, color: C.faint, letterSpacing: '0.08em', textTransform: 'uppercase' }}>{label}</div>
-      <div style={{ fontSize: 13, color: C.text, fontFamily: copy ? F.mono : F.body, wordBreak: 'break-word' }}>{val}</div>
+    <div style={{ display: 'grid', gridTemplateColumns: '110px 1fr', gap: 14, padding: '9px 0', borderBottom: `1px solid ${C.border}`, alignItems: 'baseline' }}>
+      <div style={{ fontFamily: F.mono, fontSize: 12, color: C.gold, letterSpacing: '0.10em', textTransform: 'uppercase', fontWeight: 800 }}>{label}</div>
+      <div style={{ fontSize: 14, color: '#FFFFFF', fontFamily: copy ? F.mono : F.body, wordBreak: 'break-word', fontWeight: 500 }}>{val}</div>
     </div>
   )
 }
 
 function DataPill({ label, val, color }: { label: string; val: string; color: string }) {
   return (
-    <div style={{ padding: '10px 12px', background: 'rgba(255,255,255,0.03)', border: `1px solid ${C.border}`, borderRadius: 8, textAlign: 'center' }}>
-      <div style={{ fontFamily: F.mono, fontSize: 9, color: C.faint, letterSpacing: '0.10em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 4 }}>{label}</div>
-      <div style={{ fontFamily: F.display, fontSize: 17, fontWeight: 700, color, lineHeight: 1 }}>{val}</div>
+    <div style={{ padding: '12px 14px', background: `${color}14`, border: `1px solid ${color}40`, borderRadius: 10, textAlign: 'center' }}>
+      <div style={{ fontFamily: F.mono, fontSize: 11, color, letterSpacing: '0.12em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 6 }}>{label}</div>
+      <div style={{ fontFamily: F.display, fontSize: 22, fontWeight: 800, color, lineHeight: 1, letterSpacing: '-0.02em' }}>{val}</div>
     </div>
   )
 }
 
 function ProfileBadge({ p }: { p: Profile }) {
-  const map = { solo: { c: C.muted, l: 'Solo' }, multi: { c: C.align, l: 'Multi-DC' }, multi_loc: { c: C.gold, l: 'Multi-Loc' } } as const
+  const map = { solo: { c: C.globe, l: 'Solo' }, multi: { c: C.align, l: 'Multi-DC' }, multi_loc: { c: C.gold, l: 'Multi-Loc' } } as const
   const m = map[p]
-  return <span style={{ fontFamily: F.mono, fontSize: 10, padding: '3px 8px', borderRadius: 4, background: `${m.c}22`, color: m.c, fontWeight: 700, letterSpacing: '0.10em', textTransform: 'uppercase' }}>{m.l}</span>
+  return <span style={{ fontFamily: F.mono, fontSize: 11.5, padding: '4px 10px', borderRadius: 5, background: `${m.c}28`, color: m.c, fontWeight: 800, letterSpacing: '0.10em', textTransform: 'uppercase', border: `1px solid ${m.c}40` }}>{m.l}</span>
 }
 
 function StatusBadge({ s }: { s: Status }) {
   const map: Record<Status, { c: string; l: string }> = {
-    in_pipeline: { c: C.green, l: 'In Pipeline' },
-    hot:         { c: C.coral, l: 'Hot' },
-    warm:        { c: C.gold,  l: 'Warm' },
-    cold:        { c: C.muted, l: 'Cold' },
+    in_pipeline: { c: C.green,    l: 'In Pipeline' },
+    hot:         { c: C.coral,    l: 'Hot' },
+    warm:        { c: C.gold,     l: 'Warm' },
+    cold:        { c: C.goldLight, l: 'Cold' },
   }
   const m = map[s]
-  return <span style={{ fontFamily: F.mono, fontSize: 10, padding: '3px 8px', borderRadius: 4, background: `${m.c}22`, color: m.c, fontWeight: 700, letterSpacing: '0.10em', textTransform: 'uppercase' }}>{m.l}</span>
+  return <span style={{ fontFamily: F.mono, fontSize: 11.5, padding: '4px 10px', borderRadius: 5, background: `${m.c}25`, color: m.c, fontWeight: 800, letterSpacing: '0.10em', textTransform: 'uppercase', border: `1px solid ${m.c}45` }}>{m.l}</span>
 }
