@@ -113,13 +113,13 @@ export default function PipelinePage() {
 
       {/* Header */}
       <div style={{ marginBottom: 28 }}>
-        <div style={{ fontFamily: F.mono, fontSize: 11, color: C.align, letterSpacing: '0.22em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 8 }}>
+        <div style={{ fontFamily: F.mono, fontSize: 12.5, color: C.align, letterSpacing: '0.22em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 10 }}>
           Acquisition Pipeline · drag-and-drop in Phase 2
         </div>
-        <h1 style={{ fontFamily: F.display, fontSize: 'clamp(32px, 4.5vw, 44px)', fontWeight: 700, margin: '0 0 8px', letterSpacing: '-0.02em' }}>
+        <h1 style={{ fontFamily: F.display, fontSize: 'clamp(34px, 4.5vw, 46px)', fontWeight: 700, margin: '0 0 10px', letterSpacing: '-0.02em' }}>
           Every clinic, every stage, on one board.
         </h1>
-        <p style={{ fontSize: 16, color: C.muted, margin: 0, maxWidth: 760, lineHeight: 1.6 }}>
+        <p style={{ fontSize: 16, color: '#FFFFFF', margin: 0, maxWidth: 760, lineHeight: 1.6, fontWeight: 400 }}>
           Kanban above. Bloomberg-style audit timeline below. Click any card on the board to see its full journey from intake submission to close — Wagner-grade audit trail.
         </p>
       </div>
@@ -137,26 +137,27 @@ export default function PipelinePage() {
               <div key={col.key} style={{
                 background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 12,
                 display: 'flex', flexDirection: 'column', minHeight: 380,
+                boxShadow: '0 4px 12px rgba(0,0,0,0.10)',
               }}>
                 <div style={{
-                  padding: '12px 14px', borderBottom: `1px solid ${C.border}`,
-                  borderTop: `3px solid ${col.accent}`,
+                  padding: '14px 16px', borderBottom: `1px solid ${C.border}`,
+                  borderTop: `4px solid ${col.accent}`,
                   borderTopLeftRadius: 12, borderTopRightRadius: 12,
-                  background: `linear-gradient(180deg, ${col.accent}14 0%, transparent 100%)`,
+                  background: `linear-gradient(180deg, ${col.accent}22 0%, transparent 100%)`,
                 }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 4 }}>
-                    <span style={{ fontSize: 13, fontWeight: 700, color: col.accent, fontFamily: F.mono, letterSpacing: '0.04em', textTransform: 'uppercase' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 6 }}>
+                    <span style={{ fontSize: 14, fontWeight: 800, color: col.accent, fontFamily: F.mono, letterSpacing: '0.06em', textTransform: 'uppercase' }}>
                       {col.label}
                     </span>
-                    <span style={{ fontSize: 11, color: C.muted, fontFamily: F.mono, fontWeight: 700 }}>{colDeals.length}</span>
+                    <span style={{ fontSize: 13, color: '#FFFFFF', fontFamily: F.mono, fontWeight: 800 }}>{colDeals.length}</span>
                   </div>
-                  <div style={{ fontSize: 10, color: C.faint, fontFamily: F.mono, letterSpacing: '0.06em' }}>{col.sub}</div>
-                  <div style={{ fontSize: 12, color: col.accent, fontFamily: F.display, fontWeight: 700, marginTop: 6 }}>
+                  <div style={{ fontSize: 12, color: '#FFFFFF', fontFamily: F.body, letterSpacing: '0.02em', opacity: 0.80, fontWeight: 500 }}>{col.sub}</div>
+                  <div style={{ fontSize: 18, color: col.accent, fontFamily: F.display, fontWeight: 800, marginTop: 8, letterSpacing: '-0.02em' }}>
                     {fmtMoney(colValue)}
                   </div>
                 </div>
 
-                <div style={{ padding: 10, display: 'flex', flexDirection: 'column', gap: 8, flex: 1 }}>
+                <div style={{ padding: 12, display: 'flex', flexDirection: 'column', gap: 10, flex: 1 }}>
                   {colDeals.map(d => (
                     <button
                       key={d.id}
@@ -164,21 +165,22 @@ export default function PipelinePage() {
                       onClick={() => setSelected(d.id)}
                       style={{
                         textAlign: 'left',
-                        background: selected === d.id ? `${col.accent}18` : C.bg3,
+                        background: selected === d.id ? `${col.accent}25` : C.bg3,
                         border: `${selected === d.id ? 2 : 1}px solid ${selected === d.id ? col.accent : C.border}`,
-                        borderRadius: 8, padding: '10px 12px', cursor: 'pointer',
-                        transition: 'all 0.15s', display: 'flex', flexDirection: 'column', gap: 4,
+                        borderLeft: `4px solid ${col.accent}`,
+                        borderRadius: 8, padding: '12px 14px', cursor: 'pointer',
+                        transition: 'all 0.15s', display: 'flex', flexDirection: 'column', gap: 6,
                       }}
                     >
-                      <div style={{ fontSize: 13, fontWeight: 600, color: C.text, lineHeight: 1.25 }}>{d.name}</div>
-                      <div style={{ fontSize: 10, color: C.faint, fontFamily: F.mono, letterSpacing: '0.04em' }}>
+                      <div style={{ fontSize: 14, fontWeight: 700, color: '#FFFFFF', lineHeight: 1.3, letterSpacing: '-0.01em' }}>{d.name}</div>
+                      <div style={{ fontSize: 12, color: '#FFFFFF', fontFamily: F.mono, letterSpacing: '0.04em', opacity: 0.75, fontWeight: 500 }}>
                         {d.city}, {d.state}
                       </div>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginTop: 4 }}>
-                        <span style={{ fontFamily: F.display, fontSize: 15, fontWeight: 700, color: col.accent }}>
+                        <span style={{ fontFamily: F.display, fontSize: 18, fontWeight: 800, color: col.accent, letterSpacing: '-0.02em' }}>
                           {fmtMoney(d.value)}
                         </span>
-                        <span style={{ fontSize: 10, color: C.muted, fontFamily: F.mono }}>
+                        <span style={{ fontSize: 11.5, color: '#FFFFFF', fontFamily: F.mono, opacity: 0.75, fontWeight: 600 }}>
                           d{d.days} · {d.npm}/mo
                         </span>
                       </div>
@@ -187,8 +189,8 @@ export default function PipelinePage() {
                   {colDeals.length === 0 && (
                     <div style={{
                       padding: '24px 12px', textAlign: 'center', borderRadius: 8,
-                      border: `1px dashed ${C.border}`, color: C.faint,
-                      fontSize: 11, fontFamily: F.mono, letterSpacing: '0.04em',
+                      border: `1px dashed ${C.border}`, color: '#FFFFFF',
+                      fontSize: 12, fontFamily: F.mono, letterSpacing: '0.04em', opacity: 0.55, fontWeight: 500,
                     }}>
                       empty
                     </div>
@@ -198,8 +200,8 @@ export default function PipelinePage() {
             )
           })}
         </div>
-        <div style={{ fontSize: 12, color: C.faint, marginTop: 12, fontFamily: F.mono, letterSpacing: '0.02em' }}>
-          Click any card → audit timeline updates below. Drag-and-drop stage transitions ship in <strong style={{ color: C.gold }}>Phase 2</strong>.
+        <div style={{ fontSize: 13.5, color: '#FFFFFF', marginTop: 14, fontFamily: F.body, letterSpacing: '0.02em', fontWeight: 500, opacity: 0.85 }}>
+          Click any card → audit timeline updates below. Drag-and-drop stage transitions ship in <strong style={{ color: C.gold, opacity: 1 }}>Phase 2</strong>.
         </div>
       </div>
 
@@ -258,18 +260,19 @@ export default function PipelinePage() {
                 background: i % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.015)',
                 color: C.text, lineHeight: 1.5,
               }}>
-                <span style={{ color: C.faint, letterSpacing: '0.04em' }}>{ev.ts}</span>
+                <span style={{ color: '#FFFFFF', letterSpacing: '0.04em', opacity: 0.85, fontWeight: 600 }}>{ev.ts}</span>
                 <span style={{
                   color: STATUS_COLOR[ev.status], fontWeight: 800, letterSpacing: '0.10em',
                 }}>{ev.status}</span>
-                <span style={{ color: C.green, fontWeight: 700, letterSpacing: '0.06em' }}>{ev.code}</span>
+                <span style={{ color: C.green, fontWeight: 800, letterSpacing: '0.06em' }}>{ev.code}</span>
                 <span>
-                  <span style={{ color: C.text, fontWeight: 600 }}>{ev.label}</span>
-                  <span style={{ color: C.muted }}> · {ev.detail}</span>
+                  <span style={{ color: '#FFFFFF', fontWeight: 700 }}>{ev.label}</span>
+                  <span style={{ color: '#FFFFFF', opacity: 0.80 }}> · {ev.detail}</span>
                 </span>
                 <span style={{
-                  textAlign: 'right', fontWeight: 700,
-                  color: ev.delta ? (ev.delta > 0 ? C.green : C.coral) : C.faint,
+                  textAlign: 'right', fontWeight: 800,
+                  color: ev.delta ? (ev.delta > 0 ? C.green : C.coral) : '#FFFFFF',
+                  opacity: ev.delta ? 1 : 0.60,
                 }}>
                   {ev.delta ? (ev.delta > 0 ? '+' : '') + fmtMoney(ev.delta) : '—'}
                 </span>
@@ -277,11 +280,11 @@ export default function PipelinePage() {
             ))}
             {/* Live cursor */}
             <div style={{
-              padding: '10px 22px', borderTop: '1px dashed rgba(46,204,139,0.25)',
-              color: C.green, fontSize: 11, letterSpacing: '0.10em', display: 'flex', justifyContent: 'space-between',
+              padding: '12px 24px', borderTop: '1px dashed rgba(46,204,139,0.30)',
+              color: C.green, fontSize: 13, letterSpacing: '0.08em', display: 'flex', justifyContent: 'space-between', fontWeight: 700,
             }}>
               <span>▶ Awaiting next event…</span>
-              <span style={{ color: C.faint }}>14 events · audit trail integrity ✓ verified</span>
+              <span style={{ color: '#FFFFFF', opacity: 0.75, fontWeight: 600 }}>14 events · audit trail integrity ✓ verified</span>
             </div>
           </div>
         </div>
@@ -289,21 +292,23 @@ export default function PipelinePage() {
 
       {/* Phase-2 callouts */}
       <div style={{
-        background: 'rgba(46,117,182,0.05)', border: '1px dashed rgba(46,117,182,0.30)',
-        borderRadius: 12, padding: '20px 24px', display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 16,
-        fontSize: 13, color: C.muted, lineHeight: 1.55,
+        background: `linear-gradient(135deg, rgba(46,117,182,0.10), ${C.bg3})`,
+        border: '1px solid rgba(46,117,182,0.35)',
+        borderRadius: 12, padding: '24px 28px', display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 18,
+        fontSize: 14, color: '#FFFFFF', lineHeight: 1.65, fontWeight: 400,
+        boxShadow: '0 4px 16px rgba(0,0,0,0.12)',
       }}>
-        <div>
-          <strong style={{ color: C.gold }}>Phase 2 · Drag-to-move</strong><br/>
+        <div style={{ borderLeft: `4px solid ${C.gold}`, paddingLeft: 14 }}>
+          <strong style={{ color: C.gold, fontSize: 15 }}>Phase 2 · Drag-to-move</strong><br/>
           Drag any card between columns to transition stage. DB updates instantly, activity log captures who moved it.
         </div>
-        <div>
-          <strong style={{ color: C.gold }}>Phase 2 · Slack / SMS alerts</strong><br/>
+        <div style={{ borderLeft: `4px solid ${C.gold}`, paddingLeft: 14 }}>
+          <strong style={{ color: C.gold, fontSize: 15 }}>Phase 2 · Slack / SMS alerts</strong><br/>
           New qualified intake → Wagner + Eric notified. Clinic enters LOI → all three get pinged. Configurable per stage.
         </div>
-        <div>
-          <strong style={{ color: C.gold }}>Phase 2 · Weighted EBITDA forecast</strong><br/>
+        <div style={{ borderLeft: `4px solid ${C.gold}`, paddingLeft: 14 }}>
+          <strong style={{ color: C.gold, fontSize: 15 }}>Phase 2 · Weighted EBITDA forecast</strong><br/>
           Each stage carries a probability weight (10/25/50/80%). Platform shows expected closing EBITDA per quarter.
         </div>
       </div>
@@ -322,9 +327,9 @@ export default function PipelinePage() {
 
 function KvTerm({ label, val, color }: { label: string; val: string; color: string }) {
   return (
-    <span style={{ display: 'inline-flex', gap: 6, alignItems: 'baseline' }}>
-      <span style={{ color: C.faint, fontSize: 10, letterSpacing: '0.10em' }}>{label}</span>
-      <span style={{ color, fontWeight: 800, fontSize: 13 }}>{val}</span>
+    <span style={{ display: 'inline-flex', gap: 7, alignItems: 'baseline' }}>
+      <span style={{ color: '#FFFFFF', fontSize: 11, letterSpacing: '0.10em', fontWeight: 700, opacity: 0.85 }}>{label}</span>
+      <span style={{ color, fontWeight: 800, fontSize: 14 }}>{val}</span>
     </span>
   )
 }
