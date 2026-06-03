@@ -380,16 +380,16 @@ export default function LaunchPlanPage() {
         marginBottom: 24,
       }}>
         <div style={{ fontFamily: F.mono, fontSize: 11, color: C.align, letterSpacing: '0.20em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 10 }}>
-          💸 Monthly draw schedule · Y1 Wagner-funded · Y2 self-funded from operations
+          💸 Monthly draw schedule · Y1 build · Y2 self-funded
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 16 }}>
-          <BurnPill label="Q1 (Mo 1-3) · build phase"           val={`$${Math.round(((TIMELINE[0].team_cost + TIMELINE[0].marketing + TIMELINE[0].saas) / 3) / 1_000)}K/mo`} sub="Eric + McGrath + Ops Lead + Marketer · Wagner-funded" color={C.globe} />
-          <BurnPill label="Q2 (Mo 4-6) · sales staffed"         val={`$${Math.round(((TIMELINE[1].team_cost + TIMELINE[1].marketing + TIMELINE[1].saas) / 3) / 1_000)}K/mo`} sub="8 people · full sales engine · Wagner-funded" color={C.align} />
-          <BurnPill label="★ Y1 average · Wagner ask"           val={`$${Math.round(monthlyBurnY1 / 1_000)}K/mo`} sub={`${fmtMoney(monthlyBurnY1 * 12)} total over 12 months`} color={C.gold} bold />
-          <BurnPill label="Y2 average · SELF-FUNDED"            val={`$${Math.round(monthlyBurnY2 / 1_000)}K/mo`} sub="paid from clinic cash flow + Scale Services revenue" color={C.green} />
+          <BurnPill label="Q1 (Mo 1-3) · build phase"           val={`$${Math.round(((TIMELINE[0].team_cost + TIMELINE[0].marketing + TIMELINE[0].saas) / 3) / 1_000)}K/mo`} sub={`Eric + McGrath + Ops + Marketer · ~$${Math.round((TIMELINE[0].marketing / 3) / 1_000)}K/mo on advertising`} color={C.globe} />
+          <BurnPill label="Q2 (Mo 4-6) · sales staffed"         val={`$${Math.round(((TIMELINE[1].team_cost + TIMELINE[1].marketing + TIMELINE[1].saas) / 3) / 1_000)}K/mo`} sub={`8 people · full sales engine · ~$${Math.round((TIMELINE[1].marketing / 3) / 1_000)}K/mo on advertising`} color={C.align} />
+          <BurnPill label="★ Y1 average · 12-month ask"         val={`$${Math.round(monthlyBurnY1 / 1_000)}K/mo`} sub={`${fmtMoney(monthlyBurnY1 * 12)} total · ~$${Math.round(((TIMELINE[0].marketing + TIMELINE[1].marketing + TIMELINE[2].marketing + TIMELINE[3].marketing) / 12) / 1_000)}K/mo on advertising`} color={C.gold} bold />
+          <BurnPill label="Y2 average · SELF-FUNDED"            val={`$${Math.round(monthlyBurnY2 / 1_000)}K/mo`} sub={`from clinic cash flow + Scale Services · ~$${Math.round(((TIMELINE[4].marketing + TIMELINE[5].marketing + TIMELINE[6].marketing + TIMELINE[7].marketing) / 12) / 1_000)}K/mo on advertising`} color={C.green} />
         </div>
         <div style={{ marginTop: 16, padding: '12px 18px', background: 'rgba(255,255,255,0.04)', borderRadius: 10, fontSize: 13, color: C.muted, lineHeight: 1.6 }}>
-          <strong style={{ color: C.text }}>Practical draw schedule:</strong> Wagner wires the Y1 average (<strong style={{ color: C.gold }}>~${Math.round(monthlyBurnY1 / 1_000)}K/month</strong>) for the first 12 months — <strong style={{ color: C.gold }}>{fmtMoney(monthlyBurnY1 * 12)} total Y1 ask</strong>. First $120K released at signing to cover Day-1 hires (Eric + McGrath) and Month-3 onboarding (Ops Lead + Marketer). Subsequent draws monthly against signed expense forecast. <strong style={{ color: C.green }}>Y2 (months 13-24) is self-funded</strong> from clinic cash flow + Scale Services revenue — by month 12 ChiroPillar EBITDA covers the Y2 burn with cushion.
+          <strong style={{ color: C.text }}>Practical draw schedule:</strong> ~<strong style={{ color: C.gold }}>${Math.round(monthlyBurnY1 / 1_000)}K/month</strong> for the first 12 months — <strong style={{ color: C.gold }}>{fmtMoney(monthlyBurnY1 * 12)} total Y1 ask</strong>. First $120K released at signing for Day-1 hires, then monthly thereafter against signed expense forecast. <strong style={{ color: C.green }}>Y2 self-funds</strong> from clinic cash flow + Scale Services revenue.
         </div>
       </div>
 
@@ -410,28 +410,28 @@ export default function LaunchPlanPage() {
         </p>
 
         {/* THREE EBITDA SOURCES at Month 24 */}
-        <div style={{ fontFamily: F.mono, fontSize: 10, color: C.faint, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 10 }}>
+        <div style={{ fontFamily: F.mono, fontSize: 13, color: '#FFFFFF', letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 14 }}>
           Month 24 · ChiroPillar EBITDA sources
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 14, marginBottom: 18 }}>
-          <Sub label="1. Acquired clinics · 25 closed × ~$290K avg" val={fmtMoney(finalEbitda)} color={C.spine} />
-          <Sub label="2. Scale Services · $2.8M rev × 75% margin"   val={fmtMoney(2_100_000)} color={C.gold} />
-          <Sub label="3. Digital app · $825K rev × 85% margin"      val={fmtMoney(700_000)}   color={C.green} />
-          <Sub label="TOTAL ChiroPillar EBITDA · Mo 24"             val={fmtMoney(finalEbitda + 2_100_000 + 700_000)} color={C.goldLight} />
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 14, marginBottom: 24 }}>
+          <EbitdaSourceCard num="1" label="Acquired clinics" detail="25 closed × ~$290K avg" val={fmtMoney(finalEbitda)} accent={C.spine} />
+          <EbitdaSourceCard num="2" label="Scale Services" detail="$2.8M rev × 75% margin" val={fmtMoney(2_100_000)} accent={C.gold} />
+          <EbitdaSourceCard num="3" label="Digital app" detail="$825K rev × 85% margin" val={fmtMoney(700_000)} accent={C.green} />
+          <EbitdaSourceCard num="Σ" label="TOTAL · Mo 24" detail="all 3 engines combined" val={fmtMoney(finalEbitda + 2_100_000 + 700_000)} accent={C.goldLight} bold />
         </div>
 
         {/* 3-5 YEAR SCALE PROJECTION */}
-        <div style={{ fontFamily: F.mono, fontSize: 10, color: C.faint, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 700, marginTop: 22, marginBottom: 10 }}>
+        <div style={{ fontFamily: F.mono, fontSize: 13, color: '#FFFFFF', letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 800, marginTop: 24, marginBottom: 14 }}>
           3-5 year scale projection · post month 24
         </div>
         <div style={{ background: C.bg3, border: `1px solid ${C.border}`, borderRadius: 12, overflow: 'hidden', marginBottom: 14 }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '90px 1fr 1fr 1fr 1fr 1.4fr', gap: 12, padding: '12px 18px', background: 'rgba(255,255,255,0.04)', borderBottom: `1px solid ${C.border}`, fontFamily: F.mono, fontSize: 10, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#FFFFFF', fontWeight: 700 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '90px 100px 130px 150px 130px 1.4fr', gap: 12, padding: '14px 18px', background: 'rgba(255,255,255,0.05)', borderBottom: `1px solid ${C.border}`, fontFamily: F.mono, fontSize: 12, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#FFFFFF', fontWeight: 800 }}>
             <div>Year</div>
-            <div style={{ textAlign: 'right' }}>Clinics owned</div>
+            <div style={{ textAlign: 'right' }}>Clinics</div>
             <div style={{ textAlign: 'right' }}>Clinic EBITDA</div>
-            <div style={{ textAlign: 'right' }}>Scale Svcs EBITDA</div>
-            <div style={{ textAlign: 'right' }}>Total CP EBITDA</div>
-            <div>Combined w/ Wagner $25M+ · 9× midpoint</div>
+            <div style={{ textAlign: 'right' }}>Scale EBITDA</div>
+            <div style={{ textAlign: 'right' }}>Total CP</div>
+            <div>Combined w/ Wagner $25M+ · 9× midpoint exit</div>
           </div>
           <ScaleRow year="Y2 · Mo 24" clinics="25" clinicEb={finalEbitda} scaleEb={2_800_000} note="$32M+ combined · ~$290M exit potential" totalColor={C.gold} />
           <ScaleRow year="Y3" clinics="45" clinicEb={13_500_000} scaleEb={4_500_000} note="$43M+ combined · ~$385M exit potential" totalColor={C.gold} />
@@ -440,7 +440,7 @@ export default function LaunchPlanPage() {
         </div>
 
         <div style={{ fontSize: 13, color: C.muted, lineHeight: 1.65, padding: '14px 18px', background: 'rgba(46,117,182,0.06)', border: '1px solid rgba(46,117,182,0.18)', borderRadius: 10 }}>
-          <strong style={{ color: C.text }}>How the engine compounds:</strong> By month 24 the sales engine is fully built and running at <strong style={{ color: C.green }}>~5-6 closes per quarter</strong>. Y3 accelerates to <strong style={{ color: C.gold }}>~20 closes/yr</strong> as the playbook is proven and Wagner&apos;s medical-team install is repeatable. By Y5 we&apos;ve closed <strong style={{ color: C.gold }}>~100 clinics</strong> across Wagner&apos;s 7-state territory + adjacent expansion. Scale Services revenue compounds at ~50%/yr (each acquired clinic seeds 5-10 Scale Services customers from its referral network). Digital app reaches <strong style={{ color: C.green }}>200K+ users</strong> by Y5. <strong style={{ color: C.gold }}>This is the 3-5 year vision Wagner needs to see — the platform isn&apos;t a 24-month bolt-on, it&apos;s the platform Wagner exits at $500-625M+ off his combined EBITDA.</strong>
+          <strong style={{ color: C.text }}>How the engine compounds:</strong> By month 24 the sales engine is fully built and running at <strong style={{ color: C.green }}>~5-6 closes per quarter</strong>. Y3 accelerates to <strong style={{ color: C.gold }}>~20 closes/yr</strong> as the playbook is proven and the medical-team install is repeatable. By Y5 we&apos;ve closed <strong style={{ color: C.gold }}>~100 clinics</strong> across the 7-state territory + adjacent expansion. Scale Services revenue compounds at ~50%/yr (each acquired clinic seeds 5-10 Scale Services customers from its referral network). Digital app reaches <strong style={{ color: C.green }}>200K+ users</strong> by Y5.
         </div>
       </div>
 
@@ -995,21 +995,40 @@ function FounderLine({ label, val, note, accent }: { label: string; val: string;
   )
 }
 
+function EbitdaSourceCard({ num, label, detail, val, accent, bold }: { num: string; label: string; detail: string; val: string; accent: string; bold?: boolean }) {
+  return (
+    <div style={{
+      padding: bold ? '20px 22px' : '18px 20px',
+      background: bold ? `${accent}18` : 'rgba(255,255,255,0.04)',
+      border: `${bold ? 2 : 1}px solid ${bold ? accent : C.border}`,
+      borderLeft: `4px solid ${accent}`,
+      borderRadius: 10,
+    }}>
+      <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: 4 }}>
+        <span style={{ fontFamily: F.display, fontSize: 20, fontWeight: 800, color: accent, lineHeight: 1 }}>{num}</span>
+        <span style={{ fontFamily: F.display, fontSize: 18, fontWeight: 700, color: '#FFFFFF', letterSpacing: '-0.01em' }}>{label}</span>
+      </div>
+      <div style={{ fontSize: 13, color: '#C9CCDB', marginBottom: 12, lineHeight: 1.4 }}>{detail}</div>
+      <div style={{ fontFamily: F.display, fontSize: bold ? 32 : 28, fontWeight: 800, color: accent, lineHeight: 1, letterSpacing: '-0.02em' }}>{val}</div>
+    </div>
+  )
+}
+
 function ScaleRow({ year, clinics, clinicEb, scaleEb, note, totalColor, bold }: { year: string; clinics: string; clinicEb: number; scaleEb: number; note: string; totalColor: string; bold?: boolean }) {
   const total = clinicEb + scaleEb
   return (
     <div style={{
-      display: 'grid', gridTemplateColumns: '90px 1fr 1fr 1fr 1fr 1.4fr', gap: 12, padding: '14px 18px',
+      display: 'grid', gridTemplateColumns: '90px 100px 130px 150px 130px 1.4fr', gap: 12, padding: '16px 18px',
       borderBottom: `1px solid ${C.border}`,
-      fontSize: 13, alignItems: 'baseline',
-      background: bold ? 'rgba(201,168,76,0.08)' : 'transparent',
+      fontSize: 14, alignItems: 'baseline',
+      background: bold ? 'rgba(201,168,76,0.10)' : 'transparent',
     }}>
-      <div style={{ color: bold ? C.gold : C.text, fontFamily: F.mono, fontWeight: 800, fontSize: bold ? 14 : 13, letterSpacing: '0.04em' }}>{year}</div>
-      <div style={{ textAlign: 'right', color: '#FFFFFF', fontFamily: F.display, fontWeight: 800, fontSize: bold ? 18 : 16 }}>{clinics}</div>
-      <div style={{ textAlign: 'right', color: '#C9CCDB', fontFamily: F.mono, fontWeight: 600 }}>{fmtMoney(clinicEb)}</div>
-      <div style={{ textAlign: 'right', color: '#C9CCDB', fontFamily: F.mono, fontWeight: 600 }}>{fmtMoney(scaleEb)}</div>
-      <div style={{ textAlign: 'right', color: totalColor, fontFamily: F.display, fontWeight: 800, fontSize: bold ? 18 : 16 }}>{fmtMoney(total)}</div>
-      <div style={{ color: bold ? C.gold : '#C9CCDB', fontSize: bold ? 13 : 12, fontWeight: bold ? 700 : 500, lineHeight: 1.45 }}>{note}</div>
+      <div style={{ color: bold ? C.gold : '#FFFFFF', fontFamily: F.mono, fontWeight: 800, fontSize: bold ? 15 : 14, letterSpacing: '0.04em' }}>{year}</div>
+      <div style={{ textAlign: 'right', color: '#FFFFFF', fontFamily: F.display, fontWeight: 800, fontSize: bold ? 22 : 19 }}>{clinics}</div>
+      <div style={{ textAlign: 'right', color: '#FFFFFF', fontFamily: F.mono, fontWeight: 700, fontSize: 14 }}>{fmtMoney(clinicEb)}</div>
+      <div style={{ textAlign: 'right', color: '#FFFFFF', fontFamily: F.mono, fontWeight: 700, fontSize: 14 }}>{fmtMoney(scaleEb)}</div>
+      <div style={{ textAlign: 'right', color: totalColor, fontFamily: F.display, fontWeight: 800, fontSize: bold ? 22 : 19 }}>{fmtMoney(total)}</div>
+      <div style={{ color: bold ? C.gold : '#C9CCDB', fontSize: bold ? 14 : 13, fontWeight: bold ? 700 : 500, lineHeight: 1.45 }}>{note}</div>
     </div>
   )
 }
