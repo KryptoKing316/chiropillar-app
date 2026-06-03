@@ -72,9 +72,15 @@ export default async function DashLayout({ children }: { children: React.ReactNo
   // Demo mode renders identically to admin — no watermark, no banner.
   // Wagner / McGrath / prospective applicants should see the platform exactly
   // as a logged-in admin would, with sample data populating tables.
+  //
+  // ERIC-ONLY surfaces (Founder Comp + future internal tools) — gated by email.
+  // Both Eric@kingdombroker.com and ericcskeldon@gmail.com are recognized.
+  const ericEmails = ['eric@kingdombroker.com', 'ericcskeldon@gmail.com']
+  const isEricOnly = !!userEmail && ericEmails.includes(userEmail.toLowerCase())
+
   return (
     <div style={{ display: 'flex', height: '100vh', background: 'var(--kb-bg)', overflow: 'hidden' }}>
-      <Sidebar userEmail={userEmail ?? 'demo@chiropillar.com'} isDemo={false} isAdmin={true} />
+      <Sidebar userEmail={userEmail ?? 'demo@chiropillar.com'} isDemo={false} isAdmin={true} isEricOnly={isEricOnly} />
       <main style={{ flex: 1, overflowY: 'auto', background: 'var(--kb-bg)' }}>
         {children}
       </main>

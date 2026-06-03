@@ -397,14 +397,14 @@ const NAV = [
 ]
 
 // Admin-only surfaces · Eric / Wagner / McGrath
-const ADMIN_DEMOS = [
-  { href: '/agents',       label: 'Agent Center'                    },
-  { href: '/founder-comp', label: 'Founder Comp' },
-  { href: '/admin',        label: 'Admin Panel'                     },
+const ADMIN_DEMOS: Array<{ href: string; label: string; ericOnly?: boolean }> = [
+  { href: '/agents',       label: 'Agent Center'                       },
+  { href: '/founder-comp', label: 'Founder Comp', ericOnly: true       },
+  { href: '/admin',        label: 'Admin Panel'                        },
 ]
 
 
-export default function Sidebar({ userEmail, isDemo, isAdmin }: { userEmail?: string; isDemo?: boolean; isAdmin?: boolean }) {
+export default function Sidebar({ userEmail, isDemo, isAdmin, isEricOnly }: { userEmail?: string; isDemo?: boolean; isAdmin?: boolean; isEricOnly?: boolean }) {
   const pathname = usePathname()
   const [mobileOpen, setMobileOpen] = useState(false)
   // Mascot-only SVG (no baked text). Wordmark rendered as HTML below for crisp typography.
@@ -496,7 +496,7 @@ export default function Sidebar({ userEmail, isDemo, isAdmin }: { userEmail?: st
           <>
             <div style={{ margin: '10px 14px 8px', borderTop: '1px solid var(--kb-border)' }} />
             <div style={{ padding: '4px 12px 6px', fontSize: '11px', color: 'var(--kb-text-muted)', letterSpacing: '0.08em', textTransform: 'uppercase', fontWeight: 510 }}>Admin</div>
-            {ADMIN_DEMOS.map(({ href, label }) => (
+            {ADMIN_DEMOS.filter(item => !item.ericOnly || isEricOnly).map(({ href, label }) => (
               <Link key={href} href={href} style={{ textDecoration: 'none' }}>
                 <div style={{
                   display: 'flex', alignItems: 'center', gap: '10px',

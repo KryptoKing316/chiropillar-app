@@ -1,9 +1,39 @@
 // ChiroPillar · Founder Comp Breakdown (Eric + Scott split)
-// ADMIN-ONLY: hidden from public /launch-plan. Eric reviews this internally
-// to track his vs McGrath's individual takes. Wagner does NOT see this page.
-// Eric and Scott discuss the split separately.
+// ERIC-ONLY: server-side guarded. Wagner and Scott are redirected to /overview
+// if they hit this URL. Only Eric@kingdombroker.com and ericcskeldon@gmail.com
+// can access. Sidebar also hides this entry for non-Eric admins.
+
+import { cookies } from 'next/headers'
+import { createServerClient } from '@supabase/ssr'
+import { redirect } from 'next/navigation'
 
 export const dynamic = 'force-dynamic'
+
+async function assertEric() {
+  const ericEmails = ['eric@kingdombroker.com', 'ericcskeldon@gmail.com']
+  try {
+    const cookieStore = await cookies()
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL
+    const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+    if (!url || !anon) return // local dev / preview — allow
+    const supabase = createServerClient(url, anon, {
+      cookies: {
+        getAll() { return cookieStore.getAll() },
+        setAll() { /* read-only */ },
+      },
+    })
+    const { data: { session } } = await supabase.auth.getSession()
+    const email = session?.user?.email?.toLowerCase()
+    if (!email || !ericEmails.includes(email)) {
+      redirect('/overview')
+    }
+  } catch (err) {
+    // re-throw redirect errors (Next.js uses them as control flow)
+    if (err && typeof err === 'object' && 'digest' in err) throw err
+    // any other failure (network, supabase down) — fail closed, redirect away
+    redirect('/overview')
+  }
+}
 
 const C = {
   bg: '#0B1B3E',
@@ -96,7 +126,8 @@ function FounderLine({ label, val, note, accent }: { label: string; val: string;
   )
 }
 
-export default function FounderCompPage() {
+export default async function FounderCompPage() {
+  await assertEric()
   return (
     <div style={{ padding: '32px 32px 80px', maxWidth: 1320, margin: '0 auto', fontFamily: F.body, color: C.text }}>
 
