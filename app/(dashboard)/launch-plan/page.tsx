@@ -368,7 +368,7 @@ export default function LaunchPlanPage() {
           <Kpi label="Acquisition value funded"   val={fmtMoney(totalAcqValue)}     sub={`${totalAcqCount} clinics @ ~$1.9M avg · 24mo`} color={C.goldLight} />
           <Kpi label="Wagner cash at close (50%)" val={fmtMoney(totalWagnerCash)}   sub="from $25M+ EBITDA cash flow · debt OR cash option" color={C.globe} />
           <Kpi label="Bank debt drawn"            val={fmtMoney(totalBankDebt)}     sub="cross-collateralized · prime + 2-3.75%" color={C.align} />
-          <Kpi label="ChiroPillar EBITDA"         val={fmtMoney(finalEbitda)}       sub="month 24 · bolt-on to Wagner" color={C.green} />
+          <Kpi label="ChiroPillar EBITDA · Mo 24"  val={fmtMoney(finalEbitda)}       sub="acquired-clinic bolt-on · see build-up below for full" color={C.green} />
           <Kpi label="Exit · 8-10×"               val={`${fmtMoney(exitLow)}-${fmtMoney(exitHigh)}`} sub={`combined ${fmtMoney(25_000_000 + finalEbitda)} EBITDA`} color={C.goldLight} />
         </div>
       </div>
@@ -393,27 +393,85 @@ export default function LaunchPlanPage() {
         </div>
       </div>
 
+      {/* CHIROPILLAR EBITDA BUILD-UP · where the $7.26M comes from + 3-5yr scale */}
+      <div style={{
+        background: `linear-gradient(135deg, rgba(46,204,139,0.08), ${C.bg3})`,
+        border: `1px solid rgba(46,204,139,0.30)`, borderRadius: 14, padding: '24px 28px',
+        marginBottom: 32,
+      }}>
+        <div style={{ fontFamily: F.mono, fontSize: 11, color: C.green, letterSpacing: '0.20em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 8 }}>
+          ChiroPillar EBITDA build-up · where the {fmtMoney(finalEbitda)} comes from
+        </div>
+        <h2 style={{ fontFamily: F.display, fontSize: 22, fontWeight: 700, color: C.text, margin: '0 0 14px', letterSpacing: '-0.01em' }}>
+          3 EBITDA engines. 24-month base. 3-5 year scale.
+        </h2>
+        <p style={{ fontSize: 13.5, color: C.muted, lineHeight: 1.6, margin: '0 0 18px' }}>
+          The {fmtMoney(finalEbitda)} headline is the <strong style={{ color: C.text }}>acquired-clinic bolt-on</strong> at month 24 — the EBITDA that adds to Wagner&apos;s existing $25M+ for the exit re-rate. <strong style={{ color: C.green }}>Total ChiroPillar EBITDA (incl. Scale Services + Digital app)</strong> at month 24 is materially higher, and the 3-5 year trajectory scales dramatically beyond that as the acquisition engine compounds.
+        </p>
+
+        {/* THREE EBITDA SOURCES at Month 24 */}
+        <div style={{ fontFamily: F.mono, fontSize: 10, color: C.faint, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 10 }}>
+          Month 24 · ChiroPillar EBITDA sources
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 14, marginBottom: 18 }}>
+          <Sub label="1. Acquired clinics · 25 closed × ~$290K avg" val={fmtMoney(finalEbitda)} color={C.spine} />
+          <Sub label="2. Scale Services · $2.8M rev × 75% margin"   val={fmtMoney(2_100_000)} color={C.gold} />
+          <Sub label="3. Digital app · $825K rev × 85% margin"      val={fmtMoney(700_000)}   color={C.green} />
+          <Sub label="TOTAL ChiroPillar EBITDA · Mo 24"             val={fmtMoney(finalEbitda + 2_100_000 + 700_000)} color={C.goldLight} />
+        </div>
+
+        {/* 3-5 YEAR SCALE PROJECTION */}
+        <div style={{ fontFamily: F.mono, fontSize: 10, color: C.faint, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 700, marginTop: 22, marginBottom: 10 }}>
+          3-5 year scale projection · post month 24
+        </div>
+        <div style={{ background: C.bg3, border: `1px solid ${C.border}`, borderRadius: 12, overflow: 'hidden', marginBottom: 14 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '90px 1fr 1fr 1fr 1fr 1.4fr', gap: 12, padding: '12px 18px', background: 'rgba(255,255,255,0.04)', borderBottom: `1px solid ${C.border}`, fontFamily: F.mono, fontSize: 10, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#FFFFFF', fontWeight: 700 }}>
+            <div>Year</div>
+            <div style={{ textAlign: 'right' }}>Clinics owned</div>
+            <div style={{ textAlign: 'right' }}>Clinic EBITDA</div>
+            <div style={{ textAlign: 'right' }}>Scale Svcs EBITDA</div>
+            <div style={{ textAlign: 'right' }}>Total CP EBITDA</div>
+            <div>Combined w/ Wagner $25M+ · 9× midpoint</div>
+          </div>
+          <ScaleRow year="Y2 · Mo 24" clinics="25" clinicEb={finalEbitda} scaleEb={2_800_000} note="$32M+ combined · ~$290M exit potential" totalColor={C.gold} />
+          <ScaleRow year="Y3" clinics="45" clinicEb={13_500_000} scaleEb={4_500_000} note="$43M+ combined · ~$385M exit potential" totalColor={C.gold} />
+          <ScaleRow year="Y4" clinics="70" clinicEb={22_400_000} scaleEb={7_200_000} note="$54M+ combined · ~$490M exit potential" totalColor={C.goldLight} />
+          <ScaleRow year="Y5" clinics="100" clinicEb={34_000_000} scaleEb={10_500_000} note="$69M+ combined · ~$625M exit potential" totalColor={C.goldLight} bold />
+        </div>
+
+        <div style={{ fontSize: 13, color: C.muted, lineHeight: 1.65, padding: '14px 18px', background: 'rgba(46,117,182,0.06)', border: '1px solid rgba(46,117,182,0.18)', borderRadius: 10 }}>
+          <strong style={{ color: C.text }}>How the engine compounds:</strong> By month 24 the sales engine is fully built and running at <strong style={{ color: C.green }}>~5-6 closes per quarter</strong>. Y3 accelerates to <strong style={{ color: C.gold }}>~20 closes/yr</strong> as the playbook is proven and Wagner&apos;s medical-team install is repeatable. By Y5 we&apos;ve closed <strong style={{ color: C.gold }}>~100 clinics</strong> across Wagner&apos;s 7-state territory + adjacent expansion. Scale Services revenue compounds at ~50%/yr (each acquired clinic seeds 5-10 Scale Services customers from its referral network). Digital app reaches <strong style={{ color: C.green }}>200K+ users</strong> by Y5. <strong style={{ color: C.gold }}>This is the 3-5 year vision Wagner needs to see — the platform isn&apos;t a 24-month bolt-on, it&apos;s the platform Wagner exits at $500-625M+ off his combined EBITDA.</strong>
+        </div>
+      </div>
+
       {/* KB COMPENSATION CALLOUT · 4% one-time + 5% ongoing */}
       <div style={{
         background: `linear-gradient(135deg, rgba(46,204,139,0.10), ${C.bg3})`,
         border: `1px solid rgba(46,204,139,0.35)`, borderRadius: 14, padding: '24px 28px',
         marginBottom: 32,
       }}>
-        <div style={{ fontFamily: F.mono, fontSize: 11, color: C.green, letterSpacing: '0.20em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 8 }}>
-          ★ KB Compensation · 4% Acq + 5% Ongoing + 5% Exit
+        <div style={{ fontFamily: F.mono, fontSize: 11, color: C.gold, letterSpacing: '0.20em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 8 }}>
+          ★ Wagner gets · all equity · all multiple arbitrage · the system to scale
         </div>
-        <h2 style={{ fontFamily: F.display, fontSize: 22, fontWeight: 700, color: C.text, margin: '0 0 14px', letterSpacing: '-0.01em' }}>
-          KB earns on every acquisition, every revenue dollar, and the exit.
+        <h2 style={{ fontFamily: F.display, fontSize: 24, fontWeight: 700, color: C.text, margin: '0 0 14px', letterSpacing: '-0.01em' }}>
+          Wagner keeps 100% of every clinic. KB earns only on deals we source.
         </h2>
+        <div style={{ fontSize: 14, color: C.muted, lineHeight: 1.65, marginBottom: 18 }}>
+          <strong style={{ color: C.text }}>Wagner walks away with:</strong> 100% equity in every acquired clinic, all the multiple arbitrage on exit (2.4× cost basis → 8-10× platform), the entire acquisition + roll-up engine (sales team + ad system + intake funnel + CRM + Clay enrichment), the ChiroPillar tech platform (digital twin + dashboards + AI-tracked attribution that earns a higher tech multiple at exit), and Wagner&apos;s existing $25M+ EBITDA re-rated from 5-7× siloed to 8-10× platform. <strong style={{ color: C.green }}>KB only earns on the deals KB actually sources and the offices we bring on — and only on the exit of those specific deals we sourced and helped scale.</strong>
+        </div>
+
+        <div style={{ fontFamily: F.mono, fontSize: 10, color: C.faint, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 10 }}>
+          KB compensation · on platform-sourced deals only
+        </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 14, marginBottom: 18 }}>
-          <Sub label="4% acq consulting · 2/2 split"          val={fmtMoney(kbOneTimeFee)}       color={C.green} />
-          <Sub label="5% × clinic revenue × 5yr hold"        val={fmtMoney(kbRevenueShare5yr)} color={C.gold} />
-          <Sub label="5% × Scale Services revenue (Y1-Y3)"   val={fmtMoney(kbScaleShare)}      color={C.green} />
-          <Sub label="5% × ChiroPillar slice of exit · 2.5/2.5" val={fmtMoney(kbExitFee)}         color={C.goldLight} />
-          <Sub label="Total KB earned (24mo + hold + exit)"  val={fmtMoney(totalKbShare)}     color={C.gold} />
+          <Sub label="4% acq consulting · on platform-sourced closes only"  val={fmtMoney(kbOneTimeFee)}       color={C.green} />
+          <Sub label="5% × revenue from platform-sourced clinics × 5yr"     val={fmtMoney(kbRevenueShare5yr)} color={C.gold} />
+          <Sub label="5% × Scale Services revenue (Y1-Y3)"                   val={fmtMoney(kbScaleShare)}      color={C.green} />
+          <Sub label="5% × exit of platform-sourced clinics · 2.5/2.5"      val={fmtMoney(kbExitFee)}         color={C.goldLight} />
+          <Sub label="Total KB earned (24mo + hold + exit)"                  val={fmtMoney(totalKbShare)}     color={C.gold} />
         </div>
         <div style={{ fontSize: 13.5, color: C.muted, lineHeight: 1.65, padding: '14px 18px', background: 'rgba(46,117,182,0.06)', border: '1px solid rgba(46,117,182,0.18)', borderRadius: 10 }}>
-          <strong style={{ color: C.text }}>The 4% one-time consulting fee</strong> is paid at each acquisition close from Wagner&apos;s capital — sized on the enterprise value (a <strong style={{ color: C.green }}>$1.9M clinic = ~$76K to KB at close</strong>). Internally split <strong style={{ color: C.text }}>2% Eric/ChiroPillar (platform/closing)</strong> + <strong style={{ color: C.text }}>2% McGrath (origination/sourcing)</strong>. <strong style={{ color: C.text }}>The 5% ongoing</strong> is tracked through the platform (every intake submission + every Scale Services Stripe transaction routes via KB attribution) and paid quarterly net of refunds — <strong style={{ color: C.text }}>flows 100% to ChiroPillar</strong> (covers clinic revenue + Scale Services ancillary revenue). <strong style={{ color: C.text }}>The 5% exit fee</strong> applies when Wagner sells clinics individually or rolls the platform into a strategic/PE exit — calculated on the ChiroPillar-attributable slice of enterprise value, split <strong style={{ color: C.text }}>2.5% Eric/ChiroPillar + 2.5% McGrath</strong>. Wagner can audit at any time.
+          <strong style={{ color: C.text }}>The 4% acquisition fee</strong> is paid <strong style={{ color: C.green }}>only on chiropractor offices KB sources through the platform</strong> (intake funnel, ad-driven leads, McGrath relationship intros, KB sales team closes). If Wagner finds a deal independently outside the platform, KB earns nothing on it. Sized on EV — <strong style={{ color: C.green }}>$1.9M clinic = ~$76K to KB at close</strong>, split 2% Eric/ChiroPillar + 2% McGrath. <strong style={{ color: C.text }}>The 5% ongoing</strong> is tracked through the platform (Stripe + intake attribution + CRM) and paid quarterly net of refunds — <strong style={{ color: C.text }}>flows 100% to ChiroPillar</strong> on revenue from platform-sourced clinics + Scale Services. <strong style={{ color: C.text }}>The 5% exit fee</strong> applies <strong style={{ color: C.green }}>only on the platform-sourced clinics KB helped scale</strong> when Wagner sells them individually or rolls them into a strategic/PE exit — split 2.5% Eric/ChiroPillar + 2.5% McGrath. Wagner can audit at any time.
         </div>
       </div>
 
@@ -465,7 +523,7 @@ export default function LaunchPlanPage() {
           </div>
         </div>
         <div style={{ marginTop: 16, fontSize: 13, color: C.muted, lineHeight: 1.65, padding: '12px 18px', background: 'rgba(46,117,182,0.06)', border: '1px solid rgba(46,117,182,0.18)', borderRadius: 10 }}>
-          <strong style={{ color: C.text }}>How Scott and Eric win:</strong> base salary + 2% acquisition consulting fee (each, half of KB&apos;s 4%) on every clinic close + 2.5% exit fee (each, half of KB&apos;s 5%) on eventual sale. Equal split on transaction-level fees. The ongoing 5% revenue share is a ChiroPillar entity fee (recurring SaaS-style cash flow) — Eric owns ChiroPillar, so it accrues to him as owner equity value, not a personal line item.
+          <strong style={{ color: C.text }}>How Scott and Eric win:</strong> base salary + 2% acquisition consulting fee (each, half of KB&apos;s 4%) <strong style={{ color: C.green }}>only on platform-sourced clinic closes</strong> + 2.5% exit fee (each, half of KB&apos;s 5%) <strong style={{ color: C.green }}>only on the eventual sale of platform-sourced clinics we helped scale</strong>. Equal split on transaction-level fees. The ongoing 5% revenue share is a ChiroPillar entity fee on revenue from platform-sourced clinics + Scale Services — Eric owns ChiroPillar, so it accrues to him as owner equity value, not a personal line item.
         </div>
       </div>
 
@@ -933,6 +991,25 @@ function FounderLine({ label, val, note, accent }: { label: string; val: string;
         <div style={{ fontSize: 11, color: C.muted, marginTop: 2, fontStyle: 'italic' }}>{note}</div>
       </div>
       <div style={{ fontFamily: F.display, fontSize: 16, fontWeight: 800, color: accent || C.text, textAlign: 'right' }}>{val}</div>
+    </div>
+  )
+}
+
+function ScaleRow({ year, clinics, clinicEb, scaleEb, note, totalColor, bold }: { year: string; clinics: string; clinicEb: number; scaleEb: number; note: string; totalColor: string; bold?: boolean }) {
+  const total = clinicEb + scaleEb
+  return (
+    <div style={{
+      display: 'grid', gridTemplateColumns: '90px 1fr 1fr 1fr 1fr 1.4fr', gap: 12, padding: '14px 18px',
+      borderBottom: `1px solid ${C.border}`,
+      fontSize: 13, alignItems: 'baseline',
+      background: bold ? 'rgba(201,168,76,0.08)' : 'transparent',
+    }}>
+      <div style={{ color: bold ? C.gold : C.text, fontFamily: F.mono, fontWeight: 800, fontSize: bold ? 14 : 13, letterSpacing: '0.04em' }}>{year}</div>
+      <div style={{ textAlign: 'right', color: '#FFFFFF', fontFamily: F.display, fontWeight: 800, fontSize: bold ? 18 : 16 }}>{clinics}</div>
+      <div style={{ textAlign: 'right', color: '#C9CCDB', fontFamily: F.mono, fontWeight: 600 }}>{fmtMoney(clinicEb)}</div>
+      <div style={{ textAlign: 'right', color: '#C9CCDB', fontFamily: F.mono, fontWeight: 600 }}>{fmtMoney(scaleEb)}</div>
+      <div style={{ textAlign: 'right', color: totalColor, fontFamily: F.display, fontWeight: 800, fontSize: bold ? 18 : 16 }}>{fmtMoney(total)}</div>
+      <div style={{ color: bold ? C.gold : '#C9CCDB', fontSize: bold ? 13 : 12, fontWeight: bold ? 700 : 500, lineHeight: 1.45 }}>{note}</div>
     </div>
   )
 }
