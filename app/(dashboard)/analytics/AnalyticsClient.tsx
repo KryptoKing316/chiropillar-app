@@ -127,23 +127,24 @@ export default function AnalyticsClient({ stats }: { stats: AnalyticsStats }) {
 
       {/* Header */}
       <div style={{ marginBottom: 28 }}>
-        <div style={{ fontFamily: F.mono, fontSize: 11, color: C.align, letterSpacing: '0.22em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 8 }}>
+        <div style={{ fontFamily: F.mono, fontSize: 12.5, color: C.align, letterSpacing: '0.22em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 10 }}>
           Analytics · Where ChiroPillar is acquiring
         </div>
-        <h1 style={{ fontFamily: F.display, fontSize: 'clamp(32px, 4.5vw, 44px)', fontWeight: 700, margin: '0 0 8px', letterSpacing: '-0.02em' }}>
+        <h1 style={{ fontFamily: F.display, fontSize: 'clamp(34px, 4.5vw, 46px)', fontWeight: 700, margin: '0 0 10px', letterSpacing: '-0.02em' }}>
           The map. The funnel. The pipeline.
         </h1>
-        <p style={{ fontSize: 16, color: C.muted, margin: 0, maxWidth: 760, lineHeight: 1.6 }}>
+        <p style={{ fontSize: 16, color: '#FFFFFF', margin: 0, maxWidth: 760, lineHeight: 1.6, fontWeight: 400 }}>
           Geographic priorities reflect Dr. Wagner&apos;s strategy-call directive: Virginia first (Charlottesville home market · 18 known practices), then Texas, Florida, and the Carolinas. {stats.isDemo ? 'Numbers below are sample data from the demo session.' : 'All numbers are live from the production database.'}
         </p>
       </div>
 
       {/* KPI strip */}
       <div style={{
-        display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: 14,
+        display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 18,
         marginBottom: 36,
-        background: `linear-gradient(135deg, rgba(46,117,182,0.08), ${C.bg3})`,
-        border: `1px solid ${C.border}`, borderRadius: 14, padding: '20px 24px',
+        background: `linear-gradient(135deg, rgba(46,117,182,0.12), ${C.bg3})`,
+        border: `1px solid rgba(46,117,182,0.30)`, borderRadius: 14, padding: '24px 28px',
+        boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
       }}>
         <Kpi label="Applications"  val={String(stats.totalApplications)} color={C.gold}  isDemo={stats.isDemo} />
         <Kpi label="Qualified"     val={String(stats.qualified)}          color={C.green} isDemo={stats.isDemo} />
@@ -158,13 +159,13 @@ export default function AnalyticsClient({ stats }: { stats: AnalyticsStats }) {
       <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, overflow: 'hidden', marginBottom: 40 }}>
         <div style={{ padding: '20px 28px', borderBottom: `1px solid ${C.border}`, display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap', gap: 12 }}>
           <div>
-            <div style={{ fontFamily: F.mono, fontSize: 10, color: C.gold, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 4 }}>
-              Wagner Primary Market
+            <div style={{ fontFamily: F.mono, fontSize: 12.5, color: C.gold, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 6 }}>
+              ★ Wagner Primary Market
             </div>
-            <div style={{ fontFamily: F.display, fontSize: 22, fontWeight: 600, color: C.text }}>
+            <div style={{ fontFamily: F.display, fontSize: 24, fontWeight: 700, color: '#FFFFFF', letterSpacing: '-0.01em' }}>
               Charlottesville, Virginia · Albemarle County
             </div>
-            <div style={{ fontSize: 13, color: C.muted, fontStyle: 'italic', marginTop: 2 }}>
+            <div style={{ fontSize: 14, color: '#FFFFFF', fontStyle: 'italic', marginTop: 6, opacity: 0.85, fontWeight: 500 }}>
               &quot;I know the reimbursement codes. I know the area. I know exactly what markets to attack.&quot;
             </div>
           </div>
@@ -185,12 +186,12 @@ export default function AnalyticsClient({ stats }: { stats: AnalyticsStats }) {
 
         <div style={{ padding: '24px 28px', borderTop: `1px solid ${C.border}` }}>
           <div style={{
-            fontFamily: F.mono, fontSize: 10, color: C.gold, letterSpacing: '0.18em',
-            textTransform: 'uppercase', fontWeight: 700, marginBottom: 14,
-            display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12,
+            fontFamily: F.mono, fontSize: 12.5, color: C.gold, letterSpacing: '0.18em',
+            textTransform: 'uppercase', fontWeight: 800, marginBottom: 16,
+            display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 14,
           }}>
             <span>📍 18 known practices · Wagner&apos;s local network</span>
-            <span style={{ display: 'flex', gap: 14, fontSize: 9, color: C.faint, letterSpacing: '0.08em', flexWrap: 'wrap' }}>
+            <span style={{ display: 'flex', gap: 16, fontSize: 12, color: '#FFFFFF', letterSpacing: '0.04em', flexWrap: 'wrap', fontWeight: 600 }}>
               <PinLegend dot={C.goldLight} label="★ Wagner HQ" />
               <PinLegend dot={C.green}     label="In conversation" />
               <PinLegend dot={C.gold}      label="Wagner network" />
@@ -234,13 +235,13 @@ export default function AnalyticsClient({ stats }: { stats: AnalyticsStats }) {
                   }} />
                   <div style={{ minWidth: 0, flex: 1 }}>
                     <div style={{
-                      fontSize: 13, fontWeight: p.status === 'hq' ? 800 : 600,
-                      color: p.status === 'hq' ? C.goldLight : C.text,
-                      lineHeight: 1.2, marginBottom: 2,
+                      fontSize: 14, fontWeight: p.status === 'hq' ? 800 : 700,
+                      color: p.status === 'hq' ? C.goldLight : '#FFFFFF',
+                      lineHeight: 1.25, marginBottom: 4, letterSpacing: '-0.01em',
                     }}>
                       {p.name}
                     </div>
-                    <div style={{ fontSize: 11, color: C.muted, fontFamily: F.mono, letterSpacing: '0.02em' }}>
+                    <div style={{ fontSize: 12, color: '#FFFFFF', fontFamily: F.mono, letterSpacing: '0.02em', opacity: 0.80, fontWeight: 500 }}>
                       {p.area} · {p.note}
                     </div>
                   </div>
@@ -250,8 +251,8 @@ export default function AnalyticsClient({ stats }: { stats: AnalyticsStats }) {
           </div>
         </div>
 
-        <div style={{ padding: '16px 28px', borderTop: `1px solid ${C.border}`, fontSize: 13, color: C.muted, lineHeight: 1.55 }}>
-          <strong style={{ color: C.text }}>Why start here:</strong>{' '}
+        <div style={{ padding: '20px 30px', borderTop: `1px solid ${C.border}`, fontSize: 14, color: '#FFFFFF', lineHeight: 1.65, fontWeight: 400, background: 'rgba(201,168,76,0.04)' }}>
+          <strong style={{ color: C.gold }}>Why start here:</strong>{' '}
           Wagner&apos;s personal network covers <strong style={{ color: C.gold }}>9 of the 18 practices</strong>. Local credibility + reimbursement-code knowledge = highest-probability first wins. Branded as &quot;corporate company offering medical add-ons,&quot; not &quot;Dr. Wagner buying you out.&quot;
         </div>
       </div>
@@ -264,31 +265,32 @@ export default function AnalyticsClient({ stats }: { stats: AnalyticsStats }) {
           const dropFromPrev = i > 0 ? quizRows[i - 1].count - row.count : 0
           return (
             <div key={i} style={{ marginBottom: i < quizRows.length - 1 ? 18 : 0 }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 6, gap: 10 }}>
-                <div style={{ display: 'flex', alignItems: 'baseline', gap: 10 }}>
-                  <span style={{ fontFamily: F.mono, fontSize: 10, color: C.faint, fontWeight: 700, letterSpacing: '0.10em', width: 22 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 8, gap: 12 }}>
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: 12 }}>
+                  <span style={{ fontFamily: F.mono, fontSize: 12, color: row.accent, fontWeight: 800, letterSpacing: '0.10em', width: 26 }}>
                     {String(i).padStart(2, '0')}
                   </span>
-                  <span style={{ fontSize: 14, fontWeight: 600, color: C.text }}>{row.stage}</span>
+                  <span style={{ fontSize: 15, fontWeight: 700, color: '#FFFFFF', letterSpacing: '-0.01em' }}>{row.stage}</span>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'baseline', gap: 12 }}>
-                  <span style={{ fontFamily: F.display, fontSize: 22, fontWeight: 700, color: row.accent }}>
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: 14 }}>
+                  <span style={{ fontFamily: F.display, fontSize: 28, fontWeight: 800, color: row.accent, letterSpacing: '-0.02em' }}>
                     {row.count.toLocaleString()}
                   </span>
-                  <span style={{ fontFamily: F.mono, fontSize: 11, color: C.faint, minWidth: 64, textAlign: 'right' }}>
+                  <span style={{ fontFamily: F.mono, fontSize: 13, color: '#FFFFFF', minWidth: 70, textAlign: 'right', fontWeight: 700 }}>
                     {row.conv.toFixed(0)}%
                   </span>
                 </div>
               </div>
-              <div style={{ position: 'relative', height: 14, background: 'rgba(255,255,255,0.04)', borderRadius: 7, overflow: 'hidden' }}>
+              <div style={{ position: 'relative', height: 16, background: 'rgba(255,255,255,0.06)', borderRadius: 8, overflow: 'hidden' }}>
                 <div style={{
                   position: 'absolute', left: 0, top: 0, bottom: 0, width: `${w}%`,
                   background: `linear-gradient(90deg, ${row.accent}, ${row.accent}88)`,
-                  borderRadius: 7, transition: 'width 0.4s ease',
+                  borderRadius: 8, transition: 'width 0.4s ease',
+                  boxShadow: `0 0 12px ${row.accent}50`,
                 }} />
               </div>
               {i > 0 && dropFromPrev > 0 && (
-                <div style={{ fontSize: 11, color: C.coral, marginTop: 4, fontFamily: F.mono, letterSpacing: '0.04em', textAlign: 'right' }}>
+                <div style={{ fontSize: 12.5, color: C.coral, marginTop: 6, fontFamily: F.mono, letterSpacing: '0.04em', textAlign: 'right', fontWeight: 700 }}>
                   −{dropFromPrev.toLocaleString()} dropped
                 </div>
               )}
@@ -302,8 +304,8 @@ export default function AnalyticsClient({ stats }: { stats: AnalyticsStats }) {
       <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0,1.55fr) minmax(280px,1fr)', gap: 18, marginBottom: 18 }} className="kb-geo-grid">
 
         {/* US tilegram */}
-        <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, padding: '24px 28px' }}>
-          <div style={{ fontFamily: F.mono, fontSize: 10, color: C.faint, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 14 }}>
+        <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, padding: '26px 30px', boxShadow: '0 4px 16px rgba(0,0,0,0.12)' }}>
+          <div style={{ fontFamily: F.mono, fontSize: 12.5, color: C.gold, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 16 }}>
             US state activity tilegram
           </div>
           <div style={{
@@ -330,7 +332,7 @@ export default function AnalyticsClient({ stats }: { stats: AnalyticsStats }) {
                     background: colors.bg, color: colors.fg,
                     border: `${isSelected ? 2 : 1}px solid ${isSelected ? C.gold : colors.border}`,
                     borderRadius: 6, padding: 0, cursor: 'pointer',
-                    fontFamily: F.mono, fontSize: 11, fontWeight: 700, letterSpacing: '0.04em',
+                    fontFamily: F.mono, fontSize: 12.5, fontWeight: 800, letterSpacing: '0.04em',
                     transition: 'all 0.15s', position: 'relative',
                     display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
                     minHeight: 0,
@@ -339,7 +341,7 @@ export default function AnalyticsClient({ stats }: { stats: AnalyticsStats }) {
                 >
                   <span>{tile.state}</span>
                   {count > 0 && (
-                    <span style={{ fontSize: 9, opacity: 0.85, marginTop: 1 }}>{count}</span>
+                    <span style={{ fontSize: 11, opacity: 0.95, marginTop: 1, fontWeight: 700 }}>{count}</span>
                   )}
                   {isPrimary && (
                     <span style={{ position: 'absolute', top: 2, right: 3, width: 6, height: 6, borderRadius: 999, background: C.gold, boxShadow: `0 0 6px ${C.gold}` }} />
@@ -350,7 +352,7 @@ export default function AnalyticsClient({ stats }: { stats: AnalyticsStats }) {
           </div>
 
           {/* Legend */}
-          <div style={{ display: 'flex', gap: 18, marginTop: 18, flexWrap: 'wrap', fontSize: 11, color: C.muted, fontFamily: F.body }}>
+          <div style={{ display: 'flex', gap: 22, marginTop: 22, flexWrap: 'wrap', fontSize: 13, color: '#FFFFFF', fontFamily: F.body, fontWeight: 500 }}>
             <Legend swatch={C.gold}    label="Wagner Primary (VA)" />
             <Legend swatch={C.align}   label="Wagner Secondary (TX/FL/NC/SC/GA/TN)" />
             <Legend swatch="rgba(46,204,139,0.40)" label="Other active" />
@@ -359,22 +361,22 @@ export default function AnalyticsClient({ stats }: { stats: AnalyticsStats }) {
         </div>
 
         {/* Selected-state detail */}
-        <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, padding: '24px 28px' }}>
-          <div style={{ fontFamily: F.mono, fontSize: 10, color: C.faint, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 14 }}>
-            {selectedState ? `Selected · ${selectedState}` : 'Click any state'}
+        <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, padding: '26px 30px', boxShadow: '0 4px 16px rgba(0,0,0,0.12)' }}>
+          <div style={{ fontFamily: F.mono, fontSize: 12.5, color: C.align, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 16 }}>
+            {selectedState ? `Selected · ${selectedState}` : '★ Click any state'}
           </div>
           {selectedState && stateData.has(selectedState) ? (
             <StateDetail row={stateData.get(selectedState)!} />
           ) : selectedState ? (
-            <div style={{ fontSize: 14, color: C.muted, lineHeight: 1.6 }}>
-              No applicants from <strong style={{ color: C.text }}>{selectedState}</strong> yet. Open the Outreach Campaigns tab to set up the targeted drip for this state.
+            <div style={{ fontSize: 15, color: '#FFFFFF', lineHeight: 1.65, fontWeight: 400 }}>
+              No applicants from <strong style={{ color: C.gold }}>{selectedState}</strong> yet. Open the Outreach Campaigns tab to set up the targeted drip for this state.
             </div>
           ) : (
             <>
-              <div style={{ fontSize: 14, color: C.muted, lineHeight: 1.6, marginBottom: 18 }}>
+              <div style={{ fontSize: 15, color: '#FFFFFF', lineHeight: 1.65, marginBottom: 22, fontWeight: 400 }}>
                 Click a state tile to see the per-state breakdown. Gold-haloed states are Wagner&apos;s declared primary markets from the strategy call.
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                 {stats.byState.slice(0, 5).map(s => (
                   <button
                     key={s.state}
@@ -382,20 +384,21 @@ export default function AnalyticsClient({ stats }: { stats: AnalyticsStats }) {
                     onClick={() => setSelectedState(s.state)}
                     style={{
                       display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-                      padding: '10px 14px', borderRadius: 8,
-                      background: WAGNER_PRIMARY.has(s.state) ? 'rgba(201,168,76,0.10)' : C.bg3,
-                      border: `1px solid ${WAGNER_PRIMARY.has(s.state) ? 'rgba(201,168,76,0.35)' : C.border}`,
-                      cursor: 'pointer', color: C.text, fontFamily: F.body,
-                      textAlign: 'left',
+                      padding: '12px 16px', borderRadius: 8,
+                      background: WAGNER_PRIMARY.has(s.state) ? 'rgba(201,168,76,0.14)' : C.bg3,
+                      border: `1px solid ${WAGNER_PRIMARY.has(s.state) ? 'rgba(201,168,76,0.40)' : C.border}`,
+                      borderLeft: `4px solid ${WAGNER_PRIMARY.has(s.state) ? C.gold : C.globe}`,
+                      cursor: 'pointer', color: '#FFFFFF', fontFamily: F.body,
+                      textAlign: 'left', transition: 'all 0.15s',
                     }}
                   >
-                    <span style={{ fontFamily: F.mono, fontWeight: 700, color: WAGNER_PRIMARY.has(s.state) ? C.gold : C.text, width: 32 }}>
+                    <span style={{ fontFamily: F.mono, fontWeight: 800, fontSize: 15, color: WAGNER_PRIMARY.has(s.state) ? C.gold : '#FFFFFF', width: 36 }}>
                       {s.state}
                     </span>
-                    <span style={{ flex: 1, fontSize: 13, color: C.muted, marginLeft: 8 }}>
+                    <span style={{ flex: 1, fontSize: 13.5, color: '#FFFFFF', marginLeft: 10, fontWeight: 500 }}>
                       {s.total} · {s.qualified} qualified
                     </span>
-                    <span style={{ fontSize: 12, fontFamily: F.mono, color: C.gold }}>{fmtMoney(s.pipelineValue)}</span>
+                    <span style={{ fontSize: 14, fontFamily: F.display, color: C.gold, fontWeight: 800 }}>{fmtMoney(s.pipelineValue)}</span>
                   </button>
                 ))}
               </div>
@@ -406,20 +409,21 @@ export default function AnalyticsClient({ stats }: { stats: AnalyticsStats }) {
 
       {/* ── 4. OUTREACH PIPELINE FUNNEL ─────────────────────────────────── */}
       <SectionHead eyebrow="Outreach pipeline · post-qualification flow" title="From qualified to closed." />
-      <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, padding: '24px 28px', marginBottom: 40 }}>
+      <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, padding: '26px 30px', marginBottom: 40, boxShadow: '0 4px 16px rgba(0,0,0,0.12)' }}>
         {pipelineRows.map((row, i) => {
           const w = (row.count / maxPipeline) * 100
           return (
-            <div key={i} style={{ marginBottom: i < pipelineRows.length - 1 ? 16 : 0 }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 6 }}>
-                <span style={{ fontSize: 14, fontWeight: 600, color: C.text }}>{row.stage}</span>
-                <span style={{ fontFamily: F.display, fontSize: 22, fontWeight: 700, color: row.accent }}>{row.count}</span>
+            <div key={i} style={{ marginBottom: i < pipelineRows.length - 1 ? 18 : 0 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 8 }}>
+                <span style={{ fontSize: 15, fontWeight: 700, color: '#FFFFFF', letterSpacing: '-0.01em' }}>{row.stage}</span>
+                <span style={{ fontFamily: F.display, fontSize: 28, fontWeight: 800, color: row.accent, letterSpacing: '-0.02em' }}>{row.count}</span>
               </div>
-              <div style={{ position: 'relative', height: 12, background: 'rgba(255,255,255,0.04)', borderRadius: 6, overflow: 'hidden' }}>
+              <div style={{ position: 'relative', height: 14, background: 'rgba(255,255,255,0.06)', borderRadius: 7, overflow: 'hidden' }}>
                 <div style={{
                   position: 'absolute', left: 0, top: 0, bottom: 0, width: `${Math.max(w, 1)}%`,
                   background: `linear-gradient(90deg, ${row.accent}, ${row.accent}88)`,
-                  borderRadius: 6, transition: 'width 0.4s ease',
+                  borderRadius: 7, transition: 'width 0.4s ease',
+                  boxShadow: `0 0 12px ${row.accent}50`,
                 }} />
               </div>
             </div>
@@ -429,13 +433,13 @@ export default function AnalyticsClient({ stats }: { stats: AnalyticsStats }) {
 
       {/* ── 5. STATE PIPELINE TABLE ─────────────────────────────────────── */}
       <SectionHead eyebrow="Per-state pipeline · weighted EBITDA" title="Where the money is." />
-      <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, overflow: 'hidden' }}>
+      <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, overflow: 'hidden', boxShadow: '0 4px 20px rgba(0,0,0,0.15)' }}>
         <div style={{
-          display: 'grid', gridTemplateColumns: '80px 1fr 100px 100px 130px 100px',
-          gap: 12, padding: '14px 22px',
-          background: C.bg3, borderBottom: `1px solid ${C.border}`,
-          fontFamily: F.mono, fontSize: 10, letterSpacing: '0.14em',
-          textTransform: 'uppercase', color: C.muted, fontWeight: 700,
+          display: 'grid', gridTemplateColumns: '90px 1fr 110px 110px 140px 100px',
+          gap: 14, padding: '16px 24px',
+          background: 'rgba(201,168,76,0.06)', borderBottom: `1px solid ${C.border}`,
+          fontFamily: F.mono, fontSize: 12, letterSpacing: '0.14em',
+          textTransform: 'uppercase', color: '#FFFFFF', fontWeight: 800,
         }}>
           <div>State</div>
           <div>Wagner band</div>
@@ -448,32 +452,32 @@ export default function AnalyticsClient({ stats }: { stats: AnalyticsStats }) {
           const isPrimary = WAGNER_PRIMARY.has(s.state)
           const isSecondary = WAGNER_SECONDARY.has(s.state)
           const band = isPrimary ? 'PRIMARY' : isSecondary ? 'Secondary' : 'Opportunistic'
-          const bandColor = isPrimary ? C.gold : isSecondary ? C.align : C.muted
+          const bandColor = isPrimary ? C.gold : isSecondary ? C.globe : '#FFFFFF'
           const conv = s.total ? Math.round((s.qualified / s.total) * 100) : 0
           return (
             <div key={s.state} style={{
-              display: 'grid', gridTemplateColumns: '80px 1fr 100px 100px 130px 100px',
-              gap: 12, padding: '14px 22px',
+              display: 'grid', gridTemplateColumns: '90px 1fr 110px 110px 140px 100px',
+              gap: 14, padding: '16px 24px',
               borderBottom: i < stats.byState.length - 1 ? `1px solid ${C.border}` : 'none',
-              background: isPrimary ? 'rgba(201,168,76,0.05)' : 'transparent',
-              color: C.text, fontSize: 14,
+              background: isPrimary ? 'rgba(201,168,76,0.08)' : 'transparent',
+              color: '#FFFFFF', fontSize: 14,
               alignItems: 'center',
             }}>
-              <div style={{ fontFamily: F.mono, fontWeight: 800, color: bandColor, letterSpacing: '0.04em' }}>
+              <div style={{ fontFamily: F.mono, fontWeight: 800, color: bandColor, letterSpacing: '0.04em', fontSize: 16 }}>
                 {s.state}
               </div>
               <div style={{
-                fontFamily: F.mono, fontSize: 10, color: bandColor,
-                letterSpacing: '0.16em', fontWeight: 700, textTransform: 'uppercase',
+                fontFamily: F.mono, fontSize: 12, color: bandColor,
+                letterSpacing: '0.16em', fontWeight: 800, textTransform: 'uppercase',
               }}>
                 {isPrimary && '★ '}{band}
               </div>
-              <div style={{ textAlign: 'right', fontFamily: F.mono, color: C.text }}>{s.total}</div>
-              <div style={{ textAlign: 'right', fontFamily: F.mono, color: C.green }}>{s.qualified}</div>
-              <div style={{ textAlign: 'right', fontFamily: F.display, fontWeight: 700, color: C.gold }}>
+              <div style={{ textAlign: 'right', fontFamily: F.mono, color: '#FFFFFF', fontSize: 15, fontWeight: 700 }}>{s.total}</div>
+              <div style={{ textAlign: 'right', fontFamily: F.mono, color: C.green, fontSize: 15, fontWeight: 700 }}>{s.qualified}</div>
+              <div style={{ textAlign: 'right', fontFamily: F.display, fontWeight: 800, color: C.gold, fontSize: 18, letterSpacing: '-0.02em' }}>
                 {fmtMoney(s.pipelineValue)}
               </div>
-              <div style={{ textAlign: 'right', fontFamily: F.mono, color: C.muted }}>{conv}%</div>
+              <div style={{ textAlign: 'right', fontFamily: F.mono, color: '#FFFFFF', fontSize: 14, fontWeight: 700 }}>{conv}%</div>
             </div>
           )
         })}
@@ -491,23 +495,23 @@ export default function AnalyticsClient({ stats }: { stats: AnalyticsStats }) {
 // ── small sub-components ────────────────────────────────────────────────
 function Kpi({ label, val, color, isDemo }: { label: string; val: string; color: string; isDemo: boolean }) {
   return (
-    <div>
-      <div style={{ fontFamily: F.mono, fontSize: 10, color: C.faint, letterSpacing: '0.12em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 4, display: 'flex', alignItems: 'center', gap: 6 }}>
+    <div style={{ padding: '4px 0' }}>
+      <div style={{ fontFamily: F.mono, fontSize: 11.5, color, letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 8, display: 'flex', alignItems: 'center', gap: 7 }}>
         {label}
-        <span style={{ width: 5, height: 5, borderRadius: 999, background: isDemo ? C.gold : C.green, boxShadow: `0 0 8px ${isDemo ? C.gold : C.green}` }} />
+        <span style={{ width: 7, height: 7, borderRadius: 999, background: isDemo ? C.gold : C.green, boxShadow: `0 0 10px ${isDemo ? C.gold : C.green}` }} />
       </div>
-      <div style={{ fontSize: 22, fontWeight: 700, color, fontFamily: F.display, lineHeight: 1 }}>{val}</div>
+      <div style={{ fontSize: 30, fontWeight: 800, color, fontFamily: F.display, lineHeight: 1, letterSpacing: '-0.02em' }}>{val}</div>
     </div>
   )
 }
 
 function SectionHead({ eyebrow, title }: { eyebrow: string; title: string }) {
   return (
-    <div style={{ marginBottom: 16 }}>
-      <div style={{ fontFamily: F.mono, fontSize: 10, color: C.align, letterSpacing: '0.20em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 6 }}>
+    <div style={{ marginBottom: 18 }}>
+      <div style={{ fontFamily: F.mono, fontSize: 12.5, color: C.align, letterSpacing: '0.20em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 8 }}>
         {eyebrow}
       </div>
-      <h2 style={{ fontFamily: F.display, fontSize: 24, fontWeight: 600, margin: 0, letterSpacing: '-0.01em' }}>
+      <h2 style={{ fontFamily: F.display, fontSize: 'clamp(22px, 2.8vw, 28px)', fontWeight: 700, margin: 0, letterSpacing: '-0.02em', color: '#FFFFFF' }}>
         {title}
       </h2>
     </div>
@@ -516,8 +520,8 @@ function SectionHead({ eyebrow, title }: { eyebrow: string; title: string }) {
 
 function Legend({ swatch, label }: { swatch: string; label: string }) {
   return (
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 7 }}>
-      <span style={{ display: 'inline-block', width: 12, height: 12, borderRadius: 3, background: swatch, border: '1px solid rgba(255,255,255,0.10)' }} />
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+      <span style={{ display: 'inline-block', width: 14, height: 14, borderRadius: 4, background: swatch, border: '1px solid rgba(255,255,255,0.15)' }} />
       {label}
     </span>
   )
@@ -525,8 +529,8 @@ function Legend({ swatch, label }: { swatch: string; label: string }) {
 
 function PinLegend({ dot, label }: { dot: string; label: string }) {
   return (
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
-      <span style={{ display: 'inline-block', width: 7, height: 7, borderRadius: 999, background: dot, boxShadow: `0 0 4px ${dot}aa` }} />
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+      <span style={{ display: 'inline-block', width: 9, height: 9, borderRadius: 999, background: dot, boxShadow: `0 0 6px ${dot}aa` }} />
       {label}
     </span>
   )
@@ -534,9 +538,14 @@ function PinLegend({ dot, label }: { dot: string; label: string }) {
 
 function MiniStat({ label, val, accent }: { label: string; val: string; accent: string }) {
   return (
-    <div style={{ textAlign: 'center', padding: '8px 12px', background: 'rgba(255,255,255,0.03)', border: `1px solid ${C.border}`, borderRadius: 8, minWidth: 90 }}>
-      <div style={{ fontFamily: F.mono, fontSize: 9, color: C.faint, letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 700 }}>{label}</div>
-      <div style={{ fontFamily: F.display, fontSize: 20, fontWeight: 700, color: accent, lineHeight: 1, marginTop: 2 }}>{val}</div>
+    <div style={{
+      textAlign: 'center', padding: '12px 16px',
+      background: `${accent}15`, border: `1px solid ${accent}40`,
+      borderLeft: `4px solid ${accent}`,
+      borderRadius: 10, minWidth: 100,
+    }}>
+      <div style={{ fontFamily: F.mono, fontSize: 11, color: accent, letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 4 }}>{label}</div>
+      <div style={{ fontFamily: F.display, fontSize: 26, fontWeight: 800, color: accent, lineHeight: 1, letterSpacing: '-0.02em' }}>{val}</div>
     </div>
   )
 }
@@ -546,14 +555,14 @@ function StateDetail({ row }: { row: { state: string; total: number; qualified: 
   const isSecondary = WAGNER_SECONDARY.has(row.state)
   return (
     <div>
-      <div style={{ fontFamily: F.display, fontSize: 36, fontWeight: 700, color: isPrimary ? C.gold : C.text, marginBottom: 4 }}>
+      <div style={{ fontFamily: F.display, fontSize: 48, fontWeight: 800, color: isPrimary ? C.gold : '#FFFFFF', marginBottom: 6, letterSpacing: '-0.03em', lineHeight: 1 }}>
         {row.state}
       </div>
-      <div style={{ fontFamily: F.mono, fontSize: 10, color: isPrimary ? C.gold : isSecondary ? C.align : C.muted, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 18 }}>
+      <div style={{ fontFamily: F.mono, fontSize: 12, color: isPrimary ? C.gold : isSecondary ? C.globe : '#FFFFFF', letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 22 }}>
         {isPrimary ? '★ Wagner primary' : isSecondary ? 'Wagner secondary' : 'Opportunistic'}
       </div>
-      <div style={{ display: 'grid', gap: 10 }}>
-        <RowKv label="Applications"    val={row.total.toString()}    color={C.text} />
+      <div style={{ display: 'grid', gap: 12 }}>
+        <RowKv label="Applications"    val={row.total.toString()}    color={'#FFFFFF'} />
         <RowKv label="Qualified"       val={row.qualified.toString()} color={C.green} />
         <RowKv label="Maybe"           val={row.maybe.toString()}     color={C.gold} />
         <RowKv label="Pipeline EBITDA" val={fmtMoney(row.pipelineValue)} color={C.gold} />
@@ -564,9 +573,9 @@ function StateDetail({ row }: { row: { state: string; total: number; qualified: 
 
 function RowKv({ label, val, color }: { label: string; val: string; color: string }) {
   return (
-    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', borderBottom: `1px solid ${C.border}`, paddingBottom: 8 }}>
-      <span style={{ fontSize: 12, color: C.faint, fontFamily: F.mono, letterSpacing: '0.10em', textTransform: 'uppercase' }}>{label}</span>
-      <span style={{ fontSize: 17, fontWeight: 700, color, fontFamily: F.display }}>{val}</span>
+    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', borderBottom: `1px solid ${C.border}`, paddingBottom: 10, paddingTop: 4 }}>
+      <span style={{ fontSize: 13, color: color, fontFamily: F.mono, letterSpacing: '0.10em', textTransform: 'uppercase', fontWeight: 800 }}>{label}</span>
+      <span style={{ fontSize: 22, fontWeight: 800, color, fontFamily: F.display, letterSpacing: '-0.02em' }}>{val}</span>
     </div>
   )
 }
