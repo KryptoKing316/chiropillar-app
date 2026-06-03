@@ -414,7 +414,7 @@ export default function LaunchPlanPage() {
           Month 24 · ChiroPillar EBITDA sources
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 14, marginBottom: 24 }}>
-          <EbitdaSourceCard num="1" label="Acquired clinics" detail="25 closed × ~$290K avg" val={fmtMoney(finalEbitda)} accent={C.spine} />
+          <EbitdaSourceCard num="1" label="Acquired clinics" detail="25 closed × ~$290K avg" val={fmtMoney(finalEbitda)} accent={C.globe} />
           <EbitdaSourceCard num="2" label="Scale Services" detail="$2.8M rev × 75% margin" val={fmtMoney(2_100_000)} accent={C.gold} />
           <EbitdaSourceCard num="3" label="Digital app" detail="$825K rev × 85% margin" val={fmtMoney(700_000)} accent={C.green} />
           <EbitdaSourceCard num="Σ" label="TOTAL · Mo 24" detail="all 3 engines combined" val={fmtMoney(finalEbitda + 2_100_000 + 700_000)} accent={C.goldLight} bold />
@@ -456,8 +456,8 @@ export default function LaunchPlanPage() {
         <h2 style={{ fontFamily: F.display, fontSize: 24, fontWeight: 700, color: C.text, margin: '0 0 14px', letterSpacing: '-0.01em' }}>
           Wagner keeps 100% of every clinic. KB earns only on deals we source.
         </h2>
-        <div style={{ fontSize: 15, color: '#C9CCDB', lineHeight: 1.7, marginBottom: 22 }}>
-          <strong style={{ color: '#FFFFFF' }}>Wagner walks away with:</strong> 100% equity in every acquired clinic, all the multiple arbitrage on exit (2.4× cost basis → 8-10× platform), the entire acquisition + roll-up engine, the ChiroPillar tech platform, and Wagner&apos;s existing $25M+ EBITDA re-rated from 5-7× siloed to 8-10× platform. <strong style={{ color: C.green }}>KB only earns on the deals KB actually sources and the offices we bring on — and only on the exit of those specific deals we sourced and helped scale.</strong>
+        <div style={{ fontSize: 15, color: '#FFFFFF', lineHeight: 1.7, marginBottom: 22 }}>
+          <strong style={{ color: '#FFFFFF' }}>Wagner walks away with:</strong> 100% equity in every acquired clinic, all the multiple arbitrage on exit (2.4× cost basis → 8-10× platform), the entire acquisition + roll-up engine, the ChiroPillar tech platform, and Wagner&apos;s existing $25M+ EBITDA re-rated from 5-7× siloed to 8-10× platform. <strong style={{ color: C.green }}>KB only earns on the deals KB actually sources and the offices we bring on — and only on the exit of those specific deals we sourced and helped systemize &amp; scale.</strong>
         </div>
 
         <div style={{ fontFamily: F.mono, fontSize: 13, color: '#FFFFFF', letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 14 }}>
@@ -490,7 +490,7 @@ export default function LaunchPlanPage() {
                 <h3 style={{ fontFamily: F.display, fontSize: 22, fontWeight: 700, color: C.text, margin: 0, letterSpacing: '-0.01em' }}>{s.name}</h3>
                 <span style={{ fontSize: 11, color: s.accent, fontFamily: F.mono, letterSpacing: '0.12em', textTransform: 'uppercase', fontWeight: 700 }}>{s.ownership}</span>
               </div>
-              <p style={{ fontSize: 15, color: '#C9CCDB', lineHeight: 1.6, margin: '0 0 14px' }}>{s.what}</p>
+              <p style={{ fontSize: 15, color: '#FFFFFF', lineHeight: 1.6, margin: '0 0 14px' }}>{s.what}</p>
               <div style={{ display: 'flex', gap: 7, flexWrap: 'wrap', marginBottom: 14 }}>
                 {s.tools.map(t => (
                   <span key={t} style={{ fontSize: 12, padding: '4px 10px', borderRadius: 5, background: `${s.accent}22`, color: s.accent, fontFamily: F.mono, fontWeight: 700, letterSpacing: '0.04em' }}>{t}</span>
@@ -500,7 +500,7 @@ export default function LaunchPlanPage() {
             <div style={{ background: C.bg3, border: `1px solid ${C.border}`, borderRadius: 10, padding: '16px 18px' }}>
               <div style={{ fontFamily: F.mono, fontSize: 12, color: '#FFFFFF', letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 12 }}>Metrics</div>
               {s.metrics.map((m, j) => (
-                <div key={j} style={{ display: 'flex', justifyContent: 'space-between', padding: '5px 0', fontSize: 13, color: '#C9CCDB', gap: 8 }}>
+                <div key={j} style={{ display: 'flex', justifyContent: 'space-between', padding: '5px 0', fontSize: 13, color: '#FFFFFF', gap: 8 }}>
                   <span style={{ flexShrink: 1, lineHeight: 1.4 }}>{m.label}</span>
                   <span style={{ color: '#FFFFFF', fontFamily: F.mono, fontWeight: 700, flexShrink: 0 }}>{m.val}</span>
                 </div>
@@ -661,11 +661,11 @@ export default function LaunchPlanPage() {
             <div style={{ fontFamily: F.mono, color: C.gold, fontWeight: 800, fontSize: 13 }}>{t.q}</div>
             <div style={{ textAlign: 'right', color: '#FFFFFF', fontFamily: F.mono, fontWeight: 600 }}>{fmtMoney(t.team_cost)}</div>
             <div style={{ textAlign: 'right', color: '#FFFFFF', fontFamily: F.mono, fontWeight: 600 }}>{fmtMoney(t.marketing)}</div>
-            <div style={{ textAlign: 'right', color: '#C9CCDB', fontFamily: F.mono, fontWeight: 500 }}>{fmtMoney(t.saas)}</div>
+            <div style={{ textAlign: 'right', color: '#FFFFFF', fontFamily: F.mono, fontWeight: 500 }}>{fmtMoney(t.saas)}</div>
             <div style={{ textAlign: 'right', color: t.acq_count > 0 ? C.green : C.faint, fontFamily: F.display, fontWeight: 800, fontSize: 20 }}>{t.acq_count}</div>
             <div style={{ textAlign: 'right', color: C.globe, fontFamily: F.display, fontWeight: 800, fontSize: 15 }}>{fmtMoney(t.wagner_cash)}</div>
             <div style={{ textAlign: 'right', color: C.goldLight, fontFamily: F.display, fontWeight: 800, fontSize: 15 }}>{fmtMoney(t.bank_debt)}</div>
-            <div style={{ color: '#C9CCDB', fontSize: 13, lineHeight: 1.55 }}>{t.notes}</div>
+            <div style={{ color: '#FFFFFF', fontSize: 13, lineHeight: 1.55 }}>{t.notes}</div>
           </div>
         ))}
       </div>
@@ -897,7 +897,7 @@ function Ask({ label, val, sub, color }: { label: string; val: string; sub: stri
     <div style={{ background: 'rgba(255,255,255,0.05)', border: `1px solid ${color ? color + '66' : C.border}`, borderRadius: 12, padding: '18px 20px' }}>
       <div style={{ fontFamily: F.display, fontSize: 15, color: '#FFFFFF', letterSpacing: '-0.01em', fontWeight: 700, marginBottom: 8 }}>{label}</div>
       <div style={{ fontSize: 28, fontWeight: 800, color: color || '#FFFFFF', fontFamily: F.display, lineHeight: 1, marginBottom: 8, letterSpacing: '-0.02em' }}>{val}</div>
-      <div style={{ fontSize: 13, color: '#C9CCDB', lineHeight: 1.5 }}>{sub}</div>
+      <div style={{ fontSize: 13, color: '#FFFFFF', lineHeight: 1.5 }}>{sub}</div>
     </div>
   )
 }
@@ -953,7 +953,7 @@ function KbFeeCard({ label, detail, val, accent, bold }: { label: string; detail
       borderRadius: 10,
     }}>
       <div style={{ fontFamily: F.display, fontSize: 16, fontWeight: 700, color: '#FFFFFF', marginBottom: 3, letterSpacing: '-0.01em' }}>{label}</div>
-      <div style={{ fontSize: 12, color: '#C9CCDB', marginBottom: 10, lineHeight: 1.4 }}>{detail}</div>
+      <div style={{ fontSize: 12, color: '#FFFFFF', marginBottom: 10, lineHeight: 1.4 }}>{detail}</div>
       <div style={{ fontFamily: F.display, fontSize: bold ? 28 : 24, fontWeight: 800, color: accent, lineHeight: 1, letterSpacing: '-0.02em' }}>{val}</div>
     </div>
   )
@@ -972,7 +972,7 @@ function EbitdaSourceCard({ num, label, detail, val, accent, bold }: { num: stri
         <span style={{ fontFamily: F.display, fontSize: 20, fontWeight: 800, color: accent, lineHeight: 1 }}>{num}</span>
         <span style={{ fontFamily: F.display, fontSize: 18, fontWeight: 700, color: '#FFFFFF', letterSpacing: '-0.01em' }}>{label}</span>
       </div>
-      <div style={{ fontSize: 13, color: '#C9CCDB', marginBottom: 12, lineHeight: 1.4 }}>{detail}</div>
+      <div style={{ fontSize: 13, color: '#FFFFFF', marginBottom: 12, lineHeight: 1.4 }}>{detail}</div>
       <div style={{ fontFamily: F.display, fontSize: bold ? 32 : 28, fontWeight: 800, color: accent, lineHeight: 1, letterSpacing: '-0.02em' }}>{val}</div>
     </div>
   )
@@ -992,7 +992,7 @@ function ScaleRow({ year, clinics, clinicEb, scaleEb, note, totalColor, bold }: 
       <div style={{ textAlign: 'right', color: '#FFFFFF', fontFamily: F.mono, fontWeight: 700, fontSize: 14 }}>{fmtMoney(clinicEb)}</div>
       <div style={{ textAlign: 'right', color: '#FFFFFF', fontFamily: F.mono, fontWeight: 700, fontSize: 14 }}>{fmtMoney(scaleEb)}</div>
       <div style={{ textAlign: 'right', color: totalColor, fontFamily: F.display, fontWeight: 800, fontSize: bold ? 22 : 19 }}>{fmtMoney(total)}</div>
-      <div style={{ color: bold ? C.gold : '#C9CCDB', fontSize: bold ? 14 : 13, fontWeight: bold ? 700 : 500, lineHeight: 1.45 }}>{note}</div>
+      <div style={{ color: bold ? C.gold : '#FFFFFF', fontSize: bold ? 14 : 13, fontWeight: bold ? 700 : 500, lineHeight: 1.45 }}>{note}</div>
     </div>
   )
 }

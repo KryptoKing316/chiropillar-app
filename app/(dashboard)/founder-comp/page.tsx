@@ -51,7 +51,7 @@ function FounderLine({ label, val, note, accent }: { label: string; val: string;
     <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 12, padding: '10px 14px', borderRadius: 8, background: 'rgba(255,255,255,0.025)', border: `1px solid ${C.border}`, alignItems: 'baseline' }}>
       <div>
         <div style={{ fontSize: 14, color: '#FFFFFF', fontWeight: 600, lineHeight: 1.3 }}>{label}</div>
-        <div style={{ fontSize: 12, color: '#C9CCDB', marginTop: 2, fontStyle: 'italic' }}>{note}</div>
+        <div style={{ fontSize: 12, color: '#FFFFFF', marginTop: 2, fontStyle: 'italic' }}>{note}</div>
       </div>
       <div style={{ fontFamily: F.display, fontSize: 17, fontWeight: 800, color: accent || C.text, textAlign: 'right' }}>{val}</div>
     </div>
@@ -122,7 +122,7 @@ export default function FounderCompPage() {
             </div>
           </div>
         </div>
-        <div style={{ marginTop: 18, fontSize: 14, color: '#C9CCDB', lineHeight: 1.65, padding: '14px 20px', background: 'rgba(46,117,182,0.06)', border: '1px solid rgba(46,117,182,0.18)', borderRadius: 10 }}>
+        <div style={{ marginTop: 18, fontSize: 14, color: '#FFFFFF', lineHeight: 1.65, padding: '14px 20px', background: 'rgba(46,117,182,0.06)', border: '1px solid rgba(46,117,182,0.18)', borderRadius: 10 }}>
           <strong style={{ color: '#FFFFFF' }}>How Scott and Eric win:</strong> base salary + 2% acquisition consulting fee (each, half of KB&apos;s 4%) <strong style={{ color: C.green }}>only on platform-sourced clinic closes</strong> + 2.5% exit fee (each, half of KB&apos;s 5%) <strong style={{ color: C.green }}>only on the eventual sale of platform-sourced clinics we helped scale</strong>. Equal split on transaction-level fees. The ongoing 5% revenue share is a ChiroPillar entity fee on revenue from platform-sourced clinics + Scale Services — Eric owns ChiroPillar, so it accrues to him as owner equity value, not a personal line item.
         </div>
       </div>
@@ -131,7 +131,7 @@ export default function FounderCompPage() {
         <div style={{ fontFamily: F.mono, fontSize: 11, color: '#E87373', letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 8 }}>
           ⚠️ Internal note
         </div>
-        <p style={{ fontSize: 14, color: '#C9CCDB', lineHeight: 1.6, margin: 0 }}>
+        <p style={{ fontSize: 14, color: '#FFFFFF', lineHeight: 1.6, margin: 0 }}>
           This split (2/2 on the 4% acq + 2.5/2.5 on the 5% exit) is the current working proposal. Eric and Scott to discuss + lock in writing before Wagner signs the term sheet. Wagner sees only the ChiroPillar-level fee structure on /launch-plan — never this internal allocation.
         </p>
       </div>
