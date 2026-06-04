@@ -126,23 +126,25 @@ export default function LoginPage() {
           </div>
         </div>
 
-        {/* Headline · "Strength in Alignment" pulled here as italic mantra · readable contrast */}
+        {/* Headline · Strength in Alignment · bold + readable */}
         <h1 style={{
           fontFamily: "'Playfair Display', Georgia, serif",
-          fontSize: '26px', fontWeight: 600, fontStyle: 'italic',
-          color: '#E8C96A',
-          margin: '0 0 8px',
-          textAlign: 'center', lineHeight: 1.25,
-          textShadow: '0 1px 2px rgba(0,0,0,0.40)',
+          fontSize: '30px', fontWeight: 800,
+          color: '#C9A84C',
+          margin: '0 0 10px',
+          textAlign: 'center', lineHeight: 1.2,
+          letterSpacing: '-0.01em',
         }}>
           Strength in Alignment.
         </h1>
         <div style={{
-          fontFamily: "'Inter', system-ui, sans-serif",
-          fontSize: '15px', fontWeight: 500,
-          color: '#C9CCDB',
-          margin: '0 0 24px',
-          textAlign: 'center', letterSpacing: '0.02em',
+          fontFamily: "'JetBrains Mono', 'DM Mono', monospace",
+          fontSize: '11px', fontWeight: 800,
+          color: '#FFFFFF',
+          margin: '0 0 28px',
+          textAlign: 'center', letterSpacing: '0.22em',
+          textTransform: 'uppercase',
+          opacity: 0.85,
         }}>
           Chiropractic Roll-Up Platform
         </div>

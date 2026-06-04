@@ -426,20 +426,33 @@ export default function Sidebar({ userEmail, isDemo, isAdmin, isEricOnly }: { us
       transition: 'background 0.3s ease, border-color 0.3s ease',
     }}>
 
-      {/* Logo · mascot icon + bold white ChiroPillar wordmark (no tagline — hard to read at this size) */}
+      {/* Logo · Escalating Pillar mark + bold ChiroPillar wordmark + Strength in Alignment tagline */}
       <div style={{ padding: '22px 16px 18px', borderBottom: '1px solid var(--kb-border)', display: 'flex', alignItems: 'center', gap: '12px' }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={logoSrc} alt="ChiroPillar mascot" style={{ width: '52px', height: '52px', display: 'block', flexShrink: 0 }} />
-        <div style={{
-          fontFamily: "'Playfair Display', Georgia, serif",
-          fontSize: '22px',
-          fontWeight: 800,
-          color: '#F2EEE7',
-          letterSpacing: '-0.02em',
-          lineHeight: 1,
-          flex: 1,
-        }}>
-          ChiroPillar
+        <img src={logoSrc} alt="ChiroPillar" style={{ width: '54px', height: '54px', display: 'block', flexShrink: 0, filter: 'drop-shadow(0 4px 10px rgba(201,168,76,0.25))' }} />
+        <div style={{ flex: 1, lineHeight: 1 }}>
+          <div style={{
+            fontFamily: "'Playfair Display', Georgia, serif",
+            fontSize: '24px',
+            fontWeight: 800,
+            color: '#F2EEE7',
+            letterSpacing: '-0.02em',
+            lineHeight: 1,
+            marginBottom: '6px',
+          }}>
+            ChiroPillar
+          </div>
+          <div style={{
+            fontFamily: "'JetBrains Mono', 'DM Mono', monospace",
+            fontSize: '9.5px',
+            fontWeight: 800,
+            color: '#C9A84C',
+            letterSpacing: '0.16em',
+            textTransform: 'uppercase',
+            lineHeight: 1,
+          }}>
+            Strength in Alignment
+          </div>
         </div>
         <button
           onClick={() => setMobileOpen(false)}
