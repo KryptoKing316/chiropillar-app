@@ -1009,10 +1009,16 @@ function KvLine({ label, val, accent }: { label: string; val: string; accent?: s
 
 function BurnPill({ label, val, sub, color, bold }: { label: string; val: string; sub: string; color: string; bold?: boolean }) {
   return (
-    <div style={{ padding: bold ? '14px 18px' : '12px 16px', background: bold ? `${color}15` : 'rgba(255,255,255,0.04)', border: `${bold ? 2 : 1}px solid ${bold ? color : C.border}`, borderRadius: 10 }}>
-      <div style={{ fontFamily: F.mono, fontSize: 10, color: bold ? color : C.faint, letterSpacing: '0.12em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 6 }}>{label}</div>
-      <div style={{ fontFamily: F.display, fontSize: bold ? 28 : 24, fontWeight: 800, color, lineHeight: 1, marginBottom: 4 }}>{val}</div>
-      <div style={{ fontSize: 11, color: C.muted, lineHeight: 1.45 }}>{sub}</div>
+    <div style={{
+      padding: bold ? '16px 20px' : '14px 18px',
+      background: bold ? `${color}20` : `${color}12`,
+      border: `${bold ? 2 : 1}px solid ${color}${bold ? '' : '50'}`,
+      borderLeft: `4px solid ${color}`,
+      borderRadius: 10,
+    }}>
+      <div style={{ fontFamily: F.mono, fontSize: 11.5, color, letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 8 }}>{label}</div>
+      <div style={{ fontFamily: F.display, fontSize: bold ? 30 : 26, fontWeight: 800, color, lineHeight: 1, marginBottom: 8, letterSpacing: '-0.02em' }}>{val}</div>
+      <div style={{ fontSize: 13, color: '#FFFFFF', lineHeight: 1.5, fontWeight: 500 }}>{sub}</div>
     </div>
   )
 }
