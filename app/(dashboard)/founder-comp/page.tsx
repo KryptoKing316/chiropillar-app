@@ -78,8 +78,9 @@ const chiroPillarSliceOfExit = (finalEbitda / (25_000_000 + finalEbitda)) * exit
 const kbExitFee = chiroPillarSliceOfExit * 0.05
 
 // ChiroPillar entity equity ownership · 80/20 Eric/Wagner
-const ericChiroPillarPct = 0.80
+const ericChiroPillarPct   = 0.60
 const wagnerChiroPillarPct = 0.20
+const scottChiroPillarPct  = 0.20
 
 function PlatformCostPill({ label }: { label: string }) {
   return (
@@ -206,10 +207,10 @@ export default async function FounderCompPage() {
           ★ ChiroPillar Platform Operating Capital · 5% Ongoing Rev Share
         </div>
         <h2 style={{ fontFamily: F.display, fontSize: 22, fontWeight: 700, color: C.text, margin: '0 0 14px', letterSpacing: '-0.01em' }}>
-          The 5% rev share funds the platform. Equity surplus splits 80/20 Eric/Wagner.
+          The 5% rev share funds the platform. Equity splits 60/20/20 Eric/Wagner/Scott.
         </h2>
         <p style={{ fontSize: 14, color: '#FFFFFF', lineHeight: 1.65, marginTop: 0, marginBottom: 18 }}>
-          The 5% ongoing rev share is <strong style={{ color: C.gold }}>not founder pay</strong> — it&apos;s the platform&apos;s operating budget. Pays dev team, platform engineers, IT, hosting, infrastructure, marketing tools, agency overflow, and everything needed to keep ChiroPillar running at scale. <strong style={{ color: C.text }}>What&apos;s left over after platform costs is ChiroPillar entity value</strong> — equity owned <strong style={{ color: C.gold }}>80% Eric / 20% Wagner</strong>. Wagner&apos;s 20% catches the platform value appreciation alongside Eric.
+          The 5% ongoing rev share is <strong style={{ color: C.gold }}>not founder pay</strong> — it&apos;s the platform&apos;s operating budget. Pays dev team, platform engineers, IT, hosting, infrastructure, marketing tools, agency overflow, and everything needed to keep ChiroPillar running at scale. <strong style={{ color: C.text }}>What&apos;s left over after platform costs is ChiroPillar entity value</strong> — equity owned <strong style={{ color: C.gold }}>60% Eric</strong> / <strong style={{ color: C.align }}>20% Wagner</strong> / <strong style={{ color: C.green }}>20% Scott</strong>. Eric retains operator control; Wagner + Scott each catch 20% of the platform value appreciation.
         </p>
         <div style={{ fontFamily: F.mono, fontSize: 12, color: '#FFFFFF', letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 12 }}>
           What the 5% rev share funds
@@ -223,10 +224,10 @@ export default async function FounderCompPage() {
           <PlatformCostPill label="Data + AI infrastructure" />
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 14, marginBottom: 16 }} className="kb-founder-grid">
           <div style={{ background: C.bg3, border: `1px solid ${C.border}`, borderLeft: `4px solid ${C.gold}`, borderRadius: 10, padding: '18px 20px' }}>
             <div style={{ fontFamily: F.mono, fontSize: 11, color: C.gold, letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 6 }}>Eric · founder/CEO/operator</div>
-            <div style={{ fontFamily: F.display, fontSize: 48, fontWeight: 800, color: C.gold, lineHeight: 1, marginBottom: 8 }}>80%</div>
+            <div style={{ fontFamily: F.display, fontSize: 48, fontWeight: 800, color: C.gold, lineHeight: 1, marginBottom: 8 }}>60%</div>
             <div style={{ fontSize: 12.5, color: '#FFFFFF', lineHeight: 1.5 }}>ChiroPillar entity equity. Operator control + majority of platform value appreciation.</div>
           </div>
           <div style={{ background: C.bg3, border: `1px solid ${C.border}`, borderLeft: `4px solid ${C.align}`, borderRadius: 10, padding: '18px 20px' }}>
@@ -234,9 +235,14 @@ export default async function FounderCompPage() {
             <div style={{ fontFamily: F.display, fontSize: 48, fontWeight: 800, color: C.align, lineHeight: 1, marginBottom: 8 }}>20%</div>
             <div style={{ fontSize: 12.5, color: '#FFFFFF', lineHeight: 1.5 }}>Equity in platform he funded. Catches 20% of platform value appreciation. <strong>Separate from his 100% clinic equity.</strong></div>
           </div>
+          <div style={{ background: C.bg3, border: `1px solid ${C.border}`, borderLeft: `4px solid ${C.green}`, borderRadius: 10, padding: '18px 20px' }}>
+            <div style={{ fontFamily: F.mono, fontSize: 11, color: C.green, letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 6 }}>Scott · BD partner</div>
+            <div style={{ fontFamily: F.display, fontSize: 48, fontWeight: 800, color: C.green, lineHeight: 1, marginBottom: 8 }}>20%</div>
+            <div style={{ fontSize: 12.5, color: '#FFFFFF', lineHeight: 1.5 }}>Equity for bringing Wagner + sourcing through DC associations + sponsoring chiropractic events.</div>
+          </div>
         </div>
         <div style={{ fontSize: 13, color: '#FFFFFF', lineHeight: 1.65, padding: '12px 18px', background: 'rgba(46,117,182,0.08)', border: '1px solid rgba(46,117,182,0.20)', borderRadius: 10 }}>
-          <strong style={{ color: '#FFFFFF' }}>Why this works for Wagner:</strong> He funds the $1.71M Y1 build + $31M+ acquisition cash + personally backstops $31M+ bank debt. In exchange he gets <strong style={{ color: C.gold }}>100% of every clinic + all multiple arbitrage at exit + 20% of ChiroPillar entity</strong>. <strong style={{ color: C.green }}>Why this works for Eric:</strong> 80% operator control + majority economics of the platform he&apos;s building. Standard founder/CEO equity. Frames the 5% rev share as platform fuel, not personal income.
+          <strong style={{ color: '#FFFFFF' }}>Why this works for Wagner:</strong> He funds the $1.71M Y1 build + $31M+ acquisition cash + personally backstops $31M+ bank debt. In exchange he gets <strong style={{ color: C.gold }}>100% of every clinic + all multiple arbitrage at exit + 20% of ChiroPillar entity</strong>. <strong style={{ color: C.green }}>Why this works for Scott:</strong> 20% equity for opening the Wagner relationship + sourcing through DC associations + sponsoring the largest chiropractic events. Without him there's no deal. <strong style={{ color: C.gold }}>Why this works for Eric:</strong> 60% operator control + majority economics of the platform he&apos;s building. Standard founder/CEO equity. Frames the 5% rev share as platform fuel, not personal income.
         </div>
       </div>
 
