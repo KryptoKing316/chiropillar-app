@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <!-- SPINE WITH DATA NODES · chiropractic + technology fusion -->
+  <defs>
+    <linearGradient id="g3-spine" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#E8C96A"/>
+      <stop offset="100%" stop-color="#C9A84C"/>
+    </linearGradient>
+    <filter id="g3-node-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+  </defs>
+  <!-- Subtle vertebra connector (subtle vertical line behind nodes) -->
+  <line x1="100" y1="30" x2="100" y2="172" stroke="url(#g3-spine)" stroke-width="2.5" opacity="0.45"/>
+  <!-- Vertebra nodes · 7 along the spine, sizes rhythmic like real vertebrae -->
+  <circle cx="100" cy="34"  r="14" fill="#F2EEE7"/>
+  <circle cx="100" cy="34"  r="6"  fill="#0B1B3E"/>
+  <circle cx="100" cy="62"  r="12" fill="#E8C96A"/>
+  <circle cx="100" cy="88"  r="11" fill="#C9A84C"/>
+  <circle cx="100" cy="112" r="10" fill="#E8C96A"/>
+  <circle cx="100" cy="134" r="9"  fill="#C9A84C"/>
+  <circle cx="100" cy="154" r="8"  fill="#E8C96A"/>
+  <circle cx="100" cy="172" r="7"  fill="#C9A84C"/>
+  <!-- Subtle data-emanation marks (small dots radiating from one mid-node) -->
+  <circle cx="130" cy="100" r="2.5" fill="#E8C96A" opacity="0.70"/>
+  <circle cx="70"  cy="100" r="2.5" fill="#E8C96A" opacity="0.70"/>
+  <circle cx="140" cy="90"  r="1.8" fill="#E8C96A" opacity="0.55"/>
+  <circle cx="60"  cy="110" r="1.8" fill="#E8C96A" opacity="0.55"/>
+</svg>

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <!-- DUAL BAR · architectural minimalism · Linear/Vercel-style abstract mark -->
+  <defs>
+    <linearGradient id="g4-gold" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#E8C96A"/>
+      <stop offset="100%" stop-color="#C9A84C"/>
+    </linearGradient>
+    <linearGradient id="g4-light" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F2EEE7"/>
+      <stop offset="100%" stop-color="#E8C96A"/>
+    </linearGradient>
+  </defs>
+  <!-- Tall pillar (left) -->
+  <rect x="64" y="30" width="22" height="140" rx="3" fill="url(#g4-gold)"/>
+  <!-- Short pillar (right, lower) -->
+  <rect x="114" y="60" width="22" height="110" rx="3" fill="url(#g4-light)"/>
+  <!-- Connecting plinth (base) -->
+  <rect x="48" y="170" width="104" height="14" rx="2" fill="#C9A84C"/>
+  <!-- Top capital on left pillar -->
+  <rect x="58" y="22" width="34" height="10" rx="2" fill="#F2EEE7"/>
+  <!-- Top capital on right pillar -->
+  <rect x="108" y="52" width="34" height="10" rx="2" fill="#F2EEE7"/>
+</svg>

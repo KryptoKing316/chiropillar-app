@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ChiroPillar · Logo Concept Gallery</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <style>
+    :root {
+      --navy: #0B1B3E;
+      --navy-2: #0F2347;
+      --navy-3: #152C58;
+      --gold: #C9A84C;
+      --gold-light: #E8C96A;
+      --paper: #F2EEE7;
+      --muted: #9BA8C0;
+      --border: rgba(255,255,255,0.10);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 40px 24px 80px;
+      background: var(--navy);
+      color: var(--paper);
+      font-family: 'Inter', system-ui, sans-serif;
+      min-height: 100vh;
+    }
+    .container { max-width: 1280px; margin: 0 auto; }
+    h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(34px, 4.5vw, 48px);
+      font-weight: 700;
+      margin: 0 0 8px;
+      letter-spacing: -0.02em;
+    }
+    .eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--gold);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+    .sub {
+      font-size: 16px;
+      color: var(--paper);
+      max-width: 760px;
+      line-height: 1.6;
+      margin: 0 0 36px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 22px;
+      margin-bottom: 36px;
+    }
+    .card {
+      background: var(--navy-2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      transition: all 0.15s;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.20);
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: var(--gold);
+      box-shadow: 0 8px 32px rgba(201,168,76,0.20);
+    }
+    .preview {
+      background: var(--navy-3);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      aspect-ratio: 1;
+    }
+    .preview img { width: 100%; height: auto; max-width: 220px; }
+    .opt-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--gold);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+    .opt-name {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--paper);
+      letter-spacing: -0.01em;
+      margin: 0 0 10px;
+    }
+    .opt-desc {
+      font-size: 14px;
+      color: var(--paper);
+      line-height: 1.55;
+      opacity: 0.85;
+      margin: 0 0 18px;
+    }
+    .sizes {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 12px 14px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 8px;
+    }
+    .sizes-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--gold-light);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+    .size-row { display: flex; align-items: center; gap: 12px; }
+    .size-row img { display: block; }
+    .footer {
+      margin-top: 48px;
+      padding: 24px 28px;
+      background: rgba(46,117,182,0.10);
+      border: 1px solid rgba(46,117,182,0.30);
+      border-radius: 12px;
+      font-size: 14.5px;
+      line-height: 1.65;
+      color: var(--paper);
+    }
+    .footer strong { color: var(--gold); }
+    /* Wordmark inline */
+    .wordmark {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 18px 22px;
+      background: var(--navy);
+      border-radius: 10px;
+      margin-top: 16px;
+      border: 1px solid var(--border);
+    }
+    .wordmark img { width: 40px; height: 40px; }
+    .wordmark-text {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--paper);
+      letter-spacing: -0.02em;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="eyebrow">★ Internal · Logo Concept Gallery · pick one</div>
+    <h1>ChiroPillar platform logomark · 4 directions.</h1>
+    <p class="sub">
+      Eric — pick the direction that resonates and I'll refine + drop it into the app (sidebar logo, favicon, app icon, pitch deck). Each mark is shown at app-icon scale, then with the ChiroPillar wordmark beside it as it'll appear in the sidebar. Open-color navy backdrop matches the actual platform.
+    </p>
+
+    <div class="grid">
+
+      <!-- OPTION 1 -->
+      <div class="card">
+        <div class="opt-num">Option 01</div>
+        <h2 class="opt-name">Escalating Pillar</h2>
+        <p class="opt-desc">Stacked blocks growing wider as they rise — visualizes the roll-up compounding. Each block = one clinic acquired. Top capstone = the platform at scale. Architectural, premium, says "we build it up."</p>
+        <div class="preview">
+          <img src="option-1-escalating-pillar.svg" alt="Option 1 · Escalating Pillar">
+        </div>
+        <div class="sizes">
+          <span class="sizes-label">Sidebar</span>
+          <div class="size-row">
+            <img src="option-1-escalating-pillar.svg" alt="" width="40" height="40">
+          </div>
+          <span class="wordmark-text">ChiroPillar</span>
+        </div>
+      </div>
+
+      <!-- OPTION 2 -->
+      <div class="card">
+        <div class="opt-num">Option 02</div>
+        <h2 class="opt-name">Network Pillar</h2>
+        <p class="opt-desc">Central column with 5 satellite nodes connected by lines — platform feel. Says "one hub, many clinics connected." Tech-y, reads as SaaS/M&A platform. Linear/Notion energy.</p>
+        <div class="preview">
+          <img src="option-2-network-pillar.svg" alt="Option 2 · Network Pillar">
+        </div>
+        <div class="sizes">
+          <span class="sizes-label">Sidebar</span>
+          <div class="size-row">
+            <img src="option-2-network-pillar.svg" alt="" width="40" height="40">
+          </div>
+          <span class="wordmark-text">ChiroPillar</span>
+        </div>
+      </div>
+
+      <!-- OPTION 3 -->
+      <div class="card">
+        <div class="opt-num">Option 03</div>
+        <h2 class="opt-name">Spine + Data Nodes</h2>
+        <p class="opt-desc">A spinal column rendered as a vertebra stack with tiny data dots radiating from one node. Direct chiropractic reference + technology overlay. Most "on-brand" for the niche.</p>
+        <div class="preview">
+          <img src="option-3-spine-nodes.svg" alt="Option 3 · Spine + Data Nodes">
+        </div>
+        <div class="sizes">
+          <span class="sizes-label">Sidebar</span>
+          <div class="size-row">
+            <img src="option-3-spine-nodes.svg" alt="" width="40" height="40">
+          </div>
+          <span class="wordmark-text">ChiroPillar</span>
+        </div>
+      </div>
+
+      <!-- OPTION 4 -->
+      <div class="card">
+        <div class="opt-num">Option 04</div>
+        <h2 class="opt-name">Dual Pillar</h2>
+        <p class="opt-desc">Two parallel columns of different heights on a shared plinth — pure architectural minimalism. Most abstract of the four. Vercel/Stripe wordmark energy. Cleanest at favicon size.</p>
+        <div class="preview">
+          <img src="option-4-dual-bar.svg" alt="Option 4 · Dual Pillar">
+        </div>
+        <div class="sizes">
+          <span class="sizes-label">Sidebar</span>
+          <div class="size-row">
+            <img src="option-4-dual-bar.svg" alt="" width="40" height="40">
+          </div>
+          <span class="wordmark-text">ChiroPillar</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer">
+      <strong>Next step:</strong> Tell me which option (or hybrid — "01 + 02 mashup", "03 but cleaner") and I'll refine + replace the sidebar mascot. The chosen mark will become: <code>/public/chiropillar-logo-platform.svg</code>, the new favicon, and the sidebar logo across every dashboard page. Mascot stays for B2C/app/social only.
+    </div>
+  </div>
+</body>
+</html>
