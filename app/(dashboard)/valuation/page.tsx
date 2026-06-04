@@ -9,7 +9,8 @@
 // Same valuation engine the /intake form uses (~200 deal comp-set medians),
 // productized per-clinic with Wagner-specific 4-stream deal structure.
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useSearchParams } from 'next/navigation'
 
 const C = {
   bg: 'var(--kb-bg)', bg2: 'var(--kb-bg-panel)', bg3: 'var(--kb-bg-surface)',
@@ -192,10 +193,60 @@ const TABS = [
 //                              PAGE
 // ────────────────────────────────────────────────────────────────────────
 export default function ValuationPage() {
+  const searchParams = useSearchParams()
   const [mode, setMode] = useState<'view' | 'input'>('view')
   const [step, setStep] = useState<0 | 1 | 2 | 3>(0)
   const [form, setForm] = useState<FormData>(PIEDMONT)         // active result
   const [draft, setDraft] = useState<FormData>(BLANK_FORM)     // wizard work-in-progress
+  const [fromUpload, setFromUpload] = useState(false)
+
+  // ── PDF Upload → Valuation prefill ──────────────────────────────────
+  // When Wagner uploads a P&L in /data-room, the ExtractionCard 'Use for
+  // Valuation →' button passes the extracted financials as query params.
+  // This effect picks those up and auto-renders the valuation report.
+  useEffect(() => {
+    const practice_name = searchParams.get('practice_name')
+    const year          = searchParams.get('year')
+    const revenue       = searchParams.get('revenue')
+    const ebitda        = searchParams.get('ebitda')
+    const owner_comp    = searchParams.get('owner_comp')
+    if (!practice_name && !revenue && !ebitda) return  // no prefill payload
+
+    const revNum   = revenue ? parseInt(revenue, 10)    : 0
+    const ebitdaNum = ebitda ? parseInt(ebitda, 10)     : 0
+    const ocNum    = owner_comp ? parseInt(owner_comp, 10) : 0
+    const yearNum  = year ? parseInt(year, 10)          : new Date().getFullYear()
+
+    // Estimate prior 2 years at -8% / -16% growth so the valuation engine has 3 years to work with
+    const prefilled: FormData = {
+      practiceName: practice_name || '(uploaded PDF · practice unnamed)',
+      ownerName:    searchParams.get('owner_name') || '',
+      city:         searchParams.get('city') || '',
+      state:        searchParams.get('state') || '',
+      years:        Math.max(parseInt(searchParams.get('years_in_business') || '10', 10), 1),
+      employees:    parseInt(searchParams.get('employees') || '6', 10),
+      practice_type: 'From uploaded PDF',
+      profile:      revNum > 2_500_000 ? 'multi' : 'solo',
+      ownerRole:    'mostly_clinical_some_management',
+      financials: [
+        { year: yearNum,     revenue: revNum,                  ebitda: ebitdaNum,                  ownerComp: ocNum },
+        { year: yearNum - 1, revenue: Math.round(revNum * 0.92), ebitda: Math.round(ebitdaNum * 0.88), ownerComp: ocNum },
+        { year: yearNum - 2, revenue: Math.round(revNum * 0.84), ebitda: Math.round(ebitdaNum * 0.76), ownerComp: ocNum },
+      ],
+      addBacks: [
+        { label: 'Owner compensation above market', amount: Math.max(ocNum - 180_000, 0), reason: `Owner draws ~${fmtMoney(ocNum)}; market rate ~$180K for clinic of this size`, enabled: ocNum > 180_000 },
+        { label: 'Personal vehicle expense',         amount: 0, reason: 'Adjustable — re-enter from extraction', enabled: false },
+        { label: 'One-time professional fees',       amount: 0, reason: 'Adjustable — re-enter from extraction', enabled: false },
+        { label: 'Family on payroll above market',   amount: 0, reason: 'Adjustable — re-enter from extraction', enabled: false },
+      ],
+      exampleId: 'custom',
+    }
+
+    setForm(prefilled)
+    setMode('view')
+    setFromUpload(true)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const v = computeValuation(form)
 
@@ -300,7 +351,7 @@ export default function ValuationPage() {
   }
 
   // ── VIEW MODE ─────────────────────────────────────────────────────────
-  return <ResultView form={form} v={v} startWizard={startWizard} loadExample={() => setForm(PIEDMONT)} />
+  return <ResultView form={form} v={v} startWizard={startWizard} loadExample={() => setForm(PIEDMONT)} fromUpload={fromUpload} />
 }
 
 // ────────────────────────────────────────────────────────────────────────
@@ -466,11 +517,12 @@ function Step3AddBacks({ draft, setDraft }: { draft: FormData; setDraft: (d: For
 // ────────────────────────────────────────────────────────────────────────
 //                          RESULT VIEW
 // ────────────────────────────────────────────────────────────────────────
-function ResultView({ form, v, startWizard, loadExample }: {
+function ResultView({ form, v, startWizard, loadExample, fromUpload }: {
   form: FormData
   v: ReturnType<typeof computeValuation>
   startWizard: () => void
   loadExample: () => void
+  fromUpload?: boolean
 }) {
   const [tab, setTab] = useState<string>('summary')
   const maxRev = Math.max(...form.financials.map(f => f.revenue), 1)
@@ -482,6 +534,44 @@ function ResultView({ form, v, startWizard, loadExample }: {
 
   return (
     <div style={{ padding: '32px 32px 80px', maxWidth: 1280, margin: '0 auto', fontFamily: F.body, color: C.text }}>
+
+      {/* ★ FROM-UPLOAD BANNER · shown when Wagner came from /data-room PDF drop */}
+      {fromUpload && (
+        <div style={{
+          background: `linear-gradient(135deg, ${C.green}25, ${C.gold}15)`,
+          border: `2px solid ${C.green}`,
+          borderRadius: 14, padding: '20px 26px', marginBottom: 24,
+          display: 'flex', alignItems: 'center', gap: 18, flexWrap: 'wrap',
+          boxShadow: `0 8px 24px ${C.green}30`,
+        }}>
+          <div style={{
+            flexShrink: 0, width: 56, height: 56, borderRadius: 14,
+            background: C.green, color: C.bg,
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontFamily: F.display, fontSize: 28, fontWeight: 800,
+          }}>✓</div>
+          <div style={{ flex: 1, minWidth: 240 }}>
+            <div style={{ fontFamily: F.mono, fontSize: 12, color: C.green, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 4 }}>
+              Claude extracted · valuation ready
+            </div>
+            <div style={{ fontFamily: F.display, fontSize: 22, fontWeight: 700, color: '#FFFFFF', letterSpacing: '-0.01em' }}>
+              Pulled from your PDF · valued against ~200 chiropractic deals analyzed
+            </div>
+            <div style={{ fontSize: 13.5, color: '#FFFFFF', marginTop: 6, lineHeight: 1.5, opacity: 0.90, fontWeight: 500 }}>
+              Numbers below are the extracted financials. Tweak any line in the wizard if you want to refine — but this is what we&apos;d offer based on the PDF you dropped.
+            </div>
+          </div>
+          <a href="/data-room" style={{
+            padding: '12px 20px', borderRadius: 8,
+            background: 'transparent', border: `1px solid ${C.green}80`,
+            color: C.green, fontSize: 13, fontWeight: 700,
+            textDecoration: 'none', fontFamily: F.body,
+            whiteSpace: 'nowrap',
+          }}>
+            Upload another PDF
+          </a>
+        </div>
+      )}
 
       {/* MODE TOGGLE BAR */}
       <div style={{

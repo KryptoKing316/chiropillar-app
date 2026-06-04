@@ -716,14 +716,14 @@ export default function LaunchPlanPage() {
               One-time build · capex
             </div>
             <div style={{ display: 'grid', gap: 9, marginBottom: 14 }}>
-              <BudgetLine label="Intake funnel · landing pages · quiz logic + valuation engine" val="$25K" />
-              <BudgetLine label="Automation stack · Zapier/n8n + Slack alerts + CRM wiring"  val="$15K" />
-              <BudgetLine label="Ad creative · videos · LP design · brand assets"             val="$20K" />
-              <BudgetLine label="Initial data · Clay + Apollo enrichment · target lists"      val="$10K" />
+              <BudgetLine label="Intake funnel · landing pages · quiz logic + valuation engine" val="$12K" />
+              <BudgetLine label="Automation stack · Zapier/n8n + Slack alerts + CRM wiring"  val="$6K" />
+              <BudgetLine label="Ad creative · videos · LP design · brand assets"             val="$8K" />
+              <BudgetLine label="Initial data · Clay + Apollo enrichment · target lists"      val="$4K" />
             </div>
             <div style={{ padding: '12px 14px', background: `${C.globe}20`, borderRadius: 8, fontSize: 14, color: C.globe, fontFamily: F.mono, fontWeight: 800, display: 'flex', justifyContent: 'space-between' }}>
               <span>Total one-time build</span>
-              <span style={{ fontFamily: F.display, fontSize: 20, letterSpacing: '-0.02em' }}>$70K</span>
+              <span style={{ fontFamily: F.display, fontSize: 20, letterSpacing: '-0.02em' }}>$30K</span>
             </div>
             <div style={{ marginTop: 10, fontSize: 12.5, color: '#FFFFFF', lineHeight: 1.5, fontWeight: 500, opacity: 0.85 }}>
               Paid out of Q1 marketing/SaaS budget. Built in months 1-3 before sales engine staffs up.
