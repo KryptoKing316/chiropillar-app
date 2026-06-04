@@ -324,10 +324,10 @@ export default function LaunchPlanPage() {
           24-Month Launch Plan · The Plan, The Team, The Cost
         </div>
         <h1 style={{ fontFamily: F.display, fontSize: 'clamp(34px, 4.5vw, 48px)', fontWeight: 700, margin: '0 0 10px', letterSpacing: '-0.02em' }}>
-          Acquire 33 chiropractic clinics in 24 months. Exit at $273-342M.
+          Acquire 33 chiropractic clinics in 24 months.
         </h1>
         <p style={{ fontSize: 16, color: '#FFFFFF', margin: 0, maxWidth: 880, lineHeight: 1.6, fontWeight: 400 }}>
-          Wagner-funded chiropractic roll-up. We acquire <strong style={{ color: C.gold }}>33 clinics over 24 months</strong>, install Wagner&apos;s medical-team playbook in each, and exit the combined platform at <strong style={{ color: C.gold }}>$273-342M</strong>. Below: the plan, the team, the path to that exit — and at the bottom, what it costs Wagner to fund.
+          Wagner-funded chiropractic roll-up. We acquire <strong style={{ color: C.gold }}>33 clinics over 24 months</strong>, install Wagner&apos;s medical-team playbook in each, and build a real EBITDA-generating platform Wagner owns 100%. Hold for cash flow or exit when the multiple is right — Wagner&apos;s call. Below: the plan, the team, the value created, and the cost.
         </p>
       </div>
 
@@ -356,13 +356,43 @@ export default function LaunchPlanPage() {
         {/* The arbitrage explainer */}
         <div style={{ background: C.bg3, border: `1px solid ${C.gold}40`, borderLeft: `4px solid ${C.gold}`, borderRadius: 10, padding: '20px 24px', marginBottom: 16 }}>
           <div style={{ fontFamily: F.mono, fontSize: 12, color: C.gold, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 10 }}>
-            ★ The arbitrage · acquire low, exit high
+            ★ The arbitrage · acquire low, valued high
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 16 }}>
-            <ArbCard label="We BUY each clinic at"      val="~2× SDE"      sub={`~$1.9M avg per clinic · 33 clinics = ${fmtMoney(totalAcqValue)} total`} color={C.globe} />
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 16, marginBottom: 18 }}>
+            <ArbCard label="We BUY each clinic at"      val="~2× SDE"      sub={`~$1.9M avg per clinic · 33 clinics = ${fmtMoney(totalAcqValue)} total purchase`} color={C.globe} />
             <ArbCard label="Each clinic generates"      val="+$250-500K"   sub="EBITDA lift Y1 from Wagner's medical-team install" color={C.green} />
-            <ArbCard label="At combined-platform exit"  val="8-10× EBITDA" sub={`Same EBITDA gets re-rated at the platform-level multiple`} color={C.gold} />
-            <ArbCard label="Total exit · 24mo+"          val={`${fmtMoney(exitLow)}-${fmtMoney(exitHigh)}`} sub="Combined $34.2M EBITDA platform" color={C.goldLight} />
+            <ArbCard label="Combined Mo-24 EBITDA"      val={fmtMoney(finalEbitda)}  sub={`From 33 ChiroPillar clinics · adds to Wagner's existing $25M+`} color={C.gold} />
+            <ArbCard label="At platform-level multiple"  val="8-10× EBITDA" sub="Re-rate from the 2× SDE we paid · acquired and held, valued like a platform" color={C.goldLight} />
+          </div>
+
+          {/* Two-tier potential value · ChiroPillar-only vs Combined */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 14 }}>
+            <div style={{ background: `${C.green}14`, border: `1px solid ${C.green}50`, borderLeft: `4px solid ${C.green}`, borderRadius: 10, padding: '16px 18px' }}>
+              <div style={{ fontFamily: F.mono, fontSize: 11, color: C.green, letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 6 }}>
+                Potential value · ChiroPillar offices only
+              </div>
+              <div style={{ fontFamily: F.display, fontSize: 26, fontWeight: 800, color: C.green, lineHeight: 1, marginBottom: 6, letterSpacing: '-0.02em' }}>
+                {fmtMoney(finalEbitda * 8)} – {fmtMoney(finalEbitda * 10)}
+              </div>
+              <div style={{ fontSize: 13, color: '#FFFFFF', lineHeight: 1.5, fontWeight: 500, opacity: 0.90 }}>
+                33 acquired clinics × {fmtMoney(finalEbitda)} EBITDA × 8-10× platform multiple. <strong style={{ color: C.green }}>Held or sold separately</strong> from Wagner&apos;s existing $25M+ EBITDA.
+              </div>
+            </div>
+            <div style={{ background: `${C.gold}14`, border: `1px solid ${C.gold}50`, borderLeft: `4px solid ${C.gold}`, borderRadius: 10, padding: '16px 18px' }}>
+              <div style={{ fontFamily: F.mono, fontSize: 11, color: C.gold, letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 6 }}>
+                Potential value · combined with Wagner&apos;s $25M+
+              </div>
+              <div style={{ fontFamily: F.display, fontSize: 26, fontWeight: 800, color: C.gold, lineHeight: 1, marginBottom: 6, letterSpacing: '-0.02em' }}>
+                {fmtMoney(exitLow)} – {fmtMoney(exitHigh)}
+              </div>
+              <div style={{ fontSize: 13, color: '#FFFFFF', lineHeight: 1.5, fontWeight: 500, opacity: 0.90 }}>
+                Optional upside: roll Wagner&apos;s existing $25M+ EBITDA into the combined platform → re-rated from 5-7× siloed to 8-10× platform multiple. <strong style={{ color: C.gold }}>Wagner&apos;s call</strong>.
+              </div>
+            </div>
+          </div>
+
+          <div style={{ marginTop: 14, fontSize: 13, color: '#FFFFFF', lineHeight: 1.6, fontWeight: 400, opacity: 0.90, fontStyle: 'italic' }}>
+            Wagner can hold for cash flow, sell ChiroPillar standalone, or roll his existing EBITDA into the combined platform for the bigger multiple. No timeline assumed — values shown reflect what the asset is worth at month 24, not a forced sale.
           </div>
         </div>
 
@@ -420,9 +450,10 @@ export default function LaunchPlanPage() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 14 }}>
           <Kpi label="Total clinic purchase price" val={fmtMoney(totalAcqValue)}     sub={`What Wagner pays to acquire ${totalAcqCount} clinics over 24mo · enterprise value, NOT revenue or EBITDA`} color={C.goldLight} />
           <Kpi label="Wagner cash at close (50%)" val={fmtMoney(totalWagnerCash)}   sub="from $25M+ EBITDA cash flow · debt OR cash, his pick" color={C.globe} />
-          <Kpi label="Bank debt drawn (50%)"      val={fmtMoney(totalBankDebt)}     sub="cross-collateralized · prime + 2-3.75% · serviced by acquired-clinic cash flow" color={C.align} />
+          <Kpi label="Bank debt drawn (50%)"      val={fmtMoney(totalBankDebt)}     sub="cross-collateralized · prime + 2-3.75% · serviced by acquired-clinic cash flow" color={C.globe} />
           <Kpi label="New EBITDA · Mo 24"          val={fmtMoney(finalEbitda)}       sub="from 33 acquired chiros, post Wagner medical-team install · adds to his existing $25M+" color={C.green} />
-          <Kpi label="Combined platform exit · 8-10×"  val={`${fmtMoney(exitLow)}-${fmtMoney(exitHigh)}`} sub={`Wagner $25M+ EBITDA + ChiroPillar ${fmtMoney(finalEbitda)} new = ${fmtMoney(25_000_000 + finalEbitda)} combined × 8-10× sale multiple`} color={C.gold} />
+          <Kpi label="ChiroPillar value · 8-10×"   val={`${fmtMoney(finalEbitda * 8)}-${fmtMoney(finalEbitda * 10)}`} sub={`33 clinics standalone · ${fmtMoney(finalEbitda)} EBITDA × platform multiple · hold or sell, Wagner's call`} color={C.green} />
+          <Kpi label="Combined potential · w/ Wagner $25M+"  val={`${fmtMoney(exitLow)}-${fmtMoney(exitHigh)}`} sub={`Optional upside · roll Wagner's existing EBITDA into platform · re-rate from 5-7× to 8-10×`} color={C.gold} />
         </div>
       </div>
 
@@ -847,7 +878,7 @@ export default function LaunchPlanPage() {
 
       {/* WAGNER RETURN · revised MOIC math */}
       <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, padding: '24px 28px', marginBottom: 24 }}>
-        <SectionHead eyebrow="Wagner's return · 24 months out" title="What does the small check turn into?" />
+        <SectionHead eyebrow="Wagner's value created · at month 24" title="What he owns at the end of the 24 months." />
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }} className="kb-val-grid">
           <div>
             <div style={{ fontFamily: F.mono, fontSize: 12, color: '#FFFFFF', letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 12 }}>What Wagner puts in</div>
@@ -857,15 +888,15 @@ export default function LaunchPlanPage() {
             <KvLine label="Bank debt (separate · serviced by acquired EBITDA)" val={fmtMoney(totalBankDebt)} accent={C.align} />
           </div>
           <div>
-            <div style={{ fontFamily: F.mono, fontSize: 12, color: '#FFFFFF', letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 12 }}>What Wagner gets</div>
-            <KvLine label="ChiroPillar EBITDA at month 24"   val={fmtMoney(finalEbitda)} />
-            <KvLine label="Combined platform EBITDA"          val={fmtMoney(25_000_000 + finalEbitda)} accent={C.gold} />
-            <KvLine label="Exit at 8× (conservative)"          val={fmtMoney(exitLow)} />
-            <KvLine label="Exit at 10× (premium)"              val={fmtMoney(exitHigh)} accent={C.green} />
+            <div style={{ fontFamily: F.mono, fontSize: 12, color: '#FFFFFF', letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 12 }}>What Wagner owns at Mo 24</div>
+            <KvLine label="ChiroPillar EBITDA · month 24"            val={fmtMoney(finalEbitda)} accent={C.green} />
+            <KvLine label="ChiroPillar standalone value · 8×"        val={fmtMoney(finalEbitda * 8)} />
+            <KvLine label="ChiroPillar standalone value · 10×"       val={fmtMoney(finalEbitda * 10)} accent={C.green} />
+            <KvLine label="Combined potential w/ Wagner $25M+ · 8-10×" val={`${fmtMoney(exitLow)} – ${fmtMoney(exitHigh)}`} accent={C.gold} />
           </div>
         </div>
         <div style={{ marginTop: 20, padding: '18px 22px', background: 'rgba(46,204,139,0.08)', border: '1px solid rgba(46,204,139,0.28)', borderRadius: 10, fontSize: 14, color: '#FFFFFF', lineHeight: 1.7 }}>
-          <strong style={{ color: C.green }}>The math:</strong> Wagner&apos;s total cash deployed = <strong style={{ color: C.gold }}>{fmtMoney(monthlyBurnY1 * 12 + totalWagnerCash)}</strong> ({fmtMoney(monthlyBurnY1 * 12)} Y1 operating + {fmtMoney(totalWagnerCash)} cash at close · Y2 ops self-funded). His existing <strong style={{ color: C.gold }}>$25M+ EBITDA</strong> gets re-rated at <strong style={{ color: C.gold }}>8-10× inside the combined platform</strong>. That alone is <strong style={{ color: C.green }}>${(25_000_000 * 8 / 1_000_000).toFixed(0)}M-${(25_000_000 * 10 / 1_000_000).toFixed(0)}M of platform-multiple-arbitrage value</strong> on EBITDA he already owns — before counting the ChiroPillar acquisitions. Plus the {fmtMoney(finalEbitda)} of new acquired EBITDA at 8-10× = ${(finalEbitda * 8 / 1_000_000).toFixed(1)}-${(finalEbitda * 10 / 1_000_000).toFixed(1)}M more. Total exit <strong style={{ color: C.gold }}>{fmtMoney(exitLow)}-{fmtMoney(exitHigh)}</strong>. Bank debt of <strong style={{ color: C.align }}>{fmtMoney(totalBankDebt)}</strong> retired at exit from cash flow, leaving Wagner with <strong style={{ color: C.gold }}>{fmtMoney(exitLow - totalBankDebt)}-{fmtMoney(exitHigh - totalBankDebt)}</strong> net.
+          <strong style={{ color: C.green }}>The math:</strong> Wagner&apos;s total cash deployed = <strong style={{ color: C.gold }}>{fmtMoney(monthlyBurnY1 * 12 + totalWagnerCash)}</strong> ({fmtMoney(monthlyBurnY1 * 12)} Y1 operating + {fmtMoney(totalWagnerCash)} cash at close · Y2 ops self-funded). At month 24 Wagner owns <strong style={{ color: C.green }}>33 clinics generating {fmtMoney(finalEbitda)} EBITDA</strong>, valued standalone at <strong style={{ color: C.green }}>{fmtMoney(finalEbitda * 8)}-{fmtMoney(finalEbitda * 10)}</strong> at platform multiples. <strong style={{ color: C.gold }}>Optional upside</strong> if he chooses to roll his existing $25M+ EBITDA into the combined platform: re-rate from 5-7× siloed to 8-10× platform = <strong style={{ color: C.gold }}>${(25_000_000 * 8 / 1_000_000).toFixed(0)}M-${(25_000_000 * 10 / 1_000_000).toFixed(0)}M of platform-multiple-arbitrage value</strong> on EBITDA he already owns. Combined potential <strong style={{ color: C.gold }}>{fmtMoney(exitLow)}-{fmtMoney(exitHigh)}</strong>. Bank debt of <strong style={{ color: C.align }}>{fmtMoney(totalBankDebt)}</strong> can be retired from cash flow at any time. <strong style={{ color: C.text }}>Hold for cash flow or sell at the multiple Wagner picks — no forced timeline.</strong>
         </div>
       </div>
 
