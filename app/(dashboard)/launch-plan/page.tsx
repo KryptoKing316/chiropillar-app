@@ -643,9 +643,9 @@ export default function LaunchPlanPage() {
             Bank debt math · 24-month aggregate (if Wagner uses leverage path)
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 14 }}>
-            <Sub label="Total clinic value" val={fmtMoney(totalAcqValue)} color={C.text} />
+            <Sub label="Total clinic value" val={fmtMoney(totalAcqValue)} color={C.goldLight} />
             <Sub label="Wagner cash (50%)" val={fmtMoney(totalWagnerCash)} color={C.globe} />
-            <Sub label="Bank debt drawn (50%)" val={fmtMoney(totalBankDebt)} color={C.align} />
+            <Sub label="Bank debt drawn (50%)" val={fmtMoney(totalBankDebt)} color={C.globe} />
             <Sub label="Annual debt service" val={`~${fmtMoney(annualDebtServiceTotal)}/yr`} color={C.coral} />
             <Sub label="DSCR (Y2+ acquired EBITDA)" val={`${dscrAcq.toFixed(2)}×`} color={C.green} />
           </div>
