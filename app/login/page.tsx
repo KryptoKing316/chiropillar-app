@@ -100,16 +100,17 @@ export default function LoginPage() {
 
       <div style={{ width: '100%', maxWidth: '460px', position: 'relative' }}>
 
-        {/* ChiroPillar lockup · mascot + bold wordmark (no tagline — moved below) */}
+        {/* ChiroPillar lockup · platform mark + bold wordmark (no tagline — moved below) */}
         <div style={{ textAlign: 'center', marginBottom: '20px' }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/chiropillar-mascot-dark.svg"
-            alt="ChiroPillar mascot"
+            src="/chiropillar-logo-platform.svg"
+            alt="ChiroPillar"
             style={{
               width: 'clamp(96px, 13vw, 124px)',
               height: 'clamp(96px, 13vw, 124px)',
               display: 'inline-block',
+              filter: 'drop-shadow(0 6px 16px rgba(201,168,76,0.30))',
             }}
           />
           <div style={{

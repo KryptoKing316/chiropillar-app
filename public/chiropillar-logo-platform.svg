@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <!-- ChiroPillar · Escalating Pillar · primary platform mark -->
+  <defs>
+    <linearGradient id="cp-block-top" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F2EEE7"/>
+      <stop offset="100%" stop-color="#E8C96A"/>
+    </linearGradient>
+    <linearGradient id="cp-block" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#E8C96A"/>
+      <stop offset="100%" stop-color="#C9A84C"/>
+    </linearGradient>
+    <linearGradient id="cp-block-base" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#C9A84C"/>
+      <stop offset="100%" stop-color="#A38436"/>
+    </linearGradient>
+    <filter id="cp-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="cp-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="1.5" flood-color="#000" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  <!-- Block 5 · base (smallest, anchor) -->
+  <rect x="78" y="148" width="44" height="20" rx="2.5" fill="url(#cp-block-base)" filter="url(#cp-shadow)"/>
+  <!-- Block 4 -->
+  <rect x="68" y="118" width="64" height="20" rx="2.5" fill="url(#cp-block)" filter="url(#cp-shadow)"/>
+  <!-- Block 3 -->
+  <rect x="58" y="88"  width="84" height="20" rx="2.5" fill="url(#cp-block)" filter="url(#cp-shadow)"/>
+  <!-- Block 2 · gradient peak -->
+  <rect x="48" y="58"  width="104" height="20" rx="2.5" fill="url(#cp-block)" filter="url(#cp-glow)"/>
+  <!-- Capstone · the platform at scale -->
+  <rect x="38" y="28"  width="124" height="20" rx="3" fill="url(#cp-block-top)" filter="url(#cp-shadow)"/>
+</svg>

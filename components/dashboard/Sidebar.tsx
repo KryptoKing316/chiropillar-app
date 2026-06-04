@@ -407,8 +407,8 @@ const ADMIN_DEMOS: Array<{ href: string; label: string; ericOnly?: boolean }> = 
 export default function Sidebar({ userEmail, isDemo, isAdmin, isEricOnly }: { userEmail?: string; isDemo?: boolean; isAdmin?: boolean; isEricOnly?: boolean }) {
   const pathname = usePathname()
   const [mobileOpen, setMobileOpen] = useState(false)
-  // Mascot-only SVG (no baked text). Wordmark rendered as HTML below for crisp typography.
-  const logoSrc = '/chiropillar-mascot-dark.svg'
+  // Escalating Pillar platform mark · no baked text · wordmark rendered as HTML below
+  const logoSrc = '/chiropillar-logo-platform.svg'
 
   useEffect(() => { setMobileOpen(false) }, [pathname])
 

@@ -7,9 +7,12 @@ export const metadata: Metadata = {
   title: 'ChiroPillar — Earn an extra $250,000 a year doing exactly what you\'re already doing',
   description: 'Chiropractor partnership program. Add a mobile medical team to your existing practice. Unlock Medicare diagnostic billing. 5× revenue uplift without changing what you do.',
   icons: {
-    icon: '/favicon.png',
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.png', type: 'image/png' },
+    ],
     apple: '/chiropillar-icon.png',
-    shortcut: '/favicon.png',
+    shortcut: '/favicon.svg',
   },
   openGraph: {
     title: 'ChiroPillar · Earn an extra $250,000+ a year',
