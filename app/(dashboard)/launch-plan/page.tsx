@@ -847,29 +847,6 @@ export default function LaunchPlanPage() {
         ))}
       </div>
 
-      {/* THE NEW ASK */}
-      <div style={{
-        background: `linear-gradient(135deg, rgba(201,168,76,0.14), ${C.bg3})`,
-        border: `2px solid rgba(201,168,76,0.45)`, borderRadius: 14,
-        padding: '28px 32px', marginBottom: 24,
-      }}>
-        <div style={{ fontFamily: F.mono, fontSize: 11, color: C.gold, letterSpacing: '0.22em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 8 }}>
-          ★ The Ask · Y1 Operating Capital Only (Y2 self-funded)
-        </div>
-        <h2 style={{ fontFamily: F.display, fontSize: 32, fontWeight: 700, color: C.text, margin: '0 0 16px', letterSpacing: '-0.02em' }}>
-          $1.71 Million for an Empire-Build Acquisition System.
-        </h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 16, marginBottom: 18 }}>
-          <Ask label="Operating capital · 12mo"  val={fmtMoney(monthlyBurnY1 * 12)} sub={`~$${Math.round(monthlyBurnY1 / 1_000)}K/mo · team + marketing + SaaS · drawn monthly`} color={C.gold} />
-          <Ask label="Y2 (months 13-24)"          val="Self-funded"                 sub="from clinic cash flow + Scale Services revenue · no further Wagner capital" color={C.green} />
-          <Ask label="Acquisitions"               val="Debt OR cash"                 sub={`Wagner picks per deal · ${fmtMoney(totalWagnerCash)} cash from $25M+ EBITDA + ${fmtMoney(totalBankDebt)} senior debt (if leveraged)`} />
-          <Ask label="KB compensation"            val="4% + 5% + 5%"                sub="acq consulting (2/2) · ongoing rev share (100% CP) · exit fee (2.5/2.5)" color={C.green} />
-        </div>
-        <div style={{ fontSize: 14, color: C.muted, lineHeight: 1.65, padding: '16px 20px', background: 'rgba(46,117,182,0.08)', border: '1px solid rgba(46,117,182,0.20)', borderRadius: 10 }}>
-          <strong style={{ color: C.text }}>Why the small ask works:</strong> Wagner&apos;s $25M+ existing EBITDA gives him $75M+ senior debt capacity at favorable rates — <strong style={{ color: C.gold }}>or he can pay all-cash on individual deals from practice cash flow</strong> when he prefers to skip leverage. Either way, we don&apos;t need his cash for acquisitions, we need his <strong style={{ color: C.gold }}>credit profile and EBITDA backstop</strong>. KB needs only <strong style={{ color: C.gold }}>{fmtMoney(monthlyBurnY1 * 12)} for Y1</strong> to run the engine (build the team, run the ads, pay the SaaS). <strong style={{ color: C.green }}>By month 12, ChiroPillar EBITDA + Scale Services cash flow covers Y2 burn with cushion — the platform pays for itself.</strong> KB takes 4% one-time consulting fee on deals sourced on platform (split 2% Eric / 2% Scott), 5% of revenue ongoing (100% to ChiroPillar), and 5% of ChiroPillar&apos;s slice of the eventual exit (split 2.5% Eric / 2.5% Scott). <strong style={{ color: C.green }}>Wagner owns 100% of every clinic from Day 1</strong> the moment each seller signs — no PE waterfalls, no carry splits, no LP commitments. All multiple arbitrage on exit accrues to Wagner.
-        </div>
-      </div>
-
       {/* ── PRO FORMA · FULL REVENUE LADDER ─────────────────────────────── */}
       <SectionHead eyebrow="Pro Forma · the full value ladder" title="$9/mo app to $25M acquisition · 3-year build." />
 
@@ -1026,9 +1003,64 @@ export default function LaunchPlanPage() {
         </div>
       </div>
 
-      <div style={{ marginTop: 32, padding: '18px 22px', background: 'rgba(46,117,182,0.06)', border: '1px solid rgba(46,117,182,0.20)', borderRadius: 10, fontSize: 13, color: C.muted, lineHeight: 1.55 }}>
-        <strong style={{ color: C.align }}>Next step:</strong> Wagner reviews this plan. If aligned, we draft a term sheet at <strong style={{ color: C.gold }}>{fmtMoney(monthlyBurnY1 * 12)} Y1 operating capital commitment</strong> (~${Math.round(monthlyBurnY1 / 1_000)}K/mo · drawn monthly) + 4% acq consulting + 5% ongoing rev share + 5% exit fee. <strong style={{ color: C.green }}>Y2 self-funds from clinic cash flow + Scale Services.</strong> First {fmtMoney(120_000)} released at signing to fund team + marketing build-out + Live Oak/BHG intro calls. Acquisitions draw bank debt or cash as LOIs close.{' '}
-        <Link href="/overview" style={{ color: C.align, textDecoration: 'underline' }}>Back to Overview →</Link>
+      {/* ═══ THE ASK · final strong CTA at the bottom ═══ */}
+      <div style={{
+        marginTop: 36,
+        background: `linear-gradient(135deg, rgba(201,168,76,0.18), ${C.bg3})`,
+        border: `2px solid rgba(201,168,76,0.55)`, borderRadius: 14,
+        padding: '34px 38px',
+        boxShadow: '0 8px 30px rgba(0,0,0,0.25)',
+      }}>
+        <div style={{ fontFamily: F.mono, fontSize: 13, color: C.gold, letterSpacing: '0.22em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 10 }}>
+          ★ The Ask · Y1 Operating Capital Only (Y2 self-funded)
+        </div>
+        <h2 style={{ fontFamily: F.display, fontSize: 'clamp(30px, 4vw, 40px)', fontWeight: 700, color: '#FFFFFF', margin: '0 0 18px', letterSpacing: '-0.02em' }}>
+          $1.71 Million for an Empire-Build Acquisition System.
+        </h2>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 16, marginBottom: 20 }}>
+          <Ask label="Operating capital · 12mo"  val={fmtMoney(monthlyBurnY1 * 12)} sub={`~$${Math.round(monthlyBurnY1 / 1_000)}K/mo · team + marketing + SaaS · drawn monthly`} color={C.gold} />
+          <Ask label="Y2 (months 13-24)"          val="Self-funded"                 sub="from clinic cash flow + Scale Services revenue · no further Wagner capital" color={C.green} />
+          <Ask label="Acquisitions"               val="Debt OR cash"                 sub={`Wagner picks per deal · ${fmtMoney(totalWagnerCash)} cash from $25M+ EBITDA + ${fmtMoney(totalBankDebt)} senior debt (if leveraged)`} color={C.globe} />
+          <Ask label="KB compensation"            val="4% + 5% + 5%"                sub="acq consulting (2/2) · ongoing rev share (100% CP) · exit fee (2.5/2.5)" color={C.green} />
+        </div>
+        <div style={{ fontSize: 14.5, color: '#FFFFFF', lineHeight: 1.65, padding: '18px 22px', background: 'rgba(46,117,182,0.10)', border: '1px solid rgba(46,117,182,0.30)', borderRadius: 10, marginBottom: 22, fontWeight: 400 }}>
+          <strong style={{ color: C.gold }}>Why the small ask works:</strong> Wagner&apos;s $25M+ existing EBITDA gives him $75M+ senior debt capacity at favorable rates — <strong style={{ color: C.gold }}>or he can pay all-cash on individual deals from practice cash flow</strong> when he prefers to skip leverage. Either way, we don&apos;t need his cash for acquisitions, we need his <strong style={{ color: C.gold }}>credit profile and EBITDA backstop</strong>. KB needs only <strong style={{ color: C.gold }}>{fmtMoney(monthlyBurnY1 * 12)} for Y1</strong> to run the engine (build the team, run the ads, pay the SaaS). <strong style={{ color: C.green }}>By month 12, ChiroPillar EBITDA + Scale Services cash flow covers Y2 burn with cushion — the platform pays for itself.</strong> KB takes 4% one-time consulting fee on deals sourced on platform (split 2% Eric / 2% Scott), 5% of revenue ongoing (100% to ChiroPillar), and 5% of ChiroPillar&apos;s slice of the eventual exit (split 2.5% Eric / 2.5% Scott). <strong style={{ color: C.green }}>Wagner owns 100% of every clinic from Day 1</strong> the moment each seller signs — no PE waterfalls, no carry splits, no LP commitments. All multiple arbitrage on exit accrues to Wagner.
+        </div>
+
+        {/* ★ STRONG CTA · Dr Wagner */}
+        <div style={{
+          background: `linear-gradient(135deg, ${C.gold}30, ${C.gold}15)`,
+          border: `2px solid ${C.gold}`,
+          borderRadius: 12, padding: '26px 32px',
+          textAlign: 'center',
+        }}>
+          <div style={{ fontFamily: F.display, fontSize: 'clamp(22px, 2.8vw, 28px)', fontWeight: 700, color: '#FFFFFF', marginBottom: 10, letterSpacing: '-0.02em' }}>
+            Ready when you are, Dr. Wagner.
+          </div>
+          <div style={{ fontSize: 15, color: '#FFFFFF', maxWidth: 720, margin: '0 auto 22px', lineHeight: 1.6, fontWeight: 400 }}>
+            Sign the term sheet — first <strong style={{ color: C.gold }}>$120K releases at signing</strong> for Day-1 hires (Eric + McGrath) and Month-3 onboarding (Ops Lead + Marketer). Engine builds Months 1-3, sales staffed Month 4, first 2 acquisitions close Q2. 33 clinics owned by Mo 24. <strong style={{ color: C.gold }}>You hold or sell — your call.</strong>
+          </div>
+          <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
+            <a href="mailto:eric@kingdombroker.com?subject=ChiroPillar%20Term%20Sheet%20-%20Ready%20to%20Move%20Forward" style={{
+              display: 'inline-block', padding: '16px 32px', borderRadius: 10,
+              background: C.gold, color: C.bg, textDecoration: 'none',
+              fontFamily: F.body, fontSize: 16, fontWeight: 800, letterSpacing: '0.04em',
+              boxShadow: `0 6px 20px ${C.gold}50`,
+              transition: 'all 0.15s',
+            }}>
+              Sign Term Sheet · Lock In ChiroPillar
+            </a>
+            <a href="https://calendly.com/ericcskeldon" target="_blank" rel="noopener" style={{
+              display: 'inline-block', padding: '16px 32px', borderRadius: 10,
+              background: 'transparent', color: C.gold, textDecoration: 'none',
+              border: `2px solid ${C.gold}`,
+              fontFamily: F.body, fontSize: 16, fontWeight: 700, letterSpacing: '0.04em',
+              transition: 'all 0.15s',
+            }}>
+              Schedule Closing Call
+            </a>
+          </div>
+        </div>
       </div>
 
       <style>{`
