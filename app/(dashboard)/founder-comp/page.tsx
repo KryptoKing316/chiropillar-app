@@ -162,7 +162,7 @@ export default async function FounderCompPage() {
             <div style={{ fontFamily: F.display, fontSize: 20, fontWeight: 700, color: '#FFFFFF', marginBottom: 4 }}>Eric Skeldon · Founder/CEO · ChiroPillar owner</div>
             <div style={{ fontSize: 13, color: C.gold, fontFamily: F.mono, letterSpacing: '0.10em', marginBottom: 16, fontWeight: 700 }}>FULL-TIME · DAY 0</div>
             <div style={{ display: 'grid', gap: 8, marginBottom: 16 }}>
-              <FounderLine label="Upfront on signing"               val="$25,000"                                    note="cash at term-sheet execution" accent={C.gold} />
+              <FounderLine label="Upfront on signing"               val="$25,000"                                    note="cash at term-sheet execution · covers ChiroPillar build + Wagner receives 20% equity in ChiroPillar Inc in exchange" accent={C.gold} />
               <FounderLine label="Monthly draw × 24mo"               val={`$12,500/mo · ${fmtMoney(12_500 * 24)}`}    note="paid from Wagner operating check" />
               <FounderLine label="2% acq consulting fee"             val={fmtMoney(totalAcqValue * 0.02)}             note="~$38K per $1.9M close · 33 closes by Mo 24 · half of KB's 4%" accent={C.green} />
               <FounderLine label="2.5% exit fee · ChiroPillar slice" val={fmtMoney(kbExitFee * 0.5)}                  note="paid at eventual platform sale · half of 5%" accent={C.goldLight} />
