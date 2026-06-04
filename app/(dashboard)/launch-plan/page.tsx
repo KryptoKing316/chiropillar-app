@@ -320,15 +320,68 @@ export default function LaunchPlanPage() {
 
       {/* HEADER */}
       <div style={{ marginBottom: 28 }}>
-        <div style={{ fontFamily: F.mono, fontSize: 11, color: C.gold, letterSpacing: '0.22em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 8 }}>
-          24-Month Launch Plan · Real Numbers
+        <div style={{ fontFamily: F.mono, fontSize: 12.5, color: C.gold, letterSpacing: '0.22em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 10 }}>
+          24-Month Launch Plan · The Plan, The Team, The Cost
         </div>
-        <h1 style={{ fontFamily: F.display, fontSize: 'clamp(34px, 4.5vw, 48px)', fontWeight: 700, margin: '0 0 8px', letterSpacing: '-0.02em' }}>
-          One small check. Acquisitions on bank debt or cash. Wagner owns clinics from Day 1.
+        <h1 style={{ fontFamily: F.display, fontSize: 'clamp(34px, 4.5vw, 48px)', fontWeight: 700, margin: '0 0 10px', letterSpacing: '-0.02em' }}>
+          Acquire 33 chiropractic clinics in 24 months. Exit at $273-342M.
         </h1>
-        <p style={{ fontSize: 15, color: C.muted, margin: 0, maxWidth: 880, lineHeight: 1.55 }}>
-          Wagner writes <strong style={{ color: C.gold }}>{fmtMoney(monthlyBurnY1 * 12)}</strong> over the first 12 months for operating capital — drawn monthly. <strong style={{ color: C.green }}>Y2 self-funds</strong> from clinic cash flow. Acquisitions paid via <strong style={{ color: C.gold }}>bank debt or cash</strong>. <strong style={{ color: C.text }}>Wagner owns 100% of every clinic from Day 1.</strong> <strong style={{ color: C.gold }}>All multiple arbitrage on exit goes to Wagner.</strong>
+        <p style={{ fontSize: 16, color: '#FFFFFF', margin: 0, maxWidth: 880, lineHeight: 1.6, fontWeight: 400 }}>
+          Wagner-funded chiropractic roll-up. We acquire <strong style={{ color: C.gold }}>33 clinics over 24 months</strong>, install Wagner&apos;s medical-team playbook in each, and exit the combined platform at <strong style={{ color: C.gold }}>$273-342M</strong>. Below: the plan, the team, the path to that exit — and at the bottom, what it costs Wagner to fund.
         </p>
+      </div>
+
+      {/* ═══ HOW WAGNER GETS PAID BACK · ROI value ladder ═══ */}
+      <div style={{
+        background: `linear-gradient(135deg, rgba(46,204,139,0.10), ${C.bg3})`,
+        border: `2px solid rgba(46,204,139,0.35)`, borderRadius: 14,
+        padding: '28px 32px', marginBottom: 28,
+        boxShadow: '0 4px 24px rgba(0,0,0,0.20)',
+      }}>
+        <div style={{ fontFamily: F.mono, fontSize: 12.5, color: C.green, letterSpacing: '0.20em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 8 }}>
+          ★ How Wagner gets paid back · the 5-rung value ladder
+        </div>
+        <h2 style={{ fontFamily: F.display, fontSize: 'clamp(24px, 3.2vw, 32px)', fontWeight: 700, color: '#FFFFFF', margin: '0 0 20px', letterSpacing: '-0.02em' }}>
+          $9/mo app → high-ticket consulting → buy at 2× SDE → exit at 9× EBITDA.
+        </h2>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 14, marginBottom: 20 }}>
+          <RungCard rung="1" label="ChiroPillar Digital App" price="$9/mo · $74/yr" detail="Top of funnel · 50K+ users by Y3" accent={C.green} />
+          <RungCard rung="2" label="Strategy Calls" price="$500-2.5K" detail="60-min with Wagner · 280/yr" accent={C.globe} />
+          <RungCard rung="3" label="Practice Audits" price="$5-10K" detail="2-week diagnostic · 85/yr" accent={C.align} />
+          <RungCard rung="4" label="Medical-Team Install" price="$25-50K" detail="90-day install · +$250K EBITDA/clinic" accent={C.gold} />
+          <RungCard rung="5" label="Mastermind" price="$12K/yr" detail="60 members · annual cohort" accent={C.goldLight} />
+        </div>
+
+        {/* The arbitrage explainer */}
+        <div style={{ background: C.bg3, border: `1px solid ${C.gold}40`, borderLeft: `4px solid ${C.gold}`, borderRadius: 10, padding: '20px 24px', marginBottom: 16 }}>
+          <div style={{ fontFamily: F.mono, fontSize: 12, color: C.gold, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 10 }}>
+            ★ The arbitrage · acquire low, exit high
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 16 }}>
+            <ArbCard label="We BUY each clinic at"      val="~2× SDE"      sub={`~$1.9M avg per clinic · 33 clinics = ${fmtMoney(totalAcqValue)} total`} color={C.globe} />
+            <ArbCard label="Each clinic generates"      val="+$250-500K"   sub="EBITDA lift Y1 from Wagner's medical-team install" color={C.green} />
+            <ArbCard label="At combined-platform exit"  val="8-10× EBITDA" sub={`Same EBITDA gets re-rated at the platform-level multiple`} color={C.gold} />
+            <ArbCard label="Total exit · 24mo+"          val={`${fmtMoney(exitLow)}-${fmtMoney(exitHigh)}`} sub="Combined $34.2M EBITDA platform" color={C.goldLight} />
+          </div>
+        </div>
+
+        {/* Pro Forma totals teaser */}
+        <div style={{ background: C.bg3, border: `1px solid ${C.green}40`, borderLeft: `4px solid ${C.green}`, borderRadius: 10, padding: '20px 24px' }}>
+          <div style={{ fontFamily: F.mono, fontSize: 12, color: C.green, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 10 }}>
+            ★ 3-year revenue pro forma · all streams combined
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: 14 }}>
+            <ArbCard label="Y1 total revenue"  val={fmtMoney(12_250_000)} sub="app + consulting + first acquisitions" color={C.green} />
+            <ArbCard label="Y2 total revenue"  val={fmtMoney(39_300_000)} sub="full sales engine + 16 clinics live" color={C.gold} />
+            <ArbCard label="Y3 total revenue"  val={fmtMoney(68_200_000)} sub="33+ clinics + scaled services" color={C.gold} />
+            <ArbCard label="KB 5% × 3yr take"  val={fmtMoney((12_250_000 + 39_300_000 + 68_200_000) * 0.05)} sub="ongoing rev share · platform fee" color={C.goldLight} />
+          </div>
+        </div>
+
+        <div style={{ marginTop: 18, padding: '14px 20px', background: 'rgba(255,255,255,0.04)', borderRadius: 10, fontSize: 14, color: '#FFFFFF', lineHeight: 1.65, fontWeight: 400 }}>
+          <strong style={{ color: C.green }}>The compounding logic:</strong> the $9 app generates leads who become Strategy Call buyers, who upgrade to Practice Audits, who eventually install the medical-team add-on or sell their clinic. Every rung of the ladder feeds the next. Wagner doesn&apos;t need to chase deals — the funnel delivers qualified sellers at every price point. <strong style={{ color: C.gold }}>Detailed Pro Forma, EBITDA build-up, and Multiple Arbitrage breakdowns below.</strong>
+        </div>
       </div>
 
       {/* HEADLINE STATS · operating ask only · brighter colors for readability */}
@@ -363,13 +416,13 @@ export default function LaunchPlanPage() {
           </div>
         </div>
 
-        {/* SUPPORTING KPIs */}
+        {/* SUPPORTING KPIs · clearly labeled */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 14 }}>
-          <Kpi label="Acquisition value funded"   val={fmtMoney(totalAcqValue)}     sub={`${totalAcqCount} clinics @ ~$1.9M avg · 24mo`} color={C.goldLight} />
-          <Kpi label="Wagner cash at close (50%)" val={fmtMoney(totalWagnerCash)}   sub="from $25M+ EBITDA cash flow · debt OR cash option" color={C.globe} />
-          <Kpi label="Bank debt drawn"            val={fmtMoney(totalBankDebt)}     sub="cross-collateralized · prime + 2-3.75%" color={C.align} />
-          <Kpi label="ChiroPillar EBITDA · Mo 24"  val={fmtMoney(finalEbitda)}       sub="acquired-clinic bolt-on · see build-up below for full" color={C.green} />
-          <Kpi label="Exit · 8-10×"               val={`${fmtMoney(exitLow)}-${fmtMoney(exitHigh)}`} sub={`combined ${fmtMoney(25_000_000 + finalEbitda)} EBITDA`} color={C.goldLight} />
+          <Kpi label="Total clinic purchase price" val={fmtMoney(totalAcqValue)}     sub={`What Wagner pays to acquire ${totalAcqCount} clinics over 24mo · enterprise value, NOT revenue or EBITDA`} color={C.goldLight} />
+          <Kpi label="Wagner cash at close (50%)" val={fmtMoney(totalWagnerCash)}   sub="from $25M+ EBITDA cash flow · debt OR cash, his pick" color={C.globe} />
+          <Kpi label="Bank debt drawn (50%)"      val={fmtMoney(totalBankDebt)}     sub="cross-collateralized · prime + 2-3.75% · serviced by acquired-clinic cash flow" color={C.align} />
+          <Kpi label="New EBITDA · Mo 24"          val={fmtMoney(finalEbitda)}       sub="from 33 acquired chiros, post Wagner medical-team install · adds to his existing $25M+" color={C.green} />
+          <Kpi label="Combined platform exit · 8-10×"  val={`${fmtMoney(exitLow)}-${fmtMoney(exitHigh)}`} sub={`Wagner $25M+ EBITDA + ChiroPillar ${fmtMoney(finalEbitda)} new = ${fmtMoney(25_000_000 + finalEbitda)} combined × 8-10× sale multiple`} color={C.gold} />
         </div>
       </div>
 
@@ -941,6 +994,33 @@ function FounderLine({ label, val, note, accent }: { label: string; val: string;
         <div style={{ fontSize: 11, color: C.muted, marginTop: 2, fontStyle: 'italic' }}>{note}</div>
       </div>
       <div style={{ fontFamily: F.display, fontSize: 16, fontWeight: 800, color: accent || C.text, textAlign: 'right' }}>{val}</div>
+    </div>
+  )
+}
+
+function RungCard({ rung, label, price, detail, accent }: { rung: string; label: string; price: string; detail: string; accent: string }) {
+  return (
+    <div style={{
+      padding: '16px 18px',
+      background: `${accent}14`,
+      border: `1px solid ${accent}45`,
+      borderLeft: `4px solid ${accent}`,
+      borderRadius: 10,
+    }}>
+      <div style={{ fontFamily: F.mono, fontSize: 11, color: accent, letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 6 }}>RUNG {rung}</div>
+      <div style={{ fontFamily: F.display, fontSize: 16, fontWeight: 700, color: '#FFFFFF', marginBottom: 6, letterSpacing: '-0.01em', lineHeight: 1.2 }}>{label}</div>
+      <div style={{ fontFamily: F.display, fontSize: 20, fontWeight: 800, color: accent, marginBottom: 6, letterSpacing: '-0.02em' }}>{price}</div>
+      <div style={{ fontSize: 12.5, color: '#FFFFFF', lineHeight: 1.45, fontWeight: 500, opacity: 0.85 }}>{detail}</div>
+    </div>
+  )
+}
+
+function ArbCard({ label, val, sub, color }: { label: string; val: string; sub: string; color: string }) {
+  return (
+    <div>
+      <div style={{ fontFamily: F.mono, fontSize: 11, color, letterSpacing: '0.12em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 5 }}>{label}</div>
+      <div style={{ fontFamily: F.display, fontSize: 24, fontWeight: 800, color, lineHeight: 1, marginBottom: 5, letterSpacing: '-0.02em' }}>{val}</div>
+      <div style={{ fontSize: 12.5, color: '#FFFFFF', lineHeight: 1.45, fontWeight: 500, opacity: 0.85 }}>{sub}</div>
     </div>
   )
 }
