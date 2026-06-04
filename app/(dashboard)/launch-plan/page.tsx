@@ -155,7 +155,7 @@ type Hire = {
 
 const HIRES: Hire[] = [
   // ─── DAY 0 · PARTNERS ───
-  { role: 'Eric Skeldon · Founder/CEO',              when: 'Day 0',   comp: '$25K upfront + $12.5K/mo',                comp_low: 175_000, comp_high: 175_000, fulltime: true,  responsibilities: 'Platform · deal structure · final closing · ChiroPillar owner + operator' },
+  { role: 'Eric Skeldon · Founder/CEO',              when: 'Day 0',   comp: '$25K tech buildout + $12.5K/mo full-time salary',                comp_low: 175_000, comp_high: 175_000, fulltime: true,  responsibilities: 'Platform · deal structure · final closing · ChiroPillar owner + operator' },
   { role: 'Scott McGrath · BD Partner',              when: 'Day 0',   comp: '$5K/mo',                                  comp_low: 60_000,  comp_high: 60_000,  fulltime: false, responsibilities: 'Wagner relationship · networks with DC associations · sponsors largest chiropractic + DC events · opens doors via senior DC reputation' },
   { role: 'Dr. Scott Wagner · Clinical Partner',     when: 'Day 0',   comp: 'Owns clinics outright',           comp_low: 0,       comp_high: 0,        fulltime: false, responsibilities: 'Clinical playbook · medical-team install · operator credibility' },
 
@@ -263,7 +263,7 @@ type Quarter = {
 }
 
 const TIMELINE: Quarter[] = [
-  { q: 'Q1 (Mo 1-3)',   team_cost: 165_000, marketing:  72_000, saas: 14_000, acq_count: 0, acq_value:          0, wagner_cash:         0, bank_debt:         0, cumulative_ebitda:        0, notes: 'Eric ($25K upfront + $12.5K/mo) + McGrath ($5K/mo) + Wagner Day 0. Ops Lead + Marketer onboarded Month 3. Engine being built. First 50 intakes test funnel.' },
+  { q: 'Q1 (Mo 1-3)',   team_cost: 165_000, marketing:  72_000, saas: 14_000, acq_count: 0, acq_value:          0, wagner_cash:         0, bank_debt:         0, cumulative_ebitda:        0, notes: 'Eric ($25K tech buildout + $12.5K/mo full-time salary) + McGrath ($5K/mo) + Wagner Day 0. Ops Lead + Marketer onboarded Month 3. Engine being built. First 50 intakes test funnel.' },
   { q: 'Q2 (Mo 4-6)',   team_cost: 295_000, marketing: 105_000, saas: 14_000, acq_count: 2, acq_value:  3_800_000, wagner_cash: 1_900_000, bank_debt: 1_900_000, cumulative_ebitda:   100_000, notes: 'Sales engine fully staffed Month 4: Appt Setter + BDR + Closer #1. McGrath warm intros convert. First 2 closes late Q2.' },
   { q: 'Q3 (Mo 7-9)',   team_cost: 350_000, marketing: 135_000, saas: 16_000, acq_count: 4, acq_value:  7_600_000, wagner_cash: 3_800_000, bank_debt: 3_800_000, cumulative_ebitda:   680_000, notes: 'Appt Setter #2 + Account Manager + Bookkeeper added. 4 closes Q3 — pace doubles. Sales team converting at 30%.' },
   { q: 'Q4 (Mo 10-12)', team_cost: 390_000, marketing: 135_000, saas: 18_000, acq_count: 5, acq_value:  9_500_000, wagner_cash: 4_750_000, bank_debt: 4_750_000, cumulative_ebitda: 1_700_000, notes: 'Diligence Analyst + Closer #2 hired. 5 closes Q4 (cumulative 11). Scale Services ramping under AM #1.' },
@@ -452,8 +452,8 @@ export default function LaunchPlanPage() {
           <Kpi label="Wagner cash at close (50%)" val={fmtMoney(totalWagnerCash)}   sub="from $25M+ EBITDA cash flow · debt OR cash, his pick" color={C.globe} />
           <Kpi label="Bank debt drawn (50%)"      val={fmtMoney(totalBankDebt)}     sub="cross-collateralized · prime + 2-3.75% · serviced by acquired-clinic cash flow" color={C.globe} />
           <Kpi label="New EBITDA · Mo 24"          val={fmtMoney(finalEbitda)}       sub="from 33 acquired chiros, post Wagner medical-team install · adds to his existing $25M+" color={C.green} />
-          <Kpi label="ChiroPillar value · 8-10×"   val={`${fmtMoney(finalEbitda * 8)}-${fmtMoney(finalEbitda * 10)}`} sub={`33 clinics standalone · ${fmtMoney(finalEbitda)} EBITDA × platform multiple · hold or sell, Wagner's call`} color={C.green} />
-          <Kpi label="Combined potential · w/ Wagner $25M+"  val={`${fmtMoney(exitLow)}-${fmtMoney(exitHigh)}`} sub={`Optional upside · roll Wagner's existing EBITDA into platform · re-rate from 5-7× to 8-10×`} color={C.gold} />
+          <Kpi label="ChiroPillar value · 8-10×"   val={`$${(finalEbitda * 8 / 1_000_000).toFixed(0)}–${(finalEbitda * 10 / 1_000_000).toFixed(0)}M`} sub={`33 clinics standalone · ${fmtMoney(finalEbitda)} EBITDA × platform multiple · hold or sell, Wagner's call`} color={C.green} valSize="sm" />
+          <Kpi label="Combined potential · w/ Wagner $25M+"  val={`$${(exitLow / 1_000_000).toFixed(0)}–${(exitHigh / 1_000_000).toFixed(0)}M`} sub={`Optional upside · roll Wagner's existing EBITDA into platform · re-rate from 5-7× to 8-10×`} color={C.gold} valSize="sm" />
         </div>
       </div>
 
@@ -1073,11 +1073,12 @@ export default function LaunchPlanPage() {
   )
 }
 
-function Kpi({ label, val, sub, color, big }: { label: string; val: string; sub: string; color: string; big?: boolean }) {
+function Kpi({ label, val, sub, color, big, valSize }: { label: string; val: string; sub: string; color: string; big?: boolean; valSize?: 'sm' | 'md' | 'lg' }) {
+  const valFontSize = big ? 32 : valSize === 'sm' ? 20 : valSize === 'lg' ? 28 : 26
   return (
     <div style={big ? { padding: '10px 0', borderLeft: `3px solid ${color}`, paddingLeft: 14 } : {}}>
       <div style={{ fontFamily: F.mono, fontSize: 11.5, color: big ? color : color, letterSpacing: '0.12em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 6 }}>{label}</div>
-      <div style={{ fontSize: big ? 32 : 26, fontWeight: 800, color, fontFamily: F.display, lineHeight: 1, marginBottom: 6, letterSpacing: '-0.01em' }}>{val}</div>
+      <div style={{ fontSize: valFontSize, fontWeight: 800, color, fontFamily: F.display, lineHeight: 1.1, marginBottom: 6, letterSpacing: '-0.01em', wordBreak: 'normal', overflowWrap: 'break-word' }}>{val}</div>
       <div style={{ fontSize: 13, color: '#FFFFFF', lineHeight: 1.45, fontWeight: 500 }}>{sub}</div>
     </div>
   )
