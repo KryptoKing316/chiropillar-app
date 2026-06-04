@@ -122,7 +122,7 @@ const VALUE_CHAIN: Stage[] = [
       { label: 'LOI accept rate',       val: '55%' },
     ],
     monthly_cost: 11_500,
-    what: 'Eric structures the 4-stream offer (cash + note + rollover + profit share). Per-clinic data room holds financials. Outside legal on retainer for APA + state DSO/MSO compliance.',
+    what: 'Eric structures the clean buyout package: 50% cash at close + 50% seller note paid from clinic cash flow over 5-7 years. No rollover equity required from the seller — they cash out fully. Per-clinic data room holds financials. Outside legal on retainer for APA + state DSO/MSO compliance.',
     accent: '#1F4E79',
   },
   {
@@ -347,7 +347,7 @@ export default function LaunchPlanPage() {
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 14, marginBottom: 20 }}>
           <RungCard rung="1" label="ChiroPillar Digital App" price="$9/mo · $74/yr" detail="Top of funnel · 50K+ users by Y3" accent={C.green} />
-          <RungCard rung="2" label="Strategy Calls" price="$500-2.5K" detail="60-min with Wagner · 280/yr" accent={C.globe} />
+          <RungCard rung="2" label="Strategy Calls" price="$500" detail="60-min 1:1 with Wagner · qualified DCs · 280/yr" accent={C.globe} />
           <RungCard rung="3" label="Practice Audits" price="$5-10K" detail="2-week diagnostic · 85/yr" accent={C.align} />
           <RungCard rung="4" label="Medical-Team Install" price="$25-50K" detail="90-day install · +$250K EBITDA/clinic" accent={C.gold} />
           <RungCard rung="5" label="Mastermind" price="$12K/yr" detail="60 members · annual cohort" accent={C.goldLight} />
@@ -703,6 +703,97 @@ export default function LaunchPlanPage() {
         ))}
       </div>
 
+      {/* ── FUNNELS, SYSTEMS, AUTOMATION + AD SPEND ─────────────────────── */}
+      <SectionHead eyebrow="Beyond payroll · what makes the engine run" title="Funnels, systems, automation + monthly ad spend." />
+      <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, padding: '26px 30px', marginBottom: 36, boxShadow: '0 4px 16px rgba(0,0,0,0.12)' }}>
+
+        {/* THREE-COLUMN BREAKDOWN */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 18, marginBottom: 22 }}>
+
+          {/* One-time funnel + automation build */}
+          <div style={{ background: `${C.globe}10`, border: `1px solid ${C.globe}40`, borderLeft: `4px solid ${C.globe}`, borderRadius: 10, padding: '20px 22px' }}>
+            <div style={{ fontFamily: F.mono, fontSize: 12, color: C.globe, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 12 }}>
+              One-time build · capex
+            </div>
+            <div style={{ display: 'grid', gap: 9, marginBottom: 14 }}>
+              <BudgetLine label="Intake funnel · landing pages · quiz logic + valuation engine" val="$25K" />
+              <BudgetLine label="Automation stack · Zapier/n8n + Slack alerts + CRM wiring"  val="$15K" />
+              <BudgetLine label="Ad creative · videos · LP design · brand assets"             val="$20K" />
+              <BudgetLine label="Initial data · Clay + Apollo enrichment · target lists"      val="$10K" />
+            </div>
+            <div style={{ padding: '12px 14px', background: `${C.globe}20`, borderRadius: 8, fontSize: 14, color: C.globe, fontFamily: F.mono, fontWeight: 800, display: 'flex', justifyContent: 'space-between' }}>
+              <span>Total one-time build</span>
+              <span style={{ fontFamily: F.display, fontSize: 20, letterSpacing: '-0.02em' }}>$70K</span>
+            </div>
+            <div style={{ marginTop: 10, fontSize: 12.5, color: '#FFFFFF', lineHeight: 1.5, fontWeight: 500, opacity: 0.85 }}>
+              Paid out of Q1 marketing/SaaS budget. Built in months 1-3 before sales engine staffs up.
+            </div>
+          </div>
+
+          {/* Monthly ad spend trajectory */}
+          <div style={{ background: `${C.gold}10`, border: `1px solid ${C.gold}40`, borderLeft: `4px solid ${C.gold}`, borderRadius: 10, padding: '20px 22px' }}>
+            <div style={{ fontFamily: F.mono, fontSize: 12, color: C.gold, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 12 }}>
+              Monthly ad spend · trajectory
+            </div>
+            <div style={{ display: 'grid', gap: 9, marginBottom: 14 }}>
+              <BudgetLine label="Q1 (Mo 1-3) · build phase"            val={`~$${Math.round((TIMELINE[0].marketing / 3) / 1_000)}K/mo`} />
+              <BudgetLine label="Q2 (Mo 4-6) · sales engine on"        val={`~$${Math.round((TIMELINE[1].marketing / 3) / 1_000)}K/mo`} />
+              <BudgetLine label="Q3-Q4 average"                         val={`~$${Math.round(((TIMELINE[2].marketing + TIMELINE[3].marketing) / 6) / 1_000)}K/mo`} />
+              <BudgetLine label="Y2 average · self-funded"              val={`~$${Math.round(((TIMELINE[4].marketing + TIMELINE[5].marketing + TIMELINE[6].marketing + TIMELINE[7].marketing) / 12) / 1_000)}K/mo`} />
+            </div>
+            <div style={{ padding: '12px 14px', background: `${C.gold}20`, borderRadius: 8, fontSize: 14, color: C.gold, fontFamily: F.mono, fontWeight: 800, display: 'flex', justifyContent: 'space-between' }}>
+              <span>Y1 ad spend total</span>
+              <span style={{ fontFamily: F.display, fontSize: 20, letterSpacing: '-0.02em' }}>{fmtMoney(TIMELINE[0].marketing + TIMELINE[1].marketing + TIMELINE[2].marketing + TIMELINE[3].marketing)}</span>
+            </div>
+            <div style={{ marginTop: 10, fontSize: 12.5, color: '#FFFFFF', lineHeight: 1.5, fontWeight: 500, opacity: 0.85 }}>
+              Facebook + Google Search + YouTube + direct mail. BlitzMetrics partner manages creative.
+            </div>
+          </div>
+
+          {/* SaaS recurring */}
+          <div style={{ background: `${C.green}10`, border: `1px solid ${C.green}40`, borderLeft: `4px solid ${C.green}`, borderRadius: 10, padding: '20px 22px' }}>
+            <div style={{ fontFamily: F.mono, fontSize: 12, color: C.green, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 12 }}>
+              SaaS + Tools · recurring
+            </div>
+            <div style={{ display: 'grid', gap: 9, marginBottom: 14 }}>
+              <BudgetLine label="Platform infra · Vercel + Supabase + Resend + Anthropic" val="~$925/mo" />
+              <BudgetLine label="Enrichment + outbound · Clay + Instantly + Aircall"       val="~$1.37K/mo" />
+              <BudgetLine label="Signatures + payments · DocuSeal + Stripe + QuickBooks"   val="~$440/mo" />
+              <BudgetLine label="Comms + ops · Calendly + Slack + Notion"                  val="~$246/mo" />
+            </div>
+            <div style={{ padding: '12px 14px', background: `${C.green}20`, borderRadius: 8, fontSize: 14, color: C.green, fontFamily: F.mono, fontWeight: 800, display: 'flex', justifyContent: 'space-between' }}>
+              <span>SaaS stack subtotal</span>
+              <span style={{ fontFamily: F.display, fontSize: 20, letterSpacing: '-0.02em' }}>${stackTotalMo.toLocaleString()}/mo</span>
+            </div>
+            <div style={{ marginTop: 10, fontSize: 12.5, color: '#FFFFFF', lineHeight: 1.5, fontWeight: 500, opacity: 0.85 }}>
+              13 line-item breakdown in the SaaS Stack table below. Scales to ~$5K/mo at full volume.
+            </div>
+          </div>
+        </div>
+
+        {/* GRAND TOTAL CALLOUT */}
+        <div style={{ background: `linear-gradient(135deg, ${C.gold}15, ${C.bg3})`, border: `1px solid ${C.gold}50`, borderRadius: 10, padding: '20px 24px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 16 }}>
+            <div>
+              <div style={{ fontFamily: F.mono, fontSize: 11, color: C.gold, letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 4 }}>Y1 team payroll</div>
+              <div style={{ fontFamily: F.display, fontSize: 22, fontWeight: 800, color: C.gold, letterSpacing: '-0.02em' }}>{fmtMoney(TIMELINE[0].team_cost + TIMELINE[1].team_cost + TIMELINE[2].team_cost + TIMELINE[3].team_cost)}</div>
+            </div>
+            <div>
+              <div style={{ fontFamily: F.mono, fontSize: 11, color: C.gold, letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 4 }}>Y1 ad spend</div>
+              <div style={{ fontFamily: F.display, fontSize: 22, fontWeight: 800, color: C.gold, letterSpacing: '-0.02em' }}>{fmtMoney(TIMELINE[0].marketing + TIMELINE[1].marketing + TIMELINE[2].marketing + TIMELINE[3].marketing)}</div>
+            </div>
+            <div>
+              <div style={{ fontFamily: F.mono, fontSize: 11, color: C.gold, letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 4 }}>Y1 SaaS + tools</div>
+              <div style={{ fontFamily: F.display, fontSize: 22, fontWeight: 800, color: C.gold, letterSpacing: '-0.02em' }}>{fmtMoney(TIMELINE[0].saas + TIMELINE[1].saas + TIMELINE[2].saas + TIMELINE[3].saas)}</div>
+            </div>
+            <div style={{ background: `${C.gold}25`, padding: '12px 16px', borderRadius: 8 }}>
+              <div style={{ fontFamily: F.mono, fontSize: 11, color: C.gold, letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 4 }}>★ Y1 TOTAL ASK</div>
+              <div style={{ fontFamily: F.display, fontSize: 26, fontWeight: 800, color: C.gold, letterSpacing: '-0.02em' }}>{fmtMoney(monthlyBurnY1 * 12)}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* SAAS STACK */}
       <SectionHead eyebrow="SaaS + Tech Stack" title="13 line items. Total cost predictable." />
       <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, overflow: 'hidden', marginBottom: 36 }}>
@@ -790,11 +881,11 @@ export default function LaunchPlanPage() {
         {/* The 5-tier value ladder visualized */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 24 }}>
           <LadderRow tier="TIER 1" name="ChiroPillar Digital App · $9/mo or $74/yr"  audience="Patients (consumer)"  price="$9-74"      y3="$3.0M / yr" accent={C.green}    width={20} />
-          <LadderRow tier="TIER 2" name="Strategy Call · 60-min 1:1 with Wagner"     audience="DCs · single touch"  price="$500-2.5K"  y3="$420K / yr" accent={C.globe}    width={35} />
+          <LadderRow tier="TIER 2" name="Strategy Call · 60-min 1:1 with Wagner"     audience="Qualified DCs · single touch"  price="$500"  y3="$140K / yr" accent={C.globe}    width={35} />
           <LadderRow tier="TIER 3" name="Practice Audit · 2-week diagnostic + plan"  audience="DCs · committed"     price="$5-10K"     y3="$680K / yr" accent={C.align}    width={50} />
           <LadderRow tier="TIER 4" name="Medical-Team Installation · 90-day install" audience="DCs · serious scaling" price="$25-50K"  y3="$1.4M / yr" accent={C.gold}     width={65} />
           <LadderRow tier="TIER 5" name="ChiroPillar Mastermind · 12-mo cohort"      audience="DCs · scaling without selling" price="$12K/yr" y3="$700K / yr" accent={C.goldLight} width={75} />
-          <LadderRow tier="TIER 6" name="Acquisition · 4-stream offer + medical-team add-on" audience="DCs · ready to step out" price="$1.9M avg" y3="33 clinics" accent={C.globe}    width={100} />
+          <LadderRow tier="TIER 6" name="Acquisition · cash + seller note + medical-team install" audience="DCs · ready to step out" price="$1.9M avg" y3="33 clinics" accent={C.globe}    width={100} />
         </div>
 
         {/* 3-year pro forma table */}
@@ -811,7 +902,7 @@ export default function LaunchPlanPage() {
               <div style={{ textAlign: 'right' }}>Y3</div>
             </div>
             <ProFormaRow line="ChiroPillar Digital App · $9/mo + $74/yr blended"            units="50,000 users"  y1={100_000}    y2={825_000}    y3={3_000_000}  accent={C.green} />
-            <ProFormaRow line="Strategy Calls · $500-$2.5K"                                  units="280 calls/yr"  y1={120_000}    y2={250_000}    y3={420_000}    accent={C.globe} />
+            <ProFormaRow line="Strategy Calls · $500 flat · qualified DCs only"             units="280 calls/yr"  y1={50_000}     y2={100_000}    y3={140_000}    accent={C.globe} />
             <ProFormaRow line="Practice Audits · $5-10K"                                     units="85 audits/yr"  y1={180_000}    y2={400_000}    y3={680_000}    accent={C.align} />
             <ProFormaRow line="Medical-Team Installations · $25-50K"                         units="35 installs/yr" y1={350_000}    y2={825_000}    y3={1_400_000}  accent={C.gold} />
             <ProFormaRow line="Mastermind · $12K/yr × 60 members"                           units="60 members"    y1={300_000}    y2={500_000}    y3={700_000}    accent={C.goldLight} />
@@ -1031,6 +1122,15 @@ function FounderLine({ label, val, note, accent }: { label: string; val: string;
         <div style={{ fontSize: 11, color: C.muted, marginTop: 2, fontStyle: 'italic' }}>{note}</div>
       </div>
       <div style={{ fontFamily: F.display, fontSize: 16, fontWeight: 800, color: accent || C.text, textAlign: 'right' }}>{val}</div>
+    </div>
+  )
+}
+
+function BudgetLine({ label, val }: { label: string; val: string }) {
+  return (
+    <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 12, padding: '8px 0', borderBottom: `1px solid ${C.border}`, alignItems: 'baseline' }}>
+      <div style={{ fontSize: 13, color: '#FFFFFF', lineHeight: 1.4, fontWeight: 500 }}>{label}</div>
+      <div style={{ fontFamily: F.mono, fontSize: 13.5, fontWeight: 800, color: '#FFFFFF' }}>{val}</div>
     </div>
   )
 }
