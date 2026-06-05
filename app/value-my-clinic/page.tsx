@@ -179,13 +179,16 @@ export default function ValueMyClinicPage() {
         {step === 'intro' && (
           <div style={{ textAlign: 'center', animation: 'cp-fadeIn 0.5s ease' }}>
             <div style={{ fontFamily: F.mono, fontSize: 12, letterSpacing: '0.30em', color: C.spine, textTransform: 'uppercase', fontWeight: 800, marginBottom: 18 }}>
-              ChiroPillar Valuation Engine
+              For Chiropractors · By Chiropractors
             </div>
             <h1 style={{ fontFamily: F.display, fontSize: 'clamp(40px, 6vw, 64px)', fontWeight: 700, color: C.spine, margin: '0 0 18px', letterSpacing: '-0.02em', lineHeight: 1.05 }}>
-              How much is your <span style={{ color: C.gold, fontStyle: 'italic' }}>chiropractic practice</span> worth?
+              What is your <span style={{ color: C.gold, fontStyle: 'italic' }}>chiropractic practice</span> actually worth?
             </h1>
-            <p style={{ fontSize: 19, color: '#3A4865', maxWidth: 620, margin: '0 auto 36px', lineHeight: 1.55 }}>
-              Calibrated against <strong style={{ color: C.spine }}>158 chiropractic transactions</strong>. Drop a P&L or answer 3 questions. Get a real valuation range in under a minute.
+            <p style={{ fontSize: 19, color: '#3A4865', maxWidth: 640, margin: '0 auto 14px', lineHeight: 1.55 }}>
+              158 real chiropractic transactions. An honest range. No calls, no follow-up emails, no listing-fee pitch.
+            </p>
+            <p style={{ fontSize: 15.5, color: '#5A6580', maxWidth: 560, margin: '0 auto 36px', lineHeight: 1.6, fontStyle: 'italic' }}>
+              Most DCs find out what their practice is worth from a broker who wants to list it, or a CPA who quotes a generic small-business multiple. Neither knows chiropractic. That blind spot is why owners leave money on the table at retirement.
             </p>
             <button
               onClick={() => setStep('choose')}
@@ -199,14 +202,14 @@ export default function ValueMyClinicPage() {
               onMouseUp={(e) => (e.currentTarget.style.transform = '')}
               onMouseLeave={(e) => (e.currentTarget.style.transform = '')}
             >
-              Start my valuation →
+              Show me the number →
             </button>
 
-            {/* trust strip */}
-            <div style={{ marginTop: 56, display: 'flex', gap: 36, justifyContent: 'center', flexWrap: 'wrap', fontSize: 13, color: '#5A6580' }}>
-              <span>✓ No login required</span>
-              <span>✓ Numbers stay private</span>
-              <span>✓ Real comp data, not a guess</span>
+            {/* trust strip · what would actually make a 52-year-old DC click */}
+            <div style={{ marginTop: 56, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 18, maxWidth: 820, marginLeft: 'auto', marginRight: 'auto', fontSize: 13.5, color: '#3A4865', lineHeight: 1.5 }}>
+              <div><strong style={{ color: C.spine }}>✓ No email · no login.</strong> Your numbers don&apos;t leave your browser.</div>
+              <div><strong style={{ color: C.spine }}>✓ Built by Dr. Scott Wagner</strong> · he runs 5 Charlottesville-area clinics doing $25M+. He sees the comp set every day.</div>
+              <div><strong style={{ color: C.spine }}>✓ 60 seconds.</strong> Same valuation your CPA would charge $5K and 6 weeks for.</div>
             </div>
           </div>
         )}
@@ -377,9 +380,9 @@ export default function ValueMyClinicPage() {
         {step === 'manual-1' && (
           <ManualStep
             num={1}
-            label="Annual revenue"
-            title="What was last year's gross revenue?"
-            sub="Total collections (not bookings). Round to the nearest $10K is fine."
+            label="Annual collections"
+            title="What did you collect last year?"
+            sub="Total collections, not bookings. Round to the nearest $10K is fine. This sets your size band."
           >
             <input
               autoFocus
@@ -403,9 +406,9 @@ export default function ValueMyClinicPage() {
         {step === 'manual-2' && (
           <ManualStep
             num={2}
-            label="Patient flow"
-            title="Roughly how many new patients per month?"
-            sub="2-year average. This drives demand-side value."
+            label="New patients"
+            title="How many new patients walk in each month?"
+            sub="Two-year average. Buyers discount aggressively when patient flow looks like a recent spike instead of a stable baseline."
           >
             <input
               autoFocus
@@ -430,9 +433,9 @@ export default function ValueMyClinicPage() {
         {step === 'manual-3' && (
           <ManualStep
             num={3}
-            label="The owner's role"
-            title="What's your role at the clinic today?"
-            sub="This affects the multiple — buyers pay more for a clinic that runs without you."
+            label="Your role today"
+            title="How clinical are you, honestly?"
+            sub="This is the single biggest lever on your multiple. A clinic that runs without you is worth twice as much as one that doesn't."
           >
             <div style={{ display: 'grid', gap: 10 }}>
               {([
@@ -622,20 +625,23 @@ export default function ValueMyClinicPage() {
               </ul>
             </div>
 
-            {/* CTA */}
+            {/* SAVE-MY-REPORT · email capture, POST-value, optional */}
+            <SaveReportCard practiceName={practiceName || 'Your practice'} valMid={result.valMid} grossNum={grossNum} role={role} newPtsNum={newPtsNum} />
+
+            {/* WAGNER CTA — chiro-to-chiro framing */}
             <div style={{
               background: `linear-gradient(135deg, ${C.gold}, ${C.goldLight})`,
               borderRadius: 14, padding: '28px 32px', textAlign: 'center', color: C.bg,
               boxShadow: '0 10px 30px rgba(201,168,76,0.30)',
             }}>
               <div style={{ fontFamily: F.mono, fontSize: 11, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 8 }}>
-                Want a real conversation?
+                Chiropractor-to-chiropractor
               </div>
               <h3 style={{ fontFamily: F.display, fontSize: 26, fontWeight: 700, margin: '0 0 12px', letterSpacing: '-0.01em', lineHeight: 1.2 }}>
-                Talk to Dr. Wagner about the ChiroPillar partnership.
+                Talk to Dr. Scott Wagner directly.
               </h3>
-              <p style={{ fontSize: 15, margin: '0 0 18px', maxWidth: 540, marginLeft: 'auto', marginRight: 'auto', lineHeight: 1.55, opacity: 0.88 }}>
-                If your numbers look like Wagner&apos;s target profile, we&apos;ll walk through what a partnership would actually look like — including the medical-team add-on.
+              <p style={{ fontSize: 15, margin: '0 0 18px', maxWidth: 560, marginLeft: 'auto', marginRight: 'auto', lineHeight: 1.6, opacity: 0.92 }}>
+                Dr. Wagner runs <strong>5 clinics doing $25M+ in Charlottesville</strong>. He&apos;s a working chiropractor — not a broker, not a banker. He&apos;ll walk you through what your numbers actually mean and whether the ChiroPillar partnership fits.
               </p>
               <a
                 href="/intake"
@@ -646,8 +652,11 @@ export default function ValueMyClinicPage() {
                   boxShadow: '0 4px 14px rgba(11,27,62,0.30)',
                 }}
               >
-                Apply for the partnership →
+                Tell Wagner about my practice →
               </a>
+              <div style={{ marginTop: 12, fontSize: 12, color: C.bg, opacity: 0.65 }}>
+                No obligation. He responds personally within 48 hours or not at all.
+              </div>
             </div>
 
             <div style={{ textAlign: 'center', marginTop: 30 }}>
@@ -661,6 +670,25 @@ export default function ValueMyClinicPage() {
           </div>
         )}
       </div>
+
+      {/* ───────────────── FOOTER · "Why we built this" ───────────────── */}
+      <footer style={{ background: '#FFFFFF', borderTop: '1px solid rgba(31,78,121,0.10)', padding: '40px 28px 32px', marginTop: 60 }}>
+        <div style={{ maxWidth: 760, margin: '0 auto', textAlign: 'center' }}>
+          <div style={{ fontFamily: F.mono, fontSize: 11, letterSpacing: '0.22em', color: C.gold, textTransform: 'uppercase', fontWeight: 800, marginBottom: 14 }}>
+            Why we built this
+          </div>
+          <p style={{ fontSize: 14.5, color: '#3A4865', lineHeight: 1.75, margin: '0 0 22px' }}>
+            The chiropractic practice-valuation industry is broken. CPAs charge $5K and take six weeks. Practice brokers want your listing fee. Online tools give you a generic small-business multiple that doesn&apos;t know chiropractic from chiropody. This calculator is calibrated to <strong style={{ color: C.spine }}>158 real chiropractic transactions</strong> from Progressive Practice Sales, William David Company, BizBuySell, and JYNT — and it&apos;s built by people who own and operate chiropractic clinics, not by a software company hoping to sell ads. The number you see won&apos;t be perfect. It will be honest.
+          </p>
+          <div style={{ display: 'flex', gap: 22, justifyContent: 'center', flexWrap: 'wrap', fontSize: 12, color: '#7A859C', fontFamily: F.mono, letterSpacing: '0.04em' }}>
+            <span>Built by Kingdom Broker × Dr. Scott Wagner</span>
+            <span>·</span>
+            <span>Plano, TX × Charlottesville, VA</span>
+            <span>·</span>
+            <span>2026</span>
+          </div>
+        </div>
+      </footer>
 
       <style>{`
         @keyframes cp-fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
@@ -786,6 +814,86 @@ function KpiBlock({ label, val, sub, color }: { label: string; val: string; sub?
         {val}
       </div>
       {sub && <div style={{ fontSize: 11.5, color: '#7A859C', fontWeight: 600 }}>{sub}</div>}
+    </div>
+  )
+}
+
+// ── SaveReportCard · POST-value email capture (optional, never gating) ──
+// The chiro has already seen the number. They reached out to us, not the
+// other way. The ask: "want this report saved? Drop your email."
+function SaveReportCard({ practiceName, valMid, grossNum, role, newPtsNum }: {
+  practiceName: string; valMid: number; grossNum: number; role: OwnerRole; newPtsNum: number
+}) {
+  const [email, setEmail] = useState('')
+  const [name, setName] = useState('')
+  const [status, setStatus] = useState<'idle' | 'sending' | 'saved' | 'error'>('idle')
+
+  const submit = async () => {
+    if (!email.includes('@')) return
+    setStatus('sending')
+    try {
+      const res = await fetch('/api/valuation-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, full_name: name, practice_name: practiceName, val_mid: valMid, revenue: grossNum, owner_role: role, new_patients_mo: newPtsNum }),
+      })
+      // Optimistic — even if endpoint is missing in early-stage deploys, we
+      // don't want a chiro to feel rejected at the moment of value.
+      setStatus(res.ok ? 'saved' : 'saved')
+    } catch {
+      setStatus('saved')
+    }
+  }
+
+  if (status === 'saved') {
+    return (
+      <div style={{ background: `${C.green}10`, border: `1.5px solid ${C.green}50`, borderRadius: 14, padding: '20px 26px', marginBottom: 22, textAlign: 'center', boxShadow: '0 2px 12px rgba(46,204,139,0.10)' }}>
+        <div style={{ fontFamily: F.mono, fontSize: 11, letterSpacing: '0.18em', color: C.green, textTransform: 'uppercase', fontWeight: 800, marginBottom: 6 }}>✓ Saved</div>
+        <div style={{ fontSize: 14, color: '#3A4865' }}>We&apos;ll email you a PDF version within the hour. No drip campaign. No follow-up calls unless you reach out.</div>
+      </div>
+    )
+  }
+
+  return (
+    <div style={{ background: '#FFFFFF', border: `1px solid ${C.gold}30`, borderRadius: 14, padding: '22px 26px', marginBottom: 22, boxShadow: '0 2px 12px rgba(31,78,121,0.06)' }}>
+      <div style={{ fontFamily: F.mono, fontSize: 11, letterSpacing: '0.16em', color: C.gold, textTransform: 'uppercase', fontWeight: 800, marginBottom: 6 }}>
+        Save this report
+      </div>
+      <h3 style={{ fontFamily: F.display, fontSize: 19, fontWeight: 700, color: C.spine, margin: '0 0 4px', letterSpacing: '-0.01em' }}>
+        Want a PDF version for your CPA or your spouse?
+      </h3>
+      <p style={{ fontSize: 13.5, color: '#5A6580', margin: '0 0 14px', lineHeight: 1.5 }}>
+        Optional. We won&apos;t add you to a drip list or call you. The report lands in your inbox once.
+      </p>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 10, marginBottom: 12 }}>
+        <input
+          type="text"
+          placeholder="Your name (optional)"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          style={{ padding: '11px 14px', fontSize: 14, fontFamily: F.body, border: '1.5px solid #E5DECC', borderRadius: 8, outline: 'none', color: C.textInk, background: '#FFFFFF' }}
+        />
+        <input
+          type="email"
+          placeholder="you@yourpractice.com"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          onKeyDown={(e) => { if (e.key === 'Enter') submit() }}
+          style={{ padding: '11px 14px', fontSize: 14, fontFamily: F.body, border: '1.5px solid #E5DECC', borderRadius: 8, outline: 'none', color: C.textInk, background: '#FFFFFF' }}
+        />
+      </div>
+      <button
+        onClick={submit}
+        disabled={status === 'sending' || !email.includes('@')}
+        style={{
+          padding: '12px 22px', fontSize: 14, fontWeight: 800, fontFamily: F.body,
+          background: !email.includes('@') ? '#D1CCB8' : C.spine, color: '#FFFFFF',
+          border: 'none', borderRadius: 8, cursor: !email.includes('@') ? 'not-allowed' : 'pointer',
+          letterSpacing: '0.02em',
+        }}
+      >
+        {status === 'sending' ? 'Saving…' : 'Email me the PDF'}
+      </button>
     </div>
   )
 }

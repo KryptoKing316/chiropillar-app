@@ -192,6 +192,8 @@ const STACK = [
   { tool: 'QuickBooks Online',         cost_mo: 90,    use: 'Per-entity books · Phase 3 OAuth integration' },
   { tool: 'Calendly · Team',           cost_mo: 96,    use: 'Auto-book ChiroPillar team calls (BD + Closers) · Wagner only at final close' },
   { tool: 'Slack + Notion',            cost_mo: 150,   use: 'Internal ops' },
+  { tool: 'DealStats · BVR · chiro NAICS', cost_mo: 83, use: 'Real closing-price comp set (~30-50 chiro transactions) · feeds the valuation algorithm' },
+  { tool: 'IBBA Median Multiples Report', cost_mo: 25,  use: 'Cross-check broker-association median multiples by SIC + size band' },
 ]
 const stackTotalMo = STACK.reduce((s, t) => s + t.cost_mo, 0)
 
@@ -794,8 +796,64 @@ export default function LaunchPlanPage() {
         </div>
       </div>
 
+      {/* ─────────────────────────────────────────────────────────────────
+          ALGORITHM DATA INVESTMENT · ONE-TIME
+          The single highest-leverage Y1 budget line for the moat itself.
+         ───────────────────────────────────────────────────────────────── */}
+      <SectionHead eyebrow="One-time · Y1" title="Comp data license · the algorithm moat." />
+      <div style={{
+        background: `linear-gradient(135deg, ${C.bg2} 0%, ${C.bg3} 100%)`,
+        border: `1px solid ${C.gold}50`, borderLeft: `4px solid ${C.gold}`,
+        borderRadius: 14, padding: '28px 32px', marginBottom: 36,
+      }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 22, marginBottom: 22 }}>
+          <div>
+            <div style={{ fontFamily: F.mono, fontSize: 11, letterSpacing: '0.16em', color: C.gold, textTransform: 'uppercase', fontWeight: 800, marginBottom: 8 }}>
+              Why it matters
+            </div>
+            <div style={{ fontSize: 14.5, color: '#FFFFFF', lineHeight: 1.65, opacity: 0.92 }}>
+              Our 158-comp dataset is <strong style={{ color: C.gold }}>asking prices only</strong> — no closing data is publicly available for chiropractic practices under $5M. Every other valuation tool in the market has the same gap.
+              <br/><br/>
+              The PPS + William David licenses give us their <strong style={{ color: C.gold }}>full closed-deal dataset</strong> — the asking-to-closing delta we currently estimate at 85-95%. That delta IS the value of the algorithm.
+            </div>
+          </div>
+          <div>
+            <div style={{ fontFamily: F.mono, fontSize: 11, letterSpacing: '0.16em', color: C.gold, textTransform: 'uppercase', fontWeight: 800, marginBottom: 8 }}>
+              What we get
+            </div>
+            <div style={{ display: 'grid', gap: 8, fontSize: 14, color: '#FFFFFF', lineHeight: 1.55 }}>
+              <div>· ~140 additional comps with <strong>real closing prices</strong></div>
+              <div>· Closing-price delta by region + practice profile</div>
+              <div>· Time-on-market data (signals demand)</div>
+              <div>· Concession patterns (seller note %, working capital)</div>
+              <div>· <strong style={{ color: C.gold }}>Total comp set: ~300 transactions, ~half with closing data</strong></div>
+            </div>
+          </div>
+        </div>
+
+        {/* Line items */}
+        <div style={{ background: C.bg, borderRadius: 10, padding: '18px 22px', marginBottom: 18 }}>
+          <div style={{ fontFamily: F.mono, fontSize: 10, letterSpacing: '0.14em', color: C.faint, textTransform: 'uppercase', fontWeight: 700, marginBottom: 12 }}>
+            One-time licenses · Q1
+          </div>
+          <div style={{ display: 'grid', gap: 9 }}>
+            <BudgetLine label="Progressive Practice Sales · full closing-deal dataset" val="~$7.5K one-time" />
+            <BudgetLine label="William David Company · full closing-deal dataset"      val="~$7.5K one-time" />
+            <BudgetLine label="Legal review · data-use agreements"                      val="~$2K one-time" />
+          </div>
+          <div style={{ marginTop: 14, padding: '12px 14px', background: `${C.gold}18`, borderRadius: 8, fontSize: 14, color: C.gold, fontFamily: F.mono, fontWeight: 800, display: 'flex', justifyContent: 'space-between' }}>
+            <span>ALGORITHM DATA · ONE-TIME ASK</span>
+            <span style={{ fontFamily: F.display, fontSize: 20, letterSpacing: '-0.02em' }}>$15K–$20K</span>
+          </div>
+        </div>
+
+        <div style={{ padding: '14px 18px', background: `${C.green}12`, border: `1px solid ${C.green}30`, borderRadius: 10, fontSize: 13.5, color: '#FFFFFF', lineHeight: 1.6 }}>
+          <strong style={{ color: C.green }}>Long-term moat:</strong> every clinic ChiroPillar closes becomes a proprietary comp with REAL closing data, deal structure, and post-close performance. After 10-15 closings the proprietary dataset is more valuable than any subscription. <strong style={{ color: C.green }}>Competitors will never have it.</strong> Treat this $15-20K like the seed of the algorithm — same way Zillow had to buy MLS feeds before Zestimate became the standard.
+        </div>
+      </div>
+
       {/* SAAS STACK */}
-      <SectionHead eyebrow="SaaS + Tech Stack" title="13 line items. Total cost predictable." />
+      <SectionHead eyebrow="SaaS + Tech Stack" title="15 line items. Total cost predictable." />
       <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, overflow: 'hidden', marginBottom: 36 }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1.8fr 110px 2.6fr', gap: 14, padding: '12px 22px', background: C.bg3, borderBottom: `1px solid ${C.border}`, fontFamily: F.mono, fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: C.faint, fontWeight: 700 }}>
           <div>Tool</div>
