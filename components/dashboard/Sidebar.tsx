@@ -387,13 +387,33 @@ const NAV = [
   { href: '/targets',      label: 'Intake Submissions'                  },
   { href: '/calculator',   label: 'Deal Calculator'                     },
   { href: '/analytics',    label: 'Analytics',            badge: 'Live' },
-  { href: '/valuation',    label: 'AI Valuation',         badge: 'Live' },
+  { href: '/valuation',    label: 'AI Valuation · P&L',   badge: 'Live' },
   { href: '/pipeline',     label: 'Acquisition Pipeline', badge: 'Live' },
   { href: '/data-room',    label: 'Data Room',            badge: 'Live' },
   { href: '/nda-loi',      label: 'NDAs & LOIs',          badge: 'Soon' },
   { href: '/scale',        label: 'Scale Services',       badge: 'Live' },
   { href: '/launch-plan',  label: '24-Mo Launch Plan',    badge: 'NEW'  },
   { href: '/outreach',     label: 'Outreach Campaigns',   badge: 'Soon' },
+]
+
+// ── Quick Actions · pinned to top of sidebar ─────────────────────────────────
+// The two highest-frequency actions Wagner / McGrath take on the platform:
+//   1. Share the public intake funnel with a prospective chiropractor
+//   2. Drop a P&L PDF to instantly value a clinic
+// Both surface deeper-buried pages with a one-click affordance.
+const QUICK_ACTIONS = [
+  {
+    href: '/intake',
+    label: 'Public Intake Form',
+    sub: 'Open the chiropractor funnel',
+    external: true,
+  },
+  {
+    href: '/valuation?upload=1',
+    label: 'Upload P&L → Valuation',
+    sub: 'Drop a PDF · instant report',
+    external: false,
+  },
 ]
 
 // Admin-only surfaces · Eric / Wagner / McGrath
@@ -472,6 +492,48 @@ export default function Sidebar({ userEmail, isDemo, isAdmin, isEricOnly }: { us
 
       {/* Nav */}
       <nav style={{ flex: 1, padding: '10px 10px', overflowY: 'auto' }}>
+
+        {/* QUICK ACTIONS · brass-bordered card · the two highest-frequency actions */}
+        <div style={{
+          margin: '4px 4px 14px', padding: '11px 12px 9px',
+          background: 'linear-gradient(135deg, rgba(201,168,76,0.10), rgba(46,117,182,0.06))',
+          border: '1px solid rgba(201,168,76,0.30)', borderRadius: '10px',
+        }}>
+          <div style={{
+            fontSize: '9.5px', fontWeight: 800, color: '#C9A84C', letterSpacing: '0.18em',
+            textTransform: 'uppercase', marginBottom: 8, paddingLeft: 2,
+          }}>
+            Quick Actions
+          </div>
+          {QUICK_ACTIONS.map(qa => (
+            <Link
+              key={qa.href}
+              href={qa.href}
+              target={qa.external ? '_blank' : undefined}
+              rel={qa.external ? 'noopener noreferrer' : undefined}
+              style={{ textDecoration: 'none' }}
+            >
+              <div style={{
+                display: 'flex', alignItems: 'center', gap: '10px',
+                padding: '9px 10px', borderRadius: '7px', marginBottom: '4px',
+                background: 'rgba(11,27,62,0.55)',
+                border: '1px solid rgba(201,168,76,0.16)',
+                color: '#F2EEE7',
+                fontSize: '13px', fontWeight: 600,
+                cursor: 'pointer', transition: 'all 0.15s',
+              }}>
+                <span style={{ flex: 1, lineHeight: 1.25 }}>
+                  <span style={{ display: 'block', color: '#F2EEE7', fontWeight: 700 }}>{qa.label}</span>
+                  <span style={{ display: 'block', fontSize: '11px', color: '#9BA8C0', fontWeight: 400, marginTop: 2 }}>{qa.sub}</span>
+                </span>
+                <span style={{ color: '#C9A84C', fontSize: '12px', flexShrink: 0 }}>
+                  {qa.external ? '↗' : '→'}
+                </span>
+              </div>
+            </Link>
+          ))}
+        </div>
+
         {NAV.map((item: { href: string; label: string; badge?: string }) => {
           const exact = item.href === '/overview'
           const isActive = exact ? pathname === item.href : pathname.startsWith(item.href)

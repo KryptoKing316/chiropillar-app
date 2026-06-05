@@ -43,18 +43,32 @@ export default async function DashLayout({ children }: { children: React.ReactNo
     if (session?.user?.email) {
       userEmail = session.user.email.toLowerCase()
 
-      // Validate against chiropillar_team whitelist via service-role client
+      // Validate against the whitelist via service-role client.
+      // chiropillar_team is the canonical whitelist; if that table doesn't
+      // exist in this Supabase project (early-stage / migrated from KB app),
+      // we fall back to checking profiles.role IN ('admin','viewer').
       const url = process.env.NEXT_PUBLIC_SUPABASE_URL
       const sk  = process.env.SUPABASE_SERVICE_ROLE_KEY
       if (url && sk) {
         const admin = createClient(url, sk, { auth: { persistSession: false } })
-        const { data: member } = await admin
+        const teamCheck = await admin
           .from('chiropillar_team')
           .select('email, active')
           .eq('email', userEmail)
           .eq('active', true)
           .maybeSingle()
-        isAuthorized = !!member
+        if (teamCheck.data) {
+          isAuthorized = true
+        } else {
+          // Fallback: profiles table (the shared KB app profiles table)
+          const profCheck = await admin
+            .from('profiles')
+            .select('email, role')
+            .eq('email', userEmail)
+            .in('role', ['admin', 'viewer'])
+            .maybeSingle()
+          isAuthorized = !!profCheck.data
+        }
       }
     }
   } catch {

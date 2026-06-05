@@ -80,11 +80,15 @@ Document text:
 `
 
 async function extractPdfText(buffer: Buffer): Promise<string> {
-  // pdf-parse must be dynamic-imported in route handlers (CJS interop)
-  // @ts-expect-error · pdf-parse has no types in v2
-  const pdfParse = (await import('pdf-parse')).default
+  // Use pdf-parse v1 via deep import to skip the index.js debug block
+  // (the v1 entry point tries to read a test PDF at startup which errors in
+  // a Next.js bundle). Deep import goes straight to the parser module.
+  // v2 was tried but ships a pdfjs-dist worker setup that doesn't bundle
+  // cleanly under Next.js — "Setting up fake worker failed" at runtime.
+  // @ts-expect-error · pdf-parse v1 has no types
+  const pdfParse = (await import('pdf-parse/lib/pdf-parse.js')).default
   const data = await pdfParse(buffer)
-  return data.text as string
+  return (data.text as string) ?? ''
 }
 
 export async function POST(req: Request) {
@@ -116,7 +120,9 @@ export async function POST(req: Request) {
     try {
       pdfText = await extractPdfText(buffer)
     } catch (e) {
-      return NextResponse.json({ error: 'Could not read PDF. File may be scanned/image-only.' }, { status: 400 })
+      const msg = e instanceof Error ? e.message : String(e)
+      console.error('[extract-financials] pdf-parse failed:', msg, e instanceof Error ? e.stack : '')
+      return NextResponse.json({ error: 'Could not read PDF. File may be scanned/image-only.', debug: msg }, { status: 400 })
     }
     if (pdfText.length < 200) {
       return NextResponse.json({ error: 'PDF appears to be image-only (no extractable text). OCR support ships in Phase 3.' }, { status: 400 })

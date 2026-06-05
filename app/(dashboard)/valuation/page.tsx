@@ -9,7 +9,7 @@
 // Same valuation engine the /intake form uses (~200 deal comp-set medians),
 // productized per-clinic with Wagner-specific 4-stream deal structure.
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useSearchParams } from 'next/navigation'
 
 const C = {
@@ -194,17 +194,29 @@ const TABS = [
 // ────────────────────────────────────────────────────────────────────────
 export default function ValuationPage() {
   const searchParams = useSearchParams()
-  const [mode, setMode] = useState<'view' | 'input'>('view')
+  const [mode, setMode] = useState<'view' | 'input' | 'upload'>('view')
   const [step, setStep] = useState<0 | 1 | 2 | 3>(0)
   const [form, setForm] = useState<FormData>(PIEDMONT)         // active result
   const [draft, setDraft] = useState<FormData>(BLANK_FORM)     // wizard work-in-progress
   const [fromUpload, setFromUpload] = useState(false)
+
+  // ── inline upload state (shown on ?upload=1 from sidebar Quick Action) ──
+  const [extracting, setExtracting] = useState(false)
+  const [uploadError, setUploadError] = useState<string | null>(null)
+  const [uploadFileName, setUploadFileName] = useState<string | null>(null)
+  const [dragOver, setDragOver] = useState(false)
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
   // ── PDF Upload → Valuation prefill ──────────────────────────────────
   // When Wagner uploads a P&L in /data-room, the ExtractionCard 'Use for
   // Valuation →' button passes the extracted financials as query params.
   // This effect picks those up and auto-renders the valuation report.
   useEffect(() => {
+    // Sidebar Quick Action: /valuation?upload=1 → open the inline drop zone immediately
+    if (searchParams.get('upload') === '1') {
+      setMode('upload')
+    }
+
     const practice_name = searchParams.get('practice_name')
     const year          = searchParams.get('year')
     const revenue       = searchParams.get('revenue')
@@ -261,6 +273,207 @@ export default function ValuationPage() {
     const pt = draft.practice_type || (draft.profile === 'solo' ? 'Solo-DC' : draft.profile === 'multi' ? 'Multi-DC' : 'Platform / multi-location')
     setForm({ ...draft, practice_type: pt })
     setMode('view')
+  }
+
+  // ── PDF drop handler · same /api/extract-financials endpoint as /data-room
+  const handleFiles = async (files: FileList | null) => {
+    if (!files || files.length === 0) return
+    const file = files[0]
+    if (!file.name.toLowerCase().endsWith('.pdf')) {
+      setUploadError('Only PDF files are supported. (CSV + Excel ship in Phase 3.)')
+      return
+    }
+    setUploadError(null)
+    setUploadFileName(file.name)
+    setExtracting(true)
+    try {
+      const fd = new FormData()
+      fd.append('file', file)
+      const res = await fetch('/api/extract-financials', { method: 'POST', body: fd })
+      const data = await res.json()
+      if (!res.ok) {
+        setUploadError(data.error || 'Extraction failed.')
+        setExtracting(false)
+        return
+      }
+      // Got extraction — prefill the valuation form and switch to view mode
+      const ex = data.extracted as {
+        practice_name: string | null
+        years: Array<{ year: number | null; revenue: number | null; ebitda: number | null; owner_compensation: number | null }>
+        suggested_add_backs: Array<{ label: string; amount: number; reason: string; confidence: 'high' | 'medium' | 'low' }>
+      }
+      const recent = ex.years[0]
+      const yearNum   = recent?.year   ?? new Date().getFullYear()
+      const revNum    = recent?.revenue ?? 0
+      const ebitdaNum = recent?.ebitda  ?? 0
+      const ocNum     = recent?.owner_compensation ?? 0
+
+      // Use the AI-extracted prior years if Claude returned them; otherwise estimate the typical decline
+      const yr2 = ex.years[1]
+      const yr3 = ex.years[2]
+      const prefilled: FormData = {
+        practiceName: ex.practice_name || file.name.replace(/\.pdf$/i, ''),
+        ownerName: '',
+        city: '', state: '',
+        years: 10, employees: 6,
+        practice_type: 'From uploaded PDF',
+        profile: revNum > 2_500_000 ? 'multi' : 'solo',
+        ownerRole: 'mostly_clinical_some_management',
+        financials: [
+          { year: yearNum,     revenue: revNum,                                       ebitda: ebitdaNum,                                       ownerComp: ocNum },
+          { year: yr2?.year ?? yearNum - 1, revenue: yr2?.revenue ?? Math.round(revNum * 0.92), ebitda: yr2?.ebitda ?? Math.round(ebitdaNum * 0.88), ownerComp: yr2?.owner_compensation ?? ocNum },
+          { year: yr3?.year ?? yearNum - 2, revenue: yr3?.revenue ?? Math.round(revNum * 0.84), ebitda: yr3?.ebitda ?? Math.round(ebitdaNum * 0.76), ownerComp: yr3?.owner_compensation ?? ocNum },
+        ],
+        addBacks: (ex.suggested_add_backs.length
+          ? ex.suggested_add_backs.map(a => ({ label: a.label, amount: a.amount, reason: a.reason, enabled: a.confidence !== 'low' }))
+          : [
+              { label: 'Owner compensation above market', amount: Math.max(ocNum - 180_000, 0), reason: `Owner draws ~${fmtMoney(ocNum)}; market rate ~$180K`, enabled: ocNum > 180_000 },
+              { label: 'Personal vehicle / travel', amount: 0, reason: '', enabled: false },
+            ]),
+        exampleId: 'custom',
+      }
+      setForm(prefilled)
+      setMode('view')
+      setFromUpload(true)
+      setExtracting(false)
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : String(e)
+      setUploadError('Network error: ' + msg)
+      setExtracting(false)
+    }
+  }
+
+  // ── UPLOAD MODE · big drop zone for instant P&L → valuation ────────────
+  if (mode === 'upload') {
+    return (
+      <div style={{ padding: '32px 32px 80px', maxWidth: 880, margin: '0 auto', fontFamily: F.body, color: C.text }}>
+        <div style={{ marginBottom: 24 }}>
+          <div style={{ fontFamily: F.mono, fontSize: 12.5, color: C.gold, letterSpacing: '0.22em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 8 }}>
+            AI Valuation · Drop a P&L
+          </div>
+          <h1 style={{ fontFamily: F.display, fontSize: 'clamp(32px, 4vw, 44px)', fontWeight: 700, margin: '0 0 10px', letterSpacing: '-0.02em', color: '#FFFFFF' }}>
+            Drop a P&L PDF. Get an instant valuation.
+          </h1>
+          <p style={{ fontSize: 16, color: '#FFFFFF', margin: 0, lineHeight: 1.6, fontWeight: 400, opacity: 0.85 }}>
+            Claude reads the document, extracts revenue + EBITDA + owner comp, flags add-backs, and prices the clinic against ~200 chiropractic deals analyzed. ~10-30 seconds.
+          </p>
+        </div>
+
+        <div
+          onDragOver={(e) => { e.preventDefault(); setDragOver(true) }}
+          onDragLeave={(e) => { e.preventDefault(); setDragOver(false) }}
+          onDrop={(e) => { e.preventDefault(); setDragOver(false); handleFiles(e.dataTransfer.files) }}
+          onClick={() => !extracting && fileInputRef.current?.click()}
+          style={{
+            background: dragOver
+              ? `linear-gradient(135deg, ${C.align}26, ${C.gold}18)`
+              : `linear-gradient(135deg, ${C.align}0E, ${C.gold}0A)`,
+            border: `2.5px dashed ${dragOver ? C.align : 'rgba(46,117,182,0.45)'}`,
+            borderRadius: 18, padding: '52px 38px',
+            display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+            cursor: extracting ? 'wait' : 'pointer', transition: 'all 0.2s',
+            minHeight: 320, marginBottom: 22,
+          }}
+        >
+          {extracting ? (
+            <>
+              <div style={{
+                width: 64, height: 64, marginBottom: 20,
+                border: `5px solid ${C.align}30`, borderTopColor: C.gold,
+                borderRadius: '50%', animation: 'kb-val-spin 0.8s linear infinite',
+              }} />
+              <div style={{ fontFamily: F.display, fontSize: 26, fontWeight: 700, color: '#FFFFFF', marginBottom: 8, textAlign: 'center', letterSpacing: '-0.01em' }}>
+                Claude is reading the PDF…
+              </div>
+              <div style={{ fontSize: 14, color: '#FFFFFF', opacity: 0.85, textAlign: 'center', maxWidth: 460 }}>
+                Extracting revenue, EBITDA, owner comp, and flagging add-backs. Stay on this page.
+              </div>
+              {uploadFileName && (
+                <div style={{ marginTop: 16, fontSize: 12, color: C.muted, fontFamily: F.mono }}>{uploadFileName}</div>
+              )}
+            </>
+          ) : (
+            <>
+              <div style={{ marginBottom: 22 }}>
+                <svg viewBox="0 0 72 72" width="68" height="68" fill="none" stroke={C.align} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M18 50a11 11 0 0 1 2-22.5A16 16 0 0 1 52 25a11 11 0 0 1 2 25" />
+                  <path d="M36 34v20" />
+                  <polyline points="27,43 36,34 45,43" />
+                </svg>
+              </div>
+              <div style={{ fontFamily: F.display, fontSize: 28, fontWeight: 700, color: '#FFFFFF', marginBottom: 10, textAlign: 'center', letterSpacing: '-0.01em' }}>
+                Drop a P&L · Tax Return · or Bank Statement
+              </div>
+              <div style={{ fontSize: 15, color: '#FFFFFF', opacity: 0.78, textAlign: 'center', marginBottom: 22, maxWidth: 480, lineHeight: 1.55 }}>
+                Drag-and-drop anywhere in this box, or click to choose a file. PDF only.
+              </div>
+              <button
+                type="button"
+                onClick={(e) => { e.stopPropagation(); fileInputRef.current?.click() }}
+                style={{
+                  padding: '14px 30px', borderRadius: 10, border: 'none',
+                  background: C.gold, color: C.bg,
+                  fontFamily: F.body, fontSize: 15, fontWeight: 800, cursor: 'pointer',
+                  letterSpacing: '0.03em',
+                  boxShadow: `0 6px 18px ${C.gold}55`,
+                }}
+              >
+                Choose PDF
+              </button>
+            </>
+          )}
+          <input ref={fileInputRef} type="file" accept=".pdf" onChange={(e) => { handleFiles(e.target.files); e.target.value = '' }} style={{ display: 'none' }} />
+        </div>
+
+        {uploadError && (
+          <div style={{
+            marginBottom: 22, padding: '14px 20px',
+            background: 'rgba(231,76,60,0.10)', border: '1px solid rgba(231,76,60,0.35)',
+            borderRadius: 10, fontSize: 14, color: '#F08070',
+          }}>
+            <strong>Upload error:</strong> {uploadError}
+          </div>
+        )}
+
+        {/* Other entry points · keep escape hatches obvious */}
+        <div style={{
+          display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 12,
+          padding: '18px 20px',
+          background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 12,
+        }}>
+          <button
+            type="button"
+            onClick={() => { setMode('view'); setForm(PIEDMONT); setFromUpload(false) }}
+            style={{
+              padding: '14px 18px', borderRadius: 10, background: 'transparent',
+              border: `1px solid ${C.border}`, color: C.text,
+              fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: F.body, textAlign: 'left',
+            }}
+          >
+            <div style={{ fontFamily: F.mono, fontSize: 10, color: C.gold, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 4 }}>
+              Example
+            </div>
+            <div style={{ color: '#FFFFFF' }}>View the Piedmont Spine example →</div>
+          </button>
+          <button
+            type="button"
+            onClick={() => { setMode('input'); setStep(0); setDraft({ ...BLANK_FORM, financials: BLANK_FORM.financials.map(f => ({ ...f })), addBacks: BLANK_FORM.addBacks.map(a => ({ ...a })) }) }}
+            style={{
+              padding: '14px 18px', borderRadius: 10, background: 'transparent',
+              border: `1px solid ${C.border}`, color: C.text,
+              fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: F.body, textAlign: 'left',
+            }}
+          >
+            <div style={{ fontFamily: F.mono, fontSize: 10, color: C.gold, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 4 }}>
+              No PDF?
+            </div>
+            <div style={{ color: '#FFFFFF' }}>Enter numbers manually (3-step wizard) →</div>
+          </button>
+        </div>
+
+        <style>{`@keyframes kb-val-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }`}</style>
+      </div>
+    )
   }
 
   // ── INPUT MODE ────────────────────────────────────────────────────────
