@@ -284,16 +284,24 @@ export default function IntakePage() {
   return (
     <div style={{ minHeight: '100vh', background: '#F7F4ED', fontFamily: "'Inter', system-ui, sans-serif", color: '#1a1a1a' }}>
 
-      {/* Top bar · ChiroPillar brand lockup on white (logo designed for light bg) */}
+      {/* Top bar · ChiroPillar escalating-pillar mark + wordmark + tagline */}
       <div style={{ background: 'white', borderBottom: '1px solid rgba(31,78,121,0.10)', boxShadow: '0 2px 8px rgba(31,78,121,0.04)' }}>
-        <div style={{ maxWidth: 1100, margin: '0 auto', padding: '28px 32px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 20, flexWrap: 'wrap' }}>
-          <a href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }} aria-label="ChiroPillar home">
+        <div style={{ maxWidth: 1100, margin: '0 auto', padding: '20px 32px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 20, flexWrap: 'wrap' }}>
+          <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 14, textDecoration: 'none' }} aria-label="ChiroPillar home">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/chiropillar-logo.png"
-              alt="ChiroPillar · Strength in Alignment"
-              style={{ height: 'clamp(72px, 12vw, 120px)', width: 'auto', display: 'block' }}
+              src="/chiropillar-logo-platform.svg"
+              alt=""
+              style={{ height: 'clamp(54px, 7vw, 64px)', width: 'auto', display: 'block', filter: 'drop-shadow(0 3px 8px rgba(201,168,76,0.22))' }}
             />
+            <div style={{ lineHeight: 1 }}>
+              <div style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 'clamp(26px, 3.5vw, 32px)', fontWeight: 800, color: '#1F4E79', letterSpacing: '-0.02em', lineHeight: 1, marginBottom: 6 }}>
+                ChiroPillar
+              </div>
+              <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, fontWeight: 800, color: '#C9A84C', letterSpacing: '0.20em', textTransform: 'uppercase', lineHeight: 1 }}>
+                Strength in Alignment
+              </div>
+            </div>
           </a>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap', justifyContent: 'flex-end' }}>
             <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, letterSpacing: '0.18em', color: '#7A6A45', textTransform: 'uppercase', fontWeight: 700, padding: '6px 12px', background: 'rgba(201,168,76,0.10)', border: '1px solid rgba(201,168,76,0.30)', borderRadius: 999 }}>

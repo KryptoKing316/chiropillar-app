@@ -151,12 +151,20 @@ export default function ValueMyClinicPage() {
   return (
     <div style={{ minHeight: '100vh', background: C.paper, fontFamily: F.body, color: C.textInk }}>
 
-      {/* TOP BAR */}
+      {/* TOP BAR · escalating-pillar mark + ChiroPillar wordmark + Strength in Alignment tagline */}
       <div style={{ background: '#FFFFFF', borderBottom: '1px solid rgba(31,78,121,0.10)', boxShadow: '0 2px 8px rgba(31,78,121,0.04)' }}>
-        <div style={{ maxWidth: 1100, margin: '0 auto', padding: '22px 28px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 20, flexWrap: 'wrap' }}>
-          <a href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }} aria-label="ChiroPillar">
+        <div style={{ maxWidth: 1100, margin: '0 auto', padding: '20px 28px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 20, flexWrap: 'wrap' }}>
+          <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 14, textDecoration: 'none' }} aria-label="ChiroPillar">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/chiropillar-logo.png" alt="ChiroPillar" style={{ height: 'clamp(56px, 9vw, 88px)', width: 'auto', display: 'block' }} />
+            <img src="/chiropillar-logo-platform.svg" alt="" style={{ height: 'clamp(54px, 7vw, 64px)', width: 'auto', display: 'block', filter: 'drop-shadow(0 3px 8px rgba(201,168,76,0.22))' }} />
+            <div style={{ lineHeight: 1 }}>
+              <div style={{ fontFamily: F.display, fontSize: 'clamp(26px, 3.5vw, 32px)', fontWeight: 800, color: C.spine, letterSpacing: '-0.02em', lineHeight: 1, marginBottom: 6 }}>
+                ChiroPillar
+              </div>
+              <div style={{ fontFamily: F.mono, fontSize: 10, fontWeight: 800, color: C.gold, letterSpacing: '0.20em', textTransform: 'uppercase', lineHeight: 1 }}>
+                Strength in Alignment
+              </div>
+            </div>
           </a>
           <div style={{ fontFamily: F.mono, fontSize: 11, letterSpacing: '0.20em', color: '#7A6A45', textTransform: 'uppercase', fontWeight: 800, padding: '6px 12px', background: 'rgba(201,168,76,0.10)', border: '1px solid rgba(201,168,76,0.30)', borderRadius: 999 }}>
             Free · 60-second valuation
@@ -177,7 +185,7 @@ export default function ValueMyClinicPage() {
               How much is your <span style={{ color: C.gold, fontStyle: 'italic' }}>chiropractic practice</span> worth?
             </h1>
             <p style={{ fontSize: 19, color: '#3A4865', maxWidth: 620, margin: '0 auto 36px', lineHeight: 1.55 }}>
-              Calibrated against <strong style={{ color: C.spine }}>~200 chiropractic transactions</strong>. Drop a P&L or answer 3 questions. Get a real valuation range in under a minute.
+              Calibrated against <strong style={{ color: C.spine }}>158 chiropractic transactions</strong>. Drop a P&L or answer 3 questions. Get a real valuation range in under a minute.
             </p>
             <button
               onClick={() => setStep('choose')}
@@ -269,7 +277,7 @@ export default function ValueMyClinicPage() {
               Drop your P&L PDF.
             </h2>
             <p style={{ textAlign: 'center', color: '#5A6580', fontSize: 15, marginBottom: 28 }}>
-              We&apos;ll read it with Claude AI and price it against ~200 chiropractic deals.
+              We&apos;ll read it with Claude AI and price it against 158 chiropractic deals.
             </p>
 
             <div
@@ -467,7 +475,7 @@ export default function ValueMyClinicPage() {
               We have everything we need.
             </h2>
             <p style={{ fontSize: 18, color: '#3A4865', maxWidth: 560, margin: '0 auto 36px', lineHeight: 1.55 }}>
-              <strong style={{ color: C.spine }}>{result.profileLabel}</strong> · pricing against {result.profile === 'platform' ? 'platform' : result.profile === 'multi' ? 'multi-DC' : 'solo-DC'} comp medians from ~200 chiropractic deals.
+              <strong style={{ color: C.spine }}>{result.profileLabel}</strong> · pricing against {result.profile === 'platform' ? 'platform' : result.profile === 'multi' ? 'multi-DC' : 'solo-DC'} comp medians from 158 chiropractic deals.
             </p>
             <button
               onClick={runCalculation}
@@ -537,7 +545,7 @@ export default function ValueMyClinicPage() {
               </div>
 
               <div style={{ marginTop: 18, padding: '14px 18px', background: 'rgba(201,168,76,0.10)', border: '1px solid rgba(201,168,76,0.30)', borderRadius: 10, fontSize: 13.5, color: C.text, lineHeight: 1.6 }}>
-                <strong style={{ color: C.gold }}>Calibrated against ~200 chiropractic transactions.</strong> Sources: BizBuySell, Progressive Practice Sales, William David Co, JYNT 10-K. Asking-price-derived — closings typically land at 85-95% of FMV.
+                <strong style={{ color: C.gold }}>Calibrated against 158 chiropractic transactions.</strong> Sources: BizBuySell, Progressive Practice Sales, William David Co, JYNT 10-K. Asking-price-derived — closings typically land at 85-95% of FMV.
               </div>
             </div>
 
