@@ -814,7 +814,7 @@ export default function LaunchPlanPage() {
               Why a test run
             </div>
             <div style={{ fontSize: 14.5, color: '#FFFFFF', lineHeight: 1.65, opacity: 0.92 }}>
-              Don&apos;t want to commit to the full 24-month build on day one? <strong style={{ color: C.green }}>Run a 6-month, $250K proof-of-model first.</strong> It funds the MVP platform, a lean two-person operator team, and a real ad test — enough to validate the funnel and close <strong style={{ color: C.green }}>1-2 pilot acquisitions</strong> from Wagner&apos;s 9 warm Charlottesville practices.
+              Don&apos;t want to commit to the full 24-month build on day one? <strong style={{ color: C.green }}>Run a 6-month, $250K proof-of-model first.</strong> It funds the MVP platform, a lean two-person operator team, and a real ad test — enough to validate the funnel and close <strong style={{ color: C.green }}>1-2 pilot acquisitions</strong>{' '}from Wagner&apos;s 9 warm Charlottesville practices.
               <br/><br/>
               If the funnel proves out, scale into the full plan with confidence. If it doesn&apos;t, you&apos;ve risked $250K instead of a full-year burn.
             </div>

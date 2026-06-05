@@ -681,7 +681,7 @@ export default function ValueMyClinicPage() {
             Why we built this
           </div>
           <p style={{ fontSize: 14.5, color: '#3A4865', lineHeight: 1.75, margin: '0 0 22px' }}>
-            The chiropractic practice-valuation industry is broken. CPAs charge $5K and take six weeks. Practice brokers want your listing fee. Online tools give you a generic small-business multiple that doesn&apos;t know chiropractic from chiropody. This calculator is calibrated to <strong style={{ color: C.spine }}>158 real chiropractic transactions</strong> from Progressive Practice Sales, William David Company, BizBuySell, and JYNT — and it&apos;s built by people who own and operate chiropractic clinics, not by a software company hoping to sell ads. The number you see won&apos;t be perfect. It will be honest.
+            The chiropractic practice-valuation industry is broken. CPAs charge $5K and take six weeks. Practice brokers want your listing fee. Online tools give you a generic small-business multiple that doesn&apos;t know chiropractic from chiropody. This calculator is calibrated to <strong style={{ color: C.spine }}>158 real chiropractic transactions</strong>{' '}from Progressive Practice Sales, William David Company, BizBuySell, and JYNT — and it&apos;s built by people who own and operate chiropractic clinics, not by a software company hoping to sell ads. The number you see won&apos;t be perfect. It will be honest.
           </p>
           <div style={{ display: 'flex', gap: 22, justifyContent: 'center', flexWrap: 'wrap', fontSize: 12, color: '#7A859C', fontFamily: F.mono, letterSpacing: '0.04em' }}>
             <span>Built by chiropractors + an M&amp;A firm</span>
