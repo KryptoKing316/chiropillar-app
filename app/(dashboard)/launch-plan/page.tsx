@@ -155,7 +155,7 @@ type Hire = {
 
 const HIRES: Hire[] = [
   // ─── DAY 0 · PARTNERS ───
-  { role: 'Eric Skeldon · Founder/CEO',              when: 'Day 0',   comp: '$25K tech buildout + $12.5K/mo full-time salary',                comp_low: 175_000, comp_high: 175_000, fulltime: true,  responsibilities: 'Platform · deal structure · final closing · ChiroPillar owner + operator' },
+  { role: 'CEO & Platform Operator',                 when: 'Day 0',   comp: '$10K/mo full-time salary',                comp_low: 120_000, comp_high: 120_000, fulltime: true,  responsibilities: 'Runs + oversees the platform · deal structure · final closing · ChiroPillar owner + operator' },
   { role: 'Scott McGrath · BD Partner',              when: 'Day 0',   comp: '$5K/mo',                                  comp_low: 60_000,  comp_high: 60_000,  fulltime: false, responsibilities: 'Wagner relationship · networks with DC associations · sponsors largest chiropractic + DC events · opens doors via senior DC reputation' },
   { role: 'Dr. Scott Wagner · Clinical Partner',     when: 'Day 0',   comp: 'Owns clinics outright',           comp_low: 0,       comp_high: 0,        fulltime: false, responsibilities: 'Clinical playbook · medical-team install · operator credibility' },
 
@@ -265,7 +265,7 @@ type Quarter = {
 }
 
 const TIMELINE: Quarter[] = [
-  { q: 'Q1 (Mo 1-3)',   team_cost: 165_000, marketing:  72_000, saas: 14_000, acq_count: 0, acq_value:          0, wagner_cash:         0, bank_debt:         0, cumulative_ebitda:        0, notes: 'Eric ($25K tech buildout + $12.5K/mo full-time salary) + McGrath ($5K/mo) + Wagner Day 0. Ops Lead + Marketer onboarded Month 3. Engine being built. First 50 intakes test funnel.' },
+  { q: 'Q1 (Mo 1-3)',   team_cost: 165_000, marketing:  72_000, saas: 14_000, acq_count: 0, acq_value:          0, wagner_cash:         0, bank_debt:         0, cumulative_ebitda:        0, notes: 'CEO & Platform Operator ($10K/mo full-time salary) + McGrath ($5K/mo) + Wagner Day 0. $25K MVP tech buildout is a one-time capex line (see One-time build below), not payroll. Ops Lead + Marketer onboarded Month 3. Engine being built. First 50 intakes test funnel.' },
   { q: 'Q2 (Mo 4-6)',   team_cost: 295_000, marketing: 105_000, saas: 14_000, acq_count: 2, acq_value:  3_800_000, wagner_cash: 1_900_000, bank_debt: 1_900_000, cumulative_ebitda:   100_000, notes: 'Sales engine fully staffed Month 4: Appt Setter + BDR + Closer #1. McGrath warm intros convert. First 2 closes late Q2.' },
   { q: 'Q3 (Mo 7-9)',   team_cost: 350_000, marketing: 135_000, saas: 16_000, acq_count: 4, acq_value:  7_600_000, wagner_cash: 3_800_000, bank_debt: 3_800_000, cumulative_ebitda:   680_000, notes: 'Appt Setter #2 + Account Manager + Bookkeeper added. 4 closes Q3 — pace doubles. Sales team converting at 30%.' },
   { q: 'Q4 (Mo 10-12)', team_cost: 390_000, marketing: 135_000, saas: 18_000, acq_count: 5, acq_value:  9_500_000, wagner_cash: 4_750_000, bank_debt: 4_750_000, cumulative_ebitda: 1_700_000, notes: 'Diligence Analyst + Closer #2 hired. 5 closes Q4 (cumulative 11). Scale Services ramping under AM #1.' },
@@ -329,7 +329,7 @@ export default function LaunchPlanPage() {
           Acquire 33 chiropractic clinics in 24 months.
         </h1>
         <p style={{ fontSize: 16, color: '#FFFFFF', margin: 0, maxWidth: 880, lineHeight: 1.6, fontWeight: 400 }}>
-          Wagner-funded chiropractic roll-up. We acquire <strong style={{ color: C.gold }}>33 clinics over 24 months</strong>, install Wagner&apos;s medical-team playbook in each, and build a real EBITDA-generating platform Wagner owns 100%. Hold for cash flow or exit when the multiple is right — Wagner&apos;s call. Below: the plan, the team, the value created, and the cost.
+          Wagner chiropractic roll-up. We acquire <strong style={{ color: C.gold }}>33 clinics over 24 months</strong>, install Wagner&apos;s medical-team playbook in each, and build a real EBITDA-generating platform Wagner owns 100%. Hold for cash flow or exit when the multiple is right — Wagner&apos;s call. Below: the plan, the team, the value created, and the cost.
         </p>
       </div>
 
@@ -718,6 +718,7 @@ export default function LaunchPlanPage() {
               One-time build · capex
             </div>
             <div style={{ display: 'grid', gap: 9, marginBottom: 14 }}>
+              <BudgetLine label="MVP technology build · platform app + intake + data room" val="$25K" />
               <BudgetLine label="Intake funnel · landing pages · quiz logic + valuation engine" val="$12K" />
               <BudgetLine label="Automation stack · Zapier/n8n + Slack alerts + CRM wiring"  val="$6K" />
               <BudgetLine label="Ad creative · videos · LP design · brand assets"             val="$8K" />
@@ -725,10 +726,10 @@ export default function LaunchPlanPage() {
             </div>
             <div style={{ padding: '12px 14px', background: `${C.globe}20`, borderRadius: 8, fontSize: 14, color: C.globe, fontFamily: F.mono, fontWeight: 800, display: 'flex', justifyContent: 'space-between' }}>
               <span>Total one-time build</span>
-              <span style={{ fontFamily: F.display, fontSize: 20, letterSpacing: '-0.02em' }}>$30K</span>
+              <span style={{ fontFamily: F.display, fontSize: 20, letterSpacing: '-0.02em' }}>$55K</span>
             </div>
             <div style={{ marginTop: 10, fontSize: 12.5, color: '#FFFFFF', lineHeight: 1.5, fontWeight: 500, opacity: 0.85 }}>
-              Paid out of Q1 marketing/SaaS budget. Built in months 1-3 before sales engine staffs up.
+              One-time capex, not payroll. Built in months 1-3 before the sales engine staffs up.
             </div>
           </div>
 
@@ -793,6 +794,66 @@ export default function LaunchPlanPage() {
               <div style={{ fontFamily: F.display, fontSize: 26, fontWeight: 800, color: C.gold, letterSpacing: '-0.02em' }}>{fmtMoney(monthlyBurnY1 * 12)}</div>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* ─────────────────────────────────────────────────────────────────
+          CONSERVATIVE OPTION · $250K 6-MONTH TEST RUN
+          Lean proof-of-model budget — an alternative to the full-scale plan.
+         ───────────────────────────────────────────────────────────────── */}
+      <SectionHead eyebrow="Conservative option · prove it first" title="$250K · 6-month test run." />
+      <div style={{
+        background: `linear-gradient(135deg, rgba(46,204,139,0.10), ${C.bg3})`,
+        border: `2px solid rgba(46,204,139,0.35)`, borderLeft: `4px solid ${C.green}`,
+        borderRadius: 14, padding: '28px 32px', marginBottom: 36,
+        boxShadow: '0 4px 16px rgba(0,0,0,0.12)',
+      }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 22, marginBottom: 22 }}>
+          <div>
+            <div style={{ fontFamily: F.mono, fontSize: 11, letterSpacing: '0.16em', color: C.green, textTransform: 'uppercase', fontWeight: 800, marginBottom: 8 }}>
+              Why a test run
+            </div>
+            <div style={{ fontSize: 14.5, color: '#FFFFFF', lineHeight: 1.65, opacity: 0.92 }}>
+              Don&apos;t want to commit to the full 24-month build on day one? <strong style={{ color: C.green }}>Run a 6-month, $250K proof-of-model first.</strong> It funds the MVP platform, a lean two-person operator team, and a real ad test — enough to validate the funnel and close <strong style={{ color: C.green }}>1-2 pilot acquisitions</strong> from Wagner&apos;s 9 warm Charlottesville practices.
+              <br/><br/>
+              If the funnel proves out, scale into the full plan with confidence. If it doesn&apos;t, you&apos;ve risked $250K instead of a full-year burn.
+            </div>
+          </div>
+          <div>
+            <div style={{ fontFamily: F.mono, fontSize: 11, letterSpacing: '0.16em', color: C.green, textTransform: 'uppercase', fontWeight: 800, marginBottom: 8 }}>
+              What it proves in 6 months
+            </div>
+            <div style={{ display: 'grid', gap: 8, fontSize: 14, color: '#FFFFFF', lineHeight: 1.55 }}>
+              <div>· Real cost-per-qualified-intake (CAC) from live ads</div>
+              <div>· Intake → discovery → LOI conversion rates</div>
+              <div>· <strong style={{ color: C.green }}>1-2 pilot clinic closings</strong> from Wagner&apos;s warm network</div>
+              <div>· Working valuation engine + data room in production</div>
+              <div>· A funded, de-risked case to green-light the full build</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Line items */}
+        <div style={{ background: C.bg, borderRadius: 10, padding: '18px 22px' }}>
+          <div style={{ fontFamily: F.mono, fontSize: 10, letterSpacing: '0.14em', color: C.faint, textTransform: 'uppercase', fontWeight: 700, marginBottom: 12 }}>
+            $250K split over 6 months
+          </div>
+          <div style={{ display: 'grid', gap: 9 }}>
+            <BudgetLine label="MVP technology build · platform app + intake + data room (one-time)" val="$25K" />
+            <BudgetLine label="CEO & Platform Operator · $10K/mo × 6" val="$60K" />
+            <BudgetLine label="BD Partner (McGrath) · $5K/mo × 6"      val="$30K" />
+            <BudgetLine label="Lean SaaS + tools · ~$3.2K/mo × 6"      val="$19K" />
+            <BudgetLine label="Marketing / funnel test · ~$18.5K/mo"   val="$111K" />
+            <BudgetLine label="Legal + contingency · MSO structuring"  val="$5K" />
+          </div>
+          <div style={{ marginTop: 14, padding: '12px 14px', background: `${C.green}18`, borderRadius: 8, fontSize: 14, color: C.green, fontFamily: F.mono, fontWeight: 800, display: 'flex', justifyContent: 'space-between' }}>
+            <span>TEST-RUN TOTAL · 6 MONTHS</span>
+            <span style={{ fontFamily: F.display, fontSize: 20, letterSpacing: '-0.02em' }}>$250K</span>
+          </div>
+        </div>
+
+        <div style={{ marginTop: 18, padding: '14px 18px', background: `${C.gold}12`, border: `1px solid ${C.gold}30`, borderRadius: 10, fontSize: 13.5, color: '#FFFFFF', lineHeight: 1.6 }}>
+          <strong style={{ color: C.gold }}>vs. the full-scale plan:</strong> the 24-month plan above targets 33 clinics and a $300M+ exit. This $250K test run is the on-ramp to that plan — same platform, same team core, same Wagner network — just proven on 1-2 deals before the full commitment.
         </div>
       </div>
 
