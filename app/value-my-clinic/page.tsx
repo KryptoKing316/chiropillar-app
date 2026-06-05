@@ -73,7 +73,7 @@ function valuate(gross: number, role: OwnerRole, newPts: number) {
 }
 
 // ── Page ────────────────────────────────────────────────────────────────────
-type Step = 'intro' | 'choose' | 'pdf-drop' | 'pdf-loading' | 'manual-1' | 'manual-2' | 'manual-3' | 'reveal' | 'calculating' | 'result'
+type Step = 'intro' | 'choose' | 'pdf-drop' | 'pdf-loading' | 'pdf-role' | 'manual-1' | 'manual-2' | 'manual-3' | 'reveal' | 'calculating' | 'result'
 
 export default function ValueMyClinicPage() {
   const [step, setStep] = useState<Step>('intro')
@@ -127,8 +127,15 @@ export default function ValueMyClinicPage() {
       if (recent?.revenue) {
         setGross(String(recent.revenue))
         if (ex.practice_name) setPracticeName(ex.practice_name)
-        // Skip the manual flow — go straight to results
-        runCalculation()
+        // Hint at role from EBITDA-margin vs owner-comp gap. If owner_comp
+        // is well above market ($180K) AND ebitda is healthy, the owner is
+        // likely still mostly clinical. Default conservatively — but the
+        // pdf-role step lets the user confirm/adjust before we calculate.
+        const oc = recent.owner_compensation || 0
+        const eb = recent.ebitda || 0
+        if (oc > 0 && eb > 0 && oc < eb * 0.5) setRole('mostly_management')
+        // Ask one more question — role is the biggest multiple lever
+        setStep('pdf-role')
       } else {
         setError('Could not read revenue from that PDF. Try the manual entry path.')
         setStep('pdf-drop')
@@ -311,6 +318,53 @@ export default function ValueMyClinicPage() {
           ]} stepIdx={4} />
         )}
 
+        {/* ───────────────── PDF ROLE (after extract, before result) ───────────────── */}
+        {step === 'pdf-role' && (
+          <div style={{ animation: 'cp-fadeIn 0.4s ease' }}>
+            <div style={{ textAlign: 'center', marginBottom: 14 }}>
+              <div style={{ fontFamily: F.mono, fontSize: 11, letterSpacing: '0.22em', color: C.green, textTransform: 'uppercase', fontWeight: 800, marginBottom: 14 }}>
+                ✓ PDF extracted · {fmtMoney(grossNum)} revenue
+              </div>
+              <h2 style={{ fontFamily: F.display, fontSize: 'clamp(28px, 4vw, 38px)', fontWeight: 700, color: C.spine, margin: '0 0 12px', letterSpacing: '-0.02em', lineHeight: 1.15 }}>
+                One last thing.
+              </h2>
+              <p style={{ fontSize: 16, color: '#3A4865', maxWidth: 540, margin: '0 auto', lineHeight: 1.55 }}>
+                Your role at the clinic is the <strong style={{ color: C.spine }}>single biggest lever</strong> on the multiple. It can move the valuation 2× or more.
+              </p>
+            </div>
+
+            <div style={{ maxWidth: 600, margin: '32px auto 0', display: 'grid', gap: 10 }}>
+              {([
+                ['full_clinical',                       'Full clinical · I see all the patients',          '1.46× SDE'],
+                ['mostly_clinical_some_management',     'Mostly clinical · some management',                '1.46× SDE'],
+                ['mostly_management',                   'Mostly management · associates run patient care',  '3.0× SDE'],
+                ['wants_to_step_out',                   'I want to step out completely',                    '3.0× SDE · platform fit'],
+              ] as Array<[OwnerRole, string, string]>).map(([val, txt, mult]) => (
+                <button
+                  key={val}
+                  onClick={() => { setRole(val); runCalculation() }}
+                  style={{
+                    display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12,
+                    padding: '18px 22px', background: '#FFFFFF',
+                    border: `2px solid ${role === val ? C.gold : '#E5DECC'}`,
+                    borderRadius: 10, cursor: 'pointer', textAlign: 'left',
+                    transition: 'all 0.15s', fontFamily: F.body,
+                    boxShadow: '0 2px 8px rgba(31,78,121,0.04)',
+                  }}
+                  onMouseEnter={(e) => { e.currentTarget.style.borderColor = C.gold; e.currentTarget.style.background = '#FFFBF0' }}
+                  onMouseLeave={(e) => { e.currentTarget.style.borderColor = role === val ? C.gold : '#E5DECC'; e.currentTarget.style.background = '#FFFFFF' }}
+                >
+                  <div style={{ fontSize: 15.5, fontWeight: 600, color: C.spine }}>{txt}</div>
+                  <div style={{ fontFamily: F.mono, fontSize: 10, letterSpacing: '0.10em', color: C.gold, fontWeight: 700, whiteSpace: 'nowrap' }}>{mult}</div>
+                </button>
+              ))}
+            </div>
+            <div style={{ textAlign: 'center', marginTop: 24 }}>
+              <button onClick={() => setStep('pdf-drop')} style={{ background: 'transparent', border: 'none', color: '#7A859C', fontSize: 14, fontFamily: F.body, cursor: 'pointer', textDecoration: 'underline' }}>← drop a different PDF</button>
+            </div>
+          </div>
+        )}
+
         {/* ───────────────── MANUAL · STEP 1 (Revenue) ───────────────── */}
         {step === 'manual-1' && (
           <ManualStep
@@ -397,7 +451,9 @@ export default function ValueMyClinicPage() {
                 </button>
               ))}
             </div>
-            <NavRow onBack={() => setStep('manual-2')} onNext={() => setStep('reveal')} nextDisabled={false} nextLabel="See valuation →" />
+            <div style={{ marginTop: 22, textAlign: 'center' }}>
+              <button onClick={() => setStep('manual-2')} style={{ background: 'transparent', border: 'none', color: '#7A859C', fontSize: 14, fontFamily: F.body, cursor: 'pointer', textDecoration: 'underline' }}>← back</button>
+            </div>
           </ManualStep>
         )}
 
@@ -493,18 +549,68 @@ export default function ValueMyClinicPage() {
               {newPtsNum > 0 && <KpiBlock label="New pts/mo" val={String(newPtsNum)} color={C.green} sub={result.fitSignal === 'strong' ? '✓ Strong' : result.fitSignal === 'moderate' ? 'Moderate' : 'Below floor'} />}
             </div>
 
-            {/* What would make it worth more */}
+            {/* ADJUST ASSUMPTIONS — quick role toggle so users can see the multiple swing live */}
+            <div style={{ background: '#FFFFFF', borderRadius: 14, padding: '24px 26px', marginBottom: 22, boxShadow: '0 2px 12px rgba(31,78,121,0.06)', border: `1px solid ${C.gold}25` }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', flexWrap: 'wrap', gap: 8, marginBottom: 14 }}>
+                <div>
+                  <div style={{ fontFamily: F.mono, fontSize: 11, letterSpacing: '0.16em', color: C.gold, textTransform: 'uppercase', fontWeight: 800, marginBottom: 4 }}>
+                    Adjust assumptions
+                  </div>
+                  <h3 style={{ fontFamily: F.display, fontSize: 18, fontWeight: 700, color: C.spine, margin: 0, letterSpacing: '-0.01em' }}>
+                    See how your role moves the number.
+                  </h3>
+                </div>
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 8 }}>
+                {([
+                  ['full_clinical',                       'Full clinical'],
+                  ['mostly_clinical_some_management',     'Mostly clinical'],
+                  ['mostly_management',                   'Mostly management'],
+                  ['wants_to_step_out',                   'Stepping out'],
+                ] as Array<[OwnerRole, string]>).map(([val, txt]) => (
+                  <button
+                    key={val}
+                    onClick={() => setRole(val)}
+                    style={{
+                      padding: '10px 12px', background: role === val ? C.gold : '#FFFFFF',
+                      border: `1.5px solid ${role === val ? C.gold : '#E5DECC'}`,
+                      borderRadius: 8, cursor: 'pointer', textAlign: 'center',
+                      transition: 'all 0.15s', fontFamily: F.body,
+                      fontSize: 13, fontWeight: 600, color: role === val ? C.bg : C.spine,
+                    }}
+                  >
+                    {txt}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* What would make it worth more — personalized to role */}
             <div style={{ background: '#FFFFFF', borderRadius: 14, padding: '26px 28px', marginBottom: 22, boxShadow: '0 2px 12px rgba(31,78,121,0.06)' }}>
               <div style={{ fontFamily: F.mono, fontSize: 11, letterSpacing: '0.16em', color: C.spine, textTransform: 'uppercase', fontWeight: 800, marginBottom: 12 }}>
                 Want this number higher?
               </div>
               <h3 style={{ fontFamily: F.display, fontSize: 22, fontWeight: 700, color: C.spine, margin: '0 0 14px', letterSpacing: '-0.01em' }}>
-                Three levers move it the most.
+                {result.profile === 'solo'
+                  ? 'Three levers move it the most.'
+                  : result.profile === 'multi'
+                  ? 'Two more levers can push it further.'
+                  : "You're already platform-profile — here's the multiple expansion path."}
               </h3>
               <ul style={{ margin: 0, paddingLeft: 22, fontSize: 14.5, color: '#3A4865', lineHeight: 1.7 }}>
-                <li><strong style={{ color: C.spine }}>Step out of full-clinical.</strong> Adding an associate DC bumps the multiple from ~1.5× to ~3× — that&apos;s often the difference between $1M and $2M.</li>
-                <li><strong style={{ color: C.spine }}>Document 40+ new patients/month sustained.</strong> Buyers discount aggressively when patient flow looks like a recent spike instead of a 24-month baseline.</li>
-                <li><strong style={{ color: C.spine }}>Add a medical-team revenue stream.</strong> Wagner&apos;s install playbook adds ~$250K of EBITDA in Year 1 — that&apos;s another ~$750K of valuation at 3×.</li>
+                {result.profile === 'solo' && (
+                  <li><strong style={{ color: C.spine }}>Step out of full-clinical.</strong> Adding an associate DC bumps the multiple from <strong>1.46×</strong> to <strong>3.0×</strong> — on your {fmtMoney(result.sdeMid)} SDE, that&apos;s a {fmtMoney(result.sdeMid * (3.0 - 1.46))} swing in valuation.</li>
+                )}
+                {(newPtsNum < 40 || newPtsNum === 0) && (
+                  <li><strong style={{ color: C.spine }}>Get to 40+ new patients/month, sustained 24+ months.</strong> {newPtsNum > 0 ? `You're at ${newPtsNum} now. ` : ''}Buyers discount aggressively when patient flow looks like a recent spike instead of a stable two-year baseline.</li>
+                )}
+                {newPtsNum >= 40 && (
+                  <li><strong style={{ color: C.spine }}>Your patient flow is in the strong band.</strong> ChiroPillar partnership models start here — the medical-team install plus marketing tightening only works on top of demand.</li>
+                )}
+                <li><strong style={{ color: C.spine }}>Add a medical-team revenue stream.</strong> Dr. Wagner&apos;s install playbook adds <strong>+$250K EBITDA</strong> in Year 1 — at {result.mult}× that&apos;s {fmtMoney(250_000 * result.mult)} of additional valuation.</li>
+                {result.profile !== 'platform' && grossNum >= 2_500_000 && (
+                  <li><strong style={{ color: C.spine }}>You&apos;re close to platform profile.</strong> $3M+ revenue with associates in place opens the 7.5× EBITDA platform band — that&apos;s the institutional buyer pool.</li>
+                )}
               </ul>
             </div>
 
