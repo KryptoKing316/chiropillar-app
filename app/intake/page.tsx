@@ -187,7 +187,7 @@ function qualify(s: FormState): { status: 'qualified' | 'maybe' | 'not_yet'; rea
   const lockedToFullClinical = s.owner_role === 'full_clinical'
 
   const reasons: string[] = []
-  if (newPts >= 40) reasons.push('Hits Wagner\'s 40+/mo new-patient volume floor.')
+  if (newPts >= 40) reasons.push('Hits the 40+/mo new-patient volume floor.')
   if (visits >= 18) reasons.push('Patient retention is in the strong band (24+ visit avg targeted).')
   if (gross >= 750_000) reasons.push('Revenue base is large enough for medical-team economics.')
   if (s.owner_role === 'mostly_management' || s.owner_role === 'wants_to_step_out') {
@@ -215,14 +215,14 @@ function qualify(s: FormState): { status: 'qualified' | 'maybe' | 'not_yet'; rea
     return {
       status: 'qualified',
       reasons,
-      pitch: 'You qualify. Dr. Wagner\'s team will reach out within 48 hours to walk you through the ChiroPillar partnership — including the medical-team add-on that targets +$250K in your first year.',
+      pitch: 'You qualify. The ChiroPillar team will reach out within 48 hours to walk you through the partnership — including the medical-team add-on that targets +$250K in your first year.',
     }
   }
 
   return {
     status: 'maybe',
     reasons: reasons.length ? reasons : ['Some signals are in range; others need a conversation.'],
-    pitch: 'You\'re in the conversation zone. Dr. Wagner\'s team will review your numbers and reach out within a week to discuss next steps.',
+    pitch: 'You\'re in the conversation zone. The ChiroPillar team will review your numbers and reach out within a week to discuss next steps.',
   }
 }
 
@@ -325,7 +325,7 @@ export default function IntakePage() {
               doing exactly what you&apos;re already doing.
             </h1>
             <p style={{ fontSize: 18, color: '#555', lineHeight: 1.55, maxWidth: 620, margin: '0 auto 28px' }}>
-              Help your patients get better. Be a better doctor for your patients. Raise the value of your practice — without learning a single new technique. The right chiropractors qualify for Dr. Scott Wagner&apos;s medical-operator partnership program. <strong style={{ color: '#1F4E79' }}>Three minutes. See if you qualify.</strong>
+              Help your patients get better. Be a better doctor for your patients. Raise the value of your practice — without learning a single new technique. The right chiropractors qualify for the ChiroPillar medical-operator partnership program — built by a working DC who runs 5+ clinics serving thousands of patients. <strong style={{ color: '#1F4E79' }}>Three minutes. See if you qualify.</strong>
             </p>
           </div>
         )}
@@ -388,7 +388,7 @@ export default function IntakePage() {
             {step === 2 && (
               <>
                 <h2 style={CSS.h2}>Patient flow</h2>
-                <p style={CSS.sub}>Wagner&apos;s diagnostic-medical-team model needs steady volume, not a recent spike. Both fields below should reflect a <strong>2-year average</strong>, not just last month.</p>
+                <p style={CSS.sub}>The diagnostic-medical-team model needs steady volume, not a recent spike. Both fields below should reflect a <strong>2-year average</strong>, not just last month.</p>
                 <div style={CSS.grid2}>
                   <Field label="New patients per month · 2-yr average">
                     <input value={form.new_patients_per_month_avg_2yr} onChange={update('new_patients_per_month_avg_2yr')} placeholder="48" style={CSS.input}/>
@@ -490,7 +490,7 @@ export default function IntakePage() {
             {step === 5 && (
               <>
                 <h2 style={CSS.h2}>See if you qualify</h2>
-                <p style={CSS.sub}>Hit submit and we&apos;ll score your practice against Dr. Wagner&apos;s qualification criteria. Qualified practices get a direct call from his team within 48 hours.</p>
+                <p style={CSS.sub}>Hit submit and we&apos;ll score your practice against the partnership qualification criteria. Qualified practices get a direct call from the ChiroPillar team within 48 hours.</p>
                 <label style={{ display: 'flex', alignItems: 'flex-start', gap: 10, padding: 14, background: '#F7F4ED', borderRadius: 8, fontSize: 13, lineHeight: 1.5, marginBottom: 20 }}>
                   <input type="checkbox" checked={form.ok_to_contact} onChange={update('ok_to_contact')} style={{ marginTop: 4 }}/>
                   <span>OK to contact me by phone, email, and text about the ChiroPillar partnership program. We never spam and never share your info.</span>

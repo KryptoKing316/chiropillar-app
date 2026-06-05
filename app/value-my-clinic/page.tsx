@@ -208,7 +208,7 @@ export default function ValueMyClinicPage() {
             {/* trust strip · what would actually make a 52-year-old DC click */}
             <div style={{ marginTop: 56, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 18, maxWidth: 820, marginLeft: 'auto', marginRight: 'auto', fontSize: 13.5, color: '#3A4865', lineHeight: 1.5 }}>
               <div><strong style={{ color: C.spine }}>✓ No email · no login.</strong> Your numbers don&apos;t leave your browser.</div>
-              <div><strong style={{ color: C.spine }}>✓ Built by Dr. Scott Wagner</strong> · he runs 5 Charlottesville-area clinics doing $25M+. He sees the comp set every day.</div>
+              <div><strong style={{ color: C.spine }}>✓ Built by a real DC</strong> who runs 5+ clinics serving thousands of patients. He sees the comp set every day.</div>
               <div><strong style={{ color: C.spine }}>✓ 60 seconds.</strong> Same valuation your CPA would charge $5K and 6 weeks for.</div>
             </div>
           </div>
@@ -504,7 +504,7 @@ export default function ValueMyClinicPage() {
               'Calculating normalized SDE',
               'Applying chiropractic comp medians',
               'Building Conservative / Most Likely / Premium bands',
-              'Pricing the Wagner-style deal structure',
+              'Pricing the partnership deal structure',
             ]}
             stepIdx={calcStep}
           />
@@ -618,7 +618,7 @@ export default function ValueMyClinicPage() {
                 {newPtsNum >= 40 && (
                   <li><strong style={{ color: C.spine }}>Your patient flow is in the strong band.</strong> ChiroPillar partnership models start here — the medical-team install plus marketing tightening only works on top of demand.</li>
                 )}
-                <li><strong style={{ color: C.spine }}>Add a medical-team revenue stream.</strong> Dr. Wagner&apos;s install playbook adds <strong>+$250K EBITDA</strong> in Year 1 — at {result.mult}× that&apos;s {fmtMoney(250_000 * result.mult)} of additional valuation.</li>
+                <li><strong style={{ color: C.spine }}>Add a medical-team revenue stream.</strong> The ChiroPillar install playbook adds <strong>+$250K EBITDA</strong> in Year 1 — at {result.mult}× that&apos;s {fmtMoney(250_000 * result.mult)} of additional valuation.</li>
                 {result.profile !== 'platform' && grossNum >= 2_500_000 && (
                   <li><strong style={{ color: C.spine }}>You&apos;re close to platform profile.</strong> $3M+ revenue with associates in place opens the 7.5× EBITDA platform band — that&apos;s the institutional buyer pool.</li>
                 )}
@@ -638,10 +638,10 @@ export default function ValueMyClinicPage() {
                 Chiropractor-to-chiropractor
               </div>
               <h3 style={{ fontFamily: F.display, fontSize: 26, fontWeight: 700, margin: '0 0 12px', letterSpacing: '-0.01em', lineHeight: 1.2 }}>
-                Talk to Dr. Scott Wagner directly.
+                Talk to a chiropractor who&apos;s done it.
               </h3>
               <p style={{ fontSize: 15, margin: '0 0 18px', maxWidth: 560, marginLeft: 'auto', marginRight: 'auto', lineHeight: 1.6, opacity: 0.92 }}>
-                Dr. Wagner runs <strong>5 clinics doing $25M+ in Charlottesville</strong>. He&apos;s a working chiropractor — not a broker, not a banker. He&apos;ll walk you through what your numbers actually mean and whether the ChiroPillar partnership fits.
+                The operator behind ChiroPillar runs <strong>5+ clinics serving thousands of patients</strong>. He&apos;s a working DC — not a broker, not a banker. He&apos;ll walk you through what your numbers actually mean and whether the partnership fits.
               </p>
               <a
                 href="/intake"
@@ -652,10 +652,10 @@ export default function ValueMyClinicPage() {
                   boxShadow: '0 4px 14px rgba(11,27,62,0.30)',
                 }}
               >
-                Tell Wagner about my practice →
+                Start the conversation →
               </a>
               <div style={{ marginTop: 12, fontSize: 12, color: C.bg, opacity: 0.65 }}>
-                No obligation. He responds personally within 48 hours or not at all.
+                No obligation. Personal response within 48 hours or not at all.
               </div>
             </div>
 
@@ -681,9 +681,7 @@ export default function ValueMyClinicPage() {
             The chiropractic practice-valuation industry is broken. CPAs charge $5K and take six weeks. Practice brokers want your listing fee. Online tools give you a generic small-business multiple that doesn&apos;t know chiropractic from chiropody. This calculator is calibrated to <strong style={{ color: C.spine }}>158 real chiropractic transactions</strong> from Progressive Practice Sales, William David Company, BizBuySell, and JYNT — and it&apos;s built by people who own and operate chiropractic clinics, not by a software company hoping to sell ads. The number you see won&apos;t be perfect. It will be honest.
           </p>
           <div style={{ display: 'flex', gap: 22, justifyContent: 'center', flexWrap: 'wrap', fontSize: 12, color: '#7A859C', fontFamily: F.mono, letterSpacing: '0.04em' }}>
-            <span>Built by Kingdom Broker × Dr. Scott Wagner</span>
-            <span>·</span>
-            <span>Plano, TX × Charlottesville, VA</span>
+            <span>Built by chiropractors + an M&amp;A firm</span>
             <span>·</span>
             <span>2026</span>
           </div>
