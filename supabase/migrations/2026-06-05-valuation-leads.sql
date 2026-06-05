@@ -8,6 +8,7 @@
 create table if not exists public.chiropillar_valuation_leads (
   id                   uuid default gen_random_uuid() primary key,
   email                text not null,
+  phone                text,
   full_name            text,
   practice_name        text,
   estimated_value_mid  numeric,
@@ -18,6 +19,9 @@ create table if not exists public.chiropillar_valuation_leads (
   user_agent           text,
   created_at           timestamptz default now()
 );
+-- Idempotent: if a previous deploy created the table without phone, add it.
+alter table public.chiropillar_valuation_leads
+  add column if not exists phone text;
 
 create index if not exists idx_valuation_leads_email   on public.chiropillar_valuation_leads (email);
 create index if not exists idx_valuation_leads_created on public.chiropillar_valuation_leads (created_at desc);

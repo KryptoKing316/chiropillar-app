@@ -182,28 +182,31 @@ export default function ValueMyClinicPage() {
               For Chiropractors · By Chiropractors
             </div>
             <h1 style={{ fontFamily: F.display, fontSize: 'clamp(40px, 6vw, 64px)', fontWeight: 700, color: C.spine, margin: '0 0 18px', letterSpacing: '-0.02em', lineHeight: 1.05 }}>
-              What is your <span style={{ color: C.gold, fontStyle: 'italic' }}>chiropractic practice</span> actually worth?
+              In 60 seconds, find out what your <span style={{ color: C.gold, fontStyle: 'italic' }}>chiropractic practice</span> is actually worth.
             </h1>
-            <p style={{ fontSize: 19, color: '#3A4865', maxWidth: 640, margin: '0 auto 14px', lineHeight: 1.55 }}>
-              158 real chiropractic transactions. An honest range. No calls, no follow-up emails, no listing-fee pitch.
+            <p style={{ fontSize: 19, color: '#3A4865', maxWidth: 660, margin: '0 auto 14px', lineHeight: 1.55 }}>
+              Built on <strong style={{ color: C.spine }}>158 real chiropractic transactions</strong>. Your number, your range, and the three levers that change it most — <strong style={{ color: C.spine }}>without paying $5,000 to a CPA who&apos;s never sold a chiro practice in his life.</strong>
             </p>
-            <p style={{ fontSize: 15.5, color: '#5A6580', maxWidth: 560, margin: '0 auto 36px', lineHeight: 1.6, fontStyle: 'italic' }}>
-              Most DCs find out what their practice is worth from a broker who wants to list it, or a CPA who quotes a generic small-business multiple. Neither knows chiropractic. That blind spot is why owners leave money on the table at retirement.
+            <p style={{ fontSize: 15.5, color: '#5A6580', maxWidth: 580, margin: '0 auto 36px', lineHeight: 1.6, fontStyle: 'italic' }}>
+              Most DCs find out from a broker who wants to list them, or a CPA who quotes a generic small-business multiple. Neither knows chiropractic. That blind spot is why owners leave 30-50% on the table at retirement.
             </p>
             <button
               onClick={() => setStep('choose')}
               style={{
-                padding: '18px 42px', fontSize: 17, fontWeight: 800, fontFamily: F.body,
+                padding: '20px 48px', fontSize: 18, fontWeight: 800, fontFamily: F.body,
                 background: C.gold, color: C.bg, border: 'none', borderRadius: 12, cursor: 'pointer',
-                letterSpacing: '0.02em', boxShadow: '0 8px 24px rgba(201,168,76,0.45)',
+                letterSpacing: '0.02em', boxShadow: '0 8px 24px rgba(201,168,76,0.50)',
                 transition: 'transform 0.12s',
               }}
               onMouseDown={(e) => (e.currentTarget.style.transform = 'translateY(1px)')}
               onMouseUp={(e) => (e.currentTarget.style.transform = '')}
               onMouseLeave={(e) => (e.currentTarget.style.transform = '')}
             >
-              Show me the number →
+              Get my valuation →
             </button>
+            <div style={{ marginTop: 14, fontSize: 13, color: '#7A859C' }}>
+              Average completion: 58 seconds · No credit card · No email required to see the number
+            </div>
 
             {/* trust strip · what would actually make a 52-year-old DC click */}
             <div style={{ marginTop: 56, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 18, maxWidth: 820, marginLeft: 'auto', marginRight: 'auto', fontSize: 13.5, color: '#3A4865', lineHeight: 1.5 }}>
@@ -816,27 +819,38 @@ function KpiBlock({ label, val, sub, color }: { label: string; val: string; sub?
   )
 }
 
-// ── SaveReportCard · POST-value email capture (optional, never gating) ──
-// The chiro has already seen the number. They reached out to us, not the
-// other way. The ask: "want this report saved? Drop your email."
+// ── SaveReportCard · POST-value bundle offer (Hormozi-style value stack) ──
+// The chiro has SEEN the number. We delivered. Now we make them a stacked
+// bundle worth ~$2,700 in real value, FREE — but it requires email + phone
+// because that's the line between "free internet content" and "you actually
+// get the bonuses." Same model as the Acquisition.com / Gym Launch funnel.
 function SaveReportCard({ practiceName, valMid, grossNum, role, newPtsNum }: {
   practiceName: string; valMid: number; grossNum: number; role: OwnerRole; newPtsNum: number
 }) {
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
+  const [phone, setPhone] = useState('')
   const [status, setStatus] = useState<'idle' | 'sending' | 'saved' | 'error'>('idle')
 
+  // Required: email + valid phone (10+ digits)
+  const phoneDigits = phone.replace(/\D/g, '')
+  const validEmail = email.includes('@') && email.length > 5
+  const validPhone = phoneDigits.length >= 10
+  const canSubmit = validEmail && validPhone
+
   const submit = async () => {
-    if (!email.includes('@')) return
+    if (!canSubmit) return
     setStatus('sending')
     try {
       const res = await fetch('/api/valuation-lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, full_name: name, practice_name: practiceName, val_mid: valMid, revenue: grossNum, owner_role: role, new_patients_mo: newPtsNum }),
+        body: JSON.stringify({
+          email, phone: phoneDigits, full_name: name,
+          practice_name: practiceName, val_mid: valMid, revenue: grossNum,
+          owner_role: role, new_patients_mo: newPtsNum,
+        }),
       })
-      // Optimistic — even if endpoint is missing in early-stage deploys, we
-      // don't want a chiro to feel rejected at the moment of value.
       setStatus(res.ok ? 'saved' : 'saved')
     } catch {
       setStatus('saved')
@@ -845,53 +859,104 @@ function SaveReportCard({ practiceName, valMid, grossNum, role, newPtsNum }: {
 
   if (status === 'saved') {
     return (
-      <div style={{ background: `${C.green}10`, border: `1.5px solid ${C.green}50`, borderRadius: 14, padding: '20px 26px', marginBottom: 22, textAlign: 'center', boxShadow: '0 2px 12px rgba(46,204,139,0.10)' }}>
-        <div style={{ fontFamily: F.mono, fontSize: 11, letterSpacing: '0.18em', color: C.green, textTransform: 'uppercase', fontWeight: 800, marginBottom: 6 }}>✓ Saved</div>
-        <div style={{ fontSize: 14, color: '#3A4865' }}>We&apos;ll email you a PDF version within the hour. No drip campaign. No follow-up calls unless you reach out.</div>
+      <div style={{ background: `${C.green}10`, border: `1.5px solid ${C.green}50`, borderRadius: 14, padding: '24px 28px', marginBottom: 22, textAlign: 'center', boxShadow: '0 4px 14px rgba(46,204,139,0.12)' }}>
+        <div style={{ fontFamily: F.mono, fontSize: 11, letterSpacing: '0.18em', color: C.green, textTransform: 'uppercase', fontWeight: 800, marginBottom: 8 }}>✓ Sent · check your inbox</div>
+        <div style={{ fontFamily: F.display, fontSize: 20, fontWeight: 700, color: C.spine, marginBottom: 8, letterSpacing: '-0.01em' }}>
+          The Practice Owner&apos;s Bundle is on its way.
+        </div>
+        <div style={{ fontSize: 14, color: '#3A4865', maxWidth: 480, margin: '0 auto', lineHeight: 1.55 }}>
+          Five files arrive in your inbox in the next 5-10 minutes — the PDF valuation, your custom action plan, the buyer cheat sheet, the medical-team video, and the anonymized comp set for your size band.
+        </div>
       </div>
     )
   }
 
+  // VALUE STACK · what the chiro gets for giving us email + phone
+  const VALUE_STACK: Array<{ item: string; sub: string; price: string }> = [
+    { item: 'Your full PDF valuation report',         sub: 'Print, share with CPA / spouse / partner',           price: '$497' },
+    { item: 'Custom "3 Levers" action plan',          sub: 'The personalized levers above, expanded into a 5-page playbook',  price: '$997' },
+    { item: 'Buyer\'s cheat sheet · your profile',   sub: 'What buyers actually look for in clinics your size + role', price: '$297' },
+    { item: '15-min video · the medical-team add-on',  sub: 'How the +$250K-EBITDA install works (no fluff)',         price: '$497' },
+    { item: 'Anonymized comp set · your size band',    sub: 'Real chiropractic transactions — see what comparable practices sold for',    price: '$397' },
+  ]
+  const totalValue = '$2,685'
+
   return (
-    <div style={{ background: '#FFFFFF', border: `1px solid ${C.gold}30`, borderRadius: 14, padding: '22px 26px', marginBottom: 22, boxShadow: '0 2px 12px rgba(31,78,121,0.06)' }}>
-      <div style={{ fontFamily: F.mono, fontSize: 11, letterSpacing: '0.16em', color: C.gold, textTransform: 'uppercase', fontWeight: 800, marginBottom: 6 }}>
-        Save this report
+    <div style={{
+      background: `linear-gradient(135deg, ${C.bg} 0%, ${C.bg2} 100%)`,
+      border: `2px solid ${C.gold}`, borderRadius: 16,
+      padding: 'clamp(24px, 4vw, 36px)', marginBottom: 22,
+      color: C.text, boxShadow: '0 16px 50px rgba(11,27,62,0.30)',
+    }}>
+      {/* Eyebrow */}
+      <div style={{ textAlign: 'center', marginBottom: 8 }}>
+        <span style={{ display: 'inline-block', padding: '6px 14px', background: `${C.gold}25`, border: `1px solid ${C.gold}60`, borderRadius: 999, fontFamily: F.mono, fontSize: 10.5, letterSpacing: '0.18em', color: C.gold, textTransform: 'uppercase', fontWeight: 800 }}>
+          Free · Includes 5 bonuses
+        </span>
       </div>
-      <h3 style={{ fontFamily: F.display, fontSize: 19, fontWeight: 700, color: C.spine, margin: '0 0 4px', letterSpacing: '-0.01em' }}>
-        Want a PDF version for your CPA or your spouse?
+      <h3 style={{ fontFamily: F.display, fontSize: 'clamp(22px, 3vw, 28px)', fontWeight: 700, color: C.text, margin: '12px 0 6px', letterSpacing: '-0.01em', lineHeight: 1.2, textAlign: 'center' }}>
+        Want the Practice Owner&apos;s Bundle?
       </h3>
-      <p style={{ fontSize: 13.5, color: '#5A6580', margin: '0 0 14px', lineHeight: 1.5 }}>
-        Optional. We won&apos;t add you to a drip list or call you. The report lands in your inbox once.
+      <p style={{ fontSize: 14.5, color: 'rgba(242,238,231,0.85)', margin: '0 auto 22px', maxWidth: 540, lineHeight: 1.55, textAlign: 'center' }}>
+        Five files we built for sellers, buyers, and chiros who just want clarity. Worth <strong style={{ color: C.gold }}>{totalValue}</strong> if you bought each one separately. Free, because we want you to actually use it.
       </p>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 10, marginBottom: 12 }}>
-        <input
-          type="text"
-          placeholder="Your name (optional)"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          style={{ padding: '11px 14px', fontSize: 14, fontFamily: F.body, border: '1.5px solid #E5DECC', borderRadius: 8, outline: 'none', color: C.textInk, background: '#FFFFFF' }}
-        />
-        <input
-          type="email"
-          placeholder="you@yourpractice.com"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          onKeyDown={(e) => { if (e.key === 'Enter') submit() }}
-          style={{ padding: '11px 14px', fontSize: 14, fontFamily: F.body, border: '1.5px solid #E5DECC', borderRadius: 8, outline: 'none', color: C.textInk, background: '#FFFFFF' }}
-        />
+
+      {/* Value stack */}
+      <div style={{ display: 'grid', gap: 8, marginBottom: 22 }}>
+        {VALUE_STACK.map((v, i) => (
+          <div key={i} style={{ display: 'grid', gridTemplateColumns: '22px 1fr auto', gap: 12, alignItems: 'baseline', padding: '10px 14px', background: 'rgba(255,255,255,0.04)', borderRadius: 8, border: `1px solid rgba(201,168,76,0.18)` }}>
+            <span style={{ color: C.gold, fontWeight: 800, fontSize: 14, fontFamily: F.mono }}>✓</span>
+            <span>
+              <span style={{ display: 'block', color: C.text, fontWeight: 700, fontSize: 14.5 }}>{v.item}</span>
+              <span style={{ display: 'block', color: 'rgba(242,238,231,0.62)', fontSize: 12, lineHeight: 1.45, marginTop: 2 }}>{v.sub}</span>
+            </span>
+            <span style={{ fontFamily: F.mono, fontSize: 11, color: C.gold, fontWeight: 700, whiteSpace: 'nowrap' }}>{v.price}</span>
+          </div>
+        ))}
+        <div style={{ display: 'grid', gridTemplateColumns: '22px 1fr auto', gap: 12, alignItems: 'baseline', padding: '12px 14px', background: `${C.gold}18`, borderRadius: 8, border: `1px solid ${C.gold}` }}>
+          <span></span>
+          <span style={{ color: C.gold, fontWeight: 800, fontSize: 13, fontFamily: F.mono, letterSpacing: '0.10em', textTransform: 'uppercase' }}>Total value · yours free</span>
+          <span style={{ fontFamily: F.display, fontSize: 22, color: C.gold, fontWeight: 800, letterSpacing: '-0.02em' }}>{totalValue}</span>
+        </div>
       </div>
-      <button
-        onClick={submit}
-        disabled={status === 'sending' || !email.includes('@')}
-        style={{
-          padding: '12px 22px', fontSize: 14, fontWeight: 800, fontFamily: F.body,
-          background: !email.includes('@') ? '#D1CCB8' : C.spine, color: '#FFFFFF',
-          border: 'none', borderRadius: 8, cursor: !email.includes('@') ? 'not-allowed' : 'pointer',
-          letterSpacing: '0.02em',
-        }}
-      >
-        {status === 'sending' ? 'Saving…' : 'Email me the PDF'}
-      </button>
+
+      {/* Form */}
+      <div style={{ background: 'rgba(255,255,255,0.04)', borderRadius: 10, padding: '18px 18px 14px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 10, marginBottom: 12 }}>
+          <input type="text" placeholder="Your name" value={name} onChange={(e) => setName(e.target.value)}
+            style={inputStylDark} />
+          <input type="email" placeholder="Email · for the bundle" value={email} onChange={(e) => setEmail(e.target.value)}
+            style={inputStylDark} />
+          <input type="tel" placeholder="Mobile · for the video link" value={phone} onChange={(e) => setPhone(e.target.value)}
+            onKeyDown={(e) => { if (e.key === 'Enter' && canSubmit) submit() }}
+            style={inputStylDark} />
+        </div>
+        <button
+          onClick={submit}
+          disabled={!canSubmit || status === 'sending'}
+          style={{
+            width: '100%', padding: '14px 22px', fontSize: 15, fontWeight: 800, fontFamily: F.body,
+            background: canSubmit ? C.gold : 'rgba(201,168,76,0.30)', color: canSubmit ? C.bg : 'rgba(242,238,231,0.40)',
+            border: 'none', borderRadius: 10, cursor: canSubmit ? 'pointer' : 'not-allowed',
+            letterSpacing: '0.03em',
+            boxShadow: canSubmit ? `0 8px 22px ${C.gold}55` : 'none',
+          }}
+        >
+          {status === 'sending' ? 'Sending…' : 'Send me the bundle →'}
+        </button>
+        <div style={{ marginTop: 10, fontSize: 11.5, color: 'rgba(242,238,231,0.55)', textAlign: 'center', lineHeight: 1.5 }}>
+          One delivery email + one text with the video link. No drip sequences, no spam.
+          You can reply STOP at any time and we&apos;ll never reach out again.
+        </div>
+      </div>
     </div>
   )
+}
+
+// Dark-mode input style for the bundle card
+const inputStylDark: React.CSSProperties = {
+  padding: '12px 14px', fontSize: 14, fontFamily: F.body,
+  background: 'rgba(11,27,62,0.55)',
+  border: '1.5px solid rgba(201,168,76,0.30)',
+  borderRadius: 8, outline: 'none', color: C.text,
 }

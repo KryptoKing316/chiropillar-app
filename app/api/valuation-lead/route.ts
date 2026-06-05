@@ -9,12 +9,32 @@ export const runtime = 'nodejs'
 
 type Payload = {
   email: string
+  phone?: string
   full_name?: string
   practice_name?: string
   val_mid?: number
   revenue?: number
   owner_role?: string
   new_patients_mo?: number
+}
+
+// ── GoHighLevel inbound webhook · fires for every valid lead ──
+// Set GHL_VALUATION_WEBHOOK_URL in the env to the webhook URL from a
+// GoHighLevel "Inbound Webhook" trigger. We POST a flat JSON payload that
+// GHL maps to the lead's contact fields. If the env var isn't set, we just
+// skip the GHL push silently (Supabase still captures the lead).
+async function forwardToGHL(payload: Record<string, unknown>) {
+  const url = process.env.GHL_VALUATION_WEBHOOK_URL
+  if (!url) return
+  try {
+    await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    })
+  } catch (e) {
+    console.error('[valuation-lead] GHL forward failed:', e instanceof Error ? e.message : String(e))
+  }
 }
 
 export async function POST(req: Request) {
@@ -40,6 +60,7 @@ export async function POST(req: Request) {
     // fall back to chiropillar_targets (the existing intake table).
     const row = {
       email,
+      phone: (body.phone || '').replace(/\D/g, '').slice(0, 20) || null,
       full_name: body.full_name?.slice(0, 200) || null,
       practice_name: body.practice_name?.slice(0, 200) || null,
       estimated_value_mid: typeof body.val_mid === 'number' ? Math.round(body.val_mid) : null,
@@ -49,6 +70,14 @@ export async function POST(req: Request) {
       source: '/value-my-clinic',
       created_at: new Date().toISOString(),
     }
+
+    // Fire GHL webhook in parallel with Supabase insert. Don't await — we
+    // shouldn't slow the response just because GHL is slow.
+    forwardToGHL({
+      ...row,
+      tag: 'chiropillar-valuation-lead',
+      utm_source: 'value-my-clinic',
+    })
 
     const tryDedicated = await supa.from('chiropillar_valuation_leads').insert(row)
     if (!tryDedicated.error) {
