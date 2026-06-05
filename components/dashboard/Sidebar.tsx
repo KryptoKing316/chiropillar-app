@@ -397,11 +397,18 @@ const NAV = [
 ]
 
 // ── Quick Actions · pinned to top of sidebar ─────────────────────────────────
-// The two highest-frequency actions Wagner / McGrath take on the platform:
-//   1. Share the public intake funnel with a prospective chiropractor
-//   2. Drop a P&L PDF to instantly value a clinic
-// Both surface deeper-buried pages with a one-click affordance.
+// The three highest-frequency actions Wagner / McGrath take on the platform:
+//   1. Open the public Value-My-Clinic tool (KB-style funnel for prospects)
+//   2. Share the public intake funnel with a prospective chiropractor
+//   3. Drop a P&L PDF (admin view) to value a clinic with full comp set + deal structure
+// Each surfaces a deeper-buried page with a one-click affordance.
 const QUICK_ACTIONS = [
+  {
+    href: '/value-my-clinic',
+    label: 'Value My Clinic Tool',
+    sub: 'Public funnel · share with prospects',
+    external: true,
+  },
   {
     href: '/intake',
     label: 'Public Intake Form',
@@ -411,7 +418,7 @@ const QUICK_ACTIONS = [
   {
     href: '/valuation?upload=1',
     label: 'Upload P&L → Valuation',
-    sub: 'Drop a PDF · instant report',
+    sub: 'Admin · full comps + deal structure',
     external: false,
   },
 ]
