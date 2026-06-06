@@ -87,7 +87,7 @@ export default async function DashLayout({ children }: { children: React.ReactNo
   // Wagner / McGrath / prospective applicants should see the platform exactly
   // as a logged-in admin would, with sample data populating tables.
   //
-  // ERIC-ONLY surfaces (Founder Comp + future internal tools) — gated by email.
+  // ERIC-ONLY surfaces (future internal tools) — gated by email.
   // Both Eric@kingdombroker.com and ericcskeldon@gmail.com are recognized.
   const ericEmails = ['eric@kingdombroker.com', 'ericcskeldon@gmail.com']
   const isEricOnly = !!userEmail && ericEmails.includes(userEmail.toLowerCase())

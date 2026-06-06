@@ -181,15 +181,6 @@ const ICONS: Record<string, React.ReactNode> = {
       <path d="M9 1.5v2M9 14.5v2M1.5 9h2M14.5 9h2M3.7 3.7l1.42 1.42M12.88 12.88l1.42 1.42M14.3 3.7l-1.42 1.42M5.12 12.88l-1.42 1.42"/>
     </IC>
   ),
-  '/founder-comp': (
-    <IC>
-      {/* Two people split · founder comp */}
-      <circle cx="6" cy="6" r="2.5"/>
-      <circle cx="12" cy="6" r="2.5"/>
-      <path d="M2 16c0-2 1.79-3.5 4-3.5s4 1.5 4 3.5"/>
-      <path d="M8 16c0-2 1.79-3.5 4-3.5s4 1.5 4 3.5"/>
-    </IC>
-  ),
   '/ambassadors': (
     <IC>
       <path d="M16 16v-1.5c0-2-1.5-3.5-3.5-3.5h-1"/>
@@ -426,7 +417,6 @@ const QUICK_ACTIONS = [
 // Admin-only surfaces · Eric / Wagner / McGrath
 const ADMIN_DEMOS: Array<{ href: string; label: string; ericOnly?: boolean }> = [
   { href: '/agents',       label: 'Agent Center'                       },
-  { href: '/founder-comp', label: 'Founder Comp', ericOnly: true       },
   { href: '/admin',        label: 'Admin Panel'                        },
 ]
 
