@@ -563,6 +563,40 @@ export default function LaunchPlanPage() {
 
       {/* VALUE CHAIN */}
       <SectionHead eyebrow="The value chain · ads to close" title="6 stages. Each owned. Each measured." />
+
+      {/* DATA MOAT · the 24K DC list that powers every targeted stage */}
+      <div style={{
+        background: 'linear-gradient(135deg, rgba(46,204,139,0.10) 0%, rgba(46,117,182,0.06) 100%)',
+        border: '1px solid rgba(46,204,139,0.35)',
+        borderRadius: 14,
+        padding: '24px 28px',
+        marginBottom: 22,
+      }}>
+        <div style={{ fontFamily: F.mono, fontSize: 11, color: C.green, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 10 }}>
+          ★ Data moat behind every stage
+        </div>
+        <h3 style={{ fontFamily: F.display, fontSize: 22, fontWeight: 700, color: C.text, margin: '0 0 14px', letterSpacing: '-0.01em' }}>
+          24,000 US chiropractors. <span style={{ color: C.green }}>Already in our dataset.</span> LinkedIn + Facebook enriched. Direct-targeted on every platform.
+        </h3>
+        <p style={{ fontSize: 14.5, color: '#FFFFFF', lineHeight: 1.65, margin: '0 0 16px' }}>
+          KB acquired a private list of <strong style={{ color: C.gold }}>24,000 US chiropractors</strong>. Every record gets enriched with LinkedIn URL, Facebook account match, practice revenue band, years in practice, and DSO partner status. That single dataset feeds direct mail, paid social, cold email, and BD outreach — every channel runs against the same vetted pool, so creative and timing compound across touches.
+        </p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 12 }}>
+          <div style={{ background: 'rgba(0,0,0,0.20)', border: '1px solid rgba(46,204,139,0.25)', borderRadius: 10, padding: '14px 16px' }}>
+            <div style={{ fontFamily: F.mono, fontSize: 10, color: C.green, letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 6 }}>LinkedIn targeting</div>
+            <div style={{ fontSize: 13, color: '#FFFFFF', lineHeight: 1.5 }}>Exact-match account targeting. Ads served only to verified DC profiles in our list. No wasted impressions on dentists or vets.</div>
+          </div>
+          <div style={{ background: 'rgba(0,0,0,0.20)', border: '1px solid rgba(46,204,139,0.25)', borderRadius: 10, padding: '14px 16px' }}>
+            <div style={{ fontFamily: F.mono, fontSize: 10, color: C.green, letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 6 }}>Facebook + Instagram</div>
+            <div style={{ fontSize: 13, color: '#FFFFFF', lineHeight: 1.5 }}>Custom audience match on email and phone. Ads + retargeting on FB feed, IG feed, Reels, and Stories. ~65% match rate against our list.</div>
+          </div>
+          <div style={{ background: 'rgba(0,0,0,0.20)', border: '1px solid rgba(46,204,139,0.25)', borderRadius: 10, padding: '14px 16px' }}>
+            <div style={{ fontFamily: F.mono, fontSize: 10, color: C.green, letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 6 }}>Pain-point creative</div>
+            <div style={{ fontSize: 13, color: '#FFFFFF', lineHeight: 1.5 }}>Each DC sees creative tuned to evidence we have. Burnout signals from their LinkedIn posts. Acquisition-curious from association activity. Specific pain, specific message, specific value.</div>
+          </div>
+        </div>
+      </div>
+
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 36 }}>
         {VALUE_CHAIN.map(s => (
           <div key={s.num} style={{
