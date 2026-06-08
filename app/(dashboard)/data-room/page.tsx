@@ -64,7 +64,7 @@ const DOCS: Doc[] = [
     fileName: 'ProMedVA_Test_Engagement_and_Budget.pdf',
     href: '/data-room/ProMedVA_Test_Engagement_and_Budget.pdf',
     oneLiner: 'The budget to get the first chiropractor office onboard — and the terms.',
-    paragraph: 'The lean two-city test budget — a one-time $8K setup (platform/funnels already built + video) folded into month 1, then $5K/mo ads, lists/tooling, the team Eric hires, and a $3K/mo Kingdom Broker management fee. $19K month 1, then $11K/mo total. Plus Day-30/60 milestone off-ramps, objective Exhibit A definitions, and a success fee on signed lease partners (split for survival — half on signing, half after 60 paid days). Acquisition (Phase 2) kept separate: a one-time 4%-of-acquisition-value fee only if ProMed VA later acquires a clinic — no revenue share.',
+    paragraph: 'The lean two-city test budget — a one-time $8K setup (platform/funnels already built + video) folded into month 1, then $5K/mo ads, lists/tooling, the team Eric hires, and a $3K/mo Kingdom Broker management fee. $19K month 1, then $11K/mo total. Plus Day-30/60 milestone off-ramps, objective Exhibit A definitions, and a success fee on signed lease partners (split — half on signing, half once the partnership goes live). Acquisition (Phase 2) kept separate: a one-time 4%-of-acquisition-value fee only if ProMed VA later acquires a clinic.',
     category: 'brand',
     accent: '#2ECC8B',
     cover: '/data-room/cover-budget.svg',

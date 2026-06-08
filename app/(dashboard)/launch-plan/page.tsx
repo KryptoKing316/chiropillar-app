@@ -37,8 +37,8 @@ const TEAM = [
 ]
 const BONUSES = [
   { trigger: 'First test city hits 10 qualified applications', example: '$2,500 milestone bonus', who: 'Kingdom Broker' },
-  { trigger: 'First lease partner signed in the test', example: '$7,500 on signing + $7,500 after 60 days of paid base lease', who: 'Kingdom Broker' },
-  { trigger: 'Each additional lease partner signed', example: '$5,000 on signing + $5,000 after 60 days of paid base lease', who: 'Kingdom Broker (success fee)' },
+  { trigger: 'First lease partner signed in the test', example: '$7,500 on signing + $7,500 once the partnership goes live', who: 'Kingdom Broker' },
+  { trigger: 'Each additional lease partner signed', example: '$5,000 on signing + $5,000 once that partnership goes live', who: 'Kingdom Broker (success fee)' },
 ]
 const KPIS = [
   { m: 'Qualified applications', t: '10–20 per test city' },
@@ -148,7 +148,7 @@ export default function LaunchPlanPage() {
           <tbody>{BONUSES.map(b => (<tr key={b.trigger}><td style={{ ...cell, color: C.text }}>{b.trigger}</td><td style={{ ...cell, color: C.gold, fontFamily: F.mono, fontSize: 12.5 }}>{b.example}</td><td style={cell}>{b.who}</td></tr>))}</tbody>
         </table>
         <div style={{ marginTop: 12, background: `${C.gold}10`, border: `1px solid ${C.gold}33`, borderRadius: 10, padding: '11px 15px', fontSize: 12.5, color: '#C7D0E0', lineHeight: 1.55 }}>
-          <strong style={{ color: C.gold }}>Lease deals first.</strong> The big fees are split for survival — half on signing, half once the partner has paid 60 days of base lease — so KB is paid on real, operating partners, not signatures. <strong style={{ color: C.text }}>Acquisition (Phase 2), kept separate:</strong> if ProMed VA later acquires a partner clinic, KB&apos;s success fee is a one-time <strong style={{ color: C.text }}>4% of the acquisition value</strong> — only if we acquire. No revenue share.
+          <strong style={{ color: C.gold }}>Lease deals first.</strong> The big fees are split — half on signing, half once the partnership goes live (ProMed VA operating in the space) — so KB is paid on a real, running partner, not just a signature. <strong style={{ color: C.text }}>Acquisition (Phase 2), kept separate:</strong> if ProMed VA later acquires a partner clinic, KB&apos;s success fee is a one-time <strong style={{ color: C.text }}>4% of the acquisition value</strong> — only if we acquire.
         </div>
       </Section>
 
