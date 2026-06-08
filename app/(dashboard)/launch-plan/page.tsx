@@ -37,9 +37,8 @@ const TEAM = [
 ]
 const BONUSES = [
   { trigger: 'First test city hits 10 qualified applications', example: '$2,500 milestone bonus', who: 'Kingdom Broker' },
-  { trigger: 'First lease partner signed in the test', example: '$15,000 bonus', who: 'Kingdom Broker' },
-  { trigger: 'Each additional lease partner signed', example: '$10,000 per signed chiropractor', who: 'Kingdom Broker (success fee)' },
-  { trigger: 'Each Phase-2 acquisition closed', example: '4% of acquisition value + 2% revenue share on the chiro office', who: 'Kingdom Broker (success fee)' },
+  { trigger: 'First lease partner signed in the test', example: '$7,500 on signing + $7,500 after 60 days of paid base lease', who: 'Kingdom Broker' },
+  { trigger: 'Each additional lease partner signed', example: '$5,000 on signing + $5,000 after 60 days of paid base lease', who: 'Kingdom Broker (success fee)' },
 ]
 const KPIS = [
   { m: 'Qualified applications', t: '10–20 per test city' },
@@ -137,17 +136,20 @@ export default function LaunchPlanPage() {
           ))}
         </div>
         <div style={{ background: `${C.green}12`, border: `1px solid ${C.green}33`, borderRadius: 10, padding: '12px 16px', fontSize: 13, color: '#C7D0E0', lineHeight: 1.6 }}>
-          <strong style={{ color: C.green }}>Terms:</strong> Month 1 includes a one-time <strong style={{ color: C.text }}>$8,000 setup</strong> — platform, valuation tools &amp; funnels ($5,000; already built, configured &amp; deployed for the VA test) + video &amp; content launch ($3,000; AI-avatar / explainer / software-demo, no founder on camera). Retainer paid monthly in advance; cancel with 14 days&apos; notice before the next billing date; current month non-refundable; ad spend is pass-through (unused returned); success-fee tail of 90 days on partners KB sourced. <strong style={{ color: C.text }}>No legal line</strong> — Dr. Wagner engages his own VA counsel.
+          <strong style={{ color: C.green }}>Terms:</strong> Month 1 includes a one-time <strong style={{ color: C.text }}>$8,000 setup</strong> — platform, valuation tools &amp; funnels ($5,000; already built, configured &amp; deployed for the VA test) + video &amp; content launch ($3,000; AI-avatar / explainer / software-demo, no founder on camera). <strong style={{ color: C.text }}>Day-30 &amp; Day-60 off-ramps:</strong> if KB hasn&apos;t delivered a live funnel + first ad data + 15 booked discovery calls (or 5 qualified applications in Charlottesville) by Day 30, Dr. Wagner can stop and owes only the current month — no tail (repeats at Day 60). Retainer paid monthly in advance; cancel with 14 days&apos; notice before the next billing date; current month non-refundable; ad spend is pass-through (unused returned); success-fee tail of 90 days on partners KB sourced. <strong style={{ color: C.text }}>No legal line</strong> — Dr. Wagner engages his own VA counsel.
         </div>
       </Section>
 
       {/* PERFORMANCE BONUSES */}
       <Section eyebrow="Example performance bonuses" title="Pay for results, not just activity.">
-        <p style={{ fontSize: 13.5, color: C.muted, margin: '0 0 12px', lineHeight: 1.6 }}>Examples to align incentives — final numbers to agree with Dr. Wagner. These sit on top of the monthly engagement and reward signed partners + closed deals.</p>
+        <p style={{ fontSize: 13.5, color: C.muted, margin: '0 0 12px', lineHeight: 1.6 }}>Examples to align incentives — final numbers to agree with Dr. Wagner. These sit on top of the monthly engagement and reward signed lease (square-footage) partners. &ldquo;Qualified application&rdquo; and &ldquo;signed lease partner&rdquo; are defined objectively in writing (Exhibit A), so fees only trigger on verified outcomes.</p>
         <table style={{ width: '100%', borderCollapse: 'collapse', background: C.bg2, borderRadius: 12, overflow: 'hidden' }}>
           <thead><tr><th style={cellHead}>Trigger</th><th style={cellHead}>Example bonus</th><th style={cellHead}>Paid to</th></tr></thead>
           <tbody>{BONUSES.map(b => (<tr key={b.trigger}><td style={{ ...cell, color: C.text }}>{b.trigger}</td><td style={{ ...cell, color: C.gold, fontFamily: F.mono, fontSize: 12.5 }}>{b.example}</td><td style={cell}>{b.who}</td></tr>))}</tbody>
         </table>
+        <div style={{ marginTop: 12, background: `${C.gold}10`, border: `1px solid ${C.gold}33`, borderRadius: 10, padding: '11px 15px', fontSize: 12.5, color: '#C7D0E0', lineHeight: 1.55 }}>
+          <strong style={{ color: C.gold }}>Lease deals first.</strong> The big fees are split for survival — half on signing, half once the partner has paid 60 days of base lease — so KB is paid on real, operating partners, not signatures. <strong style={{ color: C.text }}>Acquisition (Phase 2), kept separate:</strong> if ProMed VA later acquires a partner clinic, KB&apos;s success fee is a one-time <strong style={{ color: C.text }}>4% of the acquisition value</strong> — only if we acquire. No revenue share.
+        </div>
       </Section>
 
       {/* THE ASK */}
