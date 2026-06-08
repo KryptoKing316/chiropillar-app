@@ -1,6 +1,6 @@
 'use client'
 
-// ChiroPillar · Acquisition Pipeline
+// ProMed VA · Acquisition Pipeline
 // Top: 6-column Kanban board matching chiropillar_targets.outreach_status enum
 // Middle: Bloomberg-terminal-style per-clinic timeline (one selected deal)
 // Bottom: Phase-2 build details
@@ -87,7 +87,7 @@ const TIMELINE_FOR_PIEDMONT: TimelineEvent[] = [
   { ts: '05/20 09:14', code: 'INTAKE_SUB', label: 'Intake submitted',    detail: 'Dr. Marcus Bell · 78 new/mo · 28 visit avg · $1.3M gross',                status: 'INFO' },
   { ts: '05/20 09:14', code: 'AUTO_QUAL',  label: 'Auto-qualification',  detail: 'Verdict: QUALIFIED · 4/4 Wagner criteria met',                            status: 'OK',   delta:  1_300_000 },
   { ts: '05/20 09:15', code: 'VAL_BAND',   label: 'Valuation band',      detail: '$1.2M – $2.1M (mid $1.65M) · solo profile · 1.46× SDE',                  status: 'INFO' },
-  { ts: '05/20 11:02', code: 'EMAIL_SENT', label: 'Auto-email Day 0',    detail: '"Welcome to the ChiroPillar shortlist" · opened 11:38',                  status: 'OK' },
+  { ts: '05/20 11:02', code: 'EMAIL_SENT', label: 'Auto-email Day 0',    detail: '"Welcome to the ProMed VA shortlist" · opened 11:38',                  status: 'OK' },
   { ts: '05/21 14:50', code: 'CALL_LOG',   label: 'First call · McGrath', detail: '42 min · interested · "willing to step out of clinical"',                status: 'OK' },
   { ts: '05/22 08:30', code: 'STAGE_MV',   label: 'Stage → Scheduled',    detail: 'Calendly: 05/24 11:00 · Wagner + Bell',                                  status: 'INFO' },
   { ts: '05/24 11:00', code: 'MEET_HELD',  label: 'Wagner meeting',       detail: '47 min · "feel like a partner not a buyer"',                             status: 'OK',   delta:    150_000 },

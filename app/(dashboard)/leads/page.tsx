@@ -1,6 +1,6 @@
 'use client'
 
-// ChiroPillar Leads · Virginia chiropractor target list (CRM)
+// ProMed VA Leads · Virginia chiropractor target list (CRM)
 // Click any row -> side drawer opens with: phone (click-to-call),
 // email (click-to-email), full contact info, status dropdown,
 // notes editor with timestamped log, call/email history.
@@ -93,7 +93,7 @@ const SEED_LEADS: Lead[] = [
   { id: 'va015b', practice: 'Free Bridge Chiropractic', owner: 'Dr. Meghan Dickerson', email: 'info@freebridgechiro.com', phone: '(434) 977-0777', website: 'freebridgechiro.com', address: '103-A Free Bridge Lane', city: 'Charlottesville', county: 'Albemarle', region: 'Charlottesville', est_revenue: 1_180_000, est_ebitda: 395_000, profile: 'multi', npm_est: 66, years: 10, employees: 6, status: 'cold', score: 81, flag: '✓ Verified · Chiro + 8 massage modalities · pregnancy + sports specialty', verified: true, source: 'freebridgechiro.com', notes: [] },
   { id: 'va016b', practice: 'Healing Hands Chiropractic', owner: 'Dr. Angela Jane Ference', email: 'info@healing-hands-chiropractic.com', phone: '(434) 409-0564', website: 'healing-hands-chiropractic.com', address: '3054 Berkmar Dr, Suite B', city: 'Charlottesville', county: 'Albemarle', region: 'Charlottesville', est_revenue: 980_000, est_ebitda: 330_000, profile: 'solo', npm_est: 54, years: 14, employees: 5, status: 'cold', score: 79, flag: '✓ Verified · Suma Cum Laude Life Univ · S.A.+US dual training', verified: true, source: 'healing-hands-chiropractic.com', notes: [] },
   { id: 'va017b', practice: 'Scott Wagner Integrated Medicine', owner: 'Dr. Scott Wagner', email: 'info@scottwagnerintegratedmedicine.com', phone: '(434) 293-4099', website: 'scottwagnerintegratedmedicine.com', address: 'Charlottesville, VA', city: 'Charlottesville', county: 'Albemarle', region: 'Charlottesville', est_revenue: 25_000_000, est_ebitda: 25_000_000, profile: 'multi_loc', npm_est: 0, years: 20, employees: 50, status: 'in_pipeline', score: 100, flag: '⭐ WAGNER HQ · Combined platform anchor · pain mgmt + ozone + IV nutrition', verified: true, source: 'scottwagnerintegratedmedicine.com', notes: [
-    { ts: '2026-06-01 09:00', author: 'Note', kind: 'note', text: 'Anchor platform. $25M existing EBITDA. Service area: Charlottesville + Albemarle/Greene/Madison/Fluvanna/Nelson/Augusta counties. Will combine with ChiroPillar bolt-on for $45M+ exit.' },
+    { ts: '2026-06-01 09:00', author: 'Note', kind: 'note', text: 'Anchor platform. $25M existing EBITDA. Service area: Charlottesville + Albemarle/Greene/Madison/Fluvanna/Nelson/Augusta counties. Will combine with ProMed VA bolt-on for $45M+ exit.' },
   ] },
 
   // Richmond
@@ -431,7 +431,7 @@ function CRMDrawer({ lead, onClose, draft, setDraft, onAddNote, onStatus }: {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 16 }}>
             <div style={{ flex: 1 }}>
               <div style={{ fontFamily: F.mono, fontSize: 10, color: C.gold, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 6 }}>
-                CRM · ChiroPillar Lead
+                CRM · ProMed VA Lead
               </div>
               <h2 style={{ fontFamily: F.display, fontSize: 24, fontWeight: 700, margin: '0 0 4px', letterSpacing: '-0.01em', color: '#FFFFFF' }}>
                 {lead.practice}

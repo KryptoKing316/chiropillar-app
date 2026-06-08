@@ -1,4 +1,4 @@
-// ChiroPillar · Data Room
+// ProMed VA · Data Room
 // Live PDF library for Wagner/McGrath/Eric — the canonical strategy
 // documents are stored under /public/data-room/ and rendered here with
 // view + download links. Above the library: clinic-financials upload
@@ -25,10 +25,10 @@ type Doc = {
 const DOCS: Doc[] = [
   {
     title: 'Master Executive Summary',
-    fileName: 'ChiroPillar_Master_Executive_Summary.pdf',
-    href: '/data-room/ChiroPillar_Master_Executive_Summary.pdf',
+    fileName: 'ProMed VA_Master_Executive_Summary.pdf',
+    href: '/data-room/ProMed VA_Master_Executive_Summary.pdf',
     oneLiner: 'The 360° rollup thesis. Print it and hand it to any LP.',
-    paragraph: 'The canonical ChiroPillar document. Covers the market opportunity ($8B US chiropractic, 70K DCs, 58% solo), the roll-up thesis (acquire at 2–3×, install playbook, exit at 8–10×), the partnership math with Dr. Wagner ($25M existing + $20M+ ChiroPillar bolt-on = $45M+ combined platform), the team, and the path to a $360–450M exit.',
+    paragraph: 'The canonical ProMed VA document. Covers the market opportunity ($8B US chiropractic, 70K DCs, 58% solo), the roll-up thesis (acquire at 2–3×, install playbook, exit at 8–10×), the partnership math with Dr. Wagner ($25M existing + $20M+ ProMed VA bolt-on = $45M+ combined platform), the team, and the path to a $360–450M exit.',
     category: 'thesis',
     accent: '#C9A84C',
     cover: '/chiropractor-1.jpg',
@@ -37,10 +37,10 @@ const DOCS: Doc[] = [
   },
   {
     title: 'Ecosystem Executive Summary',
-    fileName: 'ChiroPillar_Ecosystem_Executive_Summary.pdf',
-    href: '/data-room/ChiroPillar_Ecosystem_Executive_Summary.pdf',
+    fileName: 'ProMed VA_Ecosystem_Executive_Summary.pdf',
+    href: '/data-room/ProMed VA_Ecosystem_Executive_Summary.pdf',
     oneLiner: 'How the five engines compound into one platform.',
-    paragraph: 'The ChiroPillar ecosystem operates five engines that feed each other: (1) Clinic Roll-Up at the core, (2) ChiroPillar Digital app + telehealth as the recurring-revenue layer, (3) Consulting + masterminds as lead generation, (4) Scale Services as a standalone revenue stream, and (5) Conferences + brand as the visibility flywheel. Each engine lowers customer-acquisition cost for the others and adds to the EBITDA that gets re-rated at exit.',
+    paragraph: 'The ProMed VA ecosystem operates five engines that feed each other: (1) Clinic Roll-Up at the core, (2) ProMed VA Digital app + telehealth as the recurring-revenue layer, (3) Consulting + masterminds as lead generation, (4) Scale Services as a standalone revenue stream, and (5) Conferences + brand as the visibility flywheel. Each engine lowers customer-acquisition cost for the others and adds to the EBITDA that gets re-rated at exit.',
     category: 'ecosystem',
     accent: '#2E75B6',
     cover: '/chiropractor-3.jpg',
@@ -49,10 +49,10 @@ const DOCS: Doc[] = [
   },
   {
     title: 'App + Telehealth Deep Dive',
-    fileName: 'ChiroPillar_App_Telehealth_DeepDive.pdf',
-    href: '/data-room/ChiroPillar_App_Telehealth_DeepDive.pdf',
-    oneLiner: 'The ChiroPillar Digital product. AI triage, RTM billing, MRR layer.',
-    paragraph: 'Detailed technical and business case for the consumer-facing ChiroPillar Digital app. Covers the freemium-to-$9/mo-to-$74/yr funnel, the AI back-pain triage flow, telehealth integration, RTM (Remote Therapeutic Monitoring) billing through partner providers, and the MRR layer that turns one-time chiropractic visits into a recurring patient relationship. Drives platform multiple expansion via SaaS-like revenue mix.',
+    fileName: 'ProMed VA_App_Telehealth_DeepDive.pdf',
+    href: '/data-room/ProMed VA_App_Telehealth_DeepDive.pdf',
+    oneLiner: 'The ProMed VA Digital product. AI triage, RTM billing, MRR layer.',
+    paragraph: 'Detailed technical and business case for the consumer-facing ProMed VA Digital app. Covers the freemium-to-$9/mo-to-$74/yr funnel, the AI back-pain triage flow, telehealth integration, RTM (Remote Therapeutic Monitoring) billing through partner providers, and the MRR layer that turns one-time chiropractic visits into a recurring patient relationship. Drives platform multiple expansion via SaaS-like revenue mix.',
     category: 'product',
     accent: '#9CC4E4',
     cover: '/chiropractor-2.jpg',
@@ -61,10 +61,10 @@ const DOCS: Doc[] = [
   },
   {
     title: 'Brand Brief',
-    fileName: 'ChiroPillar_Brand_Brief.pdf',
-    href: '/data-room/ChiroPillar_Brand_Brief.pdf',
+    fileName: 'ProMed VA_Brand_Brief.pdf',
+    href: '/data-room/ProMed VA_Brand_Brief.pdf',
     oneLiner: 'The official brand guide. Logo, palette, voice, mascot system.',
-    paragraph: 'The visual and verbal identity standard for ChiroPillar. Documents the column-mascot lockup, color palette (Deep Spine Blue, Align Blue, Column Stone, Globe Blue, Cheek Coral), typography (Playfair Display serif + Inter sans + JetBrains Mono), the "Strength in Alignment" tagline system, and brand-voice guidelines. Required reading before producing any chiropractor-facing or partner-facing collateral.',
+    paragraph: 'The visual and verbal identity standard for ProMed VA. Documents the column-mascot lockup, color palette (Deep Spine Blue, Align Blue, Column Stone, Globe Blue, Cheek Coral), typography (Playfair Display serif + Inter sans + JetBrains Mono), the "Practice Growth Partners · Virginia" tagline system, and brand-voice guidelines. Required reading before producing any chiropractor-facing or partner-facing collateral.',
     category: 'brand',
     accent: '#C9A84C',
     cover: '/data-room/brand-brief-cover.svg',
@@ -98,7 +98,7 @@ export default function DataRoomPage() {
           color: '#9CC4E4', marginBottom: 22,
         }}>
           <span style={{ width: 8, height: 8, borderRadius: 999, background: '#9CC4E4', boxShadow: '0 0 8px #9CC4E4' }} />
-          ChiroPillar · Data Room
+          ProMed VA · Data Room
         </div>
 
         <h1 style={{
@@ -113,7 +113,7 @@ export default function DataRoomPage() {
           fontSize: 17, lineHeight: 1.6, maxWidth: 780,
           color: '#FFFFFF', margin: 0, fontWeight: 400,
         }}>
-          Upload clinic financials, connect QuickBooks, or download the canonical ChiroPillar strategy documents. Per-clinic acquisition rooms ship in Phase 3.
+          Upload clinic financials, connect QuickBooks, or download the canonical ProMed VA strategy documents. Per-clinic acquisition rooms ship in Phase 3.
         </p>
       </div>
 

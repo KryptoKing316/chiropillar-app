@@ -5,7 +5,7 @@
 * { box-sizing: border-box; }
 
 /* ═══════════════════════════════════════════════════════════════
-   ChiroPillar Theme · Wagner Family Office
+   ProMed VA Theme · Wagner Family Office
    Palette per Brand Brief (knowledge/deals/chiropillar/source-docs)
    - Deep Spine Blue  #1F4E79  primary (was KB navy)
    - Align Blue       #2E75B6  secondary accent
@@ -15,7 +15,7 @@
    Gold (#C9A84C) retained as KB-tier hint on /calculator admin view.
    ═══════════════════════════════════════════════════════════════ */
 :root {
-  /* ChiroPillar brand tokens (use these for new ChiroPillar UI) */
+  /* ProMed VA brand tokens (use these for new ProMed VA UI) */
   --cp-spine:    #1F4E79;
   --cp-align:    #2E75B6;
   --cp-stone:    #EBD8A6;
@@ -24,7 +24,7 @@
   --cp-coral:    #F2B0A0;
   --cp-cream:    #F7F4ED;
 
-  /* Dark mode (default) · ChiroPillar Spine-blue chrome */
+  /* Dark mode (default) · ProMed VA Spine-blue chrome */
   --kb-bg: #102A4A;
   --kb-bg-panel: #163759;
   --kb-bg-surface: #1F4E79;

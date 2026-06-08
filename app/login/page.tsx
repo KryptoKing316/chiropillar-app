@@ -100,12 +100,12 @@ export default function LoginPage() {
 
       <div style={{ width: '100%', maxWidth: '460px', position: 'relative' }}>
 
-        {/* ChiroPillar lockup · platform mark + bold wordmark (no tagline — moved below) */}
+        {/* ProMed VA lockup · platform mark + bold wordmark (no tagline — moved below) */}
         <div style={{ textAlign: 'center', marginBottom: '20px' }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/chiropillar-logo-platform.svg"
-            alt="ChiroPillar"
+            alt="ProMed VA"
             style={{
               width: 'clamp(96px, 13vw, 124px)',
               height: 'clamp(96px, 13vw, 124px)',
@@ -122,11 +122,11 @@ export default function LoginPage() {
             lineHeight: 1,
             marginTop: '14px',
           }}>
-            ChiroPillar
+            ProMed VA
           </div>
         </div>
 
-        {/* Headline · Strength in Alignment · bold + readable */}
+        {/* Headline · Practice Growth Partners · Virginia · bold + readable */}
         <h1 style={{
           fontFamily: "'Playfair Display', Georgia, serif",
           fontSize: '30px', fontWeight: 800,
@@ -135,7 +135,7 @@ export default function LoginPage() {
           textAlign: 'center', lineHeight: 1.2,
           letterSpacing: '-0.01em',
         }}>
-          Strength in Alignment.
+          Practice Growth Partners · Virginia.
         </h1>
         <div style={{
           fontFamily: "'JetBrains Mono', 'DM Mono', monospace",
@@ -232,7 +232,7 @@ export default function LoginPage() {
                 fontSize: '14px', color: '#9BA8C0',
                 lineHeight: 1.65, margin: '0 0 14px',
               }}>
-                Tour the full ChiroPillar platform with <strong style={{ color: '#F2EEE7' }}>5 sample chiropractor applications</strong> loaded — qualification badges, valuation bands, and pipeline status. No login required.
+                Tour the full ProMed VA platform with <strong style={{ color: '#F2EEE7' }}>5 sample chiropractor applications</strong> loaded — qualification badges, valuation bands, and pipeline status. No login required.
               </p>
               <button
                 onClick={loadDemo}
@@ -278,7 +278,7 @@ export default function LoginPage() {
             {/* Footer */}
             <div style={{ textAlign: 'center', fontSize: '12px', color: '#3A4860', lineHeight: 1.6 }}>
               By signing in you agree to confidentiality terms.<br />
-              ChiroPillar · Wagner Family Office × Kingdom Broker
+              ProMed VA · Wagner Family Office × Kingdom Broker
             </div>
           </>
         ) : (
@@ -301,7 +301,7 @@ export default function LoginPage() {
             }}>
               Access link sent to<br />
               <strong style={{ color: '#F2EEE7' }}>{email}</strong>.<br />
-              Click the link to open the ChiroPillar platform.<br />Expires in one hour.
+              Click the link to open the ProMed VA platform.<br />Expires in one hour.
             </p>
             <button onClick={() => setSent(false)} style={{
               background: 'transparent',

@@ -367,7 +367,7 @@ const ICONS: Record<string, React.ReactNode> = {
   ),
 }
 
-// ── Nav items · ChiroPillar / Wagner Family Office ───────────────────────────
+// ── Nav items · ProMed VA / Wagner Family Office ───────────────────────────
 // Lean nav focused on the chiropractor roll-up workflow.
 // Live surfaces: Walkthrough + Intake Submissions + Deal Calculator
 // "Soon" badge = wired in the nav, placeholder page for the Loom
@@ -443,10 +443,10 @@ export default function Sidebar({ userEmail, isDemo, isAdmin, isEricOnly }: { us
       transition: 'background 0.3s ease, border-color 0.3s ease',
     }}>
 
-      {/* Logo · Escalating Pillar mark + bold ChiroPillar wordmark + Strength in Alignment tagline */}
+      {/* Logo · Escalating Pillar mark + bold ProMed VA wordmark + Practice Growth Partners · Virginia tagline */}
       <div style={{ padding: '22px 16px 18px', borderBottom: '1px solid var(--kb-border)', display: 'flex', alignItems: 'center', gap: '12px' }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={logoSrc} alt="ChiroPillar" style={{ width: '54px', height: '54px', display: 'block', flexShrink: 0, filter: 'drop-shadow(0 4px 10px rgba(201,168,76,0.25))' }} />
+        <img src={logoSrc} alt="ProMed VA" style={{ width: '54px', height: '54px', display: 'block', flexShrink: 0, filter: 'drop-shadow(0 4px 10px rgba(201,168,76,0.25))' }} />
         <div style={{ flex: 1, lineHeight: 1 }}>
           <div style={{
             fontFamily: "'Playfair Display', Georgia, serif",
@@ -457,7 +457,7 @@ export default function Sidebar({ userEmail, isDemo, isAdmin, isEricOnly }: { us
             lineHeight: 1,
             marginBottom: '6px',
           }}>
-            ChiroPillar
+            ProMed VA
           </div>
           <div style={{
             fontFamily: "'JetBrains Mono', 'DM Mono', monospace",
@@ -468,7 +468,7 @@ export default function Sidebar({ userEmail, isDemo, isAdmin, isEricOnly }: { us
             textTransform: 'uppercase',
             lineHeight: 1,
           }}>
-            Strength in Alignment
+            Practice Growth Partners · Virginia
           </div>
         </div>
         <button
@@ -478,11 +478,11 @@ export default function Sidebar({ userEmail, isDemo, isAdmin, isEricOnly }: { us
         >✕</button>
       </div>
 
-      {/* Platform badge · ChiroPillar partnership */}
+      {/* Platform badge · ProMed VA partnership */}
       <div style={{ padding: '14px 14px', borderBottom: '1px solid var(--kb-border-subtle)' }}>
         <div style={{ background: 'rgba(46,117,182,0.10)', border: '1px solid rgba(46,117,182,0.25)', borderRadius: '10px', padding: '12px 14px' }}>
           <div style={{ fontSize: '11px', color: 'var(--kb-text-secondary)', fontWeight: 600, letterSpacing: '0.14em', textTransform: 'uppercase', marginBottom: '5px' }}>Platform</div>
-          <div style={{ fontSize: '15px', color: 'var(--kb-text)', fontWeight: 600, lineHeight: 1.3 }}>ChiroPillar</div>
+          <div style={{ fontSize: '15px', color: 'var(--kb-text)', fontWeight: 600, lineHeight: 1.3 }}>ProMed VA</div>
           <div style={{ fontSize: '12px', color: 'var(--kb-text-secondary)', marginTop: '4px', fontStyle: 'italic' }}>Chiropractic Roll-Up Partnership</div>
         </div>
       </div>

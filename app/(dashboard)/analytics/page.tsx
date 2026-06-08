@@ -1,4 +1,4 @@
-// ChiroPillar Analytics · live conversion funnel + geographic heatmap
+// ProMed VA Analytics · live conversion funnel + geographic heatmap
 // Server component pulls live counts from chiropillar_targets, passes them
 // into a client component for the interactive map + funnel rendering.
 

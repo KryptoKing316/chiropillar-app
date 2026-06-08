@@ -1,4 +1,4 @@
-// ChiroPillar Command Center
+// ProMed VA Command Center
 // Server-rendered overview designed for doctor-investors at family offices.
 // Layout follows clinical chart conventions: vital-signs strip (KPIs with
 // sparklines + trend arrows), pipeline pyramid funnel, EBITDA build-up
@@ -265,7 +265,7 @@ export default async function OverviewPage() {
             Command Center · {new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}
           </div>
           <h1 style={{ fontFamily: F.display, fontSize: 'clamp(34px, 4.5vw, 48px)', fontWeight: 700, margin: '0 0 6px', letterSpacing: '-0.02em' }}>
-            ChiroPillar at a glance.
+            ProMed VA at a glance.
           </h1>
           <p style={{ fontSize: 16, color: '#FFFFFF', margin: 0, maxWidth: 760, lineHeight: 1.6, fontWeight: 400 }}>
             Family-office view of the chiropractic roll-up. Vital signs, funnel, EBITDA tracker, and triage alerts — read it like a clinical chart.
@@ -317,7 +317,7 @@ export default async function OverviewPage() {
               ★ Combined Platform EBITDA · build-up to $45M
             </div>
             <div style={{ fontFamily: F.display, fontSize: 24, fontWeight: 700, color: C.text, letterSpacing: '-0.01em' }}>
-              Wagner $25M + ChiroPillar pipeline + remaining target.
+              Wagner $25M + ProMed VA pipeline + remaining target.
             </div>
           </div>
           <div style={{ textAlign: 'right' }}>
@@ -349,7 +349,7 @@ export default async function OverviewPage() {
         {/* Side stats */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: 14, marginTop: 18 }}>
           <Sub label="Wagner base"           val={fmtMoney(wagnerBase)}         color={C.align}      />
-          <Sub label="ChiroPillar pipeline"  val={fmtMoney(d.pipelineEbitda)}   color={C.gold}       />
+          <Sub label="ProMed VA pipeline"  val={fmtMoney(d.pipelineEbitda)}   color={C.gold}       />
           <Sub label="Combined total"        val={fmtMoney(combined)}            color={C.text}       />
           <Sub label="To $45M target"        val={fmtMoney(Math.max(0, platformGoal - combined))} color={C.coral} />
           <Sub label="Implied exit @ 9×"     val={fmtMoney(combined * 9)}        color={C.goldLight}  />

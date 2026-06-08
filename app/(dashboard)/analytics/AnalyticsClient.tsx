@@ -1,6 +1,6 @@
 'use client'
 
-// ChiroPillar Analytics · client-rendered interactive surface.
+// ProMed VA Analytics · client-rendered interactive surface.
 // Geographic priorities per Wagner strategy-call transcript:
 //   - Virginia is the primary market (Charlottesville home base, 18 nearby practices)
 //   - DFW Texas + Florida + Carolinas form the secondary cluster
@@ -128,7 +128,7 @@ export default function AnalyticsClient({ stats }: { stats: AnalyticsStats }) {
       {/* Header */}
       <div style={{ marginBottom: 28 }}>
         <div style={{ fontFamily: F.mono, fontSize: 12.5, color: C.align, letterSpacing: '0.22em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 10 }}>
-          Analytics · Where ChiroPillar is acquiring
+          Analytics · Where ProMed VA is acquiring
         </div>
         <h1 style={{ fontFamily: F.display, fontSize: 'clamp(34px, 4.5vw, 46px)', fontWeight: 700, margin: '0 0 10px', letterSpacing: '-0.02em' }}>
           The map. The funnel. The pipeline.

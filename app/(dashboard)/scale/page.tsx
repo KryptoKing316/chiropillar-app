@@ -1,4 +1,4 @@
-// ChiroPillar Scale Services
+// ProMed VA Scale Services
 // Wagner's standalone consulting catalog — productized so any chiropractor
 // can buy time/coaching/installation without joining the roll-up partnership.
 // This is Wagner's PERSONAL monetization play; revenue routes to his
@@ -107,7 +107,7 @@ const PACKAGES: Package[] = [
   {
     key: 'mastermind',
     category: 'Ongoing · annual',
-    name: 'ChiroPillar Mastermind',
+    name: 'ProMed VA Mastermind',
     tagline: '20–30 DCs scaling together. Quarterly in-person + monthly virtual.',
     priceLabel: '$12,000 / year',
     priceLow: 12_000, priceHigh: 12_000,
@@ -145,7 +145,7 @@ export default function ScaleServicesPage() {
           Productized consulting — separate from the roll-up.
         </h1>
         <p style={{ fontSize: 16, color: '#FFFFFF', margin: 0, maxWidth: 820, lineHeight: 1.6, fontWeight: 400 }}>
-          A chiropractor doesn&apos;t have to sell to work with Dr. Wagner. Four packages — strategy calls, practice audits, medical-team installations, and the ChiroPillar Mastermind — productized with clear pricing, Stripe checkout, and Calendly auto-booking. Revenue routes to Wagner&apos;s account separately from acquisition pipeline.
+          A chiropractor doesn&apos;t have to sell to work with Dr. Wagner. Four packages — strategy calls, practice audits, medical-team installations, and the ProMed VA Mastermind — productized with clear pricing, Stripe checkout, and Calendly auto-booking. Revenue routes to Wagner&apos;s account separately from acquisition pipeline.
         </p>
       </div>
 
@@ -276,7 +276,7 @@ export default function ScaleServicesPage() {
           <Reason
             num="03"
             title="Demonstrates the playbook works"
-            body="Every Medical-Team Installation that delivers +$250K EBITDA in year 1 is proof the ChiroPillar acquisition thesis is real. Documented results become acquisition collateral."
+            body="Every Medical-Team Installation that delivers +$250K EBITDA in year 1 is proof the ProMed VA acquisition thesis is real. Documented results become acquisition collateral."
             accent={C.green}
           />
         </div>
@@ -300,7 +300,7 @@ export default function ScaleServicesPage() {
           <RoadItem label="Revenue reporting"  desc="Per-package revenue + churn shown on /overview. Routes to Wagner directly." status="Phase 3 · 1 day" color={C.gold}  />
         </div>
         <div style={{ marginTop: 22, fontSize: 14, color: '#FFFFFF', lineHeight: 1.65, fontWeight: 400 }}>
-          <strong style={{ color: C.green }}>Estimated lift to combined platform EBITDA:</strong> $1.3M / yr by Year 3 from Scale Services alone — separate from the ChiroPillar acquisition pool but feeding the combined $45M+ target.
+          <strong style={{ color: C.green }}>Estimated lift to combined platform EBITDA:</strong> $1.3M / yr by Year 3 from Scale Services alone — separate from the ProMed VA acquisition pool but feeding the combined $45M+ target.
         </div>
       </div>
 

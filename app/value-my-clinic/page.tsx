@@ -151,7 +151,7 @@ export default function ValueMyClinicPage() {
   return (
     <div style={{ minHeight: '100vh', background: C.paper, fontFamily: F.body, color: C.textInk }}>
 
-      {/* TOP BAR · escalating-pillar mark + ProMed VA wordmark + Strength in Alignment tagline */}
+      {/* TOP BAR · escalating-pillar mark + ProMed VA wordmark + Practice Growth Partners · Virginia tagline */}
       <div style={{ background: '#FFFFFF', borderBottom: '1px solid rgba(31,78,121,0.10)', boxShadow: '0 2px 8px rgba(31,78,121,0.04)' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto', padding: '20px 28px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 20, flexWrap: 'wrap' }}>
           <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 14, textDecoration: 'none' }} aria-label="ProMed VA">

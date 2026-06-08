@@ -1,7 +1,7 @@
-// ChiroPillar · 24-Month Launch Plan
+// ProMed VA · 24-Month Launch Plan
 // REVISED MODEL — Wagner finances acquisitions through senior debt secured
 // by his existing $25M medical-practice EBITDA. He writes ONE small check
-// to ChiroPillar for operating capital (team + marketing + SaaS). KB earns
+// to ProMed VA for operating capital (team + marketing + SaaS). KB earns
 // 5% of platform-tracked revenue going forward.
 //
 // Numbers benchmarked against:
@@ -155,7 +155,7 @@ type Hire = {
 
 const HIRES: Hire[] = [
   // ─── DAY 0 · PARTNERS ───
-  { role: 'CEO & Platform Operator',                 when: 'Day 0',   comp: '$10K/mo full-time salary',                comp_low: 120_000, comp_high: 120_000, fulltime: true,  responsibilities: 'Runs + oversees the platform · deal structure · final closing · ChiroPillar owner + operator' },
+  { role: 'CEO & Platform Operator',                 when: 'Day 0',   comp: '$10K/mo full-time salary',                comp_low: 120_000, comp_high: 120_000, fulltime: true,  responsibilities: 'Runs + oversees the platform · deal structure · final closing · ProMed VA owner + operator' },
   { role: 'Scott McGrath · BD Partner',              when: 'Day 0',   comp: '$5K/mo',                                  comp_low: 60_000,  comp_high: 60_000,  fulltime: false, responsibilities: 'Wagner relationship · networks with DC associations · sponsors largest chiropractic + DC events · opens doors via senior DC reputation' },
   { role: 'Dr. Scott Wagner · Clinical Partner',     when: 'Day 0',   comp: 'Owns clinics outright',           comp_low: 0,       comp_high: 0,        fulltime: false, responsibilities: 'Clinical playbook · medical-team install · operator credibility' },
 
@@ -190,7 +190,7 @@ const STACK = [
   { tool: 'DocuSeal Pro',              cost_mo: 99,    use: 'NDA + LOI + APA e-signature' },
   { tool: 'Stripe · 2.9% + 30c',       cost_mo: 250,   use: 'Scale Services checkout' },
   { tool: 'QuickBooks Online',         cost_mo: 90,    use: 'Per-entity books · Phase 3 OAuth integration' },
-  { tool: 'Calendly · Team',           cost_mo: 96,    use: 'Auto-book ChiroPillar team calls (BD + Closers) · Wagner only at final close' },
+  { tool: 'Calendly · Team',           cost_mo: 96,    use: 'Auto-book ProMed VA team calls (BD + Closers) · Wagner only at final close' },
   { tool: 'Slack + Notion',            cost_mo: 150,   use: 'Internal ops' },
   { tool: 'DealStats · BVR · chiro NAICS', cost_mo: 83, use: 'Real closing-price comp set (~30-50 chiro transactions) · feeds the valuation algorithm' },
   { tool: 'IBBA Median Multiples Report', cost_mo: 25,  use: 'Cross-check broker-association median multiples by SIC + size band' },
@@ -294,16 +294,16 @@ const exitLow         = (25_000_000 + finalEbitda) * 8
 const exitHigh        = (25_000_000 + finalEbitda) * 10
 
 // KB compensation structure (per Eric directive · revised 2026-06-03):
-//   4% one-time consulting fee on acquisition EV (split 2% Scott / 2% Eric-ChiroPillar) — paid at close
-//   5% quarterly revenue share on platform-tracked revenue (100% ChiroPillar) — ongoing
-//   5% exit fee on ChiroPillar slice of platform exit (split 2.5% Scott / 2.5% Eric-ChiroPillar) — at sale
+//   4% one-time consulting fee on acquisition EV (split 2% Scott / 2% Eric-ProMed VA) — paid at close
+//   5% quarterly revenue share on platform-tracked revenue (100% ProMed VA) — ongoing
+//   5% exit fee on ProMed VA slice of platform exit (split 2.5% Scott / 2.5% Eric-ProMed VA) — at sale
 // NO equity rollover · Wagner owns 100% of acquired clinics from Day 1 at signing
 const avgAcqRevenue = 1_600_000   // avg clinic revenue (post-lift)
 const kbOneTimeFee  = totalAcqValue * 0.04  // 4% × total acquisition EV (split 2/2 internally)
-const kbRevenueShare5yr = totalAcqCount * avgAcqRevenue * 0.05 * 5  // 5% × 5 years average hold · 100% ChiroPillar
+const kbRevenueShare5yr = totalAcqCount * avgAcqRevenue * 0.05 * 5  // 5% × 5 years average hold · 100% ProMed VA
 const scaleSvcsRevenue3yr = 1_650_000 + 2_800_000 + 4_200_000  // Y1 + Y2 + Y3 Scale Services
 const kbScaleShare = scaleSvcsRevenue3yr * 0.05
-// 5% exit fee on ChiroPillar-bolt-on EBITDA × midpoint multiple (9×) · split 2.5/2.5
+// 5% exit fee on ProMed VA-bolt-on EBITDA × midpoint multiple (9×) · split 2.5/2.5
 const exitMid = (exitLow + exitHigh) / 2
 const chiroPillarSliceOfExit = (finalEbitda / (25_000_000 + finalEbitda)) * exitMid
 const kbExitFee = chiroPillarSliceOfExit * 0.05
@@ -348,7 +348,7 @@ export default function LaunchPlanPage() {
         </h2>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 14, marginBottom: 20 }}>
-          <RungCard rung="1" label="ChiroPillar Digital App" price="$9/mo · $74/yr" detail="Top of funnel · 50K+ users by Y3" accent={C.green} />
+          <RungCard rung="1" label="ProMed VA Digital App" price="$9/mo · $74/yr" detail="Top of funnel · 50K+ users by Y3" accent={C.green} />
           <RungCard rung="2" label="Strategy Calls" price="$500" detail="60-min 1:1 with Wagner · qualified DCs · 280/yr" accent={C.globe} />
           <RungCard rung="3" label="Practice Audits" price="$5-10K" detail="2-week diagnostic · 85/yr" accent={C.align} />
           <RungCard rung="4" label="Medical-Team Install" price="$25-50K" detail="90-day install · +$250K EBITDA/clinic" accent={C.gold} />
@@ -363,15 +363,15 @@ export default function LaunchPlanPage() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 16, marginBottom: 18 }}>
             <ArbCard label="We BUY each clinic at"      val="~2× SDE"      sub={`~$1.9M avg per clinic · 33 clinics = ${fmtMoney(totalAcqValue)} total purchase`} color={C.globe} />
             <ArbCard label="Each clinic generates"      val="+$250-500K"   sub="EBITDA lift Y1 from Wagner's medical-team install" color={C.green} />
-            <ArbCard label="Combined Mo-24 EBITDA"      val={fmtMoney(finalEbitda)}  sub={`From 33 ChiroPillar clinics · adds to Wagner's existing $25M+`} color={C.gold} />
+            <ArbCard label="Combined Mo-24 EBITDA"      val={fmtMoney(finalEbitda)}  sub={`From 33 ProMed VA clinics · adds to Wagner's existing $25M+`} color={C.gold} />
             <ArbCard label="At platform-level multiple"  val="8-10× EBITDA" sub="Re-rate from the 2× SDE we paid · acquired and held, valued like a platform" color={C.goldLight} />
           </div>
 
-          {/* Two-tier potential value · ChiroPillar-only vs Combined */}
+          {/* Two-tier potential value · ProMed VA-only vs Combined */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 14 }}>
             <div style={{ background: `${C.green}14`, border: `1px solid ${C.green}50`, borderLeft: `4px solid ${C.green}`, borderRadius: 10, padding: '16px 18px' }}>
               <div style={{ fontFamily: F.mono, fontSize: 11, color: C.green, letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 6 }}>
-                Potential value · ChiroPillar offices only
+                Potential value · ProMed VA offices only
               </div>
               <div style={{ fontFamily: F.display, fontSize: 26, fontWeight: 800, color: C.green, lineHeight: 1, marginBottom: 6, letterSpacing: '-0.02em' }}>
                 {fmtMoney(finalEbitda * 8)} – {fmtMoney(finalEbitda * 10)}
@@ -394,7 +394,7 @@ export default function LaunchPlanPage() {
           </div>
 
           <div style={{ marginTop: 14, fontSize: 13, color: '#FFFFFF', lineHeight: 1.6, fontWeight: 400, opacity: 0.90, fontStyle: 'italic' }}>
-            Wagner can hold for cash flow, sell ChiroPillar standalone, or roll his existing EBITDA into the combined platform for the bigger multiple. No timeline assumed — values shown reflect what the asset is worth at month 24, not a forced sale.
+            Wagner can hold for cash flow, sell ProMed VA standalone, or roll his existing EBITDA into the combined platform for the bigger multiple. No timeline assumed — values shown reflect what the asset is worth at month 24, not a forced sale.
           </div>
         </div>
 
@@ -454,7 +454,7 @@ export default function LaunchPlanPage() {
           <Kpi label="Wagner cash at close (50%)" val={fmtMoney(totalWagnerCash)}   sub="from $25M+ EBITDA cash flow · debt OR cash, his pick" color={C.globe} />
           <Kpi label="Bank debt drawn (50%)"      val={fmtMoney(totalBankDebt)}     sub="cross-collateralized · prime + 2-3.75% · serviced by acquired-clinic cash flow" color={C.globe} />
           <Kpi label="New EBITDA · Mo 24"          val={fmtMoney(finalEbitda)}       sub="from 33 acquired chiros, post Wagner medical-team install · adds to his existing $25M+" color={C.green} />
-          <Kpi label="ChiroPillar value · 8-10×"   val={`$${(finalEbitda * 8 / 1_000_000).toFixed(0)}–${(finalEbitda * 10 / 1_000_000).toFixed(0)}M`} sub={`33 clinics standalone · ${fmtMoney(finalEbitda)} EBITDA × platform multiple · hold or sell, Wagner's call`} color={C.green} valSize="sm" />
+          <Kpi label="ProMed VA value · 8-10×"   val={`$${(finalEbitda * 8 / 1_000_000).toFixed(0)}–${(finalEbitda * 10 / 1_000_000).toFixed(0)}M`} sub={`33 clinics standalone · ${fmtMoney(finalEbitda)} EBITDA × platform multiple · hold or sell, Wagner's call`} color={C.green} valSize="sm" />
           <Kpi label="Combined potential · w/ Wagner $25M+"  val={`$${(exitLow / 1_000_000).toFixed(0)}–${(exitHigh / 1_000_000).toFixed(0)}M`} sub={`Optional upside · roll Wagner's existing EBITDA into platform · re-rate from 5-7× to 8-10×`} color={C.gold} valSize="sm" />
         </div>
       </div>
@@ -486,18 +486,18 @@ export default function LaunchPlanPage() {
         marginBottom: 32,
       }}>
         <div style={{ fontFamily: F.mono, fontSize: 11, color: C.green, letterSpacing: '0.20em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 8 }}>
-          ChiroPillar EBITDA build-up · where the {fmtMoney(finalEbitda)} comes from
+          ProMed VA EBITDA build-up · where the {fmtMoney(finalEbitda)} comes from
         </div>
         <h2 style={{ fontFamily: F.display, fontSize: 22, fontWeight: 700, color: C.text, margin: '0 0 14px', letterSpacing: '-0.01em' }}>
           3 EBITDA engines. 24-month base. 3-5 year scale.
         </h2>
         <p style={{ fontSize: 13.5, color: C.muted, lineHeight: 1.6, margin: '0 0 18px' }}>
-          The {fmtMoney(finalEbitda)} headline is the <strong style={{ color: C.text }}>acquired-clinic bolt-on</strong> at month 24 — the EBITDA that adds to Wagner&apos;s existing $25M+ for the exit re-rate. <strong style={{ color: C.green }}>Total ChiroPillar EBITDA (incl. Scale Services + Digital app)</strong> at month 24 is materially higher, and the 3-5 year trajectory scales dramatically beyond that as the acquisition engine compounds.
+          The {fmtMoney(finalEbitda)} headline is the <strong style={{ color: C.text }}>acquired-clinic bolt-on</strong> at month 24 — the EBITDA that adds to Wagner&apos;s existing $25M+ for the exit re-rate. <strong style={{ color: C.green }}>Total ProMed VA EBITDA (incl. Scale Services + Digital app)</strong> at month 24 is materially higher, and the 3-5 year trajectory scales dramatically beyond that as the acquisition engine compounds.
         </p>
 
         {/* THREE EBITDA SOURCES at Month 24 */}
         <div style={{ fontFamily: F.mono, fontSize: 13, color: '#FFFFFF', letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 14 }}>
-          Month 24 · ChiroPillar EBITDA sources
+          Month 24 · ProMed VA EBITDA sources
         </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 14, marginBottom: 24 }}>
           <EbitdaSourceCard num="1" label="Acquired clinics" detail="33 closed × ~$280K avg" val={fmtMoney(finalEbitda)} accent={C.globe} />
@@ -543,7 +543,7 @@ export default function LaunchPlanPage() {
           Wagner keeps 100% of every clinic. KB earns only on deals we source.
         </h2>
         <div style={{ fontSize: 15, color: '#FFFFFF', lineHeight: 1.7, marginBottom: 22 }}>
-          <strong style={{ color: '#FFFFFF' }}>Wagner walks away with:</strong> 100% equity in every acquired clinic, all the multiple arbitrage on exit (2.4× cost basis → 8-10× platform), the entire acquisition + roll-up engine, the ChiroPillar tech platform, and Wagner&apos;s existing $25M+ EBITDA re-rated from 5-7× siloed to 8-10× platform. <strong style={{ color: C.green }}>KB only earns on the deals KB actually sources and the offices we bring on — and only on the exit of those specific deals we sourced and helped systemize &amp; scale.</strong>
+          <strong style={{ color: '#FFFFFF' }}>Wagner walks away with:</strong> 100% equity in every acquired clinic, all the multiple arbitrage on exit (2.4× cost basis → 8-10× platform), the entire acquisition + roll-up engine, the ProMed VA tech platform, and Wagner&apos;s existing $25M+ EBITDA re-rated from 5-7× siloed to 8-10× platform. <strong style={{ color: C.green }}>KB only earns on the deals KB actually sources and the offices we bring on — and only on the exit of those specific deals we sourced and helped systemize &amp; scale.</strong>
         </div>
 
         <div style={{ fontFamily: F.mono, fontSize: 13, color: '#FFFFFF', letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 14 }}>
@@ -557,7 +557,7 @@ export default function LaunchPlanPage() {
           <KbFeeCard label="Total KB earned"              detail="24mo + 5yr hold + exit"           val={fmtMoney(totalKbShare)}      accent={C.gold} bold />
         </div>
         <div style={{ fontSize: 13.5, color: C.muted, lineHeight: 1.65, padding: '14px 18px', background: 'rgba(46,117,182,0.06)', border: '1px solid rgba(46,117,182,0.18)', borderRadius: 10 }}>
-          <strong style={{ color: C.text }}>The 4% acquisition fee</strong> is paid <strong style={{ color: C.green }}>only on chiropractor offices KB sources through the platform</strong>. Sized on EV — <strong style={{ color: C.green }}>$1.9M clinic = ~$76K to KB at close</strong>, split 2% Eric/ChiroPillar + 2% McGrath. <strong style={{ color: C.text }}>The 5% ongoing</strong> flows 100% to ChiroPillar on revenue from platform-sourced clinics + Scale Services. <strong style={{ color: C.text }}>The 5% exit fee applies only on the platform-sourced clinics.</strong>
+          <strong style={{ color: C.text }}>The 4% acquisition fee</strong> is paid <strong style={{ color: C.green }}>only on chiropractor offices KB sources through the platform</strong>. Sized on EV — <strong style={{ color: C.green }}>$1.9M clinic = ~$76K to KB at close</strong>, split 2% Eric/ProMed VA + 2% McGrath. <strong style={{ color: C.text }}>The 5% ongoing</strong> flows 100% to ProMed VA on revenue from platform-sourced clinics + Scale Services. <strong style={{ color: C.text }}>The 5% exit fee applies only on the platform-sourced clinics.</strong>
         </div>
       </div>
 
@@ -665,11 +665,11 @@ export default function LaunchPlanPage() {
             </div>
             <div style={{ display: 'grid', gap: 10 }}>
               <Stream pct="4%" amount="One-time consulting fee" sub={`On each acquisition EV · ~$76K/close · split 2% Eric/CP + 2% Scott · ${fmtMoney(kbOneTimeFee)} total`} accent={C.green} />
-              <Stream pct="5%" amount="Quarterly revenue share" sub={`Of platform-tracked clinic + Scale Services revenue · 100% to ChiroPillar · ${fmtMoney(kbRevenueShare5yr + kbScaleShare)} over 5yr hold`} accent={C.goldLight} />
-              <Stream pct="5%" amount="Exit fee at eventual sale" sub={`On ChiroPillar slice · split 2.5% Eric/CP + 2.5% Scott · ~${fmtMoney(kbExitFee)} at midpoint 9× multiple`} accent={C.gold} />
+              <Stream pct="5%" amount="Quarterly revenue share" sub={`Of platform-tracked clinic + Scale Services revenue · 100% to ProMed VA · ${fmtMoney(kbRevenueShare5yr + kbScaleShare)} over 5yr hold`} accent={C.goldLight} />
+              <Stream pct="5%" amount="Exit fee at eventual sale" sub={`On ProMed VA slice · split 2.5% Eric/CP + 2.5% Scott · ~${fmtMoney(kbExitFee)} at midpoint 9× multiple`} accent={C.gold} />
             </div>
             <div style={{ marginTop: 12, padding: '10px 14px', background: 'rgba(46,204,139,0.06)', borderRadius: 8, fontSize: 12, color: C.muted, lineHeight: 1.5 }}>
-              4% at close (split 2/2) · 5% quarterly (ChiroPillar) · 5% at exit (split 2.5/2.5). <strong style={{ color: C.green }}>Aligned with deal volume, revenue growth, AND the eventual exit re-rate.</strong>
+              4% at close (split 2/2) · 5% quarterly (ProMed VA) · 5% at exit (split 2.5/2.5). <strong style={{ color: C.green }}>Aligned with deal volume, revenue growth, AND the eventual exit re-rate.</strong>
             </div>
           </div>
         </div>
@@ -943,7 +943,7 @@ export default function LaunchPlanPage() {
         </div>
 
         <div style={{ padding: '14px 18px', background: `${C.green}12`, border: `1px solid ${C.green}30`, borderRadius: 10, fontSize: 13.5, color: '#FFFFFF', lineHeight: 1.6 }}>
-          <strong style={{ color: C.green }}>Long-term moat:</strong> every clinic ChiroPillar closes becomes a proprietary comp with REAL closing data, deal structure, and post-close performance. After 10-15 closings the proprietary dataset is more valuable than any subscription. <strong style={{ color: C.green }}>Competitors will never have it.</strong> Treat this $15-20K like the seed of the algorithm — same way Zillow had to buy MLS feeds before Zestimate became the standard.
+          <strong style={{ color: C.green }}>Long-term moat:</strong> every clinic ProMed VA closes becomes a proprietary comp with REAL closing data, deal structure, and post-close performance. After 10-15 closings the proprietary dataset is more valuable than any subscription. <strong style={{ color: C.green }}>Competitors will never have it.</strong> Treat this $15-20K like the seed of the algorithm — same way Zillow had to buy MLS feeds before Zestimate became the standard.
         </div>
       </div>
 
@@ -1005,16 +1005,16 @@ export default function LaunchPlanPage() {
 
       <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, padding: '24px 28px', marginBottom: 18 }}>
         <p style={{ fontSize: 14, color: C.muted, lineHeight: 1.65, marginTop: 0, marginBottom: 22 }}>
-          Same audience, escalating ticket size. The <strong style={{ color: C.green }}>$9/month ChiroPillar Digital app</strong> is the top of funnel — a chiropractor whose patient sees the app eventually subscribes themselves. <strong style={{ color: C.gold }}>Scale Services</strong> ($500 → $50K) productizes Wagner&apos;s playbook for chiros who don&apos;t want to sell. <strong style={{ color: C.globe }}>Acquisition</strong> ($1.9M each) captures the operators ready to step out. <strong style={{ color: C.goldLight }}>Multiple arbitrage</strong> on exit re-rates every dollar of EBITDA from 1.5–3× (cost basis) to 8–10× (platform).
+          Same audience, escalating ticket size. The <strong style={{ color: C.green }}>$9/month ProMed VA Digital app</strong> is the top of funnel — a chiropractor whose patient sees the app eventually subscribes themselves. <strong style={{ color: C.gold }}>Scale Services</strong> ($500 → $50K) productizes Wagner&apos;s playbook for chiros who don&apos;t want to sell. <strong style={{ color: C.globe }}>Acquisition</strong> ($1.9M each) captures the operators ready to step out. <strong style={{ color: C.goldLight }}>Multiple arbitrage</strong> on exit re-rates every dollar of EBITDA from 1.5–3× (cost basis) to 8–10× (platform).
         </p>
 
         {/* The 5-tier value ladder visualized */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 24 }}>
-          <LadderRow tier="TIER 1" name="ChiroPillar Digital App · $9/mo or $74/yr"  audience="Patients (consumer)"  price="$9-74"      y3="$3.0M / yr" accent={C.green}    width={20} />
+          <LadderRow tier="TIER 1" name="ProMed VA Digital App · $9/mo or $74/yr"  audience="Patients (consumer)"  price="$9-74"      y3="$3.0M / yr" accent={C.green}    width={20} />
           <LadderRow tier="TIER 2" name="Strategy Call · 60-min 1:1 with Wagner"     audience="Qualified DCs · single touch"  price="$500"  y3="$140K / yr" accent={C.globe}    width={35} />
           <LadderRow tier="TIER 3" name="Practice Audit · 2-week diagnostic + plan"  audience="DCs · committed"     price="$5-10K"     y3="$680K / yr" accent={C.align}    width={50} />
           <LadderRow tier="TIER 4" name="Medical-Team Installation · 90-day install" audience="DCs · serious scaling" price="$25-50K"  y3="$1.4M / yr" accent={C.gold}     width={65} />
-          <LadderRow tier="TIER 5" name="ChiroPillar Mastermind · 12-mo cohort"      audience="DCs · scaling without selling" price="$12K/yr" y3="$700K / yr" accent={C.goldLight} width={75} />
+          <LadderRow tier="TIER 5" name="ProMed VA Mastermind · 12-mo cohort"      audience="DCs · scaling without selling" price="$12K/yr" y3="$700K / yr" accent={C.goldLight} width={75} />
           <LadderRow tier="TIER 6" name="Acquisition · cash + seller note + medical-team install" audience="DCs · ready to step out" price="$1.9M avg" y3="33 clinics" accent={C.globe}    width={100} />
         </div>
 
@@ -1031,7 +1031,7 @@ export default function LaunchPlanPage() {
               <div style={{ textAlign: 'right' }}>Y2</div>
               <div style={{ textAlign: 'right' }}>Y3</div>
             </div>
-            <ProFormaRow line="ChiroPillar Digital App · $9/mo + $74/yr blended"            units="50,000 users"  y1={100_000}    y2={825_000}    y3={3_000_000}  accent={C.green} />
+            <ProFormaRow line="ProMed VA Digital App · $9/mo + $74/yr blended"            units="50,000 users"  y1={100_000}    y2={825_000}    y3={3_000_000}  accent={C.green} />
             <ProFormaRow line="Strategy Calls · $500 flat · qualified DCs only"             units="280 calls/yr"  y1={50_000}     y2={100_000}    y3={140_000}    accent={C.globe} />
             <ProFormaRow line="Practice Audits · $5-10K"                                     units="85 audits/yr"  y1={180_000}    y2={400_000}    y3={680_000}    accent={C.align} />
             <ProFormaRow line="Medical-Team Installations · $25-50K"                         units="35 installs/yr" y1={350_000}    y2={825_000}    y3={1_400_000}  accent={C.gold} />
@@ -1070,7 +1070,7 @@ export default function LaunchPlanPage() {
             <div style={{ fontFamily: F.mono, fontSize: 10, color: C.muted, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 14 }}>Cost basis · what we paid</div>
             <KvLine label="33 clinics × ~$1.9M each"             val={fmtMoney(totalAcqValue)} />
             <KvLine label="Multiple paid (avg)"                   val="2.4× SDE" />
-            <KvLine label="ChiroPillar acquired EBITDA (post-lift)" val={fmtMoney(finalEbitda)} />
+            <KvLine label="ProMed VA acquired EBITDA (post-lift)" val={fmtMoney(finalEbitda)} />
             <KvLine label="Wagner existing EBITDA · siloed value (5-7×)" val={`${fmtMoney(25_000_000 * 5)}-${fmtMoney(25_000_000 * 7)}`} accent={C.globe} />
             <KvLine label="Total cost basis"                       val={fmtMoney(47_500_000 + 25_000_000 * 6)} accent={C.text} />
           </div>
@@ -1089,9 +1089,9 @@ export default function LaunchPlanPage() {
         <div style={{ marginTop: 20, padding: '16px 22px', background: 'rgba(46,117,182,0.06)', border: '1px solid rgba(46,117,182,0.20)', borderRadius: 10, fontSize: 14, color: C.muted, lineHeight: 1.7 }}>
           <strong style={{ color: C.gold }}>Two arbitrage engines firing at once:</strong>
           <br/><br/>
-          <strong style={{ color: C.green }}>1. Clinic-level re-rate:</strong> ChiroPillar buys clinics at <strong style={{ color: C.text }}>2.4× SDE</strong> (~$1.9M each). Wagner installs the medical-team playbook → EBITDA lifts $250K-$500K Y1. At exit, those clinics are valued at the <strong style={{ color: C.gold }}>platform-level 8-10× EBITDA</strong>{' '}instead of the standalone solo-DC multiple. That&apos;s a 3-4× re-rate per clinic on the EBITDA we created.
+          <strong style={{ color: C.green }}>1. Clinic-level re-rate:</strong> ProMed VA buys clinics at <strong style={{ color: C.text }}>2.4× SDE</strong> (~$1.9M each). Wagner installs the medical-team playbook → EBITDA lifts $250K-$500K Y1. At exit, those clinics are valued at the <strong style={{ color: C.gold }}>platform-level 8-10× EBITDA</strong>{' '}instead of the standalone solo-DC multiple. That&apos;s a 3-4× re-rate per clinic on the EBITDA we created.
           <br/><br/>
-          <strong style={{ color: C.green }}>2. Wagner-existing-EBITDA re-rate:</strong> Wagner&apos;s $25M of medical-practice EBITDA today is valued <strong style={{ color: C.globe }}>at 5-7× siloed</strong> ($125-175M). Once inside the combined <strong style={{ color: C.gold }}>$32.3M ChiroPillar+Wagner platform</strong> with national brand, RTM/telehealth recurring revenue layer, and proven roll-up engine, every dollar of that same $25M trades at <strong style={{ color: C.gold }}>8-10× alongside the new EBITDA</strong>. That alone is a <strong style={{ color: C.green }}>$25-75M re-rate</strong> on EBITDA Wagner already owns.
+          <strong style={{ color: C.green }}>2. Wagner-existing-EBITDA re-rate:</strong> Wagner&apos;s $25M of medical-practice EBITDA today is valued <strong style={{ color: C.globe }}>at 5-7× siloed</strong> ($125-175M). Once inside the combined <strong style={{ color: C.gold }}>$32.3M ProMed VA+Wagner platform</strong> with national brand, RTM/telehealth recurring revenue layer, and proven roll-up engine, every dollar of that same $25M trades at <strong style={{ color: C.gold }}>8-10× alongside the new EBITDA</strong>. That alone is a <strong style={{ color: C.green }}>$25-75M re-rate</strong> on EBITDA Wagner already owns.
           <br/><br/>
           <strong style={{ color: C.text }}>The arbitrage isn&apos;t just on the new acquisitions — it&apos;s on the rerating of the entire enterprise.</strong>
         </div>
@@ -1110,9 +1110,9 @@ export default function LaunchPlanPage() {
           </div>
           <div>
             <div style={{ fontFamily: F.mono, fontSize: 12, color: '#FFFFFF', letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 12 }}>What Wagner owns at Mo 24</div>
-            <KvLine label="ChiroPillar EBITDA · month 24"            val={fmtMoney(finalEbitda)} accent={C.green} />
-            <KvLine label="ChiroPillar standalone value · 8×"        val={fmtMoney(finalEbitda * 8)} />
-            <KvLine label="ChiroPillar standalone value · 10×"       val={fmtMoney(finalEbitda * 10)} accent={C.green} />
+            <KvLine label="ProMed VA EBITDA · month 24"            val={fmtMoney(finalEbitda)} accent={C.green} />
+            <KvLine label="ProMed VA standalone value · 8×"        val={fmtMoney(finalEbitda * 8)} />
+            <KvLine label="ProMed VA standalone value · 10×"       val={fmtMoney(finalEbitda * 10)} accent={C.green} />
             <KvLine label="Combined potential w/ Wagner $25M+ · 8-10×" val={`${fmtMoney(exitLow)} – ${fmtMoney(exitHigh)}`} accent={C.gold} />
           </div>
         </div>
@@ -1150,8 +1150,8 @@ export default function LaunchPlanPage() {
         <SectionHead eyebrow="Risks · honest list" title="What could break this plan." />
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 22 }} className="kb-val-grid">
           <Risk title="Bank tightens / rates spike" desc="If Fed pushes prime to 11%+, debt service tightens. Mitigation: Live Oak SBA pricing partly insulated by SBA guarantee. Secondary lenders (BHG, BAML) provide diversification. Worst case: slow acquisition pace to maintain DSCR > 1.4×." />
-          <Risk title="Acquisition pace below plan" desc="If we close 14 clinics instead of 25, ChiroPillar EBITDA tops out around $11M instead of $20M+. Combined $36M, exit at 8× = $288M. Still a strong return. The 5% rev share to KB scales proportionally — alignment intact." />
-          <Risk title="Wagner becomes public face" desc="If locals figure out Wagner is behind ChiroPillar, applications dry up. Mitigation: ChiroPillar brand stays front-door. Wagner stays clinical advisor. Eric + McGrath are the human faces of outreach." />
+          <Risk title="Acquisition pace below plan" desc="If we close 14 clinics instead of 25, ProMed VA EBITDA tops out around $11M instead of $20M+. Combined $36M, exit at 8× = $288M. Still a strong return. The 5% rev share to KB scales proportionally — alignment intact." />
+          <Risk title="Wagner becomes public face" desc="If locals figure out Wagner is behind ProMed VA, applications dry up. Mitigation: ProMed VA brand stays front-door. Wagner stays clinical advisor. Eric + McGrath are the human faces of outreach." />
           <Risk title="State DSO/MSO compliance" desc="Each state has corporate-practice-of-medicine rules. VA + Wagner's secondary states are friendly. Keep $25K legal retainer for state-by-state structuring. Live Oak + Pinnacle know these structures cold." />
         </div>
       </div>
@@ -1177,7 +1177,7 @@ export default function LaunchPlanPage() {
           <Ask label="KB compensation"            val="4% + 5% + 5%"                sub="acq consulting (2/2) · ongoing rev share (100% CP) · exit fee (2.5/2.5)" color={C.green} />
         </div>
         <div style={{ fontSize: 14.5, color: '#FFFFFF', lineHeight: 1.65, padding: '18px 22px', background: 'rgba(46,117,182,0.10)', border: '1px solid rgba(46,117,182,0.30)', borderRadius: 10, marginBottom: 22, fontWeight: 400 }}>
-          <strong style={{ color: C.gold }}>Why the small ask works:</strong> Wagner&apos;s $25M+ existing EBITDA gives him $75M+ senior debt capacity at favorable rates — <strong style={{ color: C.gold }}>or he can pay all-cash on individual deals from practice cash flow</strong> when he prefers to skip leverage. Either way, we don&apos;t need his cash for acquisitions, we need his <strong style={{ color: C.gold }}>credit profile and EBITDA backstop</strong>. KB needs only <strong style={{ color: C.gold }}>{fmtMoney(monthlyBurnY1 * 12)} for Y1</strong> to run the engine (build the team, run the ads, pay the SaaS). <strong style={{ color: C.green }}>By month 12, ChiroPillar EBITDA + Scale Services cash flow covers Y2 burn with cushion — the platform pays for itself.</strong> KB takes 4% one-time consulting fee on deals sourced on platform (split 2% Eric / 2% Scott), 5% of revenue ongoing (100% to ChiroPillar), and 5% of ChiroPillar&apos;s slice of the eventual exit (split 2.5% Eric / 2.5% Scott). <strong style={{ color: C.green }}>Wagner owns 100% of every clinic from Day 1</strong> the moment each seller signs — no PE waterfalls, no carry splits, no LP commitments. All multiple arbitrage on exit accrues to Wagner.
+          <strong style={{ color: C.gold }}>Why the small ask works:</strong> Wagner&apos;s $25M+ existing EBITDA gives him $75M+ senior debt capacity at favorable rates — <strong style={{ color: C.gold }}>or he can pay all-cash on individual deals from practice cash flow</strong> when he prefers to skip leverage. Either way, we don&apos;t need his cash for acquisitions, we need his <strong style={{ color: C.gold }}>credit profile and EBITDA backstop</strong>. KB needs only <strong style={{ color: C.gold }}>{fmtMoney(monthlyBurnY1 * 12)} for Y1</strong> to run the engine (build the team, run the ads, pay the SaaS). <strong style={{ color: C.green }}>By month 12, ProMed VA EBITDA + Scale Services cash flow covers Y2 burn with cushion — the platform pays for itself.</strong> KB takes 4% one-time consulting fee on deals sourced on platform (split 2% Eric / 2% Scott), 5% of revenue ongoing (100% to ProMed VA), and 5% of ProMed VA&apos;s slice of the eventual exit (split 2.5% Eric / 2.5% Scott). <strong style={{ color: C.green }}>Wagner owns 100% of every clinic from Day 1</strong> the moment each seller signs — no PE waterfalls, no carry splits, no LP commitments. All multiple arbitrage on exit accrues to Wagner.
         </div>
 
         {/* ★ STRONG CTA · Dr Wagner */}
@@ -1194,14 +1194,14 @@ export default function LaunchPlanPage() {
             Sign the term sheet — first <strong style={{ color: C.gold }}>$120K releases at signing</strong> for Day-1 hires (Eric + McGrath) and Month-3 onboarding (Ops Lead + Marketer). Engine builds Months 1-3, sales staffed Month 4, first 2 acquisitions close Q2. 33 clinics owned by Mo 24. <strong style={{ color: C.gold }}>You hold or sell — your call.</strong>
           </div>
           <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <a href="mailto:eric@kingdombroker.com?subject=ChiroPillar%20Term%20Sheet%20-%20Ready%20to%20Move%20Forward" style={{
+            <a href="mailto:eric@kingdombroker.com?subject=ProMed VA%20Term%20Sheet%20-%20Ready%20to%20Move%20Forward" style={{
               display: 'inline-block', padding: '16px 32px', borderRadius: 10,
               background: C.gold, color: C.bg, textDecoration: 'none',
               fontFamily: F.body, fontSize: 16, fontWeight: 800, letterSpacing: '0.04em',
               boxShadow: `0 6px 20px ${C.gold}50`,
               transition: 'all 0.15s',
             }}>
-              Sign Term Sheet · Lock In ChiroPillar
+              Sign Term Sheet · Lock In ProMed VA
             </a>
             <a href="https://calendly.com/ericcskeldon" target="_blank" rel="noopener" style={{
               display: 'inline-block', padding: '16px 32px', borderRadius: 10,

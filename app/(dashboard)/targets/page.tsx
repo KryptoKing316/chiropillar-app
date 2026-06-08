@@ -1,4 +1,4 @@
-// ChiroPillar · Intake Submissions Dashboard
+// ProMed VA · Intake Submissions Dashboard
 // Server component. Reads from chiropillar_targets via service-role.
 // Auth is enforced in the parent (dashboard)/layout.tsx, so by the time
 // this renders the user is already on the chiropillar_team whitelist
@@ -285,7 +285,7 @@ export default async function TargetsPage() {
       {/* Header */}
       <div style={{ marginBottom: 28 }}>
         <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 12.5, letterSpacing: '0.22em', color: '#9CC4E4', textTransform: 'uppercase', fontWeight: 800, marginBottom: 10 }}>
-          ChiroPillar · Pipeline
+          ProMed VA · Pipeline
         </div>
         <h1 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(36px, 4.5vw, 46px)', fontWeight: 700, color: 'var(--kb-text)', margin: '0 0 10px', letterSpacing: '-0.02em' }}>
           Intake Submissions
