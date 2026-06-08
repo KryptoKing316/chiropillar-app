@@ -40,10 +40,9 @@ const TEAM = [
 ]
 const BONUSES = [
   { trigger: 'First test city hits 10 qualified applications', example: '$2,500 milestone bonus', who: 'Kingdom Broker' },
-  { trigger: 'First lease partner signed in the test', example: '$5,000 bonus', who: 'Kingdom Broker' },
-  { trigger: 'Each additional lease partner signed', example: '$5,000–$10,000 per signed chiropractor', who: 'Kingdom Broker (success fee)' },
-  { trigger: 'Each Phase-2 acquisition closed', example: '2–4% of acquisition value, and/or carry on the 4% profit-share', who: 'Kingdom Broker (success fee)' },
-  { trigger: 'Qualified discovery call booked', example: '$250–$500 per call', who: 'Appointment-setter (team incentive)' },
+  { trigger: 'First lease partner signed in the test', example: '$15,000 bonus', who: 'Kingdom Broker' },
+  { trigger: 'Each additional lease partner signed', example: '$10,000 per signed chiropractor', who: 'Kingdom Broker (success fee)' },
+  { trigger: 'Each Phase-2 acquisition closed', example: '4% of acquisition value + 2% revenue share on the office', who: 'Kingdom Broker (success fee)' },
 ]
 const KPIS = [
   { m: 'Qualified applications', t: '10–20 per test city' },
