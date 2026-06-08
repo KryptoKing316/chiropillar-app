@@ -1,6 +1,6 @@
 'use client'
 
-// ChiroPillar · "Value My Clinic" — the public, fun, KB-style valuation funnel
+// ProMed VA · "Value My Clinic" — the public, fun, KB-style valuation funnel
 // Lives at /value-my-clinic (publicly accessible, no login required).
 //
 // Two paths:
@@ -151,18 +151,18 @@ export default function ValueMyClinicPage() {
   return (
     <div style={{ minHeight: '100vh', background: C.paper, fontFamily: F.body, color: C.textInk }}>
 
-      {/* TOP BAR · escalating-pillar mark + ChiroPillar wordmark + Strength in Alignment tagline */}
+      {/* TOP BAR · escalating-pillar mark + ProMed VA wordmark + Strength in Alignment tagline */}
       <div style={{ background: '#FFFFFF', borderBottom: '1px solid rgba(31,78,121,0.10)', boxShadow: '0 2px 8px rgba(31,78,121,0.04)' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto', padding: '20px 28px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 20, flexWrap: 'wrap' }}>
-          <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 14, textDecoration: 'none' }} aria-label="ChiroPillar">
+          <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 14, textDecoration: 'none' }} aria-label="ProMed VA">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/chiropillar-logo-platform.svg" alt="" style={{ height: 'clamp(54px, 7vw, 64px)', width: 'auto', display: 'block', filter: 'drop-shadow(0 3px 8px rgba(201,168,76,0.22))' }} />
             <div style={{ lineHeight: 1 }}>
               <div style={{ fontFamily: F.display, fontSize: 'clamp(26px, 3.5vw, 32px)', fontWeight: 800, color: C.spine, letterSpacing: '-0.02em', lineHeight: 1, marginBottom: 6 }}>
-                ChiroPillar
+                ProMed VA
               </div>
               <div style={{ fontFamily: F.mono, fontSize: 10, fontWeight: 800, color: C.gold, letterSpacing: '0.20em', textTransform: 'uppercase', lineHeight: 1 }}>
-                Strength in Alignment
+                Practice Growth Partners · Virginia
               </div>
             </div>
           </a>
@@ -185,7 +185,7 @@ export default function ValueMyClinicPage() {
               In 60 seconds, find out what your <span style={{ color: C.gold, fontStyle: 'italic' }}>chiropractic practice</span> is actually worth.
             </h1>
             <p style={{ fontSize: 19, color: '#3A4865', maxWidth: 660, margin: '0 auto 14px', lineHeight: 1.55 }}>
-              Built on <strong style={{ color: C.spine }}>158 real chiropractic transactions</strong>. Your number, your range, and the three levers that change it most — <strong style={{ color: C.spine }}>without paying $5,000 to a CPA who&apos;s never sold a chiro practice in his life.</strong>
+              Built on <strong style={{ color: C.spine }}>158 real chiropractic transactions</strong>. Your accountant and your bank value your EBITDA — they ignore the <strong style={{ color: C.spine }}>20 years of patient relationships and community reputation</strong> you built. That goodwill is real value. See what your practice is worth today — <strong style={{ color: C.spine }}>and what it could be worth in two years.</strong>
             </p>
             <p style={{ fontSize: 15.5, color: '#5A6580', maxWidth: 580, margin: '0 auto 36px', lineHeight: 1.6, fontStyle: 'italic' }}>
               Most DCs find out from a broker who wants to list them, or a CPA who quotes a generic small-business multiple. Neither knows chiropractic. That blind spot is why owners leave 30-50% on the table at retirement.
@@ -520,7 +520,7 @@ export default function ValueMyClinicPage() {
             {/* Top banner */}
             <div style={{ textAlign: 'center', marginBottom: 28 }}>
               <div style={{ fontFamily: F.mono, fontSize: 12, letterSpacing: '0.30em', color: C.gold, textTransform: 'uppercase', fontWeight: 800, marginBottom: 12 }}>
-                Your valuation · ChiroPillar Estimate
+                Your valuation · ProMed VA Estimate
               </div>
               <h1 style={{ fontFamily: F.display, fontSize: 'clamp(32px, 5vw, 46px)', fontWeight: 700, color: C.spine, margin: '0 0 8px', letterSpacing: '-0.02em', lineHeight: 1.1 }}>
                 {practiceName ? practiceName : 'Your chiropractic practice'}
@@ -552,6 +552,31 @@ export default function ValueMyClinicPage() {
 
               <div style={{ marginTop: 18, padding: '14px 18px', background: 'rgba(201,168,76,0.10)', border: '1px solid rgba(201,168,76,0.30)', borderRadius: 10, fontSize: 13.5, color: C.text, lineHeight: 1.6 }}>
                 <strong style={{ color: C.gold }}>Calibrated against 158 chiropractic transactions.</strong> Sources: BizBuySell, Progressive Practice Sales, William David Co, JYNT 10-K. Asking-price-derived — closings typically land at 85-95% of FMV.
+              </div>
+            </div>
+
+            {/* TODAY vs 2-YEARS — the goodwill-monetization reveal Wagner asked for */}
+            <div style={{ background: '#FFFFFF', borderRadius: 14, padding: '26px 28px', marginBottom: 24, boxShadow: '0 2px 12px rgba(31,78,121,0.06)', border: `1px solid ${C.green}30` }}>
+              <div style={{ fontFamily: F.mono, fontSize: 11, letterSpacing: '0.16em', color: C.green, textTransform: 'uppercase', fontWeight: 800, marginBottom: 12 }}>
+                The number your CPA won&apos;t show you
+              </div>
+              <h3 style={{ fontFamily: F.display, fontSize: 22, fontWeight: 700, color: C.spine, margin: '0 0 16px', letterSpacing: '-0.01em' }}>
+                What your goodwill could be worth in ~2 years.
+              </h3>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 16 }}>
+                <div style={{ padding: '18px 20px', background: C.paper, borderRadius: 10 }}>
+                  <div style={{ fontSize: 12, color: '#7A859C', fontWeight: 600, marginBottom: 4 }}>Today · standalone sale</div>
+                  <div style={{ fontFamily: F.display, fontSize: 28, fontWeight: 800, color: C.coral }}>{fmtMoney(result.valMid)}</div>
+                  <div style={{ fontSize: 12, color: '#7A859C', marginTop: 4 }}>EBITDA-only · goodwill ignored</div>
+                </div>
+                <div style={{ padding: '18px 20px', background: `${C.green}12`, borderRadius: 10, border: `1px solid ${C.green}40` }}>
+                  <div style={{ fontSize: 12, color: C.spine, fontWeight: 700, marginBottom: 4 }}>In ~2 years · ProMed VA partner</div>
+                  <div style={{ fontFamily: F.display, fontSize: 28, fontWeight: 800, color: C.green }}>{fmtMoney((result.sdeMid + 250_000) * (result.profile === 'platform' ? result.mult : 3.0))}</div>
+                  <div style={{ fontSize: 12, color: '#5A6580', marginTop: 4 }}>goodwill monetized at a platform multiple</div>
+                </div>
+              </div>
+              <div style={{ marginTop: 16, padding: '14px 18px', background: `${C.gold}12`, border: `1px solid ${C.gold}30`, borderRadius: 10, fontSize: 13.5, color: C.textInk, lineHeight: 1.6 }}>
+                <strong style={{ color: C.spine }}>Plus ~$250,000/year in income</strong> while you partner — rent for hosting a ProMed VA medical office in your existing space, plus commission on cash services. You keep practicing; we monetize the value a standalone sale leaves on the table. <em style={{ color: '#7A859C' }}>Illustrative, based on the ProMed VA partnership model — not an offer.</em>
               </div>
             </div>
 
@@ -619,9 +644,9 @@ export default function ValueMyClinicPage() {
                   <li><strong style={{ color: C.spine }}>Get to 40+ new patients/month, sustained 24+ months.</strong> {newPtsNum > 0 ? `You're at ${newPtsNum} now. ` : ''}Buyers discount aggressively when patient flow looks like a recent spike instead of a stable two-year baseline.</li>
                 )}
                 {newPtsNum >= 40 && (
-                  <li><strong style={{ color: C.spine }}>Your patient flow is in the strong band.</strong> ChiroPillar partnership models start here — the medical-team install plus marketing tightening only works on top of demand.</li>
+                  <li><strong style={{ color: C.spine }}>Your patient flow is in the strong band.</strong> ProMed VA partnership models start here — the medical-team install plus marketing tightening only works on top of demand.</li>
                 )}
-                <li><strong style={{ color: C.spine }}>Add a medical-team revenue stream.</strong> The ChiroPillar install playbook adds <strong>+$250K EBITDA</strong> in Year 1 — at {result.mult}× that&apos;s {fmtMoney(250_000 * result.mult)} of additional valuation.</li>
+                <li><strong style={{ color: C.spine }}>Add a medical-team revenue stream.</strong> The ProMed VA install playbook adds <strong>+$250K EBITDA</strong> in Year 1 — at {result.mult}× that&apos;s {fmtMoney(250_000 * result.mult)} of additional valuation.</li>
                 {result.profile !== 'platform' && grossNum >= 2_500_000 && (
                   <li><strong style={{ color: C.spine }}>You&apos;re close to platform profile.</strong> $3M+ revenue with associates in place opens the 7.5× EBITDA platform band — that&apos;s the institutional buyer pool.</li>
                 )}
@@ -644,7 +669,7 @@ export default function ValueMyClinicPage() {
                 Talk to a chiropractor who&apos;s done it.
               </h3>
               <p style={{ fontSize: 15, margin: '0 0 18px', maxWidth: 560, marginLeft: 'auto', marginRight: 'auto', lineHeight: 1.6, opacity: 0.92 }}>
-                The operator behind ChiroPillar runs <strong>5+ clinics serving thousands of patients</strong>. He&apos;s a working DC — not a broker, not a banker. He&apos;ll walk you through what your numbers actually mean and whether the partnership fits.
+                The operator behind ProMed VA runs <strong>5+ clinics serving thousands of patients</strong>. He&apos;s a working DC — not a broker, not a banker. He&apos;ll walk you through what your numbers actually mean and whether the partnership fits.
               </p>
               <a
                 href="/intake"

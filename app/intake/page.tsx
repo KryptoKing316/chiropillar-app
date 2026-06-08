@@ -1,6 +1,6 @@
 'use client'
 
-// ChiroPillar · Chiropractor Intake Form
+// ProMed VA · Chiropractor Intake Form
 // Publicly accessible at /intake — surface chiropractors land on
 // from the $1/day ad funnel ("How would you like to make $250K more
 // per year by doing exactly what you're doing?")
@@ -36,6 +36,11 @@ type FormState = {
   // Soft signal — Wagner flagged the desperate-spike pattern
   past_12mo_was_spike: '' | 'no' | 'yes' | 'unsure'
 
+  // Wagner qualifiers (2026-06-06 call)
+  square_footage: string
+  owner_age_45plus: '' | 'yes' | 'no'
+  exit_strategy: '' | 'grow' | 'exit_3yr' | 'unsure'
+
   // Marketing consent
   ok_to_contact: boolean
 }
@@ -48,6 +53,7 @@ const INITIAL: FormState = {
   employee_count: '', geographic_location_notes: '',
   owner_role: '',
   past_12mo_was_spike: '',
+  square_footage: '', owner_age_45plus: '', exit_strategy: '',
   ok_to_contact: true,
 }
 
@@ -91,7 +97,7 @@ function inferProfile(s: FormState): ProfileInfer {
   if (s.owner_role === 'mostly_management' || s.owner_role === 'wants_to_step_out') {
     return 'multi'
   }
-  // Default: solo-DC owner-operator (most common ChiroPillar target)
+  // Default: solo-DC owner-operator (most common ProMed VA target)
   return 'solo'
 }
 
@@ -215,14 +221,14 @@ function qualify(s: FormState): { status: 'qualified' | 'maybe' | 'not_yet'; rea
     return {
       status: 'qualified',
       reasons,
-      pitch: 'You qualify. The ChiroPillar team will reach out within 48 hours to walk you through the partnership — including the medical-team add-on that targets +$250K in your first year.',
+      pitch: 'You qualify. The ProMed VA team will reach out within 48 hours to walk you through the Virginia partnership — hosting a ProMed VA medical office in your space (monthly rent) plus commission on cash services, targeting +$250K in your first year, with a higher-multiple exit down the road. Have your last 2 years of P&Ls ready.',
     }
   }
 
   return {
     status: 'maybe',
     reasons: reasons.length ? reasons : ['Some signals are in range; others need a conversation.'],
-    pitch: 'You\'re in the conversation zone. The ChiroPillar team will review your numbers and reach out within a week to discuss next steps.',
+    pitch: 'You\'re in the conversation zone. The ProMed VA team will review your numbers and reach out within a week to discuss next steps.',
   }
 }
 
@@ -284,10 +290,10 @@ export default function IntakePage() {
   return (
     <div style={{ minHeight: '100vh', background: '#F7F4ED', fontFamily: "'Inter', system-ui, sans-serif", color: '#1a1a1a' }}>
 
-      {/* Top bar · ChiroPillar escalating-pillar mark + wordmark + tagline */}
+      {/* Top bar · ProMed VA escalating-pillar mark + wordmark + tagline */}
       <div style={{ background: 'white', borderBottom: '1px solid rgba(31,78,121,0.10)', boxShadow: '0 2px 8px rgba(31,78,121,0.04)' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto', padding: '20px 32px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 20, flexWrap: 'wrap' }}>
-          <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 14, textDecoration: 'none' }} aria-label="ChiroPillar home">
+          <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 14, textDecoration: 'none' }} aria-label="ProMed VA home">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/chiropillar-logo-platform.svg"
@@ -296,10 +302,10 @@ export default function IntakePage() {
             />
             <div style={{ lineHeight: 1 }}>
               <div style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 'clamp(26px, 3.5vw, 32px)', fontWeight: 800, color: '#1F4E79', letterSpacing: '-0.02em', lineHeight: 1, marginBottom: 6 }}>
-                ChiroPillar
+                ProMed VA
               </div>
               <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, fontWeight: 800, color: '#C9A84C', letterSpacing: '0.20em', textTransform: 'uppercase', lineHeight: 1 }}>
-                Strength in Alignment
+                Practice Growth Partners · Virginia
               </div>
             </div>
           </a>
@@ -325,7 +331,7 @@ export default function IntakePage() {
               doing exactly what you&apos;re already doing.
             </h1>
             <p style={{ fontSize: 18, color: '#555', lineHeight: 1.55, maxWidth: 620, margin: '0 auto 28px' }}>
-              Help your patients get better. Be a better doctor for your patients. Raise the value of your practice — without learning a single new technique. The right chiropractors qualify for the ChiroPillar medical-operator partnership program — built by a working DC who runs 5+ clinics serving thousands of patients. <strong style={{ color: '#1F4E79' }}>Three minutes. See if you qualify.</strong>
+              Host a ProMed VA medical office inside your existing space and earn monthly rent plus commission on cash services — while you keep practicing exactly as you do today. Better diagnostics for your patients, real income for you, and a higher-multiple exit down the road. The right Virginia chiropractors qualify for the partnership. <strong style={{ color: '#1F4E79' }}>Virginia practices only right now. Have your last 2 years of P&amp;Ls ready. Three minutes — see if you qualify.</strong>
             </p>
           </div>
         )}
@@ -357,7 +363,7 @@ export default function IntakePage() {
                   <Field label="Email *"><input type="email" value={form.email} onChange={update('email')} style={CSS.input}/></Field>
                   <Field label="Mobile *"><input type="tel" value={form.phone} onChange={update('phone')} style={CSS.input}/></Field>
                   <Field label="City *"><input value={form.city} onChange={update('city')} style={CSS.input}/></Field>
-                  <Field label="State *"><input value={form.state} onChange={update('state')} style={CSS.input} placeholder="TX, FL, VA..."/></Field>
+                  <Field label="State * (Virginia only right now)"><input value={form.state} onChange={update('state')} style={CSS.input} placeholder="VA"/></Field>
                 </div>
               </>
             )}
@@ -379,6 +385,9 @@ export default function IntakePage() {
                   </Field>
                   <Field label="Years in business">
                     <input value={form.geographic_location_notes} onChange={update('geographic_location_notes')} placeholder="22 years" style={CSS.input}/>
+                  </Field>
+                  <Field label="Spare space to host a medical office?">
+                    <input value={form.square_footage} onChange={update('square_footage')} placeholder="e.g. ~600 sq ft / 2 rooms" style={CSS.input}/>
                   </Field>
                 </div>
               </>
@@ -483,6 +492,30 @@ export default function IntakePage() {
                     </label>
                   ))}
                 </div>
+
+                <Field label="Are you 45 or older?">
+                  <div style={{ display: 'flex', gap: 10, marginTop: 6 }}>
+                    {([['yes','Yes'],['no','No']] as Array<[string,string]>).map(([v,l]) => (
+                      <label key={v} style={{ flex: 1, padding: '12px 14px', textAlign: 'center', background: form.owner_age_45plus === v ? 'rgba(46,117,182,0.08)' : 'white', border: form.owner_age_45plus === v ? '2px solid #2E75B6' : '1px solid rgba(31,78,121,0.15)', borderRadius: 8, cursor: 'pointer', fontSize: 14 }}>
+                        <input type="radio" name="age45" value={v} checked={form.owner_age_45plus === v} onChange={() => setForm(f => ({ ...f, owner_age_45plus: v as FormState['owner_age_45plus'] }))} style={{ marginRight: 8 }} />{l}
+                      </label>
+                    ))}
+                  </div>
+                </Field>
+
+                <Field label="How do you think about your practice's future?">
+                  <div style={{ display: 'grid', gap: 8, marginTop: 6 }}>
+                    {([
+                      ['grow', 'I want to grow it and make more money'],
+                      ['exit_3yr', 'I want a real exit in the next few years'],
+                      ['unsure', 'Honestly, I have no exit strategy today'],
+                    ] as Array<[string,string]>).map(([v,l]) => (
+                      <label key={v} style={{ padding: '12px 14px', background: form.exit_strategy === v ? 'rgba(46,117,182,0.08)' : 'white', border: form.exit_strategy === v ? '2px solid #2E75B6' : '1px solid rgba(31,78,121,0.15)', borderRadius: 8, cursor: 'pointer', fontSize: 14 }}>
+                        <input type="radio" name="exit" value={v} checked={form.exit_strategy === v} onChange={() => setForm(f => ({ ...f, exit_strategy: v as FormState['exit_strategy'] }))} style={{ marginRight: 8 }} />{l}
+                      </label>
+                    ))}
+                  </div>
+                </Field>
               </>
             )}
 
@@ -490,10 +523,10 @@ export default function IntakePage() {
             {step === 5 && (
               <>
                 <h2 style={CSS.h2}>See if you qualify</h2>
-                <p style={CSS.sub}>Hit submit and we&apos;ll score your practice against the partnership qualification criteria. Qualified practices get a direct call from the ChiroPillar team within 48 hours.</p>
+                <p style={CSS.sub}>Hit submit and we&apos;ll score your practice against the partnership qualification criteria. Qualified practices get a direct call from the ProMed VA team within 48 hours.</p>
                 <label style={{ display: 'flex', alignItems: 'flex-start', gap: 10, padding: 14, background: '#F7F4ED', borderRadius: 8, fontSize: 13, lineHeight: 1.5, marginBottom: 20 }}>
                   <input type="checkbox" checked={form.ok_to_contact} onChange={update('ok_to_contact')} style={{ marginTop: 4 }}/>
-                  <span>OK to contact me by phone, email, and text about the ChiroPillar partnership program. We never spam and never share your info.</span>
+                  <span>OK to contact me by phone, email, and text about the ProMed VA partnership program. We never spam and never share your info.</span>
                 </label>
                 <button
                   type="button"
@@ -539,7 +572,7 @@ export default function IntakePage() {
               {result.status === 'qualified' ? '✓ You Qualify' : result.status === 'maybe' ? '◐ In The Conversation' : '◯ Not Yet'}
             </div>
             <h2 style={{ fontFamily: 'Georgia, serif', fontSize: 30, color: '#1F4E79', margin: '0 0 16px', letterSpacing: '-0.02em' }}>
-              {result.status === 'qualified' && 'Welcome to the ChiroPillar shortlist.'}
+              {result.status === 'qualified' && 'Welcome to the ProMed VA shortlist.'}
               {result.status === 'maybe' && 'Strong signals — let\'s talk.'}
               {result.status === 'not_yet' && 'Not the right fit yet — here\'s the path.'}
             </h2>
@@ -596,7 +629,7 @@ export default function IntakePage() {
 
         {/* Footer disclaimer */}
         <div style={{ marginTop: 32, fontSize: 11, color: '#999', fontFamily: "'JetBrains Mono', monospace", textAlign: 'center', lineHeight: 1.6 }}>
-          ChiroPillar · Confidential application form.<br/>
+          ProMed VA · Confidential application form.<br/>
           Estimated valuation range is illustrative, not an offer. Closing prices typically 85-95% of asking. All financial structures subject to definitive documentation.
         </div>
       </div>
