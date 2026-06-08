@@ -46,6 +46,15 @@ const KPIS = [
   { m: 'Cost per qualified application', t: '~$450 (plan; band $350–600)' },
   { m: 'Speed-to-lead', t: '< 1 business hour' },
 ]
+// The Wagner math — his own 6× return thesis (illustrative model economics).
+const GOALS = [
+  { tag: 'First goal', inv: '$1M', out: '$6M', accent: '#C9A84C', ret: '#E8C96A' },
+  { tag: 'Big goal', inv: '$10M', out: '$60M', accent: '#2ECC8B', ret: '#2ECC8B' },
+]
+const COMPARE = [
+  { label: 'A "boring" business', mult: '~2×', pct: 33, gold: false },
+  { label: 'This chiropractor model', mult: '6×', pct: 100, gold: true },
+]
 
 function Section({ eyebrow, title, children }: { eyebrow: string; title: string; children: React.ReactNode }) {
   return (
@@ -73,8 +82,59 @@ export default function LaunchPlanPage() {
           The plan, the team, and the test budget.
         </h1>
         <p style={{ fontSize: 16, color: '#C7D0E0', margin: 0, maxWidth: 820, lineHeight: 1.6 }}>
-          A lean, <strong style={{ color: C.gold }}>two-city Virginia test</strong> — Charlottesville first, plus one metro — fully managed by <strong style={{ color: C.text }}>Kingdom Broker LLC (Eric Skeldon)</strong>. Prove the model, sign the first partner, then scale city-by-city. Dr. Wagner funds the test.
+          A lean, <strong style={{ color: C.gold }}>two-city Virginia test</strong> — Charlottesville first, plus one metro — fully managed by <strong style={{ color: C.text }}>Kingdom Broker LLC (Eric Skeldon)</strong>. Prove the model, sign the first partner, then scale city-by-city.
         </p>
+      </div>
+
+      {/* ── THE WAGNER MATH · 6× return ── */}
+      <div style={{ position: 'relative', overflow: 'hidden', background: 'radial-gradient(130% 150% at 0% 0%, #14264a 0%, #0a1830 46%, #06122a 100%)', border: `1px solid ${C.gold}44`, borderRadius: 16, padding: '30px 34px 28px', marginBottom: 34, boxShadow: '0 10px 40px rgba(0,0,0,0.35)' }}>
+        <div style={{ position: 'absolute', inset: 0, backgroundImage: `linear-gradient(${C.gold}0d 1px, transparent 1px), linear-gradient(90deg, ${C.gold}0d 1px, transparent 1px)`, backgroundSize: '34px 34px', pointerEvents: 'none', maskImage: 'radial-gradient(120% 120% at 100% 0%, #000, transparent 75%)' }} />
+        <div style={{ position: 'relative' }}>
+          <div style={{ fontFamily: F.mono, fontSize: 11, letterSpacing: '0.22em', color: C.gold, textTransform: 'uppercase', fontWeight: 800, marginBottom: 10 }}>The math Dr. Wagner runs</div>
+          <h2 style={{ fontFamily: F.display, fontSize: 'clamp(26px,4.2vw,42px)', fontWeight: 800, margin: '0 0 10px', letterSpacing: '-0.02em', color: C.text, lineHeight: 1.05 }}>
+            Every <span style={{ color: C.gold }}>$1M</span> deployed returns about <span style={{ color: C.gold }}>$6M</span>.
+          </h2>
+          <p style={{ fontSize: 15.5, color: '#C7D0E0', margin: '0 0 22px', maxWidth: 780, lineHeight: 1.6 }}>
+            &ldquo;Why put money in a <em>boring</em> business?&rdquo; Leasing square footage inside Virginia&apos;s dominant chiropractic clinics — then acquiring and scaling them — is a <strong style={{ color: C.text }}>6&times; engine</strong> on the goodwill a standalone sale throws away. That&apos;s the margin in this model.
+          </p>
+
+          {/* goal flows */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(310px, 1fr))', gap: 16 }}>
+            {GOALS.map(g => (
+              <div key={g.tag} style={{ background: 'rgba(5,16,31,0.5)', border: `1px solid ${g.accent}40`, borderRadius: 13, padding: '15px 18px 17px' }}>
+                <div style={{ fontFamily: F.mono, fontSize: 10, letterSpacing: '0.16em', color: g.accent, textTransform: 'uppercase', fontWeight: 800 }}>{g.tag}</div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginTop: 12, flexWrap: 'wrap' }}>
+                  <div>
+                    <div style={{ fontFamily: F.display, fontSize: 30, fontWeight: 800, color: C.muted, lineHeight: 1 }}>{g.inv}</div>
+                    <div style={{ fontFamily: F.mono, fontSize: 9, letterSpacing: '0.14em', color: C.faint, textTransform: 'uppercase', marginTop: 4 }}>invested</div>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 5, fontFamily: F.mono, fontWeight: 800, fontSize: 13, color: '#0B1B3E', background: `linear-gradient(135deg, ${C.goldLight}, ${C.gold})`, padding: '6px 12px', borderRadius: 999, boxShadow: `0 0 18px ${C.gold}66`, alignSelf: 'center' }}>&times;6 &rarr;</div>
+                  <div>
+                    <div style={{ fontFamily: F.display, fontSize: 46, fontWeight: 800, color: g.ret, lineHeight: 1, textShadow: `0 0 26px ${g.ret}55` }}>{g.out}</div>
+                    <div style={{ fontFamily: F.mono, fontSize: 9, letterSpacing: '0.14em', color: C.faint, textTransform: 'uppercase', marginTop: 4 }}>returned</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* return-multiple comparison */}
+          <div style={{ marginTop: 22, maxWidth: 600 }}>
+            {COMPARE.map(b => (
+              <div key={b.label} style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 9 }}>
+                <div style={{ width: 168, fontSize: 12, color: b.gold ? C.text : C.muted, textAlign: 'right', flex: 'none' }}>{b.label}</div>
+                <div style={{ flex: 1, height: 14, background: 'rgba(255,255,255,0.06)', borderRadius: 999, overflow: 'hidden' }}>
+                  <div style={{ width: `${b.pct}%`, height: '100%', borderRadius: 999, background: b.gold ? `linear-gradient(90deg, ${C.gold}, ${C.goldLight})` : '#3A4865', boxShadow: b.gold ? `0 0 14px ${C.gold}88` : 'none' }} />
+                </div>
+                <div style={{ width: 46, fontFamily: F.display, fontWeight: 800, fontSize: 16, color: b.gold ? C.goldLight : C.faint, flex: 'none' }}>{b.mult}</div>
+              </div>
+            ))}
+          </div>
+
+          <div style={{ marginTop: 16, fontSize: 11, color: C.faint, lineHeight: 1.5 }}>
+            Dr. Wagner&apos;s stated model economics — illustrative, not a guarantee. The lease (square-footage) test below is how we prove it, one city at a time.
+          </div>
+        </div>
       </div>
 
       {/* THE PLAN */}
