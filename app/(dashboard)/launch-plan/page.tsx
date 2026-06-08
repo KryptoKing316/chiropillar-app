@@ -23,13 +23,13 @@ const F = {
 // ── Lean two-city test budget (what Dr. Wagner wires to Kingdom Broker LLC) ──
 const ONE_TIME = [
   { item: 'Platform, valuation tools & funnels', amount: '$5,000', note: 'Landing page, "Value My Clinic" tool, intake + admin dashboard — already built — configured, localized, and deployed for the VA test.' },
-  { item: 'Video + content launch', amount: '$2,500–3,500', note: 'Offer VSL + 4–6 ad creatives. Dr. Wagner on-camera in one batch shoot keeps it low.' },
+  { item: 'Video + content launch', amount: '$3,000', note: 'AI-avatar + explainer + software-demo videos (problem/solution + Value-My-Clinic demos) — no founder on camera (ProMed VA stays corporate; Wagner not named or shown).' },
 ]
 const MONTHLY = [
   { item: 'Paid ad budget', amount: '$5,000', note: 'Meta + Google, concentrated on the two test cities + traffic to the free Value My Clinic tool.' },
   { item: 'Kingdom Broker management fee — Eric Skeldon', amount: '$3,000', note: 'Manages the build, hires + runs the team, ad spend + outreach, reporting. Cancel anytime, 14-day notice.' },
-  { item: 'Team (hired + managed by Kingdom Broker)', amount: '$2,500–3,500', note: 'Part-time media buyer + appointment-setter/outreach + content editor.' },
-  { item: 'Lists, data, email tooling + hosting', amount: '$500–700', note: 'Owned 24K DC list (~$0) + sending infra, enrichment, list cleaning; Vercel/Supabase/Claude API/email.' },
+  { item: 'Team (hired + managed by Kingdom Broker)', amount: '$2,500', note: 'Part-time media buyer + appointment-setter/outreach + content editor.' },
+  { item: 'Lists, data, email tooling + hosting', amount: '$500', note: 'Owned 24K DC list (~$0) + sending infra, enrichment, list cleaning; Vercel/Supabase/Claude API/email.' },
 ]
 const TEAM = [
   { role: 'CEO & Platform Operator', who: 'Eric Skeldon (Kingdom Broker)', comp: '$3,000/mo mgmt fee', resp: 'Owns the build, the team, ad spend, outreach + reporting. Cancel anytime, 14-day notice.' },
@@ -87,7 +87,7 @@ export default function LaunchPlanPage() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 18 }}>
           <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderLeft: `4px solid ${C.gold}`, borderRadius: 12, padding: '20px 22px' }}>
             <div style={{ fontFamily: F.mono, fontSize: 11, color: C.gold, letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 8 }}>Phase 1 · Lease (income now)</div>
-            <p style={{ fontSize: 14, color: C.muted, lineHeight: 1.6, margin: 0 }}>ProMed VA leases space inside the chiropractor&apos;s clinic for a medical office — <strong style={{ color: C.text }}>~$200K/yr rent + commission on cash services</strong> (up to ~$250K/yr). Our medical team runs the diagnostics. The chiropractor keeps practicing exactly as they do today.</p>
+            <p style={{ fontSize: 14, color: C.muted, lineHeight: 1.6, margin: 0 }}>ProMed VA leases space inside the chiropractor&apos;s clinic for a medical office — <strong style={{ color: C.text }}>$10K/mo base lease + quarterly performance bonuses (~$25K each, tied to the metrics) → ~$200K/yr</strong>, plus commission on cash services (up to ~$250K/yr). Our medical team runs the diagnostics. The chiropractor keeps practicing exactly as they do today.</p>
           </div>
           <div style={{ background: C.bg2, border: `1px solid rgba(46,204,139,0.4)`, borderLeft: `4px solid ${C.green}`, borderRadius: 12, padding: '20px 22px' }}>
             <div style={{ fontFamily: F.mono, fontSize: 11, color: C.green, letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 8 }}>Phase 2 · Acquire (the exit)</div>
@@ -128,7 +128,7 @@ export default function LaunchPlanPage() {
         <table style={{ width: '100%', borderCollapse: 'collapse', background: C.bg2, borderRadius: 12, overflow: 'hidden', marginBottom: 18 }}>
           <thead><tr><th style={cellHead}>Item</th><th style={cellHead}>Amount</th><th style={cellHead}>Covers</th></tr></thead>
           <tbody>{ONE_TIME.map(r => (<tr key={r.item}><td style={{ ...cell, color: C.text, fontWeight: 600 }}>{r.item}</td><td style={{ ...cell, color: C.gold, fontFamily: F.mono }}>{r.amount}</td><td style={cell}>{r.note}</td></tr>))}
-            <tr><td style={{ ...cell, color: C.text, fontWeight: 700 }}>One-time subtotal</td><td style={{ ...cell, color: C.goldLight, fontFamily: F.mono, fontWeight: 700 }}>~$7,500–8,500</td><td style={cell}></td></tr>
+            <tr><td style={{ ...cell, color: C.text, fontWeight: 700 }}>One-time subtotal</td><td style={{ ...cell, color: C.goldLight, fontFamily: F.mono, fontWeight: 700 }}>$8,000</td><td style={cell}></td></tr>
           </tbody>
         </table>
 
@@ -136,12 +136,12 @@ export default function LaunchPlanPage() {
         <table style={{ width: '100%', borderCollapse: 'collapse', background: C.bg2, borderRadius: 12, overflow: 'hidden', marginBottom: 18 }}>
           <thead><tr><th style={cellHead}>Item</th><th style={cellHead}>Monthly</th><th style={cellHead}>Covers</th></tr></thead>
           <tbody>{MONTHLY.map(r => (<tr key={r.item}><td style={{ ...cell, color: C.text, fontWeight: 600 }}>{r.item}</td><td style={{ ...cell, color: C.gold, fontFamily: F.mono }}>{r.amount}</td><td style={cell}>{r.note}</td></tr>))}
-            <tr><td style={{ ...cell, color: C.text, fontWeight: 700 }}>Monthly subtotal</td><td style={{ ...cell, color: C.goldLight, fontFamily: F.mono, fontWeight: 700 }}>~$11,000–12,200/mo</td><td style={cell}></td></tr>
+            <tr><td style={{ ...cell, color: C.text, fontWeight: 700 }}>Monthly subtotal</td><td style={{ ...cell, color: C.goldLight, fontFamily: F.mono, fontWeight: 700 }}>$11,000/mo total</td><td style={cell}></td></tr>
           </tbody>
         </table>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px,1fr))', gap: 12, marginBottom: 16 }}>
-          {[['~$19K', 'Month 1 (setup + first month)'], ['~$11–12K', 'each month after'], ['~$40–45K', 'full 3-month lean test']].map(([n, l]) => (
+          {[['$19K', 'Month 1 (setup + first month)'], ['$11K', 'each month after'], ['~$41K', 'full 3-month lean test']].map(([n, l]) => (
             <div key={l} style={{ background: `linear-gradient(135deg, ${C.gold}22, ${C.bg3})`, border: `1px solid ${C.gold}55`, borderRadius: 10, padding: '14px 16px' }}>
               <div style={{ fontFamily: F.display, fontSize: 22, fontWeight: 800, color: C.gold }}>{n}</div>
               <div style={{ fontSize: 11.5, color: C.muted, marginTop: 4 }}>{l}</div>

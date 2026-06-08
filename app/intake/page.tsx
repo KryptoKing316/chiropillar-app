@@ -221,7 +221,7 @@ function qualify(s: FormState): { status: 'qualified' | 'maybe' | 'not_yet'; rea
     return {
       status: 'qualified',
       reasons,
-      pitch: 'You qualify. The ProMed VA team will reach out within 48 hours to walk you through the Virginia partnership — hosting a ProMed VA medical office in your space (monthly rent) plus commission on cash services, targeting +$250K in your first year, with a higher-multiple exit down the road. Have your last 2 years of P&Ls ready.',
+      pitch: 'You qualify. The ProMed VA team will reach out within 48 hours to walk you through the Virginia partnership — a $10K/mo base lease plus quarterly performance bonuses (as you hit the metrics, building toward ~$200K/yr) and commission on cash services, up to ~$250K, with a higher-multiple exit down the road. Have your last 2 years of P&Ls ready.',
     }
   }
 

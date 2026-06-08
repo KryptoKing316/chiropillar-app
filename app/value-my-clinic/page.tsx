@@ -576,7 +576,7 @@ export default function ValueMyClinicPage() {
                 </div>
               </div>
               <div style={{ marginTop: 16, padding: '14px 18px', background: `${C.gold}12`, border: `1px solid ${C.gold}30`, borderRadius: 10, fontSize: 13.5, color: C.textInk, lineHeight: 1.6 }}>
-                <strong style={{ color: C.spine }}>Plus ~$250,000/year in income</strong> while you partner — rent for hosting a ProMed VA medical office in your existing space, plus commission on cash services. You keep practicing; we monetize the value a standalone sale leaves on the table. <em style={{ color: '#7A859C' }}>Illustrative, based on the ProMed VA partnership model — not an offer.</em>
+                <strong style={{ color: C.spine }}>A $10K/mo base lease + quarterly performance bonuses</strong> (as your clinic hits the metrics, building toward ~$200K/yr), plus commission on cash services — <strong style={{ color: C.spine }}>up to ~$250,000/year</strong> while you keep practicing. We monetize the value a standalone sale leaves on the table. <em style={{ color: '#7A859C' }}>Illustrative, based on the ProMed VA partnership model — not an offer.</em>
               </div>
             </div>
 

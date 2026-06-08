@@ -56,7 +56,7 @@ export default function ProMedVALanding() {
           Add <span style={{ color: C.gold }}>a quarter million</span> to your annual income — doing exactly what you do today.
         </h1>
         <p style={{ fontSize: 19, color: '#C7D0E0', lineHeight: 1.6, maxWidth: 680, margin: '0 auto 32px' }}>
-          You built 20 years of patient relationships and community trust. Your accountant calls it nothing. We host a <strong style={{ color: C.text }}>ProMed VA medical office inside your existing clinic</strong> — you collect monthly rent plus commission on cash services, your patients get better diagnostics, and you finally have a real exit. No new techniques to learn.
+          You built 20 years of patient relationships and community trust. Your accountant calls it nothing. We host a <strong style={{ color: C.text }}>ProMed VA medical office inside your existing clinic</strong> — you collect a monthly base lease plus quarterly performance bonuses and commission on cash services, your patients get better diagnostics, and you finally have a real exit. No new techniques to learn.
         </p>
         <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
           <CTA href="/intake" primary>See if your practice qualifies →</CTA>
@@ -88,9 +88,10 @@ export default function ProMedVALanding() {
           {/* Phase 1 */}
           <div style={{ background: C.bg2, border: `1px solid rgba(201,168,76,0.3)`, borderRadius: 16, padding: '30px 28px' }}>
             <div style={{ fontFamily: F.mono, fontSize: 11, letterSpacing: '0.16em', color: C.gold, textTransform: 'uppercase', fontWeight: 800, marginBottom: 10 }}>Phase 1 · Lease (now)</div>
-            <h3 style={{ fontFamily: F.display, fontSize: 24, fontWeight: 700, margin: '0 0 14px' }}>~$250K/year, starting almost immediately</h3>
+            <h3 style={{ fontFamily: F.display, fontSize: 24, fontWeight: 700, margin: '0 0 14px' }}>Up to ~$250K/year, starting almost immediately</h3>
             <ul style={{ margin: 0, paddingLeft: 20, fontSize: 15, color: '#C7D0E0', lineHeight: 1.7 }}>
-              <li>You lease space inside your clinic to a ProMed VA <strong style={{ color: C.text }}>medical office</strong> — monthly rent in your pocket.</li>
+              <li>You lease space inside your clinic to a ProMed VA <strong style={{ color: C.text }}>medical office</strong> — a <strong style={{ color: C.text }}>$10K/mo base lease</strong> paid to you.</li>
+              <li><strong style={{ color: C.text }}>Quarterly performance bonuses</strong> (~$25K each) as your clinic hits the agreed metrics — building the base toward <strong style={{ color: C.text }}>~$200K/yr</strong>.</li>
               <li>Our medical team runs the diagnostics and treatments you can&apos;t (shockwave, regenerative, advanced diagnostics).</li>
               <li>You earn <strong style={{ color: C.text }}>commission on cash services</strong> your team helps deliver.</li>
               <li>You keep adjusting your patients exactly as you do today. Low risk, immediate income.</li>
