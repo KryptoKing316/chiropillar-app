@@ -3,6 +3,7 @@
 // Data: app/(dashboard)/analytics/vaChiros.ts (researched, verify before outreach).
 
 import { VA_CHIROS, type VACity, type VAChiro } from './vaChiros'
+import VirginiaTerrainMap from './VirginiaTerrainMap'
 
 export const dynamic = 'force-dynamic'
 
@@ -111,6 +112,9 @@ export default function VirginiaMapPage() {
           One dominant partner per city. Start with <strong style={{ color: C.gold }}>Charlottesville</strong> (Dr. Wagner&apos;s warm network) + one metro. The <strong style={{ color: C.gold }}>★ top recruit</strong> per city is the highest-rated, highest-volume <em>independent</em> (national chains like The Joint are flagged and skipped as partners).
         </p>
       </div>
+
+      {/* INTERACTIVE TERRAIN MAP */}
+      <VirginiaTerrainMap />
 
       {/* SUMMARY STRIP */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: 12, marginBottom: 22 }}>
