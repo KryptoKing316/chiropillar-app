@@ -31,7 +31,7 @@ const securityHeaders = [
       // Fonts from Google
       "font-src 'self' https://fonts.gstatic.com",
       // Images: self + data URIs + Unsplash + Pexels (CIM cover, mockups) + KB domains
-      "img-src 'self' data: blob: https://images.unsplash.com https://source.unsplash.com https://images.pexels.com https://kingdombroker.com https://www.kingdombroker.com",
+      "img-src 'self' data: blob: https://images.unsplash.com https://source.unsplash.com https://images.pexels.com https://kingdombroker.com https://www.kingdombroker.com https://*.tile.opentopomap.org https://*.basemaps.cartocdn.com https://server.arcgisonline.com",
       // API calls: self + Supabase
       "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://upstash.io",
       // No one can embed us in a frame

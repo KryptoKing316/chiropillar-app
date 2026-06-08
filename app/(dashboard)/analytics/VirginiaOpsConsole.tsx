@@ -5,6 +5,7 @@
 // (brand + stats + US locator inset), top-5 leaderboard, city rail + terrain map,
 // legend, footer. Leaflet loads from CDN at runtime (client-only).
 import { useEffect, useRef } from 'react'
+import 'leaflet/dist/leaflet.css'
 import { VA_CHIROS, type VAChiro } from './vaChiros'
 
 type Tier = 'primary' | 'test2' | 'scale' | 'tail'
@@ -66,26 +67,9 @@ export default function VirginiaOpsConsole() {
 
   useEffect(() => {
     let cancelled = false
-    async function ensureLeaflet() {
-      const w = window as any
-      if (w.L) return
-      if (!document.getElementById('leaflet-css')) {
-        const link = document.createElement('link')
-        link.id = 'leaflet-css'; link.rel = 'stylesheet'
-        link.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'
-        document.head.appendChild(link)
-      }
-      await new Promise<void>((resolve, reject) => {
-        const s = document.createElement('script')
-        s.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'
-        s.async = true; s.onload = () => resolve(); s.onerror = () => reject(new Error('leaflet'))
-        document.body.appendChild(s)
-      })
-    }
-
-    ensureLeaflet().then(() => {
+    import('leaflet').then((mod) => {
+      const L: any = (mod as any).default ?? mod
       if (cancelled || !mapEl.current || mapRef.current) return
-      const L = (window as any).L
       const terrain = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', { maxZoom: 17, subdomains: ['a', 'b', 'c'], attribution: '© OpenTopoMap (CC-BY-SA) · © OpenStreetMap' })
       const sat = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', { maxZoom: 18, attribution: 'Imagery © Esri' })
       const dark = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', { maxZoom: 19, subdomains: 'abcd', attribution: '© CARTO · © OpenStreetMap' })
