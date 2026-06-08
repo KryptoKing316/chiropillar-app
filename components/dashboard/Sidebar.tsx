@@ -371,20 +371,15 @@ const ICONS: Record<string, React.ReactNode> = {
 // Lean nav focused on the chiropractor roll-up workflow.
 // Live surfaces: Walkthrough + Intake Submissions + Deal Calculator
 // "Soon" badge = wired in the nav, placeholder page for the Loom
+// Focused nav — what Dr. Wagner cares about for the Virginia test.
+// Everything operational/internal is gated to Eric below (ERIC_OPS).
 const NAV = [
-  { href: '/walkthrough',  label: 'Self-Demo Guide',      badge: 'Live' },
-  { href: '/overview',     label: 'Overview',             badge: 'Live' },
-  { href: '/leads',        label: 'Deal Pipeline · CRM',  badge: 'Live' },
-  { href: '/targets',      label: 'Intake Submissions'                  },
-  { href: '/calculator',   label: 'Deal Calculator'                     },
-  { href: '/analytics',    label: 'Analytics',            badge: 'Live' },
-  { href: '/valuation',    label: 'AI Valuation · P&L',   badge: 'Live' },
-  { href: '/pipeline',     label: 'Acquisition Pipeline', badge: 'Live' },
-  { href: '/data-room',    label: 'Data Room',            badge: 'Live' },
-  { href: '/nda-loi',      label: 'NDAs & LOIs',          badge: 'Soon' },
-  { href: '/scale',        label: 'Scale Services',       badge: 'Live' },
-  { href: '/launch-plan',  label: '24-Mo Launch Plan',    badge: 'NEW'  },
-  { href: '/outreach',     label: 'Outreach Campaigns',   badge: 'Soon' },
+  { href: '/overview',     label: 'Overview',          badge: 'Live' },
+  { href: '/launch-plan',  label: 'Launch Plan',       badge: 'NEW'  },
+  { href: '/analytics',    label: 'Virginia Map',      badge: 'Live' },
+  { href: '/pipeline',     label: 'Partner Pipeline',  badge: 'Live' },
+  { href: '/calculator',   label: 'Deal Calculator'                  },
+  { href: '/data-room',    label: 'Data Room',         badge: 'Live' },
 ]
 
 // ── Quick Actions · pinned to top of sidebar ─────────────────────────────────
@@ -414,10 +409,18 @@ const QUICK_ACTIONS = [
   },
 ]
 
-// Admin-only surfaces · Eric / Wagner / McGrath
-const ADMIN_DEMOS: Array<{ href: string; label: string; ericOnly?: boolean }> = [
-  { href: '/agents',       label: 'Agent Center'                       },
-  { href: '/admin',        label: 'Admin Panel'                        },
+// Eric-only operational surfaces — hidden from Dr. Wagner's focused view.
+// Gated by isEricOnly so the principal sees a clean, decision-focused sidebar.
+const ERIC_OPS: Array<{ href: string; label: string }> = [
+  { href: '/walkthrough',  label: 'Self-Demo Guide'     },
+  { href: '/leads',        label: 'Deal Pipeline · CRM' },
+  { href: '/targets',      label: 'Intake Submissions'  },
+  { href: '/valuation',    label: 'AI Valuation · P&L'  },
+  { href: '/scale',        label: 'Scale Services'      },
+  { href: '/nda-loi',      label: 'NDAs & LOIs'         },
+  { href: '/outreach',     label: 'Outreach Campaigns'  },
+  { href: '/agents',       label: 'Agent Center'        },
+  { href: '/admin',        label: 'Admin Panel'         },
 ]
 
 
@@ -563,12 +566,12 @@ export default function Sidebar({ userEmail, isDemo, isAdmin, isEricOnly }: { us
           )
         })}
 
-        {/* Admin nav · Eric/Wagner/McGrath only (Agent Center + Admin Panel) */}
-        {isAdmin && (
+        {/* Eric-only ops + admin · hidden from Dr. Wagner's focused view */}
+        {isEricOnly && (
           <>
             <div style={{ margin: '10px 14px 8px', borderTop: '1px solid var(--kb-border)' }} />
-            <div style={{ padding: '4px 12px 6px', fontSize: '11px', color: 'var(--kb-text-muted)', letterSpacing: '0.08em', textTransform: 'uppercase', fontWeight: 510 }}>Admin</div>
-            {ADMIN_DEMOS.filter(item => !item.ericOnly || isEricOnly).map(({ href, label }) => (
+            <div style={{ padding: '4px 12px 6px', fontSize: '11px', color: 'var(--kb-text-muted)', letterSpacing: '0.08em', textTransform: 'uppercase', fontWeight: 510 }}>Eric · Ops &amp; Admin</div>
+            {ERIC_OPS.map(({ href, label }) => (
               <Link key={href} href={href} style={{ textDecoration: 'none' }}>
                 <div style={{
                   display: 'flex', alignItems: 'center', gap: '10px',

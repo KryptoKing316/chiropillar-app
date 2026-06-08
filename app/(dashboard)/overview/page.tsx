@@ -68,51 +68,46 @@ type OverviewData = {
 }
 
 const MOCK: OverviewData = {
-  totalIntakes:    47,
-  qualified:       21,
-  maybe:           14,
-  notYet:          12,
-  pipelineEbitda:  9_800_000,
-  activeOutreach:  31,
-  thisWeek:        8,
-  states:          10,
+  totalIntakes:    16,
+  qualified:       6,
+  maybe:           5,
+  notYet:          5,
+  pipelineEbitda:  8_500_000,
+  activeOutreach:  9,
+  thisWeek:        5,
+  states:          1,
   topDeals: [
-    { name: 'Piedmont Spine & Wellness',  city: 'Charlottesville', state: 'VA', status: 'In Diligence', valuation: 1_900_000, npm: 78, daysIn: 14 },
-    { name: 'Dallas Alignment & Sport',   city: 'Plano',           state: 'TX', status: 'In Diligence', valuation: 2_350_000, npm: 88, daysIn: 11 },
-    { name: 'Savannah Spine Group',       city: 'Savannah',        state: 'GA', status: 'In Diligence', valuation: 2_050_000, npm: 72, daysIn: 9  },
-    { name: 'Richmond Spine Center',      city: 'Richmond',        state: 'VA', status: 'Called',       valuation: 1_550_000, npm: 61, daysIn: 5  },
-    { name: 'Blue Ridge Chiropractic',    city: 'Roanoke',         state: 'VA', status: 'Scheduled',    valuation: 1_350_000, npm: 52, daysIn: 4  },
-    { name: 'Tampa Bay Spine Care',       city: 'Tampa',           state: 'FL', status: 'Called',       valuation: 1_300_000, npm: 49, daysIn: 6  },
+    { name: 'Piedmont Spine & Wellness',      city: 'Charlottesville', state: 'VA', status: 'Discovery booked', valuation: 1_900_000, npm: 78, daysIn: 6 },
+    { name: 'Blue Ridge Family Chiropractic', city: 'Charlottesville', state: 'VA', status: 'Qualified',        valuation: 1_450_000, npm: 44, daysIn: 3 },
+    { name: 'Richmond Spine Center',          city: 'Richmond',        state: 'VA', status: 'Discovery booked', valuation: 1_550_000, npm: 61, daysIn: 5 },
+    { name: 'Capital Chiropractic & Rehab',   city: 'Richmond',        state: 'VA', status: 'Qualified',        valuation: 1_350_000, npm: 52, daysIn: 4 },
+    { name: 'River City Spine & Sport',       city: 'Richmond',        state: 'VA', status: 'Applied',          valuation: 1_200_000, npm: 38, daysIn: 2 },
   ],
   activity: [
-    { kind: 'apply',     text: 'Dr. Marcus Bell · Piedmont Spine submitted intake — qualified',           ago: '4h',  tone: '#2ECC8B' },
-    { kind: 'call',      text: 'McGrath logged call with Dr. Brandon Cooper (Dallas Alignment) — 42 min', ago: '7h',  tone: '#2E75B6' },
-    { kind: 'qualified', text: 'Dr. Anika Patel · Richmond Spine moved to Called',                         ago: '11h', tone: '#9CC4E4' },
-    { kind: 'note',      text: 'Wagner: "Dallas + Richmond should pair on same LOI. Mirror clinic ops."', ago: '18h', tone: '#C9A84C' },
-    { kind: 'apply',     text: 'Dr. Daniel Ortiz · Nashville Alignment submitted intake — qualified',     ago: '1d',  tone: '#2ECC8B' },
-    { kind: 'loi',       text: 'Dr. Robert Hayes · Savannah Spine LOI drafted — sent to legal',           ago: '2d',  tone: '#C9A84C' },
-    { kind: 'apply',     text: '8 new intake submissions this week · TX, VA, FL clustering',              ago: '2d',  tone: '#2ECC8B' },
+    { kind: 'apply',     text: 'Dr. Marcus Bell · Piedmont Spine (Charlottesville) submitted intake — qualified', ago: '4h',  tone: '#2ECC8B' },
+    { kind: 'call',      text: 'McGrath booked discovery call with Dr. Anika Patel (Richmond Spine) — Thursday', ago: '7h',  tone: '#2E75B6' },
+    { kind: 'qualified', text: 'Blue Ridge Family Chiropractic (Charlottesville) moved to Qualified',            ago: '11h', tone: '#9CC4E4' },
+    { kind: 'note',      text: 'Wagner: "Charlottesville is the wedge — sign one strong partner, then Richmond."', ago: '18h', tone: '#C9A84C' },
+    { kind: 'apply',     text: 'Capital Chiropractic & Rehab (Richmond) submitted intake — qualified',           ago: '1d',  tone: '#2ECC8B' },
+    { kind: 'apply',     text: '5 new applications this week · Charlottesville + Richmond',                      ago: '2d',  tone: '#2ECC8B' },
   ],
   // 12-week trajectories (rising-trend mockups)
-  sparkIntakes:   [1, 2, 2, 3, 4, 4, 5, 6, 6, 7, 8, 8],
-  sparkQualified: [0, 1, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5],
-  sparkPipeline:  [0.4, 1.2, 1.8, 2.6, 3.4, 4.5, 5.6, 6.4, 7.2, 8.0, 8.9, 9.8],
-  sparkOutreach:  [3, 5, 7, 11, 13, 15, 18, 21, 24, 26, 28, 31],
-  sparkConv:      [25, 28, 32, 35, 37, 39, 41, 42, 43, 44, 44, 45],
+  sparkIntakes:   [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5],
+  sparkQualified: [0, 0, 0, 1, 1, 1, 2, 2, 3, 3, 3, 4],
+  sparkPipeline:  [0.0, 0.4, 0.9, 1.5, 2.4, 3.3, 4.4, 5.4, 6.4, 7.2, 8.0, 8.5],
+  sparkOutreach:  [0, 1, 2, 3, 4, 5, 6, 6, 7, 8, 9, 9],
+  sparkConv:      [20, 25, 28, 30, 32, 34, 35, 36, 37, 37, 38, 38],
   byState: [
-    { state: 'VA', count: 14 }, { state: 'TX', count: 9 }, { state: 'FL', count: 7 },
-    { state: 'NC', count: 5 },  { state: 'GA', count: 4 }, { state: 'SC', count: 3 },
-    { state: 'TN', count: 2 },  { state: 'AL', count: 1 }, { state: 'KY', count: 1 }, { state: 'MD', count: 1 },
+    { state: 'VA', count: 16 },
   ],
   alerts: [
-    { level: 'urgent', text: 'Piedmont Spine · D+14 in Diligence — legal review overdue 2 days' },
-    { level: 'urgent', text: 'Savannah LOI awaiting Wagner countersign · sent 18h ago' },
-    { level: 'watch',  text: 'Richmond Spine · 11h since last contact · McGrath to call' },
-    { level: 'watch',  text: 'Orlando intake unqualified · needs $1/day marketing playbook outreach' },
-    { level: 'ok',     text: 'Dallas Alignment financials clean · proceeding to LOI Thursday' },
-    { level: 'ok',     text: 'Nashville + Tampa both hit 40+/mo new-patient floor' },
+    { level: 'urgent', text: 'Piedmont Spine (Charlottesville) · discovery call booked — Wagner to join' },
+    { level: 'watch',  text: 'Richmond Spine · 11h since last contact · McGrath to follow up' },
+    { level: 'watch',  text: 'Charlottesville ad set learning-phase · cost-per-app still settling' },
+    { level: 'ok',     text: 'Blue Ridge + Capital both clear the 25+/mo new-patient floor' },
+    { level: 'ok',     text: 'Value My Clinic tool live · driving top-of-funnel in both test cities' },
   ],
-  vitals: { ok: 12, watch: 4, urgent: 2 },
+  vitals: { ok: 8, watch: 3, urgent: 1 },
   isMockup: true,
 }
 
@@ -236,23 +231,17 @@ const WAGNER_SECONDARY = new Set(['TX', 'FL', 'NC', 'SC', 'GA', 'TN', 'KY', 'WV'
 export default async function OverviewPage() {
   const d = await loadOverview()
 
-  const wagnerBase   = 25_000_000
-  const chiroTarget  = 20_000_000
-  const platformGoal = wagnerBase + chiroTarget
-  const combined     = wagnerBase + d.pipelineEbitda
-  const progress     = (combined / platformGoal) * 100
-  const closedSoFar  = 0  // closed deals · live # later
+  const closedSoFar  = 0  // signed partners · live # later
   const conversion   = d.totalIntakes ? Math.round((d.qualified / d.totalIntakes) * 100) : 0
 
-  // Funnel calculations
+  // Funnel — lease-first, two-city test scale
   const funnel = [
-    { label: 'Landed on /intake',    count: 1240, pct: 100, color: C.globe   },
-    { label: 'Submitted application', count: 47,  pct: (47/1240)*100*20, color: C.align   },
-    { label: 'Qualified',             count: 21,  pct: (21/47)*100*0.8,  color: C.green   },
-    { label: 'In active outreach',    count: 31,  pct: (31/47)*100*0.7,  color: C.gold    },
-    { label: 'In Diligence',          count: 4,   pct: (4/21)*100*0.4,   color: C.goldLight },
-    { label: 'LOI / Offer',           count: 1,   pct: (1/4)*100*0.2,    color: C.coral   },
-    { label: 'Closed',                count: closedSoFar, pct: 0,        color: C.red     },
+    { label: 'Value My Clinic visits',   count: 420, pct: 100,               color: C.globe    },
+    { label: 'Submitted application',     count: 16,  pct: (16/420)*100*22,   color: C.align    },
+    { label: 'Qualified',                 count: 6,   pct: (6/16)*100*0.8,    color: C.green    },
+    { label: 'Discovery call booked',     count: 4,   pct: (4/16)*100*0.7,    color: C.gold     },
+    { label: 'Lease partner (Phase 1)',   count: 1,   pct: (1/6)*100*0.45,    color: C.goldLight },
+    { label: 'Acquisition (Phase 2)',     count: closedSoFar, pct: 4,         color: C.coral    },
   ]
 
   return (
@@ -265,10 +254,10 @@ export default async function OverviewPage() {
             Command Center · {new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}
           </div>
           <h1 style={{ fontFamily: F.display, fontSize: 'clamp(34px, 4.5vw, 48px)', fontWeight: 700, margin: '0 0 6px', letterSpacing: '-0.02em' }}>
-            ProMed VA at a glance.
+            The Virginia test at a glance.
           </h1>
           <p style={{ fontSize: 16, color: '#FFFFFF', margin: 0, maxWidth: 760, lineHeight: 1.6, fontWeight: 400 }}>
-            Family-office view of the chiropractic roll-up. Vital signs, funnel, EBITDA tracker, and triage alerts — read it like a clinical chart.
+            The ProMed VA two-city Virginia test — the offer, the funnel, and what needs your attention. Charlottesville first, then one metro. One dominant partner per city.
           </p>
         </div>
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: 7, padding: '7px 14px', borderRadius: 999, background: 'rgba(46,204,139,0.12)', border: '1px solid rgba(46,204,139,0.30)', fontFamily: F.mono, fontSize: 11, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 800, color: C.green }}>
@@ -304,56 +293,31 @@ export default async function OverviewPage() {
         <TriageStat level="ok"     count={d.vitals.ok}     label="OK"     sub="No action required" />
       </div>
 
-      {/* ── PLATFORM EBITDA BUILD-UP (the family-office prize) ────────── */}
-      <div style={{
-        background: `linear-gradient(135deg, rgba(201,168,76,0.08), ${C.bg2})`,
-        border: `1px solid rgba(201,168,76,0.25)`, borderRadius: 14,
-        padding: '28px 32px', marginBottom: 24,
-        boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
-      }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 22, flexWrap: 'wrap', gap: 12 }}>
-          <div>
-            <div style={{ fontFamily: F.mono, fontSize: 12.5, color: C.gold, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 6 }}>
-              ★ Combined Platform EBITDA · build-up to $45M
-            </div>
-            <div style={{ fontFamily: F.display, fontSize: 24, fontWeight: 700, color: C.text, letterSpacing: '-0.01em' }}>
-              Wagner $25M + ProMed VA pipeline + remaining target.
-            </div>
-          </div>
-          <div style={{ textAlign: 'right' }}>
-            <div style={{ fontFamily: F.display, fontSize: 36, fontWeight: 800, color: C.gold, lineHeight: 1, letterSpacing: '-0.02em' }}>
-              {fmtMoney(combined)}
-            </div>
-            <div style={{ fontFamily: F.mono, fontSize: 12, color: C.goldLight, letterSpacing: '0.06em', fontWeight: 700, marginTop: 4 }}>{progress.toFixed(0)}% of $45M target</div>
-          </div>
+      {/* ── THE OFFER · what Dr. Wagner pitches the chiropractor ───────── */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 18, marginBottom: 24 }} className="kb-overview-grid">
+        <div style={{ background: `linear-gradient(135deg, rgba(201,168,76,0.10), ${C.bg2})`, border: `1px solid rgba(201,168,76,0.30)`, borderLeft: `4px solid ${C.gold}`, borderRadius: 14, padding: '24px 28px' }}>
+          <div style={{ fontFamily: F.mono, fontSize: 12, color: C.gold, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 8 }}>The first offer · Lease</div>
+          <div style={{ fontFamily: F.display, fontSize: 22, fontWeight: 700, color: C.text, marginBottom: 10, letterSpacing: '-0.01em' }}>Lease their spare square footage.</div>
+          <p style={{ fontSize: 14.5, color: '#FFFFFF', lineHeight: 1.6, margin: 0, opacity: 0.9 }}>ProMed VA leases space inside the clinic for a medical office — <strong style={{ color: C.gold }}>~$200K/yr rent + commission on cash services</strong> (up to ~$250K/yr to the chiropractor). Our medical team runs the diagnostics; they keep practicing exactly as they do. Low-risk, immediate income — the easy yes.</p>
         </div>
+        <div style={{ background: `linear-gradient(135deg, rgba(46,204,139,0.10), ${C.bg2})`, border: `1px solid rgba(46,204,139,0.30)`, borderLeft: `4px solid ${C.green}`, borderRadius: 14, padding: '24px 28px' }}>
+          <div style={{ fontFamily: F.mono, fontSize: 12, color: C.green, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 8 }}>The partner offer · Acquire</div>
+          <div style={{ fontFamily: F.display, fontSize: 22, fontWeight: 700, color: C.text, marginBottom: 10, letterSpacing: '-0.01em' }}>Then buy at a real number.</div>
+          <p style={{ fontSize: 14.5, color: '#FFFFFF', lineHeight: 1.6, margin: 0, opacity: 0.9 }}>After the lease proves the fit, acquire at <strong style={{ color: C.green }}>50% cash down + 50% seller financing, plus 4% profit sharing</strong> — at a platform multiple that finally monetizes the goodwill a standalone sale ignores.</p>
+        </div>
+      </div>
 
-        {/* Stacked bar */}
-        <div style={{ position: 'relative', height: 36, background: 'rgba(255,255,255,0.04)', borderRadius: 8, overflow: 'hidden' }}>
-          <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: `${(wagnerBase / platformGoal) * 100}%`, background: `linear-gradient(90deg, ${C.align}, ${C.spine})` }} />
-          <div style={{ position: 'absolute', left: `${(wagnerBase / platformGoal) * 100}%`, top: 0, bottom: 0, width: `${(d.pipelineEbitda / platformGoal) * 100}%`, background: `linear-gradient(90deg, ${C.gold}, ${C.goldLight})` }} />
-          <div style={{ position: 'absolute', right: 0, top: 0, bottom: 0, width: 2, background: C.gold, boxShadow: `0 0 10px ${C.gold}` }} />
-          {/* labels */}
-          <div style={{ position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)', fontSize: 11, fontFamily: F.mono, color: '#FFF', fontWeight: 700, letterSpacing: '0.06em', textShadow: '0 1px 2px rgba(0,0,0,0.5)' }}>
-            WAGNER · $25M
-          </div>
-          <div style={{ position: 'absolute', left: `${((wagnerBase + d.pipelineEbitda / 2) / platformGoal) * 100}%`, top: '50%', transform: 'translate(-50%, -50%)', fontSize: 10, fontFamily: F.mono, color: '#0B1B3E', fontWeight: 800 }}>
-            +{fmtMoney(d.pipelineEbitda)}
-          </div>
+      {/* ── THE TWO-CITY TEST · goals ──────────────────────────────────── */}
+      <div style={{ background: `linear-gradient(135deg, rgba(46,117,182,0.10), ${C.bg3})`, border: `1px solid rgba(46,117,182,0.30)`, borderRadius: 14, padding: '24px 28px', marginBottom: 24 }}>
+        <div style={{ fontFamily: F.mono, fontSize: 12.5, color: C.align, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 6 }}>The test · Virginia, two cities</div>
+        <div style={{ fontFamily: F.display, fontSize: 22, fontWeight: 700, color: C.text, marginBottom: 16, letterSpacing: '-0.01em' }}>Charlottesville first, then one metro. One dominant partner per city.</div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px,1fr))', gap: 14 }}>
+          <Sub label="Test cities"          val="2 · CVille + metro" color={C.gold} />
+          <Sub label="Apps per city goal"   val="10–20"              color={C.align} />
+          <Sub label="Partners to start"    val="1 signed"           color={C.green} />
+          <Sub label="Cost / qualified app" val="~$450"              color={C.goldLight} />
         </div>
-        <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 10, fontFamily: F.mono, fontSize: 12, color: '#FFFFFF', fontWeight: 600 }}>
-          <span>$0</span>
-          <span style={{ color: C.gold, fontWeight: 700 }}>$45M target</span>
-        </div>
-
-        {/* Side stats */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: 14, marginTop: 18 }}>
-          <Sub label="Wagner base"           val={fmtMoney(wagnerBase)}         color={C.align}      />
-          <Sub label="ProMed VA pipeline"  val={fmtMoney(d.pipelineEbitda)}   color={C.gold}       />
-          <Sub label="Combined total"        val={fmtMoney(combined)}            color={C.text}       />
-          <Sub label="To $45M target"        val={fmtMoney(Math.max(0, platformGoal - combined))} color={C.coral} />
-          <Sub label="Implied exit @ 9×"     val={fmtMoney(combined * 9)}        color={C.goldLight}  />
-        </div>
+        <p style={{ fontSize: 13, color: '#FFFFFF', opacity: 0.82, marginTop: 14, marginBottom: 0 }}>Ads + owned-list outreach point to the free <strong style={{ color: C.gold }}>Value My Clinic</strong> tool → intake → discovery call → lease partner. Concentrate the budget on the two cities — don&apos;t spread it across all 11.</p>
       </div>
 
       {/* ── 2-COL: Funnel pyramid (left) + Trajectory chart (right) ──── */}
@@ -464,10 +428,10 @@ export default async function OverviewPage() {
         {/* Geo mini-map */}
         <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, padding: '22px 24px', boxShadow: '0 4px 16px rgba(0,0,0,0.12)' }}>
           <div style={{ fontFamily: F.mono, fontSize: 12.5, color: C.align, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 6 }}>
-            Geography · Wagner footprint
+            Virginia · application clusters
           </div>
           <div style={{ fontFamily: F.display, fontSize: 20, fontWeight: 700, color: C.text, marginBottom: 18, letterSpacing: '-0.01em' }}>
-            Where applications are coming from.
+            Concentrated on the two test cities.
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
             {d.byState.slice(0, 8).map(s => {
@@ -532,12 +496,12 @@ export default async function OverviewPage() {
           <div style={{ fontFamily: F.mono, fontSize: 12.5, color: C.gold, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 18 }}>
             Quick actions
           </div>
-          <QuickAction href="/targets"    label="Intake Submissions" desc={`${d.totalIntakes} applications · ${d.qualified} qualified`} accent={C.green} />
-          <QuickAction href="/calculator" label="Deal Calculator"    desc="Drag sliders · live roll-up math" accent={C.align} />
-          <QuickAction href="/valuation"  label="AI Valuation Engine" desc="Per-clinic valuation · 3-step input wizard" accent={C.gold} />
-          <QuickAction href="/analytics"  label="Analytics + Geo Map" desc={`${d.states} states · Wagner-aligned heatmap`} accent={C.goldLight} />
-          <QuickAction href="/pipeline"   label="Acquisition Pipeline" desc="Kanban + Bloomberg-style audit timeline" accent={C.globe} />
-          <QuickAction href="/data-room"  label="Data Room" desc="4 strategy PDFs · drop financials for AI extraction" accent={C.coral} />
+          <QuickAction href="/value-my-clinic" label="Value My Clinic (ad target)" desc="Free valuation tool — where the ads + emails point" accent={C.gold} />
+          <QuickAction href="/launch-plan" label="Launch Plan"     desc="The plan, team, test budget + performance bonuses" accent={C.green} />
+          <QuickAction href="/analytics"   label="Virginia Map"    desc="Two-city targets · one dominant DC per city" accent={C.align} />
+          <QuickAction href="/pipeline"    label="Partner Pipeline" desc="Lease → prove fit → acquire" accent={C.globe} />
+          <QuickAction href="/calculator"  label="Deal Calculator" desc="The partner offer math" accent={C.goldLight} />
+          <QuickAction href="/data-room"   label="Data Room"       desc="Exec summary · ICP + ad copy · rollout + KPIs · budget" accent={C.coral} />
         </div>
       </div>
 
