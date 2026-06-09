@@ -85,24 +85,24 @@ const PACKAGES: Package[] = [
     key: 'medical-install',
     category: 'Done-with-you · 90 days',
     name: 'Medical-Team Installation',
-    tagline: 'We install Wagner\'s medical-operator playbook in your practice.',
+    tagline: 'We install the PROMEDVA medical-operator playbook in your practice.',
     priceLabel: '$25,000–$50,000',
     priceLow: 25_000, priceHigh: 50_000,
     duration: '90 days',
     format: 'On-site + weekly coaching',
-    deliverable: 'Fully operational medical-team add-on at end of 90 days. Targeting +$250K EBITDA in year 1.',
+    deliverable: 'Fully operational medical-team add-on at end of 90 days. Targeting ~$250K in new practice growth in year 1 (illustrative).',
     audience: 'DCs hitting 40+ new patients/mo who want the diagnostic billing + medical-team line WITHOUT selling. Keep 100% ownership, add a revenue line.',
     features: [
       'MD/NP hiring + credentialing handled',
       'Diagnostic billing setup (Medicare codes + commercial)',
       'EMR + practice management integration',
       'Compliance + malpractice coverage walk-through',
-      'Weekly 1-on-1 with Wagner for 90 days',
+      'Weekly 1-on-1 with the medical operator for 90 days',
       'Patient-flow scripts + handoff protocols',
-      'Targeting +$250K EBITDA lift in year 1, +$400K by year 3',
+      'Targeting ~$250K in new practice growth in year 1 (illustrative)',
     ],
     accent: '#C9A84C',
-    badge: '⭐ Wagner signature',
+    badge: '⭐ Signature program',
   },
   {
     key: 'mastermind',
@@ -276,7 +276,7 @@ export default function ScaleServicesPage() {
           <Reason
             num="03"
             title="Demonstrates the playbook works"
-            body="Every Medical-Team Installation that delivers +$250K EBITDA in year 1 is proof the PROMEDVA acquisition thesis is real. Documented results become acquisition collateral."
+            body="Every Medical-Team Installation that delivers ~$250K in new practice growth in year 1 is proof the PROMEDVA partnership thesis is real. Documented results become acquisition collateral."
             accent={C.green}
           />
         </div>
