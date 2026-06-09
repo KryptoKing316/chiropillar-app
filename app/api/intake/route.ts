@@ -1,6 +1,6 @@
-// ProMed VA Intake API · POST /api/intake
+// PROMEDVA Intake API · POST /api/intake
 // Receives chiropractor partner-application submissions from /intake
-// and writes to chiropillar_targets in the ProMed VA Supabase project.
+// and writes to chiropillar_targets in the PROMEDVA Supabase project.
 //
 // Spec: Dr. Scott Wagner intake form (see app/intake/page.tsx for the 7 metrics)
 

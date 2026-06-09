@@ -1,4 +1,4 @@
-// ProMed VA · Data Room
+// PROMEDVA · Data Room
 // Live PDF library for Wagner/McGrath/Eric — the canonical strategy
 // documents are stored under /public/data-room/ and rendered here with
 // view + download links. Above the library: clinic-financials upload
@@ -28,7 +28,7 @@ const DOCS: Doc[] = [
     fileName: 'ProMedVA_Executive_Summary_VA_Plan.pdf',
     href: '/data-room/ProMedVA_Executive_Summary_VA_Plan.pdf',
     oneLiner: 'The whole model on a few pages — lease now, acquire later.',
-    paragraph: 'How ProMed VA turns a chiropractor\'s overlooked goodwill into a quarter-million-a-year partnership and, eventually, a real exit. The goodwill trap, the two-phase model (Phase 1 lease: $10K/mo base + quarterly performance bonuses on hitting the metrics → ~$200K/yr + cash-service commission, up to ~$250K; Phase 2 acquire at 50% cash / 50% seller note + 4% profit share at a platform multiple), why Virginia first, and the lean Kingdom-Broker-managed two-city test.',
+    paragraph: 'How PROMEDVA turns a chiropractor\'s overlooked goodwill into a quarter-million-a-year partnership and, eventually, a real exit. The goodwill trap, the two-phase model (Phase 1 lease: $10K/mo base + quarterly performance bonuses on hitting the metrics → ~$200K/yr + cash-service commission, up to ~$250K; Phase 2 acquire at 50% cash / 50% seller note + 4% profit share at a platform multiple), why Virginia first, and the lean Kingdom-Broker-managed two-city test.',
     category: 'thesis',
     accent: '#C9A84C',
     cover: '/data-room/cover-exec.svg',
@@ -64,7 +64,7 @@ const DOCS: Doc[] = [
     fileName: 'ProMedVA_Test_Engagement_and_Budget.pdf',
     href: '/data-room/ProMedVA_Test_Engagement_and_Budget.pdf',
     oneLiner: 'The budget to get the first chiropractor office onboard — and the terms.',
-    paragraph: 'The lean two-city test budget — a one-time $8K setup (platform/funnels already built + video) folded into month 1, then $5K/mo ads, lists/tooling, the team Eric hires, and a $3K/mo Kingdom Broker management fee. $19K month 1, then $11K/mo total. Plus Day-30/60 milestone off-ramps, objective Exhibit A definitions, and a success fee on signed lease partners (split — half on signing, half once the partnership goes live). Acquisition (Phase 2) kept separate: a one-time 4%-of-acquisition-value fee only if ProMed VA later acquires a clinic.',
+    paragraph: 'The lean two-city test budget — a one-time $8K setup (platform/funnels already built + video) folded into month 1, then $5K/mo ads, lists/tooling, the team Eric hires, and a $3K/mo Kingdom Broker management fee. $19K month 1, then $11K/mo total. Plus Day-30/60 milestone off-ramps, objective Exhibit A definitions, and a success fee on signed lease partners (split — half on signing, half once the partnership goes live). Acquisition (Phase 2) kept separate: a one-time 4%-of-acquisition-value fee only if PROMEDVA later acquires a clinic.',
     category: 'brand',
     accent: '#2ECC8B',
     cover: '/data-room/cover-budget.svg',
@@ -98,7 +98,7 @@ export default function DataRoomPage() {
           color: '#9CC4E4', marginBottom: 22,
         }}>
           <span style={{ width: 8, height: 8, borderRadius: 999, background: '#9CC4E4', boxShadow: '0 0 8px #9CC4E4' }} />
-          ProMed VA · Data Room
+          PROMEDVA · Data Room
         </div>
 
         <h1 style={{
@@ -113,7 +113,7 @@ export default function DataRoomPage() {
           fontSize: 17, lineHeight: 1.6, maxWidth: 780,
           color: '#FFFFFF', margin: 0, fontWeight: 400,
         }}>
-          Upload clinic financials, connect QuickBooks, or download the canonical ProMed VA strategy documents. Per-clinic acquisition rooms ship in Phase 3.
+          Upload clinic financials, connect QuickBooks, or download the canonical PROMEDVA strategy documents. Per-clinic acquisition rooms ship in Phase 3.
         </p>
       </div>
 

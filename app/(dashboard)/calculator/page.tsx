@@ -1,6 +1,6 @@
 'use client'
 
-// ProMed VA · Deal Calculator (authenticated, admin view)
+// PROMEDVA · Deal Calculator (authenticated, admin view)
 // Ported from the static HTML version at KingdomBroker.com/chiropractor.
 // This version supports the "Hide Rollup" toggle — when ON, the screen
 // shows ONLY the conservative single-office seller payout (what a
@@ -46,7 +46,7 @@ const PROFILES: Record<Profile, {
   band_text: string;
   note: string;
 }> = {
-  solo:     { label: 'SDE multiple',    pmult_min: 1.0, pmult_max: 2.1, pmult_step: 0.1,  pmult_default: 1.5, ebitda_default: 200,  uplift_default: 100, display_name: 'Solo-DC Owner-Operator', band_text: '1.0× · 1.5× · 2.1× SDE',  note: 'Most ProMed VA targets · retiring DC' },
+  solo:     { label: 'SDE multiple',    pmult_min: 1.0, pmult_max: 2.1, pmult_step: 0.1,  pmult_default: 1.5, ebitda_default: 200,  uplift_default: 100, display_name: 'Solo-DC Owner-Operator', band_text: '1.0× · 1.5× · 2.1× SDE',  note: 'Most PROMEDVA targets · retiring DC' },
   multi:    { label: 'SDE multiple',    pmult_min: 2.0, pmult_max: 4.0, pmult_step: 0.1,  pmult_default: 3.0, ebitda_default: 400,  uplift_default: 150, display_name: 'Multi-DC / Membership',    band_text: '2.0× · 3.0× · 4.0× SDE',  note: 'Associate in place · recurring revenue' },
   platform: { label: 'EBITDA multiple', pmult_min: 5.0, pmult_max: 10.0,pmult_step: 0.25, pmult_default: 7.5, ebitda_default: 1000, uplift_default: 200, display_name: 'Platform / Multi-Location', band_text: '5× · 7.5× · 10× EBITDA', note: '$1M+ EBITDA · clean books · scale' },
 }
@@ -141,7 +141,7 @@ export default function CalculatorPage() {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 28, flexWrap: 'wrap', gap: 20 }}>
           <div>
             <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, letterSpacing: '0.22em', color: '#2E75B6', textTransform: 'uppercase', fontWeight: 700, marginBottom: 8 }}>
-              ProMed VA · Deal Calculator
+              PROMEDVA · Deal Calculator
             </div>
             <h1 style={{ fontFamily: 'Georgia, serif', fontSize: isMobile ? 24 : 36, fontWeight: 700, color: '#1F4E79', margin: 0, letterSpacing: '-0.02em', lineHeight: 1.1 }}>
               Seller Payout × Platform Returns
@@ -273,14 +273,14 @@ export default function CalculatorPage() {
                   </div>
                 </div>
 
-                <OutH>What ProMed VA partnership can do for you</OutH>
+                <OutH>What PROMEDVA partnership can do for you</OutH>
                 <Row lbl="Your current revenue (illustrative)" val={fmtMoney(ebitda$ * 4)} />
-                <Row lbl="With ProMed VA medical-team partnership" val={fmtMoney(ebitda$ * 4 * 5)} highlight />
+                <Row lbl="With PROMEDVA medical-team partnership" val={fmtMoney(ebitda$ * 4 * 5)} highlight />
                 <Row lbl="Estimated additional take-home (year 1)" val="+$250,000" highlight gold />
                 <Row lbl="Your role going forward" val="Same care · less burden · partner pay" />
 
                 <div style={{ marginTop: 24, padding: 18, background: '#F7F4ED', borderRadius: 10, fontSize: 13, color: '#666', lineHeight: 1.6 }}>
-                  <strong style={{ color: '#1F4E79' }}>Note:</strong> This is a planning estimate, not an offer. A full ProMed VA valuation includes diagnostic billing potential, mobile medical team economics, patient retention upside, and Medicare reimbursement codes that aren&apos;t accessible to chiropractic-only clinics today.
+                  <strong style={{ color: '#1F4E79' }}>Note:</strong> This is a planning estimate, not an offer. A full PROMEDVA valuation includes diagnostic billing potential, mobile medical team economics, patient retention upside, and Medicare reimbursement codes that aren&apos;t accessible to chiropractic-only clinics today.
                 </div>
               </>
             ) : (

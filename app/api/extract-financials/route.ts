@@ -1,4 +1,4 @@
-// ProMed VA · AI Financial Extraction
+// PROMEDVA · AI Financial Extraction
 // POST /api/extract-financials
 //   Form data: file (PDF of tax return / P&L / bank statement)
 //   Returns:   structured financial summary + add-back detection

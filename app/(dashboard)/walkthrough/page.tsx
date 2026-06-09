@@ -1,4 +1,4 @@
-// ProMed VA · Self-Demo Guide
+// PROMEDVA · Self-Demo Guide
 // Server component pulls LIVE platform stats from chiropillar_targets,
 // passes them into a client component for the interactive walkthrough.
 
@@ -20,7 +20,7 @@ type LiveStats = {
   isDemo: boolean
 }
 
-// Mock-up stats for an in-flight ProMed VA platform. Surfaces when the
+// Mock-up stats for an in-flight PROMEDVA platform. Surfaces when the
 // production DB is empty (pre-launch) OR when the demo cookie is set, so
 // Wagner walks every page and sees the platform LIVE rather than at zero.
 const MOCKUP_STATS: LiveStats = {

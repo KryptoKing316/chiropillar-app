@@ -1,4 +1,4 @@
-// ProMed VA · Launch Plan
+// PROMEDVA · Launch Plan
 // Lean, Charlottesville-first two-city Virginia test, managed by Kingdom Broker LLC.
 // Replaces the old 24-month / 33-clinic roll-up financial model with the actual
 // test budget we're proposing to Dr. Wagner + example performance bonuses.
@@ -76,13 +76,13 @@ export default function LaunchPlanPage() {
       {/* HEADER */}
       <div style={{ marginBottom: 30 }}>
         <div style={{ fontFamily: F.mono, fontSize: 12.5, color: C.gold, letterSpacing: '0.22em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 10 }}>
-          ProMed VA · Virginia Launch Plan
+          PROMEDVA · Virginia Launch Plan
         </div>
         <h1 style={{ fontFamily: F.display, fontSize: 'clamp(32px,4.5vw,46px)', fontWeight: 700, margin: '0 0 12px', letterSpacing: '-0.02em' }}>
           The plan, the team, and the test budget.
         </h1>
         <p style={{ fontSize: 16, color: '#C7D0E0', margin: 0, maxWidth: 820, lineHeight: 1.6 }}>
-          A lean, <strong style={{ color: C.gold }}>two-city Virginia test</strong> — Charlottesville first, plus one metro — fully managed by <strong style={{ color: C.text }}>Kingdom Broker LLC (Eric Skeldon)</strong>. Prove the model, sign the first partner, then scale city-by-city.
+          A lean, <strong style={{ color: C.gold }}>four-city Virginia test</strong> — a cluster of smaller college towns (Waynesboro, Staunton, Harrisonburg, Lynchburg), plus Richmond as a metro candidate — fully managed by <strong style={{ color: C.text }}>Kingdom Broker LLC (Eric Skeldon)</strong>. Prove the model, sign the first partner, then scale city-by-city.
         </p>
       </div>
 
@@ -142,7 +142,7 @@ export default function LaunchPlanPage() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 18 }}>
           <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderLeft: `4px solid ${C.gold}`, borderRadius: 12, padding: '20px 22px' }}>
             <div style={{ fontFamily: F.mono, fontSize: 11, color: C.gold, letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 8 }}>Phase 1 · Lease (income now)</div>
-            <p style={{ fontSize: 14, color: C.muted, lineHeight: 1.6, margin: 0 }}>ProMed VA leases space inside the chiropractor&apos;s clinic for a medical office — <strong style={{ color: C.text }}>$10K/mo base lease + quarterly performance bonuses (~$25K each, tied to the metrics) → ~$200K/yr</strong>, plus commission on cash services (up to ~$250K/yr). Our medical team runs the diagnostics. The chiropractor keeps practicing exactly as they do today.</p>
+            <p style={{ fontSize: 14, color: C.muted, lineHeight: 1.6, margin: 0 }}>PROMEDVA leases space inside the chiropractor&apos;s clinic for a medical office — <strong style={{ color: C.text }}>$10K/mo base lease + quarterly performance bonuses (~$25K each, tied to the metrics) → ~$200K/yr to the practice</strong> (up to ~$250K as the cash-pay medical services ramp). PROMEDVA&apos;s licensed medical team runs the diagnostics and treatments; the chiropractor keeps practicing exactly as they do today.</p>
           </div>
           <div style={{ background: C.bg2, border: `1px solid rgba(46,204,139,0.4)`, borderLeft: `4px solid ${C.green}`, borderRadius: 12, padding: '20px 22px' }}>
             <div style={{ fontFamily: F.mono, fontSize: 11, color: C.green, letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 8 }}>Phase 2 · Acquire (the exit)</div>
@@ -153,7 +153,7 @@ export default function LaunchPlanPage() {
       </Section>
 
       {/* THE TEST */}
-      <Section eyebrow="The test" title="Two Virginia cities. One signed partner to start.">
+      <Section eyebrow="The test" title="Four focus cities. One signed partner to start.">
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: 14, marginBottom: 16 }}>
           {KPIS.map(k => (
             <div key={k.m} style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 10, padding: '14px 16px' }}>
@@ -163,7 +163,7 @@ export default function LaunchPlanPage() {
           ))}
         </div>
         <p style={{ fontSize: 13.5, color: C.muted, lineHeight: 1.6, margin: 0 }}>
-          Concentrate the full $5K/mo + the owned-list outreach on <strong style={{ color: C.text }}>Charlottesville (warm network) + one metro (Richmond or Virginia Beach)</strong>. Spreading the budget across all 11 cities would clear the application floor in none. Prove two, then scale.
+          Concentrate the full $5K/mo + the owned-list outreach on a tight cluster of smaller Virginia college towns — <strong style={{ color: C.text }}>Waynesboro, Staunton, Harrisonburg, and Lynchburg</strong> (with Richmond as a metro candidate). Smaller markets mean fewer strong clinics, so the one dominant practice is easier to find and sign. Spreading the budget across all of Virginia would clear the application floor in none. Prove the cluster, then scale.
         </p>
       </Section>
 
@@ -208,7 +208,7 @@ export default function LaunchPlanPage() {
           <tbody>{BONUSES.map(b => (<tr key={b.trigger}><td style={{ ...cell, color: C.text }}>{b.trigger}</td><td style={{ ...cell, color: C.gold, fontFamily: F.mono, fontSize: 12.5 }}>{b.example}</td><td style={cell}>{b.who}</td></tr>))}</tbody>
         </table>
         <div style={{ marginTop: 12, background: `${C.gold}10`, border: `1px solid ${C.gold}33`, borderRadius: 10, padding: '11px 15px', fontSize: 12.5, color: '#C7D0E0', lineHeight: 1.55 }}>
-          <strong style={{ color: C.gold }}>Lease deals first.</strong> The big fees are split — half on signing, half once the partnership goes live (ProMed VA operating in the space) — so KB is paid on a real, running partner, not just a signature. <strong style={{ color: C.text }}>Acquisition (Phase 2), kept separate:</strong> if ProMed VA later acquires a partner clinic, KB&apos;s success fee is a one-time <strong style={{ color: C.text }}>4% of the acquisition value</strong> — only if we acquire.
+          <strong style={{ color: C.gold }}>Lease deals first.</strong> The big fees are split — half on signing, half once the partnership goes live (PROMEDVA operating in the space) — so KB is paid on a real, running partner, not just a signature. <strong style={{ color: C.text }}>Acquisition (Phase 2), kept separate:</strong> if PROMEDVA later acquires a partner clinic, KB&apos;s success fee is a one-time <strong style={{ color: C.text }}>4% of the acquisition value</strong> — only if we acquire.
         </div>
       </Section>
 
@@ -227,7 +227,7 @@ export default function LaunchPlanPage() {
       </div>
 
       <div style={{ marginTop: 24, fontSize: 11, color: C.faint, lineHeight: 1.6 }}>
-        ProMed VA · Kingdom Broker LLC · Confidential. Figures are conservative planning estimates, not guarantees. Management fee cancellable anytime with 14 days&apos; written notice. Success-fee and performance-bonus structures are proposed examples, subject to a written engagement. Excludes Dr. Wagner&apos;s own legal counsel and clinical/medical-team operating costs.
+        PROMEDVA · Kingdom Broker LLC · Confidential. Figures are conservative planning estimates, not guarantees. Management fee cancellable anytime with 14 days&apos; written notice. Success-fee and performance-bonus structures are proposed examples, subject to a written engagement. Excludes Dr. Wagner&apos;s own legal counsel and clinical/medical-team operating costs.
       </div>
     </div>
   )

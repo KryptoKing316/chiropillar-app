@@ -4,7 +4,7 @@ import { redirect } from 'next/navigation'
 import { createClient } from '@supabase/supabase-js'
 import Sidebar from '@/components/dashboard/Sidebar'
 
-// ProMed VA dashboard layout · 3-user whitelist enforcement
+// PROMEDVA dashboard layout · 3-user whitelist enforcement
 // Only emails in the chiropillar_team table can access /calculator, /targets, etc.
 // Everyone else gets redirected to /login.
 //

@@ -1,4 +1,4 @@
-// ProMed VA root: bounce logged-in team members to the Overview
+// PROMEDVA root: bounce logged-in team members to the Overview
 // dashboard (platform demo entry point). Everyone else lands on /intake
 // — the public chiropractor application form is the marketing surface.
 

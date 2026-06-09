@@ -1,4 +1,4 @@
-// ProMed VA — Virginia chiropractor partnership landing page.
+// PROMEDVA — Virginia chiropractor partnership landing page.
 // Public, no login. The "Add a Quarter Million" offer + two-phase model.
 // Ads + the VA email list point here; CTAs route to /intake (qualify) and
 // /value-my-clinic (free valuation lead magnet).
@@ -17,7 +17,7 @@ const F = {
   mono: "'JetBrains Mono', 'DM Mono', monospace",
 }
 
-const VA_CITIES = ['Richmond', 'Virginia Beach', 'Fairfax', 'Fredericksburg', 'Harrisonburg', 'Lynchburg', 'Roanoke', 'Williamsburg', 'Charlottesville', 'Waynesboro', 'Orange']
+const VA_CITIES = ['Waynesboro', 'Staunton', 'Harrisonburg', 'Lynchburg', 'Richmond', 'Roanoke', 'Fredericksburg', 'Virginia Beach', 'Fairfax', 'Williamsburg']
 
 function CTA({ href, children, primary }: { href: string; children: React.ReactNode; primary?: boolean }) {
   return (
@@ -40,8 +40,8 @@ export default function ProMedVALanding() {
       <div style={{ borderBottom: `1px solid rgba(255,255,255,0.08)` }}>
         <div style={{ maxWidth: 1080, margin: '0 auto', padding: '20px 28px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16 }}>
           <div style={{ lineHeight: 1 }}>
-            <div style={{ fontFamily: F.display, fontSize: 26, fontWeight: 800, color: C.text, letterSpacing: '-0.02em' }}>ProMed <span style={{ color: C.gold }}>VA</span></div>
-            <div style={{ fontFamily: F.mono, fontSize: 10, fontWeight: 800, color: C.gold, letterSpacing: '0.20em', textTransform: 'uppercase', marginTop: 5 }}>Practice Growth Partners · Virginia</div>
+            <div style={{ fontFamily: F.display, fontSize: 26, fontWeight: 800, color: C.text, letterSpacing: '-0.02em' }}>PROMED<span style={{ color: C.gold }}>VA</span></div>
+            <div style={{ fontFamily: F.mono, fontSize: 10, fontWeight: 800, color: C.gold, letterSpacing: '0.20em', textTransform: 'uppercase', marginTop: 5 }}>Virginia</div>
           </div>
           <CTA href="/intake" primary>See if you qualify →</CTA>
         </div>
@@ -53,10 +53,10 @@ export default function ProMedVALanding() {
           For Virginia Chiropractors · 45+ · Growth-Minded
         </div>
         <h1 style={{ fontFamily: F.display, fontSize: 'clamp(38px, 6vw, 60px)', fontWeight: 700, lineHeight: 1.08, letterSpacing: '-0.02em', margin: '0 0 20px' }}>
-          Add <span style={{ color: C.gold }}>a quarter million</span> to your annual income — doing exactly what you do today.
+          Partner with a medical team to prove your results — and <span style={{ color: C.gold }}>responsibly grow your practice</span>.
         </h1>
         <p style={{ fontSize: 19, color: '#C7D0E0', lineHeight: 1.6, maxWidth: 680, margin: '0 auto 32px' }}>
-          You built 20 years of patient relationships and community trust. Your accountant calls it nothing. We host a <strong style={{ color: C.text }}>ProMed VA medical office inside your existing clinic</strong> — you collect a monthly base lease plus quarterly performance bonuses and commission on cash services, your patients get better diagnostics, and you finally have a real exit. No new techniques to learn.
+          You built 20 years of patient relationships and community trust. PROMEDVA partners with your practice — our licensed mobile medical team brings <strong style={{ color: C.text }}>advanced diagnostics and cash-pay medical services</strong> into space you lease inside your clinic, so your patients get <strong style={{ color: C.text }}>measurable results</strong> and your practice grows responsibly. You keep practicing exactly as you do today.
         </p>
         <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
           <CTA href="/intake" primary>See if your practice qualifies →</CTA>
@@ -88,13 +88,12 @@ export default function ProMedVALanding() {
           {/* Phase 1 */}
           <div style={{ background: C.bg2, border: `1px solid rgba(201,168,76,0.3)`, borderRadius: 16, padding: '30px 28px' }}>
             <div style={{ fontFamily: F.mono, fontSize: 11, letterSpacing: '0.16em', color: C.gold, textTransform: 'uppercase', fontWeight: 800, marginBottom: 10 }}>Phase 1 · Lease (now)</div>
-            <h3 style={{ fontFamily: F.display, fontSize: 24, fontWeight: 700, margin: '0 0 14px' }}>Up to ~$250K/year, starting almost immediately</h3>
+            <h3 style={{ fontFamily: F.display, fontSize: 24, fontWeight: 700, margin: '0 0 14px' }}>A medical partnership inside your existing space</h3>
             <ul style={{ margin: 0, paddingLeft: 20, fontSize: 15, color: '#C7D0E0', lineHeight: 1.7 }}>
-              <li>You lease space inside your clinic to a ProMed VA <strong style={{ color: C.text }}>medical office</strong> — a <strong style={{ color: C.text }}>$10K/mo base lease</strong> paid to you.</li>
-              <li><strong style={{ color: C.text }}>Quarterly performance bonuses</strong> (~$25K each) as your clinic hits the agreed metrics — building the base toward <strong style={{ color: C.text }}>~$200K/yr</strong>.</li>
-              <li>Our medical team runs the diagnostics and treatments you can&apos;t (shockwave, regenerative, advanced diagnostics).</li>
-              <li>You earn <strong style={{ color: C.text }}>commission on cash services</strong> your team helps deliver.</li>
-              <li>You keep adjusting your patients exactly as you do today. Low risk, immediate income.</li>
+              <li>You lease space inside your clinic to a PROMEDVA <strong style={{ color: C.text }}>medical office</strong> — a monthly base lease paid to you, plus performance bonuses as your clinic hits the agreed metrics.</li>
+              <li>Our licensed medical team brings <strong style={{ color: C.text }}>advanced diagnostics and treatments your license doesn&apos;t cover</strong> — so you can finally <strong style={{ color: C.text }}>measure and prove</strong> what your care is doing.</li>
+              <li>New, insurance-billable medical services run alongside you — <strong style={{ color: C.text }}>responsible growth and full accountability</strong> on the numbers.</li>
+              <li>You keep adjusting your patients exactly as you do today. You&apos;re not changing what you do — you&apos;re measuring it.</li>
             </ul>
           </div>
           {/* Phase 2 */}
@@ -120,7 +119,7 @@ export default function ProMedVALanding() {
             {[
               ['25+ new patients / month', 'A real, steady two-year baseline — not a recent spike.'],
               ['45+ and growth-minded', 'You&apos;ve been at it long enough to have built genuine goodwill.'],
-              ['Room to host a medical office', 'A couple of rooms / spare square footage in your clinic.'],
+              ['Spare space for a medical partnership', 'A couple of rooms / spare square footage in your clinic.'],
               ['Strong retention + care plans', 'Patients stay, refer, and trust you — the moat that matters.'],
               ['You think like an owner', 'You want growth and a real exit, not just another year on the table.'],
               ['Altruistic + cash-service ready', 'You still serve your community and can offer cash services.'],
@@ -132,7 +131,7 @@ export default function ProMedVALanding() {
             ))}
           </div>
           <p style={{ fontSize: 14, color: C.muted, marginTop: 22 }}>
-            Qualified practices submit <strong style={{ color: C.text }}>two years of P&amp;Ls</strong> so we can show you what your practice is worth today — and what it could be worth in two years as a partner.
+            Qualified practices share <strong style={{ color: C.text }}>two years of practice statistics</strong> — services offered, new patients per month, and patient retention — so we can confirm the fit.
           </p>
         </div>
       </div>
@@ -146,7 +145,7 @@ export default function ProMedVALanding() {
             <span key={city} style={{ padding: '8px 16px', background: C.bg2, border: '1px solid rgba(201,168,76,0.25)', borderRadius: 999, fontSize: 14, color: '#C7D0E0' }}>{city}</span>
           ))}
         </div>
-        <p style={{ fontSize: 14, color: C.muted, maxWidth: 600, margin: '8px auto 0' }}>One or two practices per city. If your town isn&apos;t listed and you&apos;re in Virginia, apply anyway — we&apos;re expanding.</p>
+        <p style={{ fontSize: 14, color: C.muted, maxWidth: 600, margin: '8px auto 0' }}>One strong practice per city. If your town isn&apos;t listed and you&apos;re in Virginia, apply anyway — we&apos;re expanding.</p>
       </div>
 
       {/* FINAL CTA */}
@@ -155,7 +154,7 @@ export default function ProMedVALanding() {
           Could your clinic qualify?
         </h2>
         <p style={{ fontSize: 18, margin: '0 auto 26px', maxWidth: 560, lineHeight: 1.55, fontWeight: 500 }}>
-          Three minutes to see if you&apos;re a fit for the ProMed VA partnership — and what your goodwill is really worth.
+          Three minutes to see if you&apos;re a fit for the PROMEDVA partnership — and what your goodwill is really worth.
         </p>
         <a href="/intake" style={{ display: 'inline-block', padding: '16px 38px', background: C.bg, color: C.gold, fontWeight: 800, fontSize: 16, textDecoration: 'none', borderRadius: 10, letterSpacing: '0.02em', boxShadow: '0 10px 30px rgba(11,27,62,0.35)' }}>
           See if I qualify →
@@ -164,7 +163,7 @@ export default function ProMedVALanding() {
 
       {/* FOOTER / DISCLAIMER */}
       <div style={{ maxWidth: 880, margin: '0 auto', padding: '32px 28px 60px', fontSize: 11.5, color: C.muted, lineHeight: 1.7, textAlign: 'center' }}>
-        ProMed VA · Practice Growth Partners · Virginia. Income figures are illustrative, not guarantees. Phase 1 is a commercial lease of space plus commission on <strong style={{ color: '#C7D0E0' }}>cash-pay services</strong>; it is not a referral arrangement and involves no fee-splitting on insurance or Medicare. Any partnership or acquisition is subject to definitive documentation and applicable Virginia law (including corporate-practice-of-medicine requirements). This page is not an offer to buy or sell a practice.
+        PROMEDVA · Virginia. Phase 1 is a commercial lease of space inside your clinic for <strong style={{ color: '#C7D0E0' }}>cash-pay medical services</strong> delivered by PROMEDVA&apos;s own licensed medical team; it is not a referral arrangement and involves no fee-splitting on insurance or Medicare. Any partnership or acquisition is subject to definitive documentation and applicable Virginia law (including corporate-practice-of-medicine requirements). This page is not an offer to buy or sell a practice.
       </div>
     </div>
   )

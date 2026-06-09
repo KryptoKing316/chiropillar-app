@@ -7,7 +7,7 @@ export default function NdaLoiPage() {
     <ComingSoon
       eyebrow="NDAs & LOIs · DocuSeal integration"
       title="One-click NDA. One-click LOI. Signed and dated."
-      description="Every clinic in active diligence gets the full document workflow handled in-platform. ProMed VA generates the NDA + Letter of Intent + Term Sheet from the deal calculator output, routes them through DocuSeal for legally binding e-signature, and timestamps each step in the deal audit trail. No more bouncing PDFs through email."
+      description="Every clinic in active diligence gets the full document workflow handled in-platform. PROMEDVA generates the NDA + Letter of Intent + Term Sheet from the deal calculator output, routes them through DocuSeal for legally binding e-signature, and timestamps each step in the deal audit trail. No more bouncing PDFs through email."
       eta="Phase 3 · 2026-Q4"
       bullets={[
         { title: 'Auto-generated NDA per clinic', desc: 'When a clinic moves into Diligence, the platform drafts a Mutual NDA pre-filled with the practice name, owner name, and Wagner Family Office terms. Click Send → seller signs in their inbox.' },

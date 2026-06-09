@@ -10,8 +10,8 @@ import { VA_CHIROS, type VAChiro } from './vaChiros'
 
 type Tier = 'primary' | 'test2' | 'scale' | 'tail'
 const TIER: Record<Tier, { label: string; color: string }> = {
-  primary: { label: 'Primary Test', color: '#C9A84C' },
-  test2: { label: 'Test City #2', color: '#2E75B6' },
+  primary: { label: 'Focus City', color: '#C9A84C' },
+  test2: { label: 'Candidate', color: '#2E75B6' },
   scale: { label: 'Scale', color: '#7FB0E8' },
   tail: { label: 'Long Tail', color: '#8893ad' },
 }
@@ -19,26 +19,25 @@ const TIER_ORDER: Record<Tier, number> = { primary: 0, test2: 1, scale: 2, tail:
 
 function geoOf(city: string): { lat: number; lng: number; tier: Tier } | null {
   const c = city.toLowerCase()
-  if (c.includes('charlottesville')) return { lat: 38.0293, lng: -78.4767, tier: 'primary' }
+  if (c.includes('charlottesville')) return null // excluded — principal's home market (anonymity)
+  if (c.includes('waynesboro') || c.includes('staunton')) return { lat: 38.1080, lng: -78.9800, tier: 'primary' }
+  if (c.includes('harrisonburg')) return { lat: 38.4496, lng: -78.8689, tier: 'primary' }
+  if (c.includes('lynchburg')) return { lat: 37.4138, lng: -79.1422, tier: 'primary' }
   if (c.includes('richmond')) return { lat: 37.5407, lng: -77.4360, tier: 'test2' }
-  if (c.includes('virginia beach')) return { lat: 36.8529, lng: -75.9780, tier: 'test2' }
+  if (c.includes('virginia beach')) return { lat: 36.8529, lng: -75.9780, tier: 'scale' }
   if (c.includes('fairfax') || c.includes('nova')) return { lat: 38.8462, lng: -77.3064, tier: 'scale' }
   if (c.includes('fredericksburg')) return { lat: 38.3032, lng: -77.4605, tier: 'scale' }
-  if (c.includes('harrisonburg')) return { lat: 38.4496, lng: -78.8689, tier: 'scale' }
-  if (c.includes('lynchburg')) return { lat: 37.4138, lng: -79.1422, tier: 'scale' }
   if (c.includes('roanoke')) return { lat: 37.2710, lng: -79.9414, tier: 'scale' }
   if (c.includes('williamsburg')) return { lat: 37.2707, lng: -76.7075, tier: 'tail' }
-  if (c.includes('waynesboro') || c.includes('staunton')) return { lat: 38.1080, lng: -78.9800, tier: 'tail' }
   if (c.includes('orange')) return { lat: 38.2454, lng: -78.1108, tier: 'tail' }
   return null
 }
 
 const TOP5 = [
-  { rank: 1, name: 'Active Family Wellness', city: 'Fairfax', rating: 4.9, reviews: 972, why: 'Highest review volume statewide' },
-  { rank: 2, name: 'Balanced Chiropractic & PT', city: 'Charlottesville', rating: 4.9, reviews: 297, why: "Primary test city's dominant clinic" },
-  { rank: 3, name: 'Chiro-Med Health Center', city: 'Lynchburg', rating: 4.9, reviews: 643, why: '~3× competitors’ review volume' },
-  { rank: 4, name: 'Spinal Correction Center', city: 'Richmond', rating: 4.8, reviews: 356, why: 'Test-metro award leader' },
-  { rank: 5, name: 'Williamsburg Neck & Back', city: 'Williamsburg', rating: 4.9, reviews: 592, why: 'Award-winning market leader' },
+  { rank: 1, name: 'Chiro-Med Health Center', city: 'Lynchburg', rating: 4.9, reviews: 643, why: 'Runaway leader — ~3× competitors' },
+  { rank: 2, name: 'Spinal Correction Center', city: 'Richmond', rating: 4.8, reviews: 356, why: 'Award-winning metro leader (candidate)' },
+  { rank: 3, name: 'Chiropractic Solutions', city: 'Harrisonburg', rating: 5.0, reviews: 288, why: 'Top independent in Harrisonburg' },
+  { rank: 4, name: 'Hailey Chiropractic', city: 'Waynesboro / Staunton', rating: 5.0, reviews: 51, why: 'Leading independent in the valley' },
 ]
 
 const isChain = (x: VAChiro) => /chain|franchise/i.test(x.dominantSignal) || /the joint/i.test(x.name)
@@ -148,16 +147,16 @@ export default function VirginiaOpsConsole() {
     <div className="voc">
       <style>{vocCSS}</style>
 
-      <div className="voc-class"><span className="d" /> ProMed VA · Virginia Operations · Internal / Confidential <span className="d" /></div>
+      <div className="voc-class"><span className="d" /> PROMEDVA · Virginia Operations · Internal / Confidential <span className="d" /></div>
 
       <header className="voc-head">
         <div className="voc-brand">ProMed&nbsp;<b>VA</b><span>Recruiting Intelligence</span></div>
         <div className="voc-title">
           <h1>Virginia Recruiting Map</h1>
-          <p>Top-rated chiropractors across the target cities — <b>start in Charlottesville</b> + one metro, then scale. Pins clustered by city; click any for details.</p>
+          <p>Top-rated chiropractors across the target cities — <b>start in the four focus towns</b> (Waynesboro, Staunton, Harrisonburg, Lynchburg) + Richmond, then scale. Pins clustered by city; click any for details.</p>
         </div>
         <div className="voc-stats">
-          {[['11', 'Cities'], [String(totalClinics), 'Clinics'], [String(VA_CHIROS.length), '#1 Targets'], ['5', 'Priority']].map(s => (
+          {[['4', 'Focus cities'], [String(totalClinics), 'Clinics ranked'], ['10', 'Cities mapped'], ['1', 'Partner / city']].map(s => (
             <div key={s[1]} className="st"><div className="n">{s[0]}</div><div className="l">{s[1]}</div></div>
           ))}
         </div>
@@ -165,7 +164,7 @@ export default function VirginiaOpsConsole() {
       </header>
 
       <div className="voc-lead">
-        <div className="tag"><span className="k">★ Priority</span><span className="v">Top 5 Statewide</span></div>
+        <div className="tag"><span className="k">★ Priority</span><span className="v">Focus-City Targets</span></div>
         <div className="cards">
           {TOP5.map(t => (
             <div key={t.rank} className={'lc' + (t.rank === 1 ? ' top1' : '')}>

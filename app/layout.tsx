@@ -4,8 +4,8 @@ import './globals.css'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://chiropillar.com'),
-  title: 'ProMed VA — Earn an extra $250,000 a year doing exactly what you\'re already doing',
-  description: 'Chiropractor partnership program. Add a mobile medical team to your existing practice. Unlock Medicare diagnostic billing. 5× revenue uplift without changing what you do.',
+  title: 'PROMEDVA — A medical partnership for Virginia chiropractors: better outcomes, a stronger practice',
+  description: 'PROMEDVA partners with select Virginia chiropractic practices — a licensed mobile medical team brings advanced diagnostics and cash-pay services into your existing clinic so you can measure outcomes and grow responsibly, without changing how you practice.',
   icons: {
     icon: [
       { url: '/favicon.svg', type: 'image/svg+xml' },
@@ -15,31 +15,31 @@ export const metadata: Metadata = {
     shortcut: '/favicon.svg',
   },
   openGraph: {
-    title: 'ProMed VA · Earn an extra $250,000+ a year',
-    description: 'Chiropractor partnership program — add a mobile medical team to your practice, unlock Medicare diagnostic billing, and 5× revenue without changing your daily work. See if you qualify.',
+    title: 'PROMEDVA · A medical partnership for Virginia chiropractors',
+    description: 'A medical partnership for select Virginia chiropractors — a licensed mobile medical team brings advanced diagnostics and cash-pay services into your practice so you can measure outcomes and grow responsibly. See if you qualify.',
     url: 'https://chiropillar.com',
-    siteName: 'ProMed VA',
+    siteName: 'PROMEDVA',
     images: [
       {
         url: '/og-chiropillar-app.svg',
         width: 1200,
         height: 630,
-        alt: 'ProMed VA · Practice Growth Partners · Virginia · Chiropractor Partnership Program',
+        alt: 'PROMEDVA · Virginia · Chiropractor Partnership Program',
       },
       // Fallback PNG for Twitter/X which doesn't render SVG OG
       {
         url: '/chiropillar-logo.png',
         width: 1200,
         height: 630,
-        alt: 'ProMed VA — Practice Growth Partners · Virginia',
+        alt: 'PROMEDVA — Virginia',
       },
     ],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'ProMed VA · Earn an extra $250,000+ a year',
-    description: 'Chiropractor partnership program. Add mobile medical team. Unlock Medicare diagnostic billing. 5× revenue uplift. See if you qualify.',
+    title: 'PROMEDVA · A medical partnership for Virginia chiropractors',
+    description: 'A medical partnership for select Virginia chiropractors — advanced diagnostics + cash-pay services in your existing practice. Measure outcomes, grow responsibly. See if you qualify.',
     images: ['/chiropillar-logo.png'],
   },
 }

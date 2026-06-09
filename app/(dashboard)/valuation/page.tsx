@@ -1,6 +1,6 @@
 'use client'
 
-// ProMed VA · AI Valuation Engine
+// PROMEDVA · AI Valuation Engine
 // Two-mode interface:
 //   1. VIEW   · Render a valuation report from FormData (default: Piedmont Spine example)
 //   2. INPUT  · 3-step wizard collecting practice info + 3yr financials + add-backs
@@ -142,7 +142,7 @@ function computeValuation(form: FormData) {
   const medTeamLift       = 250_000
   const exitMultiple      = 9
 
-  // ProMed VA fit score (1-100) — based on Wagner criteria
+  // PROMEDVA fit score (1-100) — based on Wagner criteria
   const fitScore = (() => {
     let s = 30  // base
     // Geography
@@ -903,16 +903,16 @@ function ResultView({ form, v, startWizard, loadExample, fromUpload }: {
               </p>
               <p style={{ fontSize: 14.5, color: C.text, lineHeight: 1.75, margin: 0 }}>
                 {v.fitScore >= 75
-                  ? <>This practice is a <strong style={{ color: C.green }}>strong ProMed VA partnership candidate</strong> — geography, scale, and owner profile all align with Wagner&apos;s acquisition criteria. The Deal Structure tab recommends a 4-stream offer that totals more than the standalone alternative.</>
+                  ? <>This practice is a <strong style={{ color: C.green }}>strong PROMEDVA partnership candidate</strong> — geography, scale, and owner profile all align with Wagner&apos;s acquisition criteria. The Deal Structure tab recommends a 4-stream offer that totals more than the standalone alternative.</>
                   : v.fitScore >= 50
-                  ? <>This practice is a <strong style={{ color: C.gold }}>plausible ProMed VA candidate</strong> with some criteria still to develop. Review the Risks & Drivers tab for the gating items before extending an offer.</>
-                  : <>This practice <strong style={{ color: C.coral }}>doesn&apos;t yet fit the ProMed VA partnership profile</strong>. Most common gaps: sub-target geography, owner still full-clinical, or below volume floor. Re-evaluate in 12 months.</>}
+                  ? <>This practice is a <strong style={{ color: C.gold }}>plausible PROMEDVA candidate</strong> with some criteria still to develop. Review the Risks & Drivers tab for the gating items before extending an offer.</>
+                  : <>This practice <strong style={{ color: C.coral }}>doesn&apos;t yet fit the PROMEDVA partnership profile</strong>. Most common gaps: sub-target geography, owner still full-clinical, or below volume floor. Re-evaluate in 12 months.</>}
               </p>
             </div>
 
             <div style={{ background: C.bg3, border: `1px solid ${C.border}`, borderRadius: 12, padding: '22px 24px' }}>
               <div style={{ fontFamily: F.mono, fontSize: 10, color: C.green, letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700, marginBottom: 14 }}>
-                ProMed VA fit score
+                PROMEDVA fit score
               </div>
               <div style={{ fontFamily: F.display, fontSize: 56, fontWeight: 800, color: v.fitScore >= 75 ? C.green : v.fitScore >= 50 ? C.gold : C.coral, lineHeight: 1, marginBottom: 4 }}>
                 {v.fitScore}<span style={{ fontSize: 22, color: C.faint }}>/100</span>
@@ -1054,7 +1054,7 @@ function ResultView({ form, v, startWizard, loadExample, fromUpload }: {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 14, marginBottom: 28 }}>
             <Stream pct="50%" amount={fmtMoney(v.cashAtClose)}      title="Cash at close" sub="Funded by Wagner Family Office" accent={C.gold} />
             <Stream pct="40%" amount={fmtMoney(v.sellerNote)}        title="Seller note · 5 yr" sub="6% interest · paid from clinic cash flow" accent={C.align} />
-            <Stream pct="10%" amount={fmtMoney(v.rolloverEquity)}    title="ProMed VA rollover" sub="Re-rated at 8–10× at exit" accent={C.green} />
+            <Stream pct="10%" amount={fmtMoney(v.rolloverEquity)}    title="PROMEDVA rollover" sub="Re-rated at 8–10× at exit" accent={C.green} />
             <Stream pct={`${v.profitSharePct}%`} amount={`${fmtMoney(v.annualProfitShare)}/yr`} title="Profit share" sub="On improved clinic EBITDA · ongoing" accent={C.goldLight} />
           </div>
 

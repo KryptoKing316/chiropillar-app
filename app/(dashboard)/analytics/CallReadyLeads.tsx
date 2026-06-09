@@ -8,8 +8,8 @@ import { VA_CHIROS, type VAChiro } from './vaChiros'
 
 type Tier = 'primary' | 'test2' | 'scale' | 'tail'
 const TIER: Record<Tier, { label: string; color: string }> = {
-  primary: { label: 'Primary test', color: '#C9A84C' },
-  test2: { label: 'Test city #2', color: '#2E75B6' },
+  primary: { label: 'Focus city', color: '#C9A84C' },
+  test2: { label: 'Candidate', color: '#2E75B6' },
   scale: { label: 'Scale', color: '#7FB0E8' },
   tail: { label: 'Long tail', color: '#8893ad' },
 }
@@ -17,9 +17,9 @@ const ORDER: Record<Tier, number> = { primary: 0, test2: 1, scale: 2, tail: 3 }
 
 function tierOf(city: string): Tier {
   const c = city.toLowerCase()
-  if (c.includes('charlottesville')) return 'primary'
-  if (c.includes('richmond') || c.includes('virginia beach')) return 'test2'
-  if (c.includes('williamsburg') || c.includes('waynesboro') || c.includes('staunton') || c.includes('orange')) return 'tail'
+  if (c.includes('waynesboro') || c.includes('staunton') || c.includes('harrisonburg') || c.includes('lynchburg')) return 'primary'
+  if (c.includes('richmond')) return 'test2'
+  if (c.includes('williamsburg') || c.includes('orange')) return 'tail'
   return 'scale'
 }
 const isChain = (x: VAChiro) => /chain|franchise/i.test(x.dominantSignal) || /the joint/i.test(x.name)
@@ -33,7 +33,7 @@ const C = {
 const F = { display: "'Playfair Display', Georgia, serif", body: "'Inter', system-ui, sans-serif", mono: "'JetBrains Mono', monospace" }
 
 export default function CallReadyLeads() {
-  const cities = [...VA_CHIROS].sort((a, b) => {
+  const cities = [...VA_CHIROS].filter(c => !/charlottesville/i.test(c.city)).sort((a, b) => {
     const ta = tierOf(a.city), tb = tierOf(b.city)
     if (ORDER[ta] !== ORDER[tb]) return ORDER[ta] - ORDER[tb]
     return b.chiropractors.length - a.chiropractors.length

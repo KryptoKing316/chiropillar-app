@@ -1,6 +1,6 @@
 'use client'
 
-// ProMed VA · Chiropractor Intake Form
+// PROMEDVA · Chiropractor Intake Form
 // Publicly accessible at /intake — surface chiropractors land on
 // from the $1/day ad funnel ("How would you like to make $250K more
 // per year by doing exactly what you're doing?")
@@ -97,7 +97,7 @@ function inferProfile(s: FormState): ProfileInfer {
   if (s.owner_role === 'mostly_management' || s.owner_role === 'wants_to_step_out') {
     return 'multi'
   }
-  // Default: solo-DC owner-operator (most common ProMed VA target)
+  // Default: solo-DC owner-operator (most common PROMEDVA target)
   return 'solo'
 }
 
@@ -221,14 +221,14 @@ function qualify(s: FormState): { status: 'qualified' | 'maybe' | 'not_yet'; rea
     return {
       status: 'qualified',
       reasons,
-      pitch: 'You qualify. The ProMed VA team will reach out within 48 hours to walk you through the Virginia partnership — a $10K/mo base lease plus quarterly performance bonuses (as you hit the metrics, building toward ~$200K/yr) and commission on cash services, up to ~$250K, with a higher-multiple exit down the road. Have your last 2 years of P&Ls ready.',
+      pitch: 'You qualify. The PROMEDVA team will reach out within 48 hours to walk you through the Virginia partnership — a $10K/mo base lease plus quarterly performance bonuses (as you hit the metrics, building toward ~$200K/yr) and commission on cash services, up to ~$250K, with a higher-multiple exit down the road. Have your last 2 years of P&Ls ready.',
     }
   }
 
   return {
     status: 'maybe',
     reasons: reasons.length ? reasons : ['Some signals are in range; others need a conversation.'],
-    pitch: 'You\'re in the conversation zone. The ProMed VA team will review your numbers and reach out within a week to discuss next steps.',
+    pitch: 'You\'re in the conversation zone. The PROMEDVA team will review your numbers and reach out within a week to discuss next steps.',
   }
 }
 
@@ -290,10 +290,10 @@ export default function IntakePage() {
   return (
     <div style={{ minHeight: '100vh', background: '#F7F4ED', fontFamily: "'Inter', system-ui, sans-serif", color: '#1a1a1a' }}>
 
-      {/* Top bar · ProMed VA escalating-pillar mark + wordmark + tagline */}
+      {/* Top bar · PROMEDVA escalating-pillar mark + wordmark + tagline */}
       <div style={{ background: 'white', borderBottom: '1px solid rgba(31,78,121,0.10)', boxShadow: '0 2px 8px rgba(31,78,121,0.04)' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto', padding: '20px 32px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 20, flexWrap: 'wrap' }}>
-          <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 14, textDecoration: 'none' }} aria-label="ProMed VA home">
+          <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 14, textDecoration: 'none' }} aria-label="PROMEDVA home">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/chiropillar-logo-platform.svg"
@@ -302,10 +302,10 @@ export default function IntakePage() {
             />
             <div style={{ lineHeight: 1 }}>
               <div style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 'clamp(26px, 3.5vw, 32px)', fontWeight: 800, color: '#1F4E79', letterSpacing: '-0.02em', lineHeight: 1, marginBottom: 6 }}>
-                ProMed VA
+                PROMEDVA
               </div>
               <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 10, fontWeight: 800, color: '#C9A84C', letterSpacing: '0.20em', textTransform: 'uppercase', lineHeight: 1 }}>
-                Practice Growth Partners · Virginia
+                Virginia
               </div>
             </div>
           </a>
@@ -331,7 +331,7 @@ export default function IntakePage() {
               doing exactly what you&apos;re already doing.
             </h1>
             <p style={{ fontSize: 18, color: '#555', lineHeight: 1.55, maxWidth: 620, margin: '0 auto 28px' }}>
-              Host a ProMed VA medical office inside your existing space and earn monthly rent plus commission on cash services — while you keep practicing exactly as you do today. Better diagnostics for your patients, real income for you, and a higher-multiple exit down the road. The right Virginia chiropractors qualify for the partnership. <strong style={{ color: '#1F4E79' }}>Virginia practices only right now. Have your last 2 years of P&amp;Ls ready. Three minutes — see if you qualify.</strong>
+              Host a PROMEDVA medical office inside your existing space and earn monthly rent plus commission on cash services — while you keep practicing exactly as you do today. Better diagnostics for your patients, real income for you, and a higher-multiple exit down the road. The right Virginia chiropractors qualify for the partnership. <strong style={{ color: '#1F4E79' }}>Virginia practices only right now. Have your last 2 years of P&amp;Ls ready. Three minutes — see if you qualify.</strong>
             </p>
           </div>
         )}
@@ -523,10 +523,10 @@ export default function IntakePage() {
             {step === 5 && (
               <>
                 <h2 style={CSS.h2}>See if you qualify</h2>
-                <p style={CSS.sub}>Hit submit and we&apos;ll score your practice against the partnership qualification criteria. Qualified practices get a direct call from the ProMed VA team within 48 hours.</p>
+                <p style={CSS.sub}>Hit submit and we&apos;ll score your practice against the partnership qualification criteria. Qualified practices get a direct call from the PROMEDVA team within 48 hours.</p>
                 <label style={{ display: 'flex', alignItems: 'flex-start', gap: 10, padding: 14, background: '#F7F4ED', borderRadius: 8, fontSize: 13, lineHeight: 1.5, marginBottom: 20 }}>
                   <input type="checkbox" checked={form.ok_to_contact} onChange={update('ok_to_contact')} style={{ marginTop: 4 }}/>
-                  <span>OK to contact me by phone, email, and text about the ProMed VA partnership program. We never spam and never share your info.</span>
+                  <span>OK to contact me by phone, email, and text about the PROMEDVA partnership program. We never spam and never share your info.</span>
                 </label>
                 <button
                   type="button"
@@ -572,7 +572,7 @@ export default function IntakePage() {
               {result.status === 'qualified' ? '✓ You Qualify' : result.status === 'maybe' ? '◐ In The Conversation' : '◯ Not Yet'}
             </div>
             <h2 style={{ fontFamily: 'Georgia, serif', fontSize: 30, color: '#1F4E79', margin: '0 0 16px', letterSpacing: '-0.02em' }}>
-              {result.status === 'qualified' && 'Welcome to the ProMed VA shortlist.'}
+              {result.status === 'qualified' && 'Welcome to the PROMEDVA shortlist.'}
               {result.status === 'maybe' && 'Strong signals — let\'s talk.'}
               {result.status === 'not_yet' && 'Not the right fit yet — here\'s the path.'}
             </h2>
@@ -629,7 +629,7 @@ export default function IntakePage() {
 
         {/* Footer disclaimer */}
         <div style={{ marginTop: 32, fontSize: 11, color: '#999', fontFamily: "'JetBrains Mono', monospace", textAlign: 'center', lineHeight: 1.6 }}>
-          ProMed VA · Confidential application form.<br/>
+          PROMEDVA · Confidential application form.<br/>
           Estimated valuation range is illustrative, not an offer. Closing prices typically 85-95% of asking. All financial structures subject to definitive documentation.
         </div>
       </div>

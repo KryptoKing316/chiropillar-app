@@ -1,4 +1,4 @@
-// ProMed VA Command Center
+// PROMEDVA Command Center
 // Server-rendered overview designed for doctor-investors at family offices.
 // Layout follows clinical chart conventions: vital-signs strip (KPIs with
 // sparklines + trend arrows), pipeline pyramid funnel, EBITDA build-up
@@ -257,7 +257,7 @@ export default async function OverviewPage() {
             The Virginia test at a glance.
           </h1>
           <p style={{ fontSize: 16, color: '#FFFFFF', margin: 0, maxWidth: 760, lineHeight: 1.6, fontWeight: 400 }}>
-            The ProMed VA two-city Virginia test — the offer, the funnel, and what needs your attention. Charlottesville first, then one metro. One dominant partner per city.
+            The PROMEDVA two-city Virginia test — the offer, the funnel, and what needs your attention. Charlottesville first, then one metro. One dominant partner per city.
           </p>
         </div>
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: 7, padding: '7px 14px', borderRadius: 999, background: 'rgba(46,204,139,0.12)', border: '1px solid rgba(46,204,139,0.30)', fontFamily: F.mono, fontSize: 11, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 800, color: C.green }}>
@@ -298,7 +298,7 @@ export default async function OverviewPage() {
         <div style={{ background: `linear-gradient(135deg, rgba(201,168,76,0.10), ${C.bg2})`, border: `1px solid rgba(201,168,76,0.30)`, borderLeft: `4px solid ${C.gold}`, borderRadius: 14, padding: '24px 28px' }}>
           <div style={{ fontFamily: F.mono, fontSize: 12, color: C.gold, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 8 }}>The first offer · Lease</div>
           <div style={{ fontFamily: F.display, fontSize: 22, fontWeight: 700, color: C.text, marginBottom: 10, letterSpacing: '-0.01em' }}>Lease their spare square footage.</div>
-          <p style={{ fontSize: 14.5, color: '#FFFFFF', lineHeight: 1.6, margin: 0, opacity: 0.9 }}>ProMed VA leases space inside the clinic for a medical office — <strong style={{ color: C.gold }}>$10K/mo base lease + quarterly performance bonuses (~$25K, on hitting the metrics) → ~$200K/yr</strong>, plus commission on cash services — up to ~$250K/yr to the chiropractor. Our medical team runs the diagnostics; they keep practicing exactly as they do. Low-risk, immediate income — the easy yes.</p>
+          <p style={{ fontSize: 14.5, color: '#FFFFFF', lineHeight: 1.6, margin: 0, opacity: 0.9 }}>PROMEDVA leases space inside the clinic for a medical office — <strong style={{ color: C.gold }}>$10K/mo base lease + quarterly performance bonuses (~$25K, on hitting the metrics) → ~$200K/yr</strong>, plus commission on cash services — up to ~$250K/yr to the chiropractor. Our medical team runs the diagnostics; they keep practicing exactly as they do. Low-risk, immediate income — the easy yes.</p>
         </div>
         <div style={{ background: `linear-gradient(135deg, rgba(46,204,139,0.10), ${C.bg2})`, border: `1px solid rgba(46,204,139,0.30)`, borderLeft: `4px solid ${C.green}`, borderRadius: 14, padding: '24px 28px' }}>
           <div style={{ fontFamily: F.mono, fontSize: 12, color: C.green, letterSpacing: '0.16em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 8 }}>The partner offer · Acquire</div>

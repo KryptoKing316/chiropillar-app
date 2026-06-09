@@ -1,6 +1,6 @@
 'use client'
 
-// ProMed VA self-demo guide · interactive stepper + live stats strip
+// PROMEDVA self-demo guide · interactive stepper + live stats strip
 // Mirrors the app.KingdomBroker.com walkthrough pattern, themed for the
 // chiropractic-roll-up workflow.
 
@@ -40,7 +40,7 @@ const fmtMoney = (n: number): string => {
   return '$0'
 }
 
-// ── STEPS · ProMed VA platform tabs in the order they're used ─────────────
+// ── STEPS · PROMEDVA platform tabs in the order they're used ─────────────
 const STEPS = [
   {
     num: '01',
@@ -48,14 +48,14 @@ const STEPS = [
     href: '/overview',
     color: C.gold,
     status: 'Soon',
-    tagline: 'The ProMed VA command center',
+    tagline: 'The PROMEDVA command center',
     what: 'Single screen with every number that matters: applicants this week, qualified pipeline, weighted pipeline value in motion, and the conversion funnel from intake → LOI → close.',
     features: [
       { title: 'Live KPI strip + sparklines', desc: 'Total intakes · qualified · pipeline value · weighted EBITDA — each with 12-week trajectory + trend arrow, like a clinical vitals panel.' },
       { title: 'Conversion funnel pyramid', desc: 'Landed → Submitted → Qualified → In Outreach → In Diligence → LOI → Closed with stage-by-stage drop-off and root-cause notes.' },
       { title: 'Geographic heatmap', desc: 'US map of incoming applications by state. Density highlights Wagner-priority regions ready for cluster acquisition (Virginia first, then TX/FL/NC/SC/GA).' },
       { title: 'Triage worklist', desc: 'Urgent / Watch / OK alerts sorted clinical-style — what needs Wagner today vs this week vs OK to ignore.' },
-      { title: 'Platform-EBITDA build-up bar', desc: 'Stacked horizontal: Wagner $25M base (blue) + ProMed VA pipeline (gold) + remaining-to-$45M-target marker. Implied 9× exit shown alongside.' },
+      { title: 'Platform-EBITDA build-up bar', desc: 'Stacked horizontal: Wagner $25M base (blue) + PROMEDVA pipeline (gold) + remaining-to-$45M-target marker. Implied 9× exit shown alongside.' },
     ],
     callout: 'This is the page Wagner opens first thing every morning. Everything else feeds data into this one summary.',
     visualKeys: ['totalIntakes', 'qualified', 'pipelineEbitda', 'activeOutreach', 'thisWeek', 'states'] as const,
@@ -163,7 +163,7 @@ const STEPS = [
       { title: 'Strategy Call · $500–2,500', desc: '60-min 1:1 with Wagner. Practice diagnostics, growth bottlenecks, medical-team feasibility. Calendly auto-booking, recorded.' },
       { title: 'Practice Audit · $5,000–10,000', desc: 'Multi-day diagnostic: P&L review, KPI assessment, medical-team feasibility, written report + 90-day action plan.' },
       { title: 'Medical-Team Installation · $25,000–50,000', desc: 'Wagner team installs the medical-operator playbook in the buyer\'s practice over 90 days: credentialing, billing, hiring, compliance.' },
-      { title: 'ProMed VA Mastermind · $12,000/yr', desc: 'Quarterly in-person + monthly group calls. 20–30 chiropractors who want to scale without selling.' },
+      { title: 'PROMEDVA Mastermind · $12,000/yr', desc: 'Quarterly in-person + monthly group calls. 20–30 chiropractors who want to scale without selling.' },
     ],
     callout: 'A separate revenue line from the roll-up. Even the chiropractors who don\'t qualify for partnership become Scale Services customers.',
     visualKeys: ['totalIntakes', 'notYet', 'maybe'] as const,
@@ -212,10 +212,10 @@ export default function WalkthroughClient({ stats }: { stats: LiveStats }) {
       {/* Header */}
       <div style={{ marginBottom: 28 }}>
         <div style={{ fontFamily: F.mono, fontSize: 12.5, color: C.align, letterSpacing: '0.22em', textTransform: 'uppercase', fontWeight: 800, marginBottom: 10 }}>
-          Self-Demo Guide · Practice Growth Partners · Virginia
+          Self-Demo Guide · Virginia
         </div>
         <h1 style={{ fontFamily: F.display, fontSize: 'clamp(34px, 4.5vw, 46px)', fontWeight: 700, margin: '0 0 10px', letterSpacing: '-0.02em', color: C.text }}>
-          How the ProMed VA platform works
+          How the PROMEDVA platform works
         </h1>
         <p style={{ fontSize: 16, color: '#FFFFFF', margin: 0, maxWidth: 760, lineHeight: 1.6, fontWeight: 400 }}>
           A plain-English tour of every tab. {stats.isDemo ? 'Numbers below are sample data from the demo session.' : 'All numbers are live from the production database.'}

@@ -1,4 +1,4 @@
-// ProMed VA · Virginia Map
+// PROMEDVA · Virginia Map
 // Full-screen command-center console (terrain + leaderboard + city rail) followed by
 // the call-ready, per-city leads tabs. Data: ./vaChiros.ts (verify before outreach).
 import VirginiaOpsConsole from './VirginiaOpsConsole'
