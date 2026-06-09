@@ -28,7 +28,7 @@ const DOCS: Doc[] = [
     fileName: 'ProMedVA_Executive_Summary_VA_Plan.pdf',
     href: '/data-room/ProMedVA_Executive_Summary_VA_Plan.pdf',
     oneLiner: 'The whole model on a few pages — lease now, acquire later.',
-    paragraph: 'How PROMEDVA turns a chiropractor\'s overlooked goodwill into a quarter-million-a-year partnership and, eventually, a real exit. The goodwill trap, the two-phase model (Phase 1 lease: $10K/mo base + quarterly performance bonuses on hitting the metrics → ~$200K/yr + cash-service commission, up to ~$250K; Phase 2 acquire at 50% cash / 50% seller note + 4% profit share at a platform multiple), why Virginia first, and the lean Kingdom-Broker-managed two-city test.',
+    paragraph: 'How PROMEDVA partners with a chiropractor for better patient outcomes and responsible practice growth — and, eventually, a real exit. The goodwill trap, the two-phase model (Phase 1: a medical partnership — monthly base lease + quarterly performance bonuses as the clinic hits the metrics, plus a new cash-pay medical-services line; partner practices average ~$250K/yr in new growth, illustrative; Phase 2: acquire at 50% cash / 50% seller note + 4% profit share at a platform multiple), why Virginia first, and the lean Kingdom-Broker-managed focus-city test.',
     category: 'thesis',
     accent: '#C9A84C',
     cover: '/data-room/cover-exec.svg',

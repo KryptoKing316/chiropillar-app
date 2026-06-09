@@ -33,8 +33,8 @@ type Inputs = {
   rollPct: number     // seller rollover %
 }
 
-// ── Practice profile presets · calibrated to nearly 200 chiropractic deals analyzed ──
-// Solo-DC (default · n=102, median 1.46× SDE) · range 1.08-2.05× P25-P75
+// ── Practice profile presets · calibrated to 100+ chiropractic practice sales ──
+// Solo-DC (default · 100+, median 1.46× SDE) · range 1.08-2.05× P25-P75
 // Multi-DC / membership / associate-in-place · ~30 comps
 // Platform / multi-location · PE-deal triangulated
 const PROFILES: Record<Profile, {
@@ -114,7 +114,7 @@ export default function CalculatorPage() {
   const standalone    = ebitda$ * i.hold
 
   // Conservative seller-facing valuation: anchored to real comp median for selected profile
-  // Solo-DC: 1.46× SDE (P50 from n=102 real chiropractic comps)
+  // Solo-DC: 1.46× SDE (P50 from 100+ chiropractic practice sales)
   // Multi-DC: 3.0× SDE (P50 of multi-DC/membership band)
   // Platform: 7.5× EBITDA (PE-deal triangulated)
   const COMP_MEDIANS: Record<Profile, number> = { solo: 1.46, multi: 3.0, platform: 7.5 }

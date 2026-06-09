@@ -73,7 +73,7 @@ const SERVICES = [
 
 // ── Valuation logic (per 158-comp dataset, June 2026) ─────────────────────
 // Comp medians by practice profile:
-//   Solo-DC owner-operator:  1.46× SDE (n=102, P25-P75 1.08-2.05×)
+//   Solo-DC owner-operator:  1.46× SDE (100+ practice sales · P25-P75 1.08-2.05×)
 //   Multi-DC / associate:    3.0× SDE  (~30 comps)
 //   Platform / multi-loc:    7.5× EBITDA (PE-deal triangulated)
 //
@@ -137,7 +137,7 @@ function valuate(s: FormState): {
   const sdeMid  = gross * sdeMarginMid
   const sdeHigh = gross * sdeMarginHigh
 
-  // Comp-derived multipliers (from N=102 comps, June 2026)
+  // Comp-derived multipliers (from 100+ practice sales, June 2026)
   const COMP_MEDIANS = { solo: 1.46, multi: 3.0, platform: 7.5 }
   const mult = COMP_MEDIANS[profile]
 
@@ -221,7 +221,7 @@ function qualify(s: FormState): { status: 'qualified' | 'maybe' | 'not_yet'; rea
     return {
       status: 'qualified',
       reasons,
-      pitch: 'You qualify. The PROMEDVA team will reach out within 48 hours to walk you through the Virginia partnership — a $10K/mo base lease plus quarterly performance bonuses (as you hit the metrics, building toward ~$200K/yr) and commission on cash services, up to ~$250K, with a higher-multiple exit down the road. Have your last 2 years of P&Ls ready.',
+      pitch: 'You qualify. The PROMEDVA team will reach out within 48 hours to walk you through the Virginia partnership — a monthly base lease plus quarterly performance bonuses as your clinic hits the agreed metrics, and a new cash-pay medical-services line our team runs alongside you (partner practices average ~$250K/yr in new growth — illustrative, not a guarantee), with a path to a real exit down the road. Have your last 2 years of practice statistics ready — services offered, new patients/mo, and retention.',
     }
   }
 
@@ -386,7 +386,7 @@ export default function IntakePage() {
                   <Field label="Years in business">
                     <input value={form.geographic_location_notes} onChange={update('geographic_location_notes')} placeholder="22 years" style={CSS.input}/>
                   </Field>
-                  <Field label="Spare space to host a medical office?">
+                  <Field label="Spare space for a medical partnership?">
                     <input value={form.square_footage} onChange={update('square_footage')} placeholder="e.g. ~600 sq ft / 2 rooms" style={CSS.input}/>
                   </Field>
                 </div>
@@ -605,7 +605,7 @@ export default function IntakePage() {
                 </div>
 
                 <div style={{ paddingTop: 12, borderTop: '1px dashed rgba(139,105,20,0.25)', fontSize: 13, color: '#5A4A1A', lineHeight: 1.55 }}>
-                  Calibrated to <strong>{valuation.multiple_used}× {valuation.multiple_metric} median</strong> from <strong>nearly 200 real chiropractic deals analyzed</strong> (BizBuySell, Progressive Practice Sales, William David Co, JYNT 10-K · June 2026). {valuation.caveat}
+                  Calibrated to <strong>{valuation.multiple_used}× {valuation.multiple_metric} median</strong> from <strong>100+ chiropractic practice sales</strong> (BizBuySell, Progressive Practice Sales, William David Co, JYNT 10-K · June 2026). {valuation.caveat}
                 </div>
               </div>
             )}

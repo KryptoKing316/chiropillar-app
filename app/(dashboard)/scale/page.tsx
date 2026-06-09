@@ -72,7 +72,7 @@ const PACKAGES: Package[] = [
     audience: 'DCs serious about growth or selling. Want to know the gaps between where they are and where they need to be.',
     features: [
       '3 years of financials reviewed (we sign NDA)',
-      'KPI vs comp-set benchmark (vs nearly 200 deals analyzed)',
+      'KPI vs comp-set benchmark (vs 100+ chiropractic practice sales)',
       'Medical-team feasibility deep dive · ROI projection',
       'Marketing audit · CAC vs LTV gap analysis',
       'Written 90-day action plan with weekly milestones',

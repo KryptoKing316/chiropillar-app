@@ -492,7 +492,7 @@ export default function ValuationPage() {
             {step === 2 && 'Add-back capture.'}
           </h1>
           <p style={{ fontSize: 16, color: '#FFFFFF', margin: 0, lineHeight: 1.6, fontWeight: 400 }}>
-            Same engine the public /intake form uses, calibrated to nearly 200 chiropractic deals analyzed.
+            Same engine the public /intake form uses, calibrated to 100+ chiropractic practice sales.
           </p>
         </div>
 
@@ -857,7 +857,7 @@ function ResultView({ form, v, startWizard, loadExample, fromUpload }: {
         </div>
 
         <div style={{ marginTop: 20, padding: '14px 18px', background: 'rgba(46,117,182,0.06)', border: `1px solid rgba(46,117,182,0.18)`, borderRadius: 10, fontSize: 13, color: C.muted, lineHeight: 1.6 }}>
-          <strong style={{ color: C.text }}>Calibrated to nearly 200 chiropractic deals analyzed.</strong> {form.profile === 'solo' ? 'Solo' : form.profile === 'multi' ? 'Multi-DC' : 'Platform'}-profile median {v.mult}× {v.metric} · P25–P75 range applied · Sources: BizBuySell, Progressive Practice Sales, William David Co, JYNT 10-K. Asking-price-derived — closing typically 85–95% of FMV.
+          <strong style={{ color: C.text }}>Calibrated to 100+ chiropractic practice sales.</strong> {form.profile === 'solo' ? 'Solo' : form.profile === 'multi' ? 'Multi-DC' : 'Platform'}-profile median {v.mult}× {v.metric} · P25–P75 range applied · Sources: BizBuySell, Progressive Practice Sales, William David Co, JYNT 10-K. Asking-price-derived — closing typically 85–95% of FMV.
         </div>
       </div>
 
@@ -1023,7 +1023,7 @@ function ResultView({ form, v, startWizard, loadExample, fromUpload }: {
 
       {tab === 'comps' && (
         <div style={{ background: C.bg2, border: `1px solid ${C.border}`, borderRadius: 14, padding: '24px 28px' }}>
-          <SectionTitle eyebrow="Closest comparables" title="7 most-similar chiropractic deals from the ~200-deal set." />
+          <SectionTitle eyebrow="Closest comparables" title="7 most-similar chiropractic deals from the 100+ practice-sale set." />
           <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 50px 110px 110px 90px 70px', gap: 14, padding: '10px 14px', borderBottom: `1px solid ${C.border}`, fontFamily: F.mono, fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: C.faint, fontWeight: 700 }}>
             <div>Practice</div>
             <div>St</div>

@@ -35,7 +35,7 @@ type Target = {
 // Sample applications shown when the visitor is in demo mode OR when the
 // production DB is empty (pre-launch). Geo mix matches Wagner's stated
 // territory (VA primary; TX/FL/NC/SC/GA/TN/AL/KY/MD secondary). Numbers
-// realistic per the N=102 comp set.
+// realistic per the 100+ practice-sale comp set.
 const t = (hoursAgo: number) => new Date(Date.now() - 1000 * 60 * 60 * hoursAgo).toISOString()
 const DEMO_TARGETS: Target[] = [
   // VA — Wagner Primary (heaviest concentration)

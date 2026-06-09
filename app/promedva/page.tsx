@@ -58,6 +58,10 @@ export default function ProMedVALanding() {
         <p style={{ fontSize: 19, color: '#C7D0E0', lineHeight: 1.6, maxWidth: 680, margin: '0 auto 32px' }}>
           You built 20 years of patient relationships and community trust. PROMEDVA partners with your practice — our licensed mobile medical team brings <strong style={{ color: C.text }}>advanced diagnostics and cash-pay medical services</strong> into space you lease inside your clinic, so your patients get <strong style={{ color: C.text }}>measurable results</strong> and your practice grows responsibly. You keep practicing exactly as you do today.
         </p>
+        <p style={{ margin: '0 auto 26px', maxWidth: 600 }}>
+          <span style={{ fontFamily: F.display, fontSize: 26, fontWeight: 800, color: C.gold }}>Our partner practices average ~$250,000 a year in new growth.</span>
+          <span style={{ display: 'block', fontSize: 12, color: C.muted, marginTop: 6 }}>Illustrative average across partner practices — results vary, not a guarantee.</span>
+        </p>
         <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
           <CTA href="/intake" primary>See if your practice qualifies →</CTA>
           <CTA href="/value-my-clinic">Value my clinic (free)</CTA>

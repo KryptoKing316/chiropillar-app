@@ -185,7 +185,7 @@ export default function ValueMyClinicPage() {
               In 60 seconds, find out what your <span style={{ color: C.gold, fontStyle: 'italic' }}>chiropractic practice</span> is actually worth.
             </h1>
             <p style={{ fontSize: 19, color: '#3A4865', maxWidth: 660, margin: '0 auto 14px', lineHeight: 1.55 }}>
-              Built on <strong style={{ color: C.spine }}>158 real chiropractic transactions</strong>. Your accountant and your bank value your EBITDA — they ignore the <strong style={{ color: C.spine }}>20 years of patient relationships and community reputation</strong> you built. That goodwill is real value. See what your practice is worth today — <strong style={{ color: C.spine }}>and what it could be worth in two years.</strong>
+              Built on <strong style={{ color: C.spine }}>100+ chiropractic practice sales</strong>. Your accountant and your bank value your EBITDA — they ignore the <strong style={{ color: C.spine }}>20 years of patient relationships and community reputation</strong> you built. That goodwill is real value. See what your practice is worth today — <strong style={{ color: C.spine }}>and what it could be worth in two years.</strong>
             </p>
             <p style={{ fontSize: 15.5, color: '#5A6580', maxWidth: 580, margin: '0 auto 36px', lineHeight: 1.6, fontStyle: 'italic' }}>
               Most DCs find out from a broker who wants to list them, or a CPA who quotes a generic small-business multiple. Neither knows chiropractic. That blind spot is why owners leave 30-50% on the table at retirement.
@@ -283,7 +283,7 @@ export default function ValueMyClinicPage() {
               Drop your P&L PDF.
             </h2>
             <p style={{ textAlign: 'center', color: '#5A6580', fontSize: 15, marginBottom: 28 }}>
-              We&apos;ll read it with Claude AI and price it against 158 chiropractic deals.
+              We&apos;ll read it with Claude AI and price it against 100+ chiropractic practice sales.
             </p>
 
             <div
@@ -481,7 +481,7 @@ export default function ValueMyClinicPage() {
               We have everything we need.
             </h2>
             <p style={{ fontSize: 18, color: '#3A4865', maxWidth: 560, margin: '0 auto 36px', lineHeight: 1.55 }}>
-              <strong style={{ color: C.spine }}>{result.profileLabel}</strong> · pricing against {result.profile === 'platform' ? 'platform' : result.profile === 'multi' ? 'multi-DC' : 'solo-DC'} comp medians from 158 chiropractic deals.
+              <strong style={{ color: C.spine }}>{result.profileLabel}</strong> · pricing against {result.profile === 'platform' ? 'platform' : result.profile === 'multi' ? 'multi-DC' : 'solo-DC'} comp medians from 100+ chiropractic practice sales.
             </p>
             <button
               onClick={runCalculation}
@@ -551,7 +551,7 @@ export default function ValueMyClinicPage() {
               </div>
 
               <div style={{ marginTop: 18, padding: '14px 18px', background: 'rgba(201,168,76,0.10)', border: '1px solid rgba(201,168,76,0.30)', borderRadius: 10, fontSize: 13.5, color: C.text, lineHeight: 1.6 }}>
-                <strong style={{ color: C.gold }}>Calibrated against 158 chiropractic transactions.</strong> Sources: BizBuySell, Progressive Practice Sales, William David Co, JYNT 10-K. Asking-price-derived — closings typically land at 85-95% of FMV.
+                <strong style={{ color: C.gold }}>Calibrated against 100+ chiropractic practice sales.</strong> Sources: BizBuySell, Progressive Practice Sales, William David Co, JYNT 10-K. Asking-price-derived — closings typically land at 85-95% of FMV.
               </div>
             </div>
 
@@ -576,7 +576,7 @@ export default function ValueMyClinicPage() {
                 </div>
               </div>
               <div style={{ marginTop: 16, padding: '14px 18px', background: `${C.gold}12`, border: `1px solid ${C.gold}30`, borderRadius: 10, fontSize: 13.5, color: C.textInk, lineHeight: 1.6 }}>
-                <strong style={{ color: C.spine }}>A $10K/mo base lease + quarterly performance bonuses</strong> (as your clinic hits the metrics, building toward ~$200K/yr), plus commission on cash services — <strong style={{ color: C.spine }}>up to ~$250,000/year</strong> while you keep practicing. We monetize the value a standalone sale leaves on the table. <em style={{ color: '#7A859C' }}>Illustrative, based on the PROMEDVA partnership model — not an offer.</em>
+                <strong style={{ color: C.spine }}>A monthly base lease + quarterly performance bonuses</strong> (as your clinic hits the agreed metrics), plus a new cash-pay medical-services line our team runs alongside you. Our partner practices average <strong style={{ color: C.spine }}>~$250,000 a year in new growth</strong> while you keep practicing exactly as you do today. We monetize the value a standalone sale leaves on the table. <em style={{ color: '#7A859C' }}>Illustrative — results vary; not a guarantee or an offer.</em>
               </div>
             </div>
 
@@ -646,7 +646,7 @@ export default function ValueMyClinicPage() {
                 {newPtsNum >= 40 && (
                   <li><strong style={{ color: C.spine }}>Your patient flow is in the strong band.</strong> PROMEDVA partnership models start here — the medical-team install plus marketing tightening only works on top of demand.</li>
                 )}
-                <li><strong style={{ color: C.spine }}>Add a medical-team revenue stream.</strong> The PROMEDVA install playbook adds <strong>+$250K EBITDA</strong> in Year 1 — at {result.mult}× that&apos;s {fmtMoney(250_000 * result.mult)} of additional valuation.</li>
+                <li><strong style={{ color: C.spine }}>Add a medical-services revenue line.</strong> Our partner practices average <strong>~$250K a year in new growth</strong> from the PROMEDVA medical-services line — illustrative; results vary, not a guarantee.</li>
                 {result.profile !== 'platform' && grossNum >= 2_500_000 && (
                   <li><strong style={{ color: C.spine }}>You&apos;re close to platform profile.</strong> $3M+ revenue with associates in place opens the 7.5× EBITDA platform band — that&apos;s the institutional buyer pool.</li>
                 )}
@@ -669,7 +669,7 @@ export default function ValueMyClinicPage() {
                 Talk to a chiropractor who&apos;s done it.
               </h3>
               <p style={{ fontSize: 15, margin: '0 0 18px', maxWidth: 560, marginLeft: 'auto', marginRight: 'auto', lineHeight: 1.6, opacity: 0.92 }}>
-                The operator behind PROMEDVA runs <strong>5+ clinics serving thousands of patients</strong>. He&apos;s a working DC — not a broker, not a banker. He&apos;ll walk you through what your numbers actually mean and whether the partnership fits.
+                PROMEDVA&apos;s clinical and partnerships team will walk you through what your numbers actually mean and whether the partnership fits — chiropractor to chiropractor, no pressure.
               </p>
               <a
                 href="/intake"
@@ -706,7 +706,7 @@ export default function ValueMyClinicPage() {
             Why we built this
           </div>
           <p style={{ fontSize: 14.5, color: '#3A4865', lineHeight: 1.75, margin: '0 0 22px' }}>
-            The chiropractic practice-valuation industry is broken. CPAs charge $5K and take six weeks. Practice brokers want your listing fee. Online tools give you a generic small-business multiple that doesn&apos;t know chiropractic from chiropody. This calculator is calibrated to <strong style={{ color: C.spine }}>158 real chiropractic transactions</strong>{' '}from Progressive Practice Sales, William David Company, BizBuySell, and JYNT — and it&apos;s built by people who own and operate chiropractic clinics, not by a software company hoping to sell ads. The number you see won&apos;t be perfect. It will be honest.
+            The chiropractic practice-valuation industry is broken. CPAs charge $5K and take six weeks. Practice brokers want your listing fee. Online tools give you a generic small-business multiple that doesn&apos;t know chiropractic from chiropody. This calculator is calibrated to <strong style={{ color: C.spine }}>100+ chiropractic practice sales</strong>{' '}from Progressive Practice Sales, William David Company, BizBuySell, and JYNT — and it&apos;s built by people who own and operate chiropractic clinics, not by a software company hoping to sell ads. The number you see won&apos;t be perfect. It will be honest.
           </p>
           <div style={{ display: 'flex', gap: 22, justifyContent: 'center', flexWrap: 'wrap', fontSize: 12, color: '#7A859C', fontFamily: F.mono, letterSpacing: '0.04em' }}>
             <span>Built by chiropractors + an M&amp;A firm</span>

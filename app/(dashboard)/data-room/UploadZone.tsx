@@ -158,7 +158,7 @@ export default function UploadZone() {
                 Drop tax returns, P&Ls, bank statements
               </div>
               <div style={{ fontSize: 14, color: 'var(--kb-text-secondary)', textAlign: 'center', marginBottom: 18, maxWidth: 440 }}>
-                Claude extracts financials, normalizes EBITDA, identifies add-backs, prices against nearly 200 chiropractic deals analyzed.
+                Claude extracts financials, normalizes EBITDA, identifies add-backs, prices against 100+ chiropractic practice sales.
               </div>
               <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', justifyContent: 'center' }}>
                 <button
