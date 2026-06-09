@@ -85,19 +85,19 @@ type TimelineEvent = {
 
 const TIMELINE_FOR_PIEDMONT: TimelineEvent[] = [
   { ts: '05/20 09:14', code: 'INTAKE_SUB', label: 'Intake submitted',    detail: 'Dr. Marcus Bell · 78 new/mo · 28 visit avg · $1.3M gross',                status: 'INFO' },
-  { ts: '05/20 09:14', code: 'AUTO_QUAL',  label: 'Auto-qualification',  detail: 'Verdict: QUALIFIED · 4/4 Wagner criteria met',                            status: 'OK',   delta:  1_300_000 },
+  { ts: '05/20 09:14', code: 'AUTO_QUAL',  label: 'Auto-qualification',  detail: 'Verdict: QUALIFIED · 4/4 ProMed VA criteria met',                          status: 'OK',   delta:  1_300_000 },
   { ts: '05/20 09:15', code: 'VAL_BAND',   label: 'Valuation band',      detail: '$1.2M – $2.1M (mid $1.65M) · solo profile · 1.46× SDE',                  status: 'INFO' },
   { ts: '05/20 11:02', code: 'EMAIL_SENT', label: 'Auto-email Day 0',    detail: '"Welcome to the ProMed VA shortlist" · opened 11:38',                  status: 'OK' },
   { ts: '05/21 14:50', code: 'CALL_LOG',   label: 'First call · McGrath', detail: '42 min · interested · "willing to step out of clinical"',                status: 'OK' },
-  { ts: '05/22 08:30', code: 'STAGE_MV',   label: 'Stage → Scheduled',    detail: 'Calendly: 05/24 11:00 · Wagner + Bell',                                  status: 'INFO' },
-  { ts: '05/24 11:00', code: 'MEET_HELD',  label: 'Wagner meeting',       detail: '47 min · "feel like a partner not a buyer"',                             status: 'OK',   delta:    150_000 },
+  { ts: '05/22 08:30', code: 'STAGE_MV',   label: 'Stage → Scheduled',    detail: 'Calendly: 05/24 11:00 · principal + Bell',                               status: 'INFO' },
+  { ts: '05/24 11:00', code: 'MEET_HELD',  label: 'Principal meeting',    detail: '47 min · "feel like a partner not a buyer"',                             status: 'OK',   delta:    150_000 },
   { ts: '05/26 16:18', code: 'DOCS_REQ',   label: 'Financials requested', detail: '3yr tax returns · P&L · bank statements · lease',                       status: 'BID' },
   { ts: '05/29 09:42', code: 'DOCS_RECV',  label: 'Financials received',  detail: '7 PDFs · uploaded to data room CP-d10',                                  status: 'OK' },
   { ts: '05/29 09:43', code: 'AI_EXTR',    label: 'Claude extraction',    detail: 'EBITDA $485K · add-backs $130K · normalized $615K',                      status: 'OK',   delta:    150_000 },
   { ts: '05/30 13:15', code: 'STAGE_MV',   label: 'Stage → In Diligence', detail: 'Legal review started · McGrath ops review parallel',                    status: 'INFO' },
   { ts: '06/01 10:00', code: 'NDA_SENT',   label: 'Mutual NDA sent',      detail: 'DocuSeal envelope · awaiting signature',                                 status: 'BID' },
   { ts: '06/01 14:22', code: 'NDA_SIGN',   label: 'NDA executed',         detail: 'Bell signed · IP-logged · timestamped',                                   status: 'OK' },
-  { ts: '06/02 11:30', code: 'LOI_DRAFT',  label: 'LOI drafted',          detail: '$1.9M · 50% cash + 50% seller note · 4% profit share · 10% rollover',   status: 'ASK', delta:    250_000 },
+  { ts: '06/02 11:30', code: 'LOI_DRAFT',  label: 'LOI drafted',          detail: '$1.9M · 50% cash + 50% seller note · 4% profit share',                 status: 'ASK', delta:    250_000 },
 ]
 
 const STATUS_COLOR: Record<TimelineEvent['status'], string> = {
@@ -120,7 +120,7 @@ export default function PipelinePage() {
           Every clinic, every stage, on one board.
         </h1>
         <p style={{ fontSize: 16, color: '#FFFFFF', margin: 0, maxWidth: 760, lineHeight: 1.6, fontWeight: 400 }}>
-          Kanban above. Bloomberg-style audit timeline below. Click any card on the board to see its full journey from intake submission to close — Wagner-grade audit trail.
+          Kanban above. Bloomberg-style audit timeline below. Click any card on the board to see its full journey from intake submission to close — investor-grade audit trail.
         </p>
       </div>
 
@@ -305,7 +305,7 @@ export default function PipelinePage() {
         </div>
         <div style={{ borderLeft: `4px solid ${C.gold}`, paddingLeft: 14 }}>
           <strong style={{ color: C.gold, fontSize: 15 }}>Phase 2 · Slack / SMS alerts</strong><br/>
-          New qualified intake → Wagner + Eric notified. Clinic enters LOI → all three get pinged. Configurable per stage.
+          New qualified intake → principal + Eric notified. Clinic enters LOI → the team gets pinged. Configurable per stage.
         </div>
         <div style={{ borderLeft: `4px solid ${C.gold}`, paddingLeft: 14 }}>
           <strong style={{ color: C.gold, fontSize: 15 }}>Phase 2 · Weighted EBITDA forecast</strong><br/>
@@ -338,16 +338,16 @@ function KvTerm({ label, val, color }: { label: string; val: string; color: stri
 function MOCK_TIMELINE_FOR(d: Deal): TimelineEvent[] {
   const base: TimelineEvent[] = [
     { ts: '05/26 10:14', code: 'INTAKE_SUB', label: 'Intake submitted',    detail: `${d.npm} new/mo · ${d.city} ${d.state}`,           status: 'INFO' },
-    { ts: '05/26 10:15', code: 'AUTO_QUAL',  label: 'Auto-qualification',  detail: 'Verdict: QUALIFIED · 3/4 Wagner criteria met',     status: 'OK',  delta: d.value * 0.6 },
+    { ts: '05/26 10:15', code: 'AUTO_QUAL',  label: 'Auto-qualification',  detail: 'Verdict: QUALIFIED · 3/4 ProMed VA criteria met',   status: 'OK',  delta: d.value * 0.6 },
     { ts: '05/26 10:17', code: 'VAL_BAND',   label: 'Valuation band',      detail: `${fmtMoney(d.value * 0.85)} – ${fmtMoney(d.value * 1.2)} · mid ${fmtMoney(d.value)}`, status: 'INFO' },
     { ts: '05/27 14:30', code: 'EMAIL_SENT', label: 'Auto-email Day 0',    detail: 'Welcome message · opened',                          status: 'OK' },
   ]
   if (d.stage === 'new') return base
   base.push({ ts: '05/28 11:42', code: 'CALL_LOG',  label: 'First call',     detail: 'McGrath · interested',                                  status: 'OK' })
   if (d.stage === 'called') return base
-  base.push({ ts: '05/29 09:15', code: 'STAGE_MV', label: 'Stage → Scheduled', detail: 'Wagner meeting booked',                              status: 'INFO' })
+  base.push({ ts: '05/29 09:15', code: 'STAGE_MV', label: 'Stage → Scheduled', detail: 'Principal meeting booked',                            status: 'INFO' })
   if (d.stage === 'scheduled') return base
-  base.push({ ts: '06/01 11:00', code: 'MEET_HELD', label: 'Wagner meeting',  detail: '45 min · seller engaged',                              status: 'OK', delta: d.value * 0.08 })
+  base.push({ ts: '06/01 11:00', code: 'MEET_HELD', label: 'Principal meeting', detail: '45 min · seller engaged',                              status: 'OK', delta: d.value * 0.08 })
   base.push({ ts: '06/01 16:20', code: 'DOCS_REQ',  label: 'Financials requested', detail: '3yr tax returns + P&L + bank',                  status: 'BID' })
   if (d.stage === 'in_diligence') return base
   base.push({ ts: '06/02 09:00', code: 'LOI_DRAFT', label: 'LOI drafted',     detail: `${fmtMoney(d.value)} · 50/50 cash+note · 4% profit share`, status: 'ASK', delta: d.value * 0.12 })

@@ -49,7 +49,7 @@ const STEPS = [
     color: C.gold,
     status: 'Soon',
     tagline: 'The ProMed VA command center',
-    what: 'Single screen with every number that matters: applicants this week, qualified pipeline, weighted EBITDA in motion, conversion funnel from intake → LOI → close, and the live platform-EBITDA tracker showing Wagner\'s $25M base + acquired ProMed VA EBITDA toward the $45M+ combined-platform target.',
+    what: 'Single screen with every number that matters: applicants this week, qualified pipeline, weighted pipeline value in motion, and the conversion funnel from intake → LOI → close.',
     features: [
       { title: 'Live KPI strip + sparklines', desc: 'Total intakes · qualified · pipeline value · weighted EBITDA — each with 12-week trajectory + trend arrow, like a clinical vitals panel.' },
       { title: 'Conversion funnel pyramid', desc: 'Landed → Submitted → Qualified → In Outreach → In Diligence → LOI → Closed with stage-by-stage drop-off and root-cause notes.' },
@@ -232,7 +232,7 @@ export default function WalkthroughClient({ stats }: { stats: LiveStats }) {
         <StatPill label="Total Intakes"      val={String(stats.totalIntakes)}            color={C.gold}  isDemo={stats.isDemo} />
         <StatPill label="Qualified"          val={String(stats.qualified)}               color={C.green} isDemo={stats.isDemo} />
         <StatPill label="Maybe"              val={String(stats.maybe)}                   color={C.gold}  isDemo={stats.isDemo} />
-        <StatPill label="Pipeline EBITDA"    val={fmtMoney(stats.pipelineEbitda)}        color={C.gold}  isDemo={stats.isDemo} />
+        <StatPill label="Pipeline value"    val={fmtMoney(stats.pipelineEbitda)}        color={C.gold}  isDemo={stats.isDemo} />
         <StatPill label="Active Outreach"    val={String(stats.activeOutreach)}          color={C.align} isDemo={stats.isDemo} />
         <StatPill label="This Week"          val={String(stats.thisWeek)}                color={C.green} isDemo={stats.isDemo} />
         <StatPill label="States"             val={String(stats.states)}                  color={C.align} isDemo={stats.isDemo} />

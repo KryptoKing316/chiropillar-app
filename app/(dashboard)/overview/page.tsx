@@ -87,7 +87,7 @@ const MOCK: OverviewData = {
     { kind: 'apply',     text: 'Dr. Marcus Bell · Piedmont Spine (Charlottesville) submitted intake — qualified', ago: '4h',  tone: '#2ECC8B' },
     { kind: 'call',      text: 'McGrath booked discovery call with Dr. Anika Patel (Richmond Spine) — Thursday', ago: '7h',  tone: '#2E75B6' },
     { kind: 'qualified', text: 'Blue Ridge Family Chiropractic (Charlottesville) moved to Qualified',            ago: '11h', tone: '#9CC4E4' },
-    { kind: 'note',      text: 'Wagner: "Charlottesville is the wedge — sign one strong partner, then Richmond."', ago: '18h', tone: '#C9A84C' },
+    { kind: 'note',      text: 'Strategy: Charlottesville is the wedge — sign one strong partner, then Richmond.', ago: '18h', tone: '#C9A84C' },
     { kind: 'apply',     text: 'Capital Chiropractic & Rehab (Richmond) submitted intake — qualified',           ago: '1d',  tone: '#2ECC8B' },
     { kind: 'apply',     text: '5 new applications this week · Charlottesville + Richmond',                      ago: '2d',  tone: '#2ECC8B' },
   ],
@@ -101,7 +101,7 @@ const MOCK: OverviewData = {
     { state: 'VA', count: 16 },
   ],
   alerts: [
-    { level: 'urgent', text: 'Piedmont Spine (Charlottesville) · discovery call booked — Wagner to join' },
+    { level: 'urgent', text: 'Piedmont Spine (Charlottesville) · discovery call booked — principal to join' },
     { level: 'watch',  text: 'Richmond Spine · 11h since last contact · McGrath to follow up' },
     { level: 'watch',  text: 'Charlottesville ad set learning-phase · cost-per-app still settling' },
     { level: 'ok',     text: 'Blue Ridge + Capital both clear the 25+/mo new-patient floor' },
@@ -280,7 +280,7 @@ export default async function OverviewPage() {
           <Vital label="Applications"     val={String(d.totalIntakes)}      sub="all-time"   trend={d.sparkIntakes}   color={C.gold}   width={130} />
           <Vital label="Qualified"        val={String(d.qualified)}          sub={`${conversion}% conv`} trend={d.sparkQualified} color={C.green}  width={130} />
           <Vital label="Active Outreach"  val={String(d.activeOutreach)}     sub="post-call"  trend={d.sparkOutreach}  color={C.align}  width={130} />
-          <Vital label="Pipeline EBITDA"  val={fmtMoney(d.pipelineEbitda)}   sub="weighted"   trend={d.sparkPipeline}  color={C.gold}   width={130} />
+          <Vital label="Pipeline value"  val={fmtMoney(d.pipelineEbitda)}   sub="enterprise"   trend={d.sparkPipeline}  color={C.gold}   width={130} />
           <Vital label="This Week"        val={String(d.thisWeek)}            sub="new intakes" trend={d.sparkIntakes.slice(6)} color={C.goldLight} width={100} />
           <Vital label="Conv. Rate"       val={`${conversion}%`}              sub="trending"   trend={d.sparkConv}      color={C.green}  width={100} />
         </div>
@@ -340,7 +340,7 @@ export default async function OverviewPage() {
             Pipeline trajectory · 12 weeks
           </div>
           <div style={{ fontFamily: F.display, fontSize: 20, fontWeight: 700, color: C.text, marginBottom: 18, letterSpacing: '-0.01em' }}>
-            From $400K to {fmtMoney(d.pipelineEbitda)} weighted EBITDA.
+            Pipeline value building to {fmtMoney(d.pipelineEbitda)}.
           </div>
           {/* Big chart */}
           <BigSparkline data={d.sparkPipeline} />

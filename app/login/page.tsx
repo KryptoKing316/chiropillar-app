@@ -278,7 +278,7 @@ export default function LoginPage() {
             {/* Footer */}
             <div style={{ textAlign: 'center', fontSize: '12px', color: '#3A4860', lineHeight: 1.6 }}>
               By signing in you agree to confidentiality terms.<br />
-              ProMed VA · Wagner Family Office × Kingdom Broker
+              ProMed VA · Kingdom Broker LLC
             </div>
           </>
         ) : (
