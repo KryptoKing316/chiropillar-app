@@ -51,7 +51,7 @@ export default function VirginiaOpsConsole() {
   const markersRef = useRef<Record<string, any>>({})
 
   const totalClinics = VA_CHIROS.reduce((s, c) => s + c.chiropractors.length, 0)
-  const railCities = [...VA_CHIROS].sort((a, b) => {
+  const railCities = [...VA_CHIROS].filter(c => geoOf(c.city)).sort((a, b) => {
     const ga = geoOf(a.city)!, gb = geoOf(b.city)!
     if (TIER_ORDER[ga.tier] !== TIER_ORDER[gb.tier]) return TIER_ORDER[ga.tier] - TIER_ORDER[gb.tier]
     return b.chiropractors.length - a.chiropractors.length

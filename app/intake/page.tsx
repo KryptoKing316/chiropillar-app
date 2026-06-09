@@ -280,7 +280,7 @@ export default function IntakePage() {
 
   const steps = [
     { label: 'Practice', n: 0 },
-    { label: 'Revenue',  n: 1 },
+    { label: 'Basics',   n: 1 },
     { label: 'Patients', n: 2 },
     { label: 'Services', n: 3 },
     { label: 'Operator', n: 4 },
@@ -327,11 +327,10 @@ export default function IntakePage() {
         {step === 0 && (
           <div style={{ marginBottom: 36, textAlign: 'center' }}>
             <h1 style={{ fontFamily: 'Georgia, serif', fontSize: 'clamp(32px, 4.5vw, 44px)', fontWeight: 700, lineHeight: 1.1, color: '#1F4E79', margin: '0 0 14px', letterSpacing: '-0.02em' }}>
-              Earn an extra <span style={{ color: '#C9A84C' }}>$250,000+ a year</span><br />
-              doing exactly what you&apos;re already doing.
+              Grow your practice with a medical partnership — <span style={{ color: '#C9A84C' }}>without changing how you treat.</span>
             </h1>
             <p style={{ fontSize: 18, color: '#555', lineHeight: 1.55, maxWidth: 620, margin: '0 auto 28px' }}>
-              Host a PROMEDVA medical office inside your existing space and earn monthly rent plus commission on cash services — while you keep practicing exactly as you do today. Better diagnostics for your patients, real income for you, and a higher-multiple exit down the road. The right Virginia chiropractors qualify for the partnership. <strong style={{ color: '#1F4E79' }}>Virginia practices only right now. Have your last 2 years of P&amp;Ls ready. Three minutes — see if you qualify.</strong>
+              PROMEDVA partners with select Virginia chiropractors — our licensed medical team brings advanced diagnostics and cash-pay services into space you lease inside your clinic, so your patients get measurable results and your practice grows responsibly. Our partner practices average <strong style={{ color: '#1F4E79' }}>~$250,000 a year in new growth</strong> (illustrative — results vary, not a guarantee). <strong style={{ color: '#1F4E79' }}>Virginia practices only. Have your last 2 years of practice statistics ready — services, new patients/mo, retention. Three minutes — see if you qualify.</strong>
             </p>
           </div>
         )}
@@ -368,18 +367,12 @@ export default function IntakePage() {
               </>
             )}
 
-            {/* STEP 1: Revenue */}
+            {/* STEP 1: Practice basics (operational stats — no financials) */}
             {step === 1 && (
               <>
-                <h2 style={CSS.h2}>Revenue · last full year</h2>
-                <p style={CSS.sub}>Round figures are fine. We&apos;ll verify against bank statements + tax returns if you move forward — no need for exact numbers here.</p>
+                <h2 style={CSS.h2}>Your practice</h2>
+                <p style={CSS.sub}>A few operational basics — no financials or P&amp;Ls needed. We qualify on your practice statistics, not your books.</p>
                 <div style={CSS.grid2}>
-                  <Field label="Gross revenue (last year)">
-                    <input value={form.gross_revenue_last_year} onChange={update('gross_revenue_last_year')} placeholder="$1,250,000" style={CSS.input}/>
-                  </Field>
-                  <Field label="Net revenue / take-home (after expenses)">
-                    <input value={form.net_revenue_last_year} onChange={update('net_revenue_last_year')} placeholder="$350,000" style={CSS.input}/>
-                  </Field>
                   <Field label="# of employees (full + part-time)">
                     <input value={form.employee_count} onChange={update('employee_count')} placeholder="6" style={CSS.input}/>
                   </Field>
